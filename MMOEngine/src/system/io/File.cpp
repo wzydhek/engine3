@@ -12,14 +12,79 @@
 
 #include <cerrno>
 
-#include <libgen.h>
-
 #include "File.h"
 
 #include "system/thread/Mutex.h"
 #include "system/thread/Locker.h"
 
 #include <mutex>
+
+#ifdef PLATFORM_WIN
+
+#include <cstring>
+
+char* dirname(char* path)
+{
+	if (path == nullptr || *path == '\0')
+		return (char*)".";
+
+	char* lastSlash = nullptr;
+
+	for (char* p = path; *p; ++p)
+	{
+		if (*p == '/' || *p == '\\')
+			lastSlash = p;
+	}
+
+	// No slash found
+	if (lastSlash == nullptr)
+		return (char*)".";
+
+	// Handle root paths like "/"
+	if (lastSlash == path)
+	{
+		lastSlash[1] = '\0';
+		return path;
+	}
+
+	// Trim trailing component
+	*lastSlash = '\0';
+
+	return path;
+}
+
+char* basename(char* path)
+{
+	if (path == nullptr || *path == '\0')
+		return (char*)".";
+
+	char* end = path + std::strlen(path) - 1;
+
+	// Remove trailing slashes
+	while (end > path && (*end == '/' || *end == '\\'))
+	{
+		*end = '\0';
+		--end;
+	}
+
+	// Find last slash
+	char* lastSlash = nullptr;
+
+	for (char* p = path; *p; ++p)
+	{
+		if (*p == '/' || *p == '\\')
+			lastSlash = p;
+	}
+
+	if (lastSlash)
+		return lastSlash + 1;
+
+	return path;
+}
+
+#else
+	#include <libgen.h>
+#endif
 
 File::File(const String& pathname) {
 	name = pathname;

@@ -155,4 +155,5 @@ namespace engine {
   } // util
 } // engine
 
+using namespace engine::util::u3d;
 #endif /* AABB_H_ */

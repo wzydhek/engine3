@@ -204,7 +204,7 @@ Task* TimedTaskQueue::get() {
 			changePlan = false;
 		} else {
 			if (time.compareTo(postWait) < 0) {
-				int64 difference = -(postWait.getMiliTime() - task->getNextExecutionTime().getMiliTime());
+				int64 difference = (static_cast<int64>(postWait.getMiliTime()) - static_cast<int64>(task->getNextExecutionTime().getMiliTime()));
 
 				if (difference > 10) {
 					condMutex->unlock();
@@ -225,7 +225,7 @@ Task* TimedTaskQueue::get() {
 	assert(cleared);
 
 	if (!blocked && task->getNextExecutionTime().compareTo(postWait) < 0) {
-		int64 difference = -(postWait.getMiliTime() - task->getNextExecutionTime().getMiliTime());
+		int64 difference = static_cast<int64>(task->getNextExecutionTime().getMiliTime()) - static_cast<int64>(postWait.getMiliTime());
 
 		if (difference > 10) {
 			error() << "future task happenend " << task->getNextExecutionTime().getMiliTime() << " ("

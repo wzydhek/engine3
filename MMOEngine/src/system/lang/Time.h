@@ -16,6 +16,8 @@
 #include <windef.h>
 #include <pthread.h>
 #include <ctime>
+static int conv_num(const char** buf, int* dest, int llim, int ulim);
+char* strptime(const char* buf, const char* fmt, struct tm* tm);
 #endif
 
 #include "String.h"

@@ -139,7 +139,7 @@ void FileLogWriter::rotatefile(bool force) const {
 #ifndef PLATFORM_WIN
 		char* msg = strerror_r(errno, buf, sizeof(buf));
 #else // PLATFORM_WIN
-		char* msg = "<unknown on windows>";
+		const char* msg = "<unknown on windows>";
 #endif // PLATFORM_WIN
 #endif // PLATFORM_MAC
 

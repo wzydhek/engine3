@@ -10,6 +10,9 @@
 
 #include <regex>
 
+#ifdef PLATFORM_WIN
+	#include <sstream>
+#endif
 constexpr uint32 StringHashCodeTable::crctable[];
 
 String::String() {

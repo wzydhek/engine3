@@ -47,6 +47,8 @@
 #pragma warning (disable : 4250)
 #pragma warning (disable : 4060)
 #pragma warning (disable : 4065)
+#pragma warning (disable : 4309)
+#pragma warning (disable : 4305)
 #undef isnan
 #undef isinf
 
@@ -102,6 +104,7 @@ extern "C" int isinf (double);
 #include <float.h>
 #define isnan(X) _isnan(X)
 #define isinf(x) (!_finite(x) && !_isnan(x))
+typedef unsigned int uint;
 #endif
 
 #if GCC_VERSION >= 40100

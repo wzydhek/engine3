@@ -29,7 +29,6 @@
 #include "service/DatagramServiceClient.h"
 #include "service/DatagramServiceClientProxy.h"
 #include "service/DatagramServiceThread.h"
-#include "service/DatagramServiceThread.h"
 #include "service/StreamServiceClient.h"
 #include "service/StreamServiceClientProxy.h"
 #include "service/StreamServiceThread.h"
