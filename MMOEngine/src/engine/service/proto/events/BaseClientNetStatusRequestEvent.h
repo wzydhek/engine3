@@ -9,8 +9,7 @@
  *      Author: theanswer
  */
 
-#ifndef BASECLIENTNETSTATUSREQUESTEVENT_H_
-#define BASECLIENTNETSTATUSREQUESTEVENT_H_
+#pragma once
 
 #include "engine/service/proto/BasePacket.h"
 #include "engine/service/proto/BaseClient.h"
@@ -53,6 +52,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-
-#endif /* BASECLIENTNETSTATUSREQUESTEVENT_H_ */

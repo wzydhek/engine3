@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef INVOKEMETHODMESSAGE_H_
-#define INVOKEMETHODMESSAGE_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "DOBMessage.h"
-
 #include "engine/core/Task.h"
 
 namespace engine {
@@ -110,5 +107,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*INVOKEMETHODMESSAGE_H_*/

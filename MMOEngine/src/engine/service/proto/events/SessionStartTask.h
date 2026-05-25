@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef SESSIONSTARTTASK_H_
-#define SESSIONSTARTTASK_H_
+#pragma once
 
 #include "engine/service/proto/BaseClient.h"
 
@@ -35,6 +34,3 @@ public:
 		client->send(msg);
 	}
 };
-
-
-#endif /* SESSIONSTARTTASK_H_ */

@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef OBJECTOUTPUTSTREAM_H_
-#define OBJECTOUTPUTSTREAM_H_
+#pragma once
 
 #include "Stream.h"
 
@@ -115,5 +114,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /*OBJECTOUTPUTSTREAM_H_*/

@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef NETWORKINTERFACE_H_
-#define NETWORKINTERFACE_H_
+#pragma once
 
 #include "system/util/Vector.h"
-
 #include "InetAddress.h"
 
 namespace sys {
@@ -48,5 +46,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::net;
-
-#endif /*NETWORKINTERFACE_H_*/

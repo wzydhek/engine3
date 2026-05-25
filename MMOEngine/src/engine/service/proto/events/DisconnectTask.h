@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef DISCONNECTTASK_H_
-#define DISCONNECTTASK_H_
+#pragma once
 
 class DisconnectTask : public Task {
 	Reference<BaseClient*> client;
@@ -28,6 +27,3 @@ public:
 		client->disconnect();
 	}
 };
-
-
-#endif /* DISCONNECTTASK_H_ */

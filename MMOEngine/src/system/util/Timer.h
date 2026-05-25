@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef TIMER_H_
-#define TIMER_H_
+#pragma once
 
 #include "system/lang/Time.h"
 #include "system/lang/Function.h"
@@ -117,6 +116,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::util;
-
-
-#endif /* TIMER_H_ */

@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ITERATOR_H_
-#define ITERATOR_H_
+#pragma once
 
 namespace sys {
   namespace util {
@@ -21,5 +20,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::util;
-
-#endif /*ITERATOR_H_*/

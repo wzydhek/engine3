@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef STREAMINDEXOUTOFBOUNDSEXCEPTION_H_
-#define STREAMINDEXOUTOFBOUNDSEXCEPTION_H_
+#pragma once
 
 #include "system/lang/Exception.h"
-
 #include "system/lang/System.h"
 #include "system/lang/StringBuffer.h"
 
@@ -35,5 +33,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /*STREAMINDEXOUTOFBOUNDSEXCEPTION_H_*/

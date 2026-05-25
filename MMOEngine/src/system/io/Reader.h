@@ -2,8 +2,7 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef READER_H_
-#define READER_H_
+#pragma once
 
 #include "system/lang/Object.h"
 
@@ -32,5 +31,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /*READER_H_*/

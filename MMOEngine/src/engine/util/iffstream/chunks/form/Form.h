@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef FORM_H_
-#define FORM_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/util/iffstream/chunks/Chunk.h"
 
 namespace engine {
@@ -34,5 +32,3 @@ namespace engine {
 }
 
 using namespace engine::util;
-
-#endif /*FORM_H_*/

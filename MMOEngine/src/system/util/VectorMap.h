@@ -3,15 +3,13 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef VECTORMAP_H_
-#define VECTORMAP_H_
+#pragma once
 
 #ifdef CXX11_COMPILER
-#include <type_traits>
+	#include <type_traits>
 #endif
 
 #include "system/platform.h"
-
 #include "SortedVector.h"
 
 namespace sys {
@@ -303,5 +301,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::util;
-
-#endif /*VECTORMAP_H_*/

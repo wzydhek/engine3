@@ -8,23 +8,23 @@
 #include "system/platform.h"
 
 #ifndef PLATFORM_WIN
-#include <unistd.h>
-#include <cstdio>
-#include <ctime>
+	#include <unistd.h>
+	#include <cstdio>
+	#include <ctime>
 #else
-#include <windows.h>
-#include <windef.h>
-#include <pthread.h>
-#include <ctime>
-static int conv_num(const char** buf, int* dest, int llim, int ulim);
-char* strptime(const char* buf, const char* fmt, struct tm* tm);
+	#include <windows.h>
+	#include <windef.h>
+	#include <pthread.h>
+	#include <ctime>
+
+	static int conv_num(const char** buf, int* dest, int llim, int ulim);
+	char* strptime(const char* buf, const char* fmt, struct tm* tm);
+
 #endif
 
 #include "String.h"
 #include "StringBuffer.h"
-
 #include "Long.h"
-
 #include <chrono>
 
 namespace sys {
@@ -478,4 +478,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-

@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef REMOTEOBJECTBROKER_H_
-#define REMOTEOBJECTBROKER_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/orb/ObjectBroker.h"
-
 #include "system/util/SynchronizedSortedVector.h"
 
 namespace engine {
@@ -67,5 +64,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*REMOTEOBJECTBROKER_H_*/

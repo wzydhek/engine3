@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef BASECLIENTPROXY_H_
-#define BASECLIENTPROXY_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "BaseClient.h"
 
 namespace engine {
@@ -32,5 +30,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*BASECLIENTPROXY_H_*/

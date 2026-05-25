@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef DEADLOCKEXCEPTION_H_
-#define DEADLOCKEXCEPTION_H_
+#pragma once
 
 #include "system/lang/Exception.h"
 
@@ -56,5 +55,3 @@ namespace sys {
 }
 
 using namespace sys::thread;
-
-#endif /* DEADLOCKEXCEPTION_H_ */

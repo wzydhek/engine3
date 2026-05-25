@@ -9,11 +9,9 @@
  *      Author: victor
  */
 
-#ifndef SRC_ENGINE_UTIL_U3D_BASICQUADTREE_H_
-#define SRC_ENGINE_UTIL_U3D_BASICQUADTREE_H_
+#pragma once
 
 #include "engine/util/u3d/BasicQuadTreeNode.h"
-
 #include "QuadTreeEntryInterface.h"
 
 namespace engine {
@@ -85,7 +83,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::util::u3d;
-
-
-
-#endif /* SRC_ENGINE_UTIL_U3D_BASICQUADTREE_H_ */

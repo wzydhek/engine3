@@ -9,11 +9,9 @@
  *      Author: victor
  */
 
-#ifndef SYNCHRONIZEDHASHTABLE_H_
-#define SYNCHRONIZEDHASHTABLE_H_
+#pragma once
 
 #include "HashTable.h"
-
 #include "system/thread/ReadLocker.h"
 #include "system/thread/Locker.h"
 
@@ -136,5 +134,3 @@ namespace sys {
 }
 
 using namespace sys::util;
-
-#endif /* SYNCHRONIZEDHASHTABLE_H_ */

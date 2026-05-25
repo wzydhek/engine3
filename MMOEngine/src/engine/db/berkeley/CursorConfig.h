@@ -9,11 +9,9 @@
  *      Author: victor
  */
 
-#ifndef CURSORCONFIG_H_
-#define CURSORCONFIG_H_
+#pragma once
 
 #include "system/platform.h"
-
 #include <db.h>
 
 namespace engine {
@@ -95,5 +93,3 @@ namespace engine {
     } // namespace berkeley
   } // namespace db
 } // namespace engine
-
-#endif /* CURSORCONFIG_H_ */

@@ -14,8 +14,7 @@
 /*  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            */
 /******************************************************************************/
 
-#ifndef _lru_cache_h_
-#define _lru_cache_h_
+#pragma once
 
 // Bring all the necessary includes together,
 // and define some type helpers.
@@ -23,29 +22,29 @@
 #include <map>
 
 #ifdef CXX11_COMPILER
-#include <unordered_map>
-#include "lru_cache_using_std.h"
+  #include <unordered_map>
+  #include "lru_cache_using_std.h"
 #else
-#include "lru_cache_using_std_c98.h"
+  #include "lru_cache_using_std_c98.h"
 #endif
 
 // See http://www.gotw.ca/gotw/079.htm for why we can't
 // just use a templated typedef.
 
 #ifdef CXX11_COMPILER
-template <typename K,typename V> struct lru_cache_using_std_map {
-  typedef lru_cache_using_std<K,V,std::map> type;
-};
 
-template <typename K,typename V> struct lru_cache_using_std_unordered_map {
-  typedef lru_cache_using_std<K,V,std::unordered_map> type;
-};
+  template <typename K,typename V> struct lru_cache_using_std_map {
+    typedef lru_cache_using_std<K,V,std::map> type;
+  };
+
+  template <typename K,typename V> struct lru_cache_using_std_unordered_map {
+    typedef lru_cache_using_std<K,V,std::unordered_map> type;
+  };
 
 #else
-template <typename K,typename V> struct lru_cache_using_std_map {
-  typedef lru_cache_using_std<K,V,std::map> type;
-};
 
-#endif
+  template <typename K,typename V> struct lru_cache_using_std_map {
+    typedef lru_cache_using_std<K,V,std::map> type;
+  };
 
 #endif

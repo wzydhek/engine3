@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SERVICETHREAD_H_
-#define SERVICETHREAD_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/log/Logger.h"
-
 #include "ServiceException.h"
 
 namespace engine {
@@ -57,5 +54,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /*SERVICETHREAD_H_*/

@@ -6,12 +6,9 @@
 #pragma once
 
 #include <iostream>
-
 #include "system/platform.h"
-
 #include "String.h"
 #include "UnicodeString.h"
-
 #include "system/util/ArrayList.h"
 
 namespace sys {
@@ -186,6 +183,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-
-
-

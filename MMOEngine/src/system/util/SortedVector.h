@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SORTEDVECTOR_H_
-#define SORTEDVECTOR_H_
+#pragma once
 
 #include "Vector.h"
 
@@ -322,5 +321,3 @@ namespace sys {
 
   } // namespace util
 } // namespace sys
-
-#endif /*SORTEDVECTOR_H_*/

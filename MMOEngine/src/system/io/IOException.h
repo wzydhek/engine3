@@ -6,7 +6,6 @@
 
 #include <cerrno>
 #include <string.h>
-
 #include "system/lang/Exception.h"
 
 namespace sys {

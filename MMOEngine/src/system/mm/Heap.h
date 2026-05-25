@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef HEAP_H_
-#define HEAP_H_
+#pragma once
 
 #include "MultimapMemoryManager.h"
-
 #include "Allocator.h"
 
 namespace sys {
@@ -53,5 +51,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::mm;
-
-#endif /* HEAP_H_ */

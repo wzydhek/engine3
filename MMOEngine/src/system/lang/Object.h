@@ -4,19 +4,15 @@
 */
 
 #pragma once
-#include <atomic>
 
+#include <atomic>
 #include "system/lang/ref/ReferenceCounter.h"
 //#include "system/lang/ref/WeakReference.h"
 #include "system/lang/ref/StrongAndWeakReferenceCount.h"
-
 #include "system/thread/Mutex.h"
-
 #include "system/util/ArrayList.h"
-
 #include "system/thread/atomic/AtomicBoolean.h"
 #include "system/thread/atomic/AtomicReference.h"
-
 #include "Variable.h"
 
 #ifdef MEMORY_PROTECTION
@@ -46,7 +42,6 @@ namespace sys {
 		template<class K, class V, bool RawCopyAndRealloc> class VectorMap;
 	}
 }
-
 
 namespace sys {
   namespace lang {
@@ -242,4 +237,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-

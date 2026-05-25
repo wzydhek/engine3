@@ -3,15 +3,11 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef MANAGEDREFERENCE_H_
-#define MANAGEDREFERENCE_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "Core.h"
-
 #include "engine/stm/TransactionalMemoryManager.h"
-
 #include "ManagedObject.h"
 
 namespace engine {
@@ -295,5 +291,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::core;
-
-#endif /*MANAGEDREFERENCE_H_*/

@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef CONNECTIONSERVERMESSAGE_H_
-#define CONNECTIONSERVERMESSAGE_H_
+#pragma once
 
 #include "engine/service/proto/BaseProtocol.h"
 
@@ -41,5 +40,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*CONNECTIONSERVERMESSAGE_H_*/

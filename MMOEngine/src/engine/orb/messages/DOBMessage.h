@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DOBMESSAGE_H_
-#define DOBMESSAGE_H_
+#pragma once
 
 #include "system/lang.h"
 
@@ -80,5 +79,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*DOBMESSAGE_H_*/

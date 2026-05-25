@@ -3,15 +3,11 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef UNICODETOKENIZER_H_
-#define UNICODETOKENIZER_H_
+#pragma once
 
 #include "system/platform.h"
-
 #include "system/lang/Exception.h"
-
 #include "system/lang/UnicodeString.h"
-
 #include "system/lang/StringBuffer.h"
 
 namespace sys {
@@ -75,6 +71,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-
-#endif /* UNICODETOKENIZER_H_ */

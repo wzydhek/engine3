@@ -9,11 +9,9 @@
  *      Author: victor
  */
 
-#ifndef SYNCHRONIZEDVECTORMAP_H_
-#define SYNCHRONIZEDVECTORMAP_H_
+#pragma once
 
 #include "VectorMap.h"
-
 #include "system/thread/ReadWriteLock.h"
 #include "system/thread/Locker.h"
 #include "system/thread/ReadLocker.h"
@@ -184,5 +182,3 @@ namespace sys {
  	 }
  }
 }
-
-#endif /* SYNCHRONIZEDVECTORMAP_H_ */

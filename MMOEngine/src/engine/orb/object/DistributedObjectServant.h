@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DISTRIBUTEDOBJECTSERVANT_H_
-#define DISTRIBUTEDOBJECTSERVANT_H_
+#pragma once
 
 #include "system/lang.h"
 
@@ -53,5 +52,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*DISTRIBUTEDOBJECTSERVANT_H_*/

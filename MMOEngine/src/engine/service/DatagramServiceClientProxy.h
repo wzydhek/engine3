@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DATAGRAMSERVICECLIENTPROXY_H_
-#define DATAGRAMSERVICECLIENTPROXY_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "ServiceClient.h"
 
 namespace engine {
@@ -31,5 +29,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /*DATAGRAMSERVICECLIENTPROXY_H_*/

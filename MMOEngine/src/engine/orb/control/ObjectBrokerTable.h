@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef OBJECTBROKERTABLE_H_
-#define OBJECTBROKERTABLE_H_
+#pragma once
 
 #include "engine/orb/ObjectBroker.h"
 
@@ -36,5 +35,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*OBJECTBROKERTABLE_H_*/

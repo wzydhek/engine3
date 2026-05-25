@@ -3,17 +3,12 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef UNDEPLOYOBJECTMESSAGE_H_
-#define UNDEPLOYOBJECTMESSAGE_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/orb/DistributedObjectBroker.h"
-
 #include "engine/orb/object/DistributedObjectStub.h"
-
 #include "engine/orb/messages/RemoteObjectBroker.h"
-
 #include "DOBMessage.h"
 
 namespace engine {
@@ -70,5 +65,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*UNDEPLOYOBJECTMESSAGE_H_*/

@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef TIMEDTASKQUEUE_H_
-#define TIMEDTASKQUEUE_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/log/Logger.h"
-
 #include "Task.h"
 
 namespace engine {
@@ -65,5 +62,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::core;
-
-#endif /* TIMEDTASKQUEUE_H_ */

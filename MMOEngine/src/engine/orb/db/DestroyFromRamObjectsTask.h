@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef DESTROYFROMRAMOBJECTSTASK_H_
-#define DESTROYFROMRAMOBJECTSTASK_H_
+#pragma once
 
 class DestroyFromRamObjectsTask : public Task {
 	Vector<DistributedObject*>* objects;
@@ -33,6 +32,3 @@ public:
 		Logger::console.info("finished deleting objects from ram", true);
 	}
 };
-
-
-#endif /* DESTROYFROMRAMOBJECTSTASK_H_ */

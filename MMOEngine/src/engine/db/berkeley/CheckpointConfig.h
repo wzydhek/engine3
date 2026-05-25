@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef CHECKPOINTCONFIG_H_
-#define CHECKPOINTCONFIG_H_
+#pragma once
 
 #include "system/lang.h"
 
@@ -61,5 +60,3 @@ namespace engine {
     } // namespace berkeley
   } // namespace db
 } // namespace engine
-
-#endif /* CHECKPOINTCONFIG_H_ */

@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef INVALIDFILETYPEEXCEPTION_H_
-#define INVALIDFILETYPEEXCEPTION_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "IffStreamException.h"
 
 class InvalidFileTypeException : public IffStreamException {
@@ -18,5 +16,3 @@ public:
 		message = sstr.toString();
 	}
 };
-
-#endif /*INVALIDFILETYPEEXCEPTION_H_*/

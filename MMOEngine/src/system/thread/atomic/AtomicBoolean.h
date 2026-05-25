@@ -3,16 +3,12 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ATOMICBOOLEAN_H_
-#define ATOMICBOOLEAN_H_
+#pragma once
 
 #include "system/platform.h"
-
 #include "system/lang/Variable.h"
-
 #include "system/io/ObjectInputStream.h"
 #include "system/io/ObjectOutputStream.h"
-
 #include <atomic>
 
 namespace sys {
@@ -82,5 +78,3 @@ namespace sys {
 } //namespace sys
 
 using namespace sys::thread::atomic;
-
-#endif /* ATOMICBOOLEAN_H_ */

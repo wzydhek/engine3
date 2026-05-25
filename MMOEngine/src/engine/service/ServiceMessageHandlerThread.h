@@ -3,16 +3,12 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SERVICEMESSAGEHANDLERTHREAD_H_
-#define SERVICEMESSAGEHANDLERTHREAD_H_
+#pragma once
 
 #include "ServiceThread.h"
-
 #include "ServiceClientMap.h"
-
 #include "ServiceHandler.h"
 #include "ServiceFilter.h"
-
 #include "MessageQueue.h"
 
 namespace engine {
@@ -80,5 +76,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /*SERVICEMESSAGEHANDLERTHREAD_H_*/

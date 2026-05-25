@@ -6,36 +6,33 @@
 #pragma once
 
 #include "system/lang.h"
-
 #include <lua.hpp>
-
 #include "LuaObject.h"
 #include "LuaFunction.h"
 #include "Luna.h"
-
 #include "LuaCallbackException.h"
-
 #include "engine/log/Logger.h"
 
 #if !defined(use_builtin_FILE)
-#if defined(__clang__)
-#if __has_builtin(__builtin_FILE)
-#define use_builtin_FILE 1
-#else
-#define use_builtin_FILE 0
-#endif
-#else
-#if defined(__GNUC__) || defined(__GNUG__)
-#define use_builtin_FILE 1
-#endif
-#endif
+	#if defined(__clang__)
+		#if __has_builtin(__builtin_FILE)
+			#define use_builtin_FILE 1
+		#else
+			#define use_builtin_FILE 0
+		#endif
+	#else
+		#if defined(__GNUC__) || defined(__GNUG__)
+			#define use_builtin_FILE 1
+		#endif
+	#endif
 #endif
 
 #if use_builtin_FILE
-#define LUA_CAPTURE_CALLER_DECLARE const char* file = __builtin_FILE(), const char* function = __builtin_FUNCTION(), int line = __builtin_LINE()
+	#define LUA_CAPTURE_CALLER_DECLARE const char* file = __builtin_FILE(), const char* function = __builtin_FUNCTION(), int line = __builtin_LINE()
 #else
-#define LUA_CAPTURE_CALLER_DECLARE const char* file = "unknown", const char* function = "unknown", int line = 0
+	#define LUA_CAPTURE_CALLER_DECLARE const char* file = "unknown", const char* function = "unknown", int line = 0
 #endif
+
 #define LUA_CAPTURE_CALLER_ARGS const char* file, const char* function, int line
 #define LUA_CAPTURE_CALLER_PASS file, function, line
 
@@ -170,4 +167,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::lua;
-

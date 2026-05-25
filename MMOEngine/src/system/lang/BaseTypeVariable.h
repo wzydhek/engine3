@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef BASETYPEVARIABLE_H_
-#define BASETYPEVARIABLE_H_
+#pragma once
 
 #include "Variable.h"
 #include "String.h"
@@ -134,6 +133,3 @@ namespace sys {
 }
 
 using namespace sys::lang;
-
-
-#endif /* BASETYPEVARIABLE_H_ */

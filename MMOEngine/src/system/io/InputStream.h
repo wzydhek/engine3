@@ -2,8 +2,7 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef INPUTSTREAM_H_
-#define INPUTSTREAM_H_
+#pragma once
 
 namespace sys {
   namespace io {
@@ -30,5 +29,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /*INPUTSTREAM_H_*/

@@ -2,13 +2,11 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef CRYPTO_H_
-#define CRYPTO_H_
+#pragma once
 
 #include "system/platform.h"
 #include "system/lang/String.h"
 #include "system/lang/System.h"
-
 #include <limits>
 #include <cstddef>
 
@@ -52,5 +50,3 @@ namespace sys {
 }
 
 using namespace sys::security;
-
-#endif /* CRYPTO_H_ */

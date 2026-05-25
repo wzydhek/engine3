@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef LUAPANICEXCEPTION_H_
-#define LUAPANICEXCEPTION_H_
+#pragma once
 
 class LuaPanicException : public Exception {
 public:
@@ -18,6 +17,3 @@ public:
 
 	}
 };
-
-
-#endif /* LUAPANICEXCEPTION_H_ */

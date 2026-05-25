@@ -28,6 +28,7 @@
 #if defined(_MSC_VER)
 	#define __PRETTY_FUNCTION__ __FUNCSIG__
 #endif
+
 #define CACHED_PROPERTY_VALUE(type, getter, defaultValue, key) \
 	cachedValueInternal<type, String::hashCode(key)>(key, getter, defaultValue)
 

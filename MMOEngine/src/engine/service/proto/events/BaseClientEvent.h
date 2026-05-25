@@ -9,6 +9,7 @@
  *      Author: victor
  */
 
+#pragma once
 
 namespace engine {
   namespace service {
@@ -54,9 +55,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#ifndef BASECLIENTEVENT_H_
-#define BASECLIENTEVENT_H_
-
-
-#endif /* BASECLIENTEVENT_H_ */

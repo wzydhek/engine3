@@ -8,13 +8,10 @@
  * @created     : Friday Mar 15, 2019 09:52:19 CET
  */
 
-#ifndef DISTRIBUTEDOBJECTPOD_H
-
-#define DISTRIBUTEDOBJECTPOD_H
+#pragma once
 
 #include "system/platform.h"
 #include "system/lang/Object.h"
-
 #include "engine/util/json.hpp"
 
 namespace engine {
@@ -46,6 +43,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /* end of include guard DISTRIBUTEDOBJECTPOD_H */
-

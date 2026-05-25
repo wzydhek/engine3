@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef BASECLIENTNETSTATUSCHECKUPEVENT_H_
-#define BASECLIENTNETSTATUSCHECKUPEVENT_H_
+#pragma once
 
 #include "engine/service/proto/BasePacket.h"
 #include "engine/service/proto/BaseClient.h"
@@ -48,5 +47,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*BASECLIENTNETSTATUSCHECKUPEVENT_H_*/

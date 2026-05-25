@@ -9,15 +9,11 @@
  *      Author: victor
  */
 
-#ifndef DISTRIBUTEDOBJECTBROKERSERVICEHANDLER_H_
-#define DISTRIBUTEDOBJECTBROKERSERVICEHANDLER_H_
+#pragma once
 
 #include "engine/orb/DistributedObjectBroker.h"
-
 #include "engine/orb/messages/RemoteObjectBroker.h"
-
 #include "engine/orb/control/ObjectBrokerDirector.h"
-
 #include "DOBMessageFactory.h"
 
 class DOBServiceHandler : public ServiceHandler {
@@ -40,7 +36,3 @@ public:
 
 	bool handleError(ServiceClient* client, Exception& e);
 };
-
-
-
-#endif /* DISTRIBUTEDOBJECTBROKERSERVICEHANDLER_H_ */

@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ERRORMESSAGE_H_
-#define ERRORMESSAGE_H_
+#pragma once
 
 #include "engine/service/proto/BaseProtocol.h"
 
@@ -27,5 +26,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*ERRORMESSAGE_H_*/

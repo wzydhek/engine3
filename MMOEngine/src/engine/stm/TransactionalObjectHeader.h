@@ -3,15 +3,11 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ENGINE_STM_TRANSACTIONALOBJECTHEADER_H_
-#define ENGINE_STM_TRANSACTIONALOBJECTHEADER_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "TransactionalMemoryManager.h"
-
 #include "TransactionAbortedException.h"
-
 #include "Transaction.h"
 
 //#define STMLINKELISTDHELP
@@ -272,5 +268,3 @@ namespace engine {
 
   } // namespace stm
 } // namespace engine
-
-#endif /* ENGINE_STM_TRANSACTIONALOBJECTHEADER_H_ */

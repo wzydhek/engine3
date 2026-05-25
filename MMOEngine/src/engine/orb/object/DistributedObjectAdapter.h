@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DISTRIBUTEDOBJECTADAPTER_H_
-#define DISTRIBUTEDOBJECTADAPTER_H_
+#pragma once
 
 #include "DistributedObjectStub.h"
-
 #include "engine/orb/messages/DOBMessage.h"
 
 namespace engine {
@@ -53,5 +51,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*DISTRIBUTEDOBJECTADAPTER_H_*/

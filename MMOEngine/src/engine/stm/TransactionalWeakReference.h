@@ -9,8 +9,7 @@
  *      Author: theanswer
  */
 
-#ifndef TRANSACTIONALWEAKREFERENCE_H_
-#define TRANSACTIONALWEAKREFERENCE_H_
+#pragma once
 
 #include "Transaction.h"
 
@@ -136,5 +135,3 @@ public:
 
   } // namespace stm
 } // namespace engine
-
-#endif /* TRANSACTIONALWEAKREFERENCE_H_ */

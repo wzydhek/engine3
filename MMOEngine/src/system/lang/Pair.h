@@ -4,8 +4,7 @@
  * @created     : Friday Aug 09, 2019 07:38:44 UTC
  */
 
-#ifndef E3PAIR_H
-#define E3PAIR_H
+#pragma once
 
 #include <utility>
 #include "types.h"
@@ -123,6 +122,3 @@ namespace sys {
 	}
   }
 }
-
-#endif /* end of include guard E3PAIR_H */
-

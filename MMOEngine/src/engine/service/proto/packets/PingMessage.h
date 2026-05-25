@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef PINGMESSAGE_H_
-#define PINGMESSAGE_H_
+#pragma once
 
 #include "engine/service/proto/BaseProtocol.h"
 
@@ -28,5 +27,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*PINGMESSAGE_H_*/

@@ -3,15 +3,11 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef REFERENCECOUNTER_H_
-#define REFERENCECOUNTER_H_
+#pragma once
 
 #include <signal.h>
-
 #include "system/platform.h"
-
 #include "system/lang/System.h"
-
 #include <atomic>
 
 namespace sys {
@@ -108,5 +104,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-
-#endif /*REFERENCECOUNTER_H_*/

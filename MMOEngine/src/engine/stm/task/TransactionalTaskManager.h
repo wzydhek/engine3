@@ -3,15 +3,11 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef TRANSACTIONALTASKMANAGER_H_
-#define TRANSACTIONALTASKMANAGER_H_
+#pragma once
 
 #include "engine/util/Command.h"
-
 #include "engine/core/TaskQueue.h"
-
 #include "engine/core/TaskManager.h"
-
 #include "engine/stm/task/LocalTaskManager.h"
 
 namespace engine {
@@ -82,5 +78,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::stm;
-
-#endif /* TASKMANAGER_H_ */

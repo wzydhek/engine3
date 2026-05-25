@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ENGINE_STM_TRANSACTIONALOBJECTHANDLE_H_
-#define ENGINE_STM_TRANSACTIONALOBJECTHANDLE_H_
+#pragma once
 
 #include "mm/KernelCall.h"
 
@@ -285,6 +284,3 @@ namespace engine {
 
   } // namespace stm
 } // namespace engine
-
-
-#endif /* ENGINE_STM_TRANSACTIONALOBJECTHANDLE_H_ */

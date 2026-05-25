@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef LOCKER_H_
-#define LOCKER_H_
+#pragma once
 
 #include "Lockable.h"
 #include "Mutex.h"
@@ -171,5 +170,3 @@ namespace sys {
 } //namespace sys
 
 using namespace sys::thread;
-
-#endif /*LOCKER_H_*/

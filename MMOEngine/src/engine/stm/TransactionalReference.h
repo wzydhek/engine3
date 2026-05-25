@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ENGINE_STM_TRANSACTIONALWEAKREFERENCE_H_
-#define ENGINE_STM_TRANSACTIONALWEAKREFERENCE_H_
+#pragma once
 
 #include "Transaction.h"
 #include "TransactionalWeakReference.h"
@@ -185,5 +184,3 @@ public:
 
 } // namespace stm
 } // namespace engine
-
-#endif /* ENGINE_STM_TRANSACTIONALREFERENCE_H_ */

@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef BINARYSEARCHTREE_H_
-#define BINARYSEARCHTREE_H_
+#pragma once
 
 #include "system/platform.h"
-
 #include "system/lang/System.h"
 
 template <class O> class BinarySearchTree;
@@ -199,5 +197,3 @@ private:
 	}
 
 };
-
-#endif /*BINARYSEARCHTREE_H_*/

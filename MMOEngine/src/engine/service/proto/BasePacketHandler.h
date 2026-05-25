@@ -3,18 +3,13 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef BASEPACKETHANDLER_H_
-#define BASEPACKETHANDLER_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/log/Logger.h"
-
 #include "engine/service/ServiceClient.h"
 #include "engine/service/ServiceHandler.h"
-
 #include "BaseClient.h"
-
 #include "BaseMessage.h"
 
 namespace engine {
@@ -55,6 +50,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*BASEPACKETHANDLER_H_*/
-

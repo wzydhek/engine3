@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef BASEPACKET_H_
-#define BASEPACKET_H_
+#pragma once
 
 #include "engine/service/Message.h"
 
@@ -130,5 +129,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*BASEPACKET_H_*/

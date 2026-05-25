@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef TASKQUEUE_H_
-#define TASKQUEUE_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/log/Logger.h"
 
 //#define TRACE_TASKS
@@ -51,5 +49,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::core;
-
-#endif /*TASKQUEUE_H_*/

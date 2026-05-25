@@ -3,17 +3,16 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ALLOCATIONHOOK_H_
-#define ALLOCATIONHOOK_H_
+#pragma once
 
 #include "system/platform.h"
 
 #ifdef PLATFORM_MAC
-#include <malloc/malloc.h>
-#include <mach/mach_init.h>
-#include <mach/mach_vm.h>
-#include <sys/mman.h>
-#include <mach/mach.h>
+	#include <malloc/malloc.h>
+	#include <mach/mach_init.h>
+	#include <mach/mach_vm.h>
+	#include <sys/mman.h>
+	#include <mach/mach.h>
 #endif
 
 namespace sys {
@@ -53,5 +52,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::mm;
-
-#endif /* ALLOCATIONHOOK_H_ */

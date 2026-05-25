@@ -3,15 +3,14 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef PACKET_H_
-#define PACKET_H_
+#pragma once
 
 #include "system/platform.h"
 
 #ifndef PLATFORM_WIN
-#include <arpa/inet.h>
+	#include <arpa/inet.h>
 #else
-#include <winsock2.h>
+	#include <winsock2.h>
 #endif
 
 #define HTONLL(x) ((1==htonl(1)) ? (x) : (((uint64_t)htonl((x) & 0xFFFFFFFFUL)) << 32) | htonl((uint32_t)((x) >> 32)))
@@ -20,10 +19,8 @@
 #include "system/lang/String.h"
 #include "system/lang/UnicodeString.h"
 #include "system/lang/Object.h"
-
 #include "system/io/ObjectInputStream.h"
 #include "system/io/ObjectOutputStream.h"
-
 #include "PacketIndexOutOfBoundsException.h"
 
 namespace sys {
@@ -357,5 +354,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::net;
-
-#endif /*PACKET_H_*/

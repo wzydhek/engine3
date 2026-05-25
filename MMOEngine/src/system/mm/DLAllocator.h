@@ -3,47 +3,44 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DLALLOCATOR_H_
-#define DLALLOCATOR_H_
+#pragma once
 
 #include "system/platform.h"
 
 #ifndef PLATFORM_WIN
 
-#include "Allocator.h"
+	#include "Allocator.h"
 
-namespace sys {
-  namespace mm {
+	namespace sys {
+	namespace mm {
 
-	class DLAllocator : public Allocator {
-		void* dlBase;
-		size_t dlSize;
+		class DLAllocator : public Allocator {
+			void* dlBase;
+			size_t dlSize;
 
-		void* dlMspace;
+			void* dlMspace;
 
-	public:
-		DLAllocator(void* base, size_t size);
+		public:
+			DLAllocator(void* base, size_t size);
 
-		~DLAllocator();
+			~DLAllocator();
 
-		void initialize();
+			void initialize();
 
-		void destroy();
+			void destroy();
 
-		void* allocate(size_t size);
+			void* allocate(size_t size);
 
-		void* reallocate(void* mem, size_t newsize);
+			void* reallocate(void* mem, size_t newsize);
 
-		void free(void* mem);
+			void free(void* mem);
 
-		size_t sizeOf(void* mem);
-	};
+			size_t sizeOf(void* mem);
+		};
 
-} // namespace mm
-} // namespace sys
+	} // namespace mm
+	} // namespace sys
 
-using namespace sys::mm;
+	using namespace sys::mm;
 
 #endif
-
-#endif /* DLALLOCATOR_H_ */

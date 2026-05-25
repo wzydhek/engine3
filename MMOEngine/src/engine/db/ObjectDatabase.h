@@ -2,15 +2,11 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef ENGINE_DB_OBJECTDATABASE_H_
-#define ENGINE_DB_OBJECTDATABASE_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/log/Logger.h"
-
 #include "berkeley/BerkeleyDatabase.h"
-
 #include "LocalDatabase.h"
 
 namespace engine {
@@ -77,5 +73,3 @@ namespace engine {
 
   } // namespace db
 } // namespace engine
-
-#endif /* ENGINE_DB_OBJECTDATABASE_H_ */

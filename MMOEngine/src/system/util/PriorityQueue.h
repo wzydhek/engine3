@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef PRIORITYQUEUE_H_
-#define PRIORITYQUEUE_H_
+#pragma once
 
 #include <atomic>
-
 #include "system/platform.h"
-
 #include "system/lang/Exception.h"
 
 namespace sys {
@@ -125,5 +122,3 @@ namespace sys {
 } // namespace sys;
 
 using namespace sys::util;
-
-#endif /* PRIORITYQUEUE_H_ */

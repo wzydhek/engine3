@@ -2,8 +2,7 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef ILLEGALARGUMENTEXCEPTION_H_
-#define ILLEGALARGUMENTEXCEPTION_H_
+#pragma once
 
 #include "Exception.h"
 
@@ -24,5 +23,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-
-#endif /*ILLEGALARGUMENTEXCEPTION_H_*/

@@ -6,13 +6,9 @@
 #pragma once
 
 #include <functional>
-
 #include "BaseTypeVariable.h"
-
 #include "String.h"
-
 #include "NumberFormatException.h"
-
 #include "system/io/ObjectOutputStream.h"
 #include "system/io/ObjectInputStream.h"
 

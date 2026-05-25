@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef BASEFRAGMENTEDPACKET_H_
-#define BASEFRAGMENTEDPACKET_H_
+#pragma once
 
 #include "BasePacket.h"
 
@@ -61,5 +60,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*BASEFRAGMENTEDPACKET_H_*/

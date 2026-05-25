@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef UPDATEMODIFIEDOBJECTSTASK_H_
-#define UPDATEMODIFIEDOBJECTSTASK_H_
+#pragma once
 
 #include "engine/orb/DistributedObjectBroker.h"
-
 #include "engine/orb/db/DOBObjectManager.h"
 
 namespace engine {
@@ -26,5 +24,3 @@ namespace engine {
 
   } // namespace ORB
 } // namespace engine
-
-#endif /* UPDATEMODIFIEDOBJECTSTASK_H_ */

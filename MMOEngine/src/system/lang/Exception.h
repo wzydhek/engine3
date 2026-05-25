@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef EXCEPTION_H_
-#define EXCEPTION_H_
+#pragma once
 
 #include "system/platform.h"
-
 #include "String.h"
-
 #include "StackTrace.h"
 
 namespace sys {
@@ -53,5 +50,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-
-#endif /*EXCEPTION_H_*/

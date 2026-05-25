@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef READWRITELOCK_H_
-#define READWRITELOCK_H_
+#pragma once
 
 #include "Lockable.h"
 
@@ -88,5 +87,3 @@ namespace sys {
 } //namespace sys
 
 using namespace sys::thread;
-
-#endif /*READWRITELOCK_H_*/

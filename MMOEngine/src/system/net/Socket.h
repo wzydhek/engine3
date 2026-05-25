@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SOCKET_H_
-#define SOCKET_H_
+#pragma once
 
 #include "system/platform.h"
-
 #include "system/io/FileDescriptor.h"
-
 #include "SocketAddress.h"
 
 namespace sys {
@@ -66,5 +63,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::net;
-
-#endif /*SOCKET_H_*/

@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef TICKTIMER_H_
-#define TICKTIMER_H_
+#pragma once
 
 #include <sys/times.h>
-
 #include "system/platform.h"
 
 namespace sys {
@@ -70,6 +68,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::util;
-
-
-#endif /* TICKTIMER_H_ */

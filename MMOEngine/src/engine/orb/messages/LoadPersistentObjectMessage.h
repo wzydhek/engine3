@@ -9,11 +9,9 @@
  *      Author: victor
  */
 
-#ifndef LOADPERSISTENTOBJECTMESSAGE_H_
-#define LOADPERSISTENTOBJECTMESSAGE_H_
+#pragma once
 
 #include "engine/orb/DistributedObjectBroker.h"
-
 #include "DOBMessage.h"
 
 namespace engine {
@@ -66,6 +64,3 @@ namespace engine {
 }
 
 using namespace engine::ORB;
-
-
-#endif /* LOADPERSISTENTOBJECTMESSAGE_H_ */

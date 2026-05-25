@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef TRANSACTIONALSOCKETMANAGER_H_
-#define TRANSACTIONALSOCKETMANAGER_H_
+#pragma once
 
 #include "engine/util/Command.h"
-
 #include "engine/service/MessageQueue.h"
 
 namespace engine {
@@ -35,5 +33,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::stm;
-
-#endif /* TRANSACTIONALSOCKETMANAGER_H_ */

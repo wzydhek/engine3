@@ -3,15 +3,12 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef MESSAGEQUEUE_H_
-#define MESSAGEQUEUE_H_
+#pragma once
 
 //#define TRACE_MESSAGES
 
 #include "system/lang.h"
-
 #include "engine/log/Logger.h"
-
 #include "Message.h"
 
 namespace engine {
@@ -39,5 +36,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /*MESSAGEQUEUE_H_*/

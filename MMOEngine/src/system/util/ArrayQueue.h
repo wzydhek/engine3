@@ -2,8 +2,7 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef ARRAYQUEUE_H_
-#define ARRAYQUEUE_H_
+#pragma once
 
 #include "Vector.h"
 
@@ -85,6 +84,3 @@ namespace sys {
 
   } // namespace util
 } // namespace sys
-
-
-#endif /*ARRAYQUEUE_H_*/

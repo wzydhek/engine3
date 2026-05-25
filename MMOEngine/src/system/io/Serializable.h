@@ -3,16 +3,12 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SERIALIZABLE_H_
-#define SERIALIZABLE_H_
+#pragma once
 
 #include "system/platform.h"
-
 #include "system/lang/String.h"
 #include "system/lang/Object.h"
-
 #include "system/util/VectorMap.h"
-
 #include "ObjectInputStream.h"
 
 namespace sys {
@@ -267,5 +263,3 @@ namespace sys {
 }
 
 using namespace sys::io;
-
-#endif /*SERIALIZABLE_H_*/

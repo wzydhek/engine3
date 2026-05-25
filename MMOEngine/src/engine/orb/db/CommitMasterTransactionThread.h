@@ -9,12 +9,10 @@
  *      Author: victor
  */
 
-#ifndef COMMITMASTERTRANSACTIONTHREAD_H_
-#define COMMITMASTERTRANSACTIONTHREAD_H_
+#pragma once
 
 #include "engine/engine.h"
 #include "system/thread/atomic/AtomicBoolean.h"
-
 #include "UpdateModifiedObjectsThread.h"
 
 namespace engine {
@@ -49,5 +47,3 @@ namespace engine {
 
   } // namespace ORB
 } // namespace engine
-
-#endif /* COMMITMASTERTRANSACTIONTHREAD_H_ */

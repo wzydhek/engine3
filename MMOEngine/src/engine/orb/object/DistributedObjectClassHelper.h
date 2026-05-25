@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DISTRIBUTEDOBJECTCLASSHELPER_H_
-#define DISTRIBUTEDOBJECTCLASSHELPER_H_
+#pragma once
 
 #include "DistributedObject.h"
 #include "DistributedObjectServant.h"
@@ -46,5 +45,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*DISTRIBUTEDOBJECTCLASSHELPER_H_*/

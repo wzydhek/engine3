@@ -3,19 +3,14 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ALLOCATIONTRACKER_H_
-#define ALLOCATIONTRACKER_H_
+#pragma once
 
 #include "system/lang/Time.h"
-
 #include "system/thread/Mutex.h"
 #include "system/thread/Locker.h"
-
 #include "system/util/VectorSet.h"
-
 #include "Allocator.h"
 #include "AllocationHook.h"
-
 #include "Heap.h"
 
 #define MM_ALLOCATOR_LIST_SIZE 4096
@@ -87,5 +82,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::mm;
-
-#endif /* ALLOCATIONTRACKER_H_ */

@@ -3,25 +3,19 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef LOCKABLE_H_
-#define LOCKABLE_H_
+#pragma once
 
 #include "system/platform.h"
-
 #include <pthread.h>
-
 #include "system/lang/String.h"
-
 #include "system/lang/StackTrace.h"
 #include "system/lang/Time.h"
-
 #include "atomic/AtomicInteger.h"
 #include "atomic/AtomicReference.h"
-
 #include "Thread.h"
 
 #ifndef TRACE_REFERENCES
-#define TRACE_BLOCK_TIME
+	#define TRACE_BLOCK_TIME
 #endif
 
 namespace sys {
@@ -270,7 +264,3 @@ namespace sys {
 } //namespace sys
 
 using namespace sys::thread;
-
-
-
-#endif /*LOCKABLE_H_*/

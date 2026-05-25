@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef UPDATEMODIFIEDOBJECTSTHREAD_H_
-#define UPDATEMODIFIEDOBJECTSTHREAD_H_
+#pragma once
 
 #include "engine/engine.h"
-
 #include "system/thread/atomic/AtomicBoolean.h"
 #include "DOBObjectManager.h"
 
@@ -132,5 +130,3 @@ namespace engine {
 
   } // namespace ORB
 } // namespace engine
-
-#endif /* UPDATEMODIFIEDOBJECTSTHREAD_H_ */

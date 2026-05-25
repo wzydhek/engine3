@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef BINARYHEAP_H_
-#define BINARYHEAP_H_
+#pragma once
 
 #include "system/platform.h"
 
@@ -179,5 +178,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::util;
-
-#endif /*BINARYHEAP_H_*/

@@ -3,20 +3,18 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SOCKETEXCEPTION_H_
-#define SOCKETEXCEPTION_H_
+#pragma once
 
 #include "system/platform.h"
 
 #ifndef PLATFORM_WIN
-#include <errno.h>
+	#include <errno.h>
 #else
-#include <winsock2.h>
-#include <windows.h>
+	#include <winsock2.h>
+	#include <windows.h>
 #endif
 
 #include "system/lang/Exception.h"
-
 #include "system/lang/StringBuffer.h"
 
 namespace sys {
@@ -52,5 +50,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::net;
-
-#endif /*SOCKETEXCEPTION_H_*/

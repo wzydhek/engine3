@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef NAMINGDIRECTORYSERVICE_H_
-#define NAMINGDIRECTORYSERVICE_H_
+#pragma once
 
 #include "messages/DOBServiceClient.h"
-
 #include "object/DistributedObject.h"
 #include "object/DistributedObjectClassHelperMap.h"
 
@@ -42,5 +40,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*NAMINGDIRECTORYSERVICE_H_*/

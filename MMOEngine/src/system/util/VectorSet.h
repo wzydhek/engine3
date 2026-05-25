@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef VECTORSET_H_
-#define VECTORSET_H_
+#pragma once
 
 #include "system/lang/Object.h"
-
 #include "VectorMap.h"
 
 namespace sys {
@@ -31,5 +29,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::util;
-
-#endif /*VECTORSET_H_*/

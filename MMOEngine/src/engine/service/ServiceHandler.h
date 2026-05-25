@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SERVICEHANDLER_H_
-#define SERVICEHANDLER_H_
+#pragma once
 
 #include "Message.h"
-
 #include "ServiceClient.h"
 
 namespace engine {
@@ -45,5 +43,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /* SERVICEHANDLER_H_ */

@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef AABB_H_
-#define AABB_H_
+#pragma once
 
 #include "Vector3.h"
 #include "Triangle.h"
@@ -156,4 +155,3 @@ namespace engine {
 } // engine
 
 using namespace engine::util::u3d;
-#endif /* AABB_H_ */

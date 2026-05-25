@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef TRIANGULATIONASTARALGORITHM_H_
-#define TRIANGULATIONASTARALGORITHM_H_
+#pragma once
 
 #include "AStarAlgorithm.h"
 #include "TriangleNode.h"
@@ -32,6 +31,3 @@ namespace engine {
 }
 
 using namespace engine::util::u3d;
-
-
-#endif /* TRIANGULATIONASTARALGORITHM_H_ */

@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef BINARYDATA_H_
-#define BINARYDATA_H_
+#pragma once
 
 #include "system/lang.h"
 
@@ -29,5 +28,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::db;
-
-#endif /*BINARYDATA_H_*/

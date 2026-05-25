@@ -3,16 +3,12 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DISTRIBUTEDOBJECTDIRECTORY_H_
-#define DISTRIBUTEDOBJECTDIRECTORY_H_
+#pragma once
 
 #include "engine/orb/object/DistributedObject.h"
 #include "engine/orb/object/DistributedObjectAdapter.h"
-
 #include "DistributedObjectMap.h"
-
 #include "engine/util/ObjectContainer.h"
-
 #include "system/util/SynchronizedHashTable.h"
 #include "engine/util/bytell_hash_map.hpp"
 
@@ -78,7 +74,4 @@ namespace engine {
   } // namespace ORB
 } // namespace engine
 
-
 using namespace engine::ORB;
-
-#endif /*DISTRIBUTEDOBJECTDIRECTORY_H_*/

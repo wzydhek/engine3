@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DATAGRAMSERVICETHREAD_H_
-#define DATAGRAMSERVICETHREAD_H_
+#pragma once
 
 #include "ServiceMessageHandlerThread.h"
 
@@ -39,5 +38,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /*DATAGRAMSERVICETHREAD_H_*/

@@ -2,13 +2,10 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef FILEOUTPUTSTREAM_H_
-#define FILEOUTPUTSTREAM_H_
+#pragma once
 
 #include "File.h"
-
 #include "OutputStream.h"
-
 #include "FileNotFoundException.h"
 
 namespace sys {
@@ -154,5 +151,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /*FILEOUTPUTSTREAM_H_*/

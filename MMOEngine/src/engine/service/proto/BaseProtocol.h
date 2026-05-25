@@ -3,12 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef BASEPROTOCOL_H_
-#define BASEPROTOCOL_H_
+#pragma once
 
 #include "system/lang.h"
 #include "engine/log/Logger.h"
-
 #include "BasePacket.h"
 
 namespace engine {
@@ -80,5 +78,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*BASEPROTOCOL_H_*/

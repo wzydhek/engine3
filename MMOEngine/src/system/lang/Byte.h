@@ -7,7 +7,6 @@
 
 #include "Character.h"
 #include "Integer.h"
-
 #include "system/io/ObjectOutputStream.h"
 #include "system/io/ObjectInputStream.h"
 

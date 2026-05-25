@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef NETSTATUSRESPONSETASK_H_
-#define NETSTATUSRESPONSETASK_H_
+#pragma once
 
 #include "engine/log/Logger.h"
 
@@ -40,6 +39,3 @@ public:
 		pack = nullptr;
 	}
 };
-
-
-#endif /* NETSTATUSRESPONSETASK_H_ */

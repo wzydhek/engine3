@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef CHILDPROCESS_H_
-#define CHILDPROCESS_H_
+#pragma once
 
 #include "Process.h"
 
@@ -37,5 +36,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::thread;
-
-#endif /* CHILDPROCESS_H_ */

@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ACKNOWLEDGEOKMESSAGE_H_
-#define ACKNOWLEDGEOKMESSAGE_H_
+#pragma once
 
 #include "engine/service/proto/BaseProtocol.h"
 
@@ -37,5 +36,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*ACKNOWLEDGEOKMESSAGE_H_*/

@@ -9,8 +9,5 @@
  *      Author: Akimaki
  */
 
-#ifndef TASKPRIORITYQUEUE_H_
-#define TASKPRIORITYQUEUE_H_
+#pragma once
 
-
-#endif /* TASKPRIORITYQUEUE_H_ */

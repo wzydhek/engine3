@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef MEMORYMAPPEDFILE_H_
-#define MEMORYMAPPEDFILE_H_
+#pragma once
 
 #include "Heap.h"
 
@@ -32,5 +31,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::mm;
-
-#endif /* MEMORYMAPPEDFILE_H_ */

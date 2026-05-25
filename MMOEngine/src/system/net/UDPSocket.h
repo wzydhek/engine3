@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef UDPSOCKET_H_
-#define UDPSOCKET_H_
+#pragma once
 
 #include "Socket.h"
 
@@ -26,5 +25,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::net;
-
-#endif /*UDPSOCKET_H_*/

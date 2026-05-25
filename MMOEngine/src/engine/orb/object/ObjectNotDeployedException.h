@@ -3,17 +3,14 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef OBJECTNOTDEPLOYEDEXCEPTION_H_
-#define OBJECTNOTDEPLOYEDEXCEPTION_H_
+#pragma once
 
 #ifndef PLATFORM_CYGWIN
-#include <signal.h>
+	#include <signal.h>
 #endif
 
 #include "system/lang/Exception.h"
-
 #include "engine/log/Logger.h"
-
 #include "DistributedObjectStub.h"
 
 namespace engine {
@@ -39,5 +36,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*OBJECTNOTDEPLOYEDEXCEPTION_H_*/

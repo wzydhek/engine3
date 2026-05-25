@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SYNCHRONIZEDMESSAGEQUEUE_H_
-#define SYNCHRONIZEDMESSAGEQUEUE_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/log/Logger.h"
-
 #include "Message.h"
 
 namespace engine {
@@ -42,5 +39,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /*SYNCHRONIZEDMESSAGEQUEUE_H_*/

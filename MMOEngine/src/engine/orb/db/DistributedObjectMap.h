@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DISTRIBUTEDOBJECTMAP_H_
-#define DISTRIBUTEDOBJECTMAP_H_
+#pragma once
 
 #include "engine/orb/object/DistributedObject.h"
 
@@ -88,5 +87,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*DISTRIBUTEDOBJECTMAP_H_*/

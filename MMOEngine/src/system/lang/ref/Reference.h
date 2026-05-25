@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef REFERENCE_H_
-#define REFERENCE_H_
+#pragma once
 
 #include "system/lang/Object.h"
-
 #include "system/lang/Long.h"
-
 #include "system/thread/atomic/AtomicReference.h"
 #include "system/thread/atomic/AtomicInteger.h"
 #include <atomic>
@@ -342,5 +339,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-
-#endif /*REFERENCE_H_*/

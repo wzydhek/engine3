@@ -3,16 +3,12 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef TRANSACTIONALOBJECTMANAGER_H_
-#define TRANSACTIONALOBJECTMANAGER_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/orb/ObjectBroker.h"
 #include "engine/orb/DistributedObjectBroker.h"
-
 #include "LocalObjectManager.h"
-
 #include "engine/util/Command.h"
 
 namespace engine {
@@ -87,5 +83,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::stm;
-
-#endif /* TRANSACTIONALOBJECTMANAGER_H_ */

@@ -9,11 +9,9 @@
  *      Author: victor
  */
 
-#ifndef SYNCHRONIZEDVECTOR_H_
-#define SYNCHRONIZEDVECTOR_H_
+#pragma once
 
 #include "Vector.h"
-
 #include "system/thread/ReadWriteLock.h"
 #include "system/thread/Locker.h"
 
@@ -277,5 +275,3 @@ namespace sys {
 }
 
 using namespace sys::util;
-
-#endif /* SYNCHRONIZEDVECTOR_H_ */

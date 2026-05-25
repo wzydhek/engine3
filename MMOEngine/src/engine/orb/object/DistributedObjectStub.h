@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DISTRIBUTEDOBJECTSTUB_H_
-#define DISTRIBUTEDOBJECTSTUB_H_
+#pragma once
 
 #include "engine/util/Singleton.h"
-
 #include "DistributedObject.h"
 #include "DistributedObjectServant.h"
 
@@ -103,5 +101,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*DISTRIBUTEDOBJECTSTUB_H_*/

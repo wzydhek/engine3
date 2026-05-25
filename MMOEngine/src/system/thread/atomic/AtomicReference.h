@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ATOMICREFERENCE_H_
-#define ATOMICREFERENCE_H_
+#pragma once
 
 #include <atomic>
-
 #include "system/platform.h"
 
 //#include "system/lang/ref/Reference.h"
@@ -90,5 +88,3 @@ namespace sys {
 } //namespace sys
 
 using namespace sys::thread::atomic;
-
-#endif /*ATOMICREFERENCE_H_*/

@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef IFFSTREAM_H_
-#define IFFSTREAM_H_
+#pragma once
 
 #include "system/lang.h"
 #include "engine/log/Logger.h"
@@ -98,5 +97,3 @@ namespace engine {
 }
 
 using namespace engine::util;
-
-#endif /*IFFSTREAM_H_*/

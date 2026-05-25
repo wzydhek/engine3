@@ -6,16 +6,11 @@
 #pragma once
 
 #include <cstdlib>
-
 #include "Integer.h"
-
 #include "String.h"
 #include "StringBuffer.h"
-
 #include "NumberFormatException.h"
-
 #include "BaseTypeVariable.h"
-
 #include "system/io/ObjectOutputStream.h"
 #include "system/io/ObjectInputStream.h"
 
@@ -237,4 +232,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-

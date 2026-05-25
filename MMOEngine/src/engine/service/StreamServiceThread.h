@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef STREAMSERVICETHREAD_H_
-#define STREAMSERVICETHREAD_H_
+#pragma once
 
 #include "ServiceMessageHandlerThread.h"
 
@@ -31,5 +30,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /*STREAMSERVICETHREAD_H_*/

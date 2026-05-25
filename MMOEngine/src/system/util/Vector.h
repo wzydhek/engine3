@@ -6,11 +6,10 @@
 #pragma once
 
 #ifdef CXX11_COMPILER
-#include <type_traits>
+       #include <type_traits>
 #endif
 
 #include "system/lang/Object.h"
-
 #include "ArrayList.h"
 
 namespace sys {
@@ -183,6 +182,4 @@ namespace sys {
 
   } // namespace util
 } // namespace sys
-
 using namespace sys::util;
-

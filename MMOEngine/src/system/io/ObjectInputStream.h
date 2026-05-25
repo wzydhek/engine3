@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef OBJECTINPUTSTREAM_H_
-#define OBJECTINPUTSTREAM_H_
+#pragma once
 
 #include "Stream.h"
 
@@ -13,7 +12,6 @@
 #else
 #include <winsock2.h>
 #endif
-
 
 namespace sys {
   namespace io {
@@ -152,5 +150,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /*OBJECTINPUTSTREAM_H_*/

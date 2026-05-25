@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef NOOPENEDCHUNKEXCEPTION_H_
-#define NOOPENEDCHUNKEXCEPTION_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "IffStreamException.h"
 
 class NoOpenedChunkException : public IffStreamException {
@@ -19,5 +17,3 @@ public:
 		message = sstr.toString();
 	}
 };
-
-#endif /*NOOPENEDCHUNKEXCEPTION_H_*/

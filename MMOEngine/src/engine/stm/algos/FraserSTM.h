@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef FRASERSTM_H_
-#define FRASERSTM_H_
+#pragma once
 
 #include "STMAlgorithm.h"
 
@@ -28,5 +27,3 @@ namespace engine {
  	 };
  }
 }
-
-#endif /* FRASERSTM_H_ */

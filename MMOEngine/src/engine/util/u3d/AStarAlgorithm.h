@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef ASTARALGORITHM_H_
-#define ASTARALGORITHM_H_
+#pragma once
 
 #include "system/util/PriorityQueue.h"
 #include "system/lang.h"
@@ -169,7 +168,3 @@ namespace engine {
 }
 
 using namespace engine::util::u3d;
-
-
-
-#endif /* ASTARALGORITHM_H_ */

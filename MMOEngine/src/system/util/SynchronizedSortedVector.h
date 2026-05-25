@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef SYNCHRONIZEDSORTEDVECTOR_H_
-#define SYNCHRONIZEDSORTEDVECTOR_H_
+#pragma once
 
 #include "SynchronizedVector.h"
 
@@ -271,5 +270,3 @@ namespace sys {
 }
 
 using namespace sys::util;
-
-#endif /* SYNCHRONIZEDSORTEDVECTOR_H_ */

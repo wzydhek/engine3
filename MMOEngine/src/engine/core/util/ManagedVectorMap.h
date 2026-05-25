@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef MANAGEDVECTORMAP_H_
-#define MANAGEDVECTORMAP_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/core/ManagedReference.h"
 
 namespace engine {
@@ -52,5 +50,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::core::util;
-
-#endif /* MANAGEDVECTORMAP_H_ */

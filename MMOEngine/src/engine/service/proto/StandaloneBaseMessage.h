@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef STANDALONEBASEMESSAGE_H_
-#define STANDALONEBASEMESSAGE_H_
+#pragma once
 
 #include "BasePacket.h"
 
@@ -29,5 +28,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*STANDALONEBASEMESSAGE_H_*/

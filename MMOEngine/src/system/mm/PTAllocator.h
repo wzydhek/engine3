@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef PTALLOCATOR_H_
-#define PTALLOCATOR_H_
+#pragma once
 
 #include "Allocator.h"
 
@@ -39,5 +38,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::mm;
-
-#endif /* PTALLOCATOR_H_ */

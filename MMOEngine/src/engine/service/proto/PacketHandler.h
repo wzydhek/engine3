@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef PACKETHANDLER_H_
-#define PACKETHANDLER_H_
+#pragma once
 
 namespace engine {
   namespace service {
@@ -20,5 +19,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*PACKETHANDLER_H_*/

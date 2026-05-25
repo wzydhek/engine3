@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DOBMESSAGEFACTORY_H_
-#define DOBMESSAGEFACTORY_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "DOBMessage.h"
-
 #include "engine/core/Task.h"
 
 namespace engine {
@@ -33,5 +30,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*DOBMESSAGEFACTORY_H_*/

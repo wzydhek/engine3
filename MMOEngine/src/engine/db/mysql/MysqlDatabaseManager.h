@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef MYSQLDATABASEMANAGER_H_
-#define MYSQLDATABASEMANAGER_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/util/Singleton.h"
-
 #include "engine/db/Database.h"
 
 namespace engine {
@@ -35,5 +32,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::db::mysql;
-
-#endif /* MYSQLDATABASEMANAGER_H_ */

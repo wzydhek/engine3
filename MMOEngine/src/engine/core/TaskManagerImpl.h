@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef TASKMANAGERIMPL_H_
-#define TASKMANAGERIMPL_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/log/Logger.h"
-
 #include "TaskManager.h"
 #include "TaskQueue.h"
 #include "engine/core/TaskWorkerThread.h"
@@ -140,5 +137,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::core;
-
-#endif /* TASKMANAGERIMPL_H_ */

@@ -2,20 +2,14 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef ENGINE_DB_DATABASEMANAGER_H_
-#define ENGINE_DB_DATABASEMANAGER_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/core/Task.h"
-
 #include "engine/log/Logger.h"
-
 #include "engine/util/Singleton.h"
-
 #include "ObjectDatabase.h"
 #include "IndexDatabase.h"
-
 #include "berkeley/Environment.h"
 
 //#define LASTOBJECTIDKEY 0xFFFFFFFFFFFFFFFF;
@@ -269,5 +263,3 @@ namespace engine {
 
   } // namespace db
 } // namespace engine
-
-#endif /* ENGINE_DB_OBJECTDATABASEMANAGER_H_ */

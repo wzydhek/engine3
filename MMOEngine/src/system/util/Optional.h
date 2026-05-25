@@ -8,9 +8,7 @@
  * @created     : Monday Apr 01, 2019 19:39:52 CEST
  */
 
-#ifndef OPTIONAL_H
-
-#define OPTIONAL_H
+#pragma once
 
 #include "optional.hpp"
 
@@ -22,6 +20,3 @@ namespace util {
 }
 
 using namespace sys::util;
-
-#endif /* end of include guard OPTIONAL_H */
-

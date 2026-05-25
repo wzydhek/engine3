@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef BASEPACKETCHEKUPEVENT_H_
-#define BASEPACKETCHEKUPEVENT_H_
+#pragma once
 
 #include "engine/core/Task.h"
 
@@ -17,7 +16,6 @@ namespace engine {
     } // namespace proto
   } // namespace service
 } // namespace engine
-
 
 namespace engine {
   namespace service {
@@ -74,5 +72,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*BASEPACKETCHEKUPEVENT_H_*/

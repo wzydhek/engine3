@@ -4,16 +4,11 @@
  * @created     : Saturday Aug 03, 2019 08:09:20 UTC
  */
 
-#ifndef INDEXDATABASE_H
-
-#define INDEXDATABASE_H
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/log/Logger.h"
-
 #include "berkeley/BerkeleyDatabase.h"
-
 #include "ObjectDatabase.h"
 
 namespace engine {
@@ -57,6 +52,3 @@ namespace engine {
 
   }
 }
-
-#endif /* end of include guard INDEXDATABASE_H */
-

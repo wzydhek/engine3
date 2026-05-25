@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef NUMBERFORMATEXCEPTION_H_
-#define NUMBERFORMATEXCEPTION_H_
+#pragma once
 
 #include "Exception.h"
-
 #include "StringBuffer.h"
 
 namespace sys {
@@ -36,5 +34,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-
-#endif /*NUMBERFORMATEXCEPTION_H_*/

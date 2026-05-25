@@ -3,15 +3,12 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SIGNALEXCEPTION_H_
-#define SIGNALEXCEPTION_H_
+#pragma once
 
 #ifndef __CYGWIN__
 
 #include "Exception.h"
-
 #include "System.h"
-
 #include <signal.h>
 
 namespace sys {
@@ -80,5 +77,3 @@ class FloatingPointException : public Exception {
 }
 
 #endif
-
-#endif /*SIGNALEXCEPTION_H_*/

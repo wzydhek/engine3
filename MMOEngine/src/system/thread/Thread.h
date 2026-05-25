@@ -3,23 +3,17 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef THREAD_H_
-#define THREAD_H_
+#pragma once
 
 #include "system/platform.h"
-
 #include <pthread.h>
 #include <atomic>
 #include <signal.h>
-
 #include "system/lang/Runnable.h"
 #include "system/lang/String.h"
 #include "system/lang/ref/UniqueReference.h"
-
 #include "atomic/AtomicInteger.h"
-
 #include "ThreadLocal.h"
-
 #include "engine/util/bytell_hash_map.hpp"
 
 namespace engine {
@@ -221,5 +215,3 @@ namespace sys {
 } //namespace sys
 
 using namespace sys::thread;
-
-#endif /*THREAD_H_*/

@@ -5,11 +5,8 @@
 #pragma once
 
 #include "system/platform.h"
-
 #include "BaseTypeVariable.h"
-
 #include "String.h"
-
 #include "system/io/ObjectOutputStream.h"
 #include "system/io/ObjectInputStream.h"
 

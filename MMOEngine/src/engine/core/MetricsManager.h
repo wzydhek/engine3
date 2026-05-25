@@ -6,11 +6,9 @@
 // Created by Victor Popovici on 8/4/17.
 //
 
-#ifndef ENGINE3_METRICSMANAGER_H
-#define ENGINE3_METRICSMANAGER_H
+#pragma once
 
 #include "engine/engine.h"
-
 #include "RunStatistics.h"
 
 namespace engine {
@@ -57,5 +55,3 @@ namespace engine {
 
 	}
 }
-
-#endif //ENGINE3_METRICSMANAGER_H

@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef UPDATEMODIFIEDOBJECTSMESSAGE_H_
-#define UPDATEMODIFIEDOBJECTSMESSAGE_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/orb/messages/DOBMessage.h"
-
 #include "ObjectBrokerAgent.h"
 
 namespace engine {
@@ -41,5 +38,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*UPDATEMODIFIEDOBJECTSMESSAGE_H_*/

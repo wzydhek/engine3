@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef STATICMAP_H_
-#define STATICMAP_H_
+#pragma once
 
 #include "system/platform.h"
 
@@ -98,5 +97,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::util;
-
-#endif /*VECTORSET_H_*/

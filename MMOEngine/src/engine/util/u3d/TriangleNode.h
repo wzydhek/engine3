@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef TRIANGLENODE_H_
-#define TRIANGLENODE_H_
+#pragma once
 
 #include "Triangle.h"
 #include "system/util/Vector.h"
@@ -34,6 +33,3 @@ namespace engine {
 }
 
 using namespace engine::util::u3d;
-
-
-#endif /* TRIANGLENODE_H_ */

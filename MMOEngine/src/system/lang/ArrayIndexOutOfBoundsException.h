@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ARRAYOUTOFBOUNDSEXCEPTION_H_
-#define ARRAYOUTOFBOUNDSEXCEPTION_H_
+#pragma once
 
 #include "Exception.h"
 
@@ -22,5 +21,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-
-#endif /*ARRAYOUTOFBOUNDSEXCEPTION_H_*/

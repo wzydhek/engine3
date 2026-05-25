@@ -2,8 +2,7 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef BUFFEREDREADER_H_
-#define BUFFEREDREADER_H_
+#pragma once
 
 #include "system/platform.h"
 
@@ -35,5 +34,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /*BUFFEREDREADER_H_*/

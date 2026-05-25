@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef READLOCKER_H_
-#define READLOCKER_H_
+#pragma once
 
 #include "ReadWriteLock.h"
 
@@ -59,5 +58,3 @@ namespace sys {
 } //namespace sys
 
 using namespace sys::thread;
-
-#endif /* READLOCKER_H_ */

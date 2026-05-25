@@ -3,14 +3,11 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef LOCALOBJECTMANAGER_H_
-#define LOCALOBJECTMANAGER_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/orb/ObjectBroker.h"
 #include "engine/orb/DistributedObjectBroker.h"
-
 #include "engine/log/Logger.h"
 
 namespace engine {
@@ -62,5 +59,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::stm;
-
-#endif /* LOCALOBJECTMANAGER_H_ */

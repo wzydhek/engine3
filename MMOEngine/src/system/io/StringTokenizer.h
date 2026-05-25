@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef STRINGTOKENIZER_H_
-#define STRINGTOKENIZER_H_
+#pragma once
 
 #include "system/platform.h"
-
 #include "system/lang/Exception.h"
-
 #include "system/lang/String.h"
 #include "system/lang/StringBuffer.h"
 
@@ -74,5 +71,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /*STRINGTOKENIZER_H_*/

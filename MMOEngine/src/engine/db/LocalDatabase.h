@@ -9,17 +9,13 @@
  *      Author: victor
  */
 
-#ifndef LOCALDATABASE_H_
-#define LOCALDATABASE_H_
+#pragma once
 
 #include <functional>
 #include <map>
-
 #include "system/lang.h"
 #include "system/thread/atomic/AtomicInteger.h"
-
 #include "engine/log/Logger.h"
-
 #include "berkeley/BerkeleyDatabase.h"
 
 namespace engine {
@@ -181,5 +177,3 @@ namespace engine {
 
  }
 }
-
-#endif /* LOCALDATABASE_H_ */

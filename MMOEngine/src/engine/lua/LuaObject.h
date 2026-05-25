@@ -6,7 +6,6 @@
 #pragma once
 
 #include <lua.hpp>
-
 #include "system/lang.h"
 
 namespace engine {
@@ -103,4 +102,3 @@ namespace lua {
 }
 
 using namespace engine::lua;
-

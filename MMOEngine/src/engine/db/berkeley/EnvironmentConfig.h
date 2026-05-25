@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef ENVIRONMENTCONFIG_H_
-#define ENVIRONMENTCONFIG_H_
+#pragma once
 
 #include "system/platform.h"
 #include <db.h>
@@ -185,5 +184,3 @@ namespace engine {
     } // namespace berkeley
   } // namespace db
 } // namespace engine
-
-#endif /* ENVIRONMENTCONFIG_H_ */

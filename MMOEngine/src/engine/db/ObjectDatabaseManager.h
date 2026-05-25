@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef OBJECTDATABASEMANAGER_H_
-#define OBJECTDATABASEMANAGER_H_
+#pragma once
 
 #include "DatabaseManager.h"
 
@@ -31,6 +30,3 @@ namespace engine {
 
  }
 }
-
-
-#endif /* OBJECTDATABASEMANAGER_H_ */

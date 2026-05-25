@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ENGINE3_UNIQUEREFERENCE_H
-#define ENGINE3_UNIQUEREFERENCE_H
+#pragma once
 
 #include <utility>
 
@@ -98,5 +97,3 @@ namespace sys {
 }
 
 using namespace sys::lang;
-
-#endif //ENGINE3_UNIQUEREFERENCE_H

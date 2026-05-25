@@ -12,7 +12,6 @@
 #pragma once
 
 #include <db.h>
-
 #include "system/platform.h"
 
 namespace engine {
@@ -118,4 +117,3 @@ namespace engine {
     } // namespace berkeley
   } // namespace db
 } // namespace engine
-

@@ -9,13 +9,10 @@
  *      Author: victor
  */
 
-#ifndef GETNEXTFREEOBJECTIDMESSAGE_H_
-#define GETNEXTFREEOBJECTIDMESSAGE_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/orb/DistributedObjectBroker.h"
-
 #include "DOBMessage.h"
 
 namespace engine {
@@ -43,6 +40,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-
-#endif /* GETNEXTFREEOBJECTID_H_ */

@@ -8,9 +8,7 @@
  * @created     : Saturday Nov 10, 2018 16:12:29 CET
  */
 
-#ifndef JSONSERIALIZATIONTYPE_H
-
-#define JSONSERIALIZATIONTYPE_H
+#pragma once
 
 #include "json.hpp"
 
@@ -22,6 +20,3 @@ namespace engine {
 }
 
 using namespace engine::util;
-
-#endif /* end of include guard JSONSERIALIZATIONTYPE_H */
-

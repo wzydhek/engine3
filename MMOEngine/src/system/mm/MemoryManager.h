@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef MEMORYMANAGER_H_
-#define MEMORYMANAGER_H_
+#pragma once
 
 #include "system/lang/Object.h"
-
 #include "system/thread/atomic/AtomicReference.h"
-
 #include "system/mm/ObjectCloner.h"
 
 namespace sys {
@@ -41,7 +38,4 @@ namespace sys {
   } // namespace mm
 } // namespace sys
 
-
 using namespace sys::mm;
-
-#endif /*MEMORYMANAGER_H_*/

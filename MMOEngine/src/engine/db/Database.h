@@ -6,9 +6,7 @@
 #pragma once
 
 #include "system/lang.h"
-
 #include "DatabaseException.h"
-
 #include "ResultSet.h"
 
 namespace engine {
@@ -116,4 +114,3 @@ public:
 } // namespace engine
 
 using namespace engine::db;
-

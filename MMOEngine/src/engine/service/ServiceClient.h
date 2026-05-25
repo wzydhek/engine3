@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SERVICECLIENT_H_
-#define SERVICECLIENT_H_
+#pragma once
 
 #include "system/lang.h"
 
@@ -95,5 +94,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /*SERVICECLIENT_H_*/

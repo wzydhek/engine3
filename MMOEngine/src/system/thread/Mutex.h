@@ -77,4 +77,3 @@ namespace sys {
 } //namespace sys
 
 using namespace sys::thread;
-

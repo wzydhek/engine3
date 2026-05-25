@@ -2,11 +2,9 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef FILENOTFOUNDEXCEPTION_H_
-#define FILENOTFOUNDEXCEPTION_H_
+#pragma once
 
 #include "IOException.h"
-
 #include "File.h"
 
 namespace sys {
@@ -23,5 +21,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /*FILENOTFOUNDEXCEPTION_H_*/

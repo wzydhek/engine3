@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef TRANSACTIONALBASECLIENTMANAGER_H_
-#define TRANSACTIONALBASECLIENTMANAGER_H_
+#pragma once
 
 #include "engine/util/Command.h"
 
@@ -53,5 +52,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::stm;
-
-#endif /* TRANSACTIONALBASECLIENTMANAGER_H_ */

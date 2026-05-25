@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef COORDINATE_H_
-#define COORDINATE_H_
+#pragma once
 
 #include "Vector3.h"
 
@@ -161,5 +160,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::util::u3d;
-
-#endif /*COORDINATE_H_*/

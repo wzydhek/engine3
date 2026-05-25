@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef BASEMESSAGE_H_
-#define BASEMESSAGE_H_
+#pragma once
 
 #include "engine/service/DatagramServiceClient.h"
-
 #include "BasePacket.h"
 
 namespace engine {
@@ -68,5 +66,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*BASEMESSAGE_H_*/

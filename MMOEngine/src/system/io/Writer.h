@@ -3,6 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 #pragma once
+
 #include "system/lang/Object.h"
 
 namespace sys {
@@ -30,4 +31,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-

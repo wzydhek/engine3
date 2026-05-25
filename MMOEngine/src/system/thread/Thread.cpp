@@ -17,32 +17,45 @@
 #endif
 
 #ifdef PLATFORM_WIN
+
 #include <process.h>
 #include <processthreadsapi.h>
 #include <stringapiset.h>
+
 #ifndef HRESULT_FROM_WIN32
 #define HRESULT_FROM_WIN32(x) ((HRESULT)(x) <= 0 ? ((HRESULT)(x)) : ((HRESULT)(((x)&0x0000FFFF) | (7 << 16) | 0x80000000)))
 #endif
+
 int pthread_setname_np(pthread_t thread, const char* name)
 {
 	if (name == nullptr)
 		return EINVAL;
+
 	HANDLE hThread = (HANDLE)thread.p;
+
 	if (hThread == nullptr)
 		return ESRCH;
+
 	int wlen = MultiByteToWideChar(CP_UTF8, 0, name, -1, nullptr, 0);
 	if (wlen <= 0)
 		return EINVAL;
+
 	wchar_t* wname = (wchar_t*)malloc(sizeof(wchar_t) * wlen);
 	if (!wname)
 		return ENOMEM;
+
 	MultiByteToWideChar(CP_UTF8, 0, name, -1, wname, wlen);
+
 	HRESULT hr = SetThreadDescription(hThread, wname);
+
 	free(wname);
+
 	if (FAILED(hr))
 		return (int)HRESULT_CODE(hr);
+
 	return 0;
 }
+
 #endif
 
 #include "engine/core/Core.h"

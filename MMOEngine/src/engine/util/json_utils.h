@@ -9,7 +9,6 @@
 #pragma once
 
 #include "json.hpp"
-
 #include "system/util/VectorMap.h"
 #include "system/util/HashTable.h"
 #include "system/util/HashSet.h"

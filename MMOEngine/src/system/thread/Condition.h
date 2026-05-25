@@ -3,19 +3,16 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef CONDITION_H_
-#define CONDITION_H_
+#pragma once
 
 #include "system/platform.h"
-
 #include <pthread.h>
 
 #ifndef PLATFORM_WIN
-#include <sys/time.h>
+	#include <sys/time.h>
 #endif
 
 #include <errno.h>
-
 #include "system/lang/Time.h"
 #include "system/thread/Mutex.h"
 
@@ -165,5 +162,3 @@ namespace sys {
 } //namespace sys
 
 using namespace sys::thread;
-
-#endif /*CONDITION_H_*/

@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef PROTECTEDHEAP_H_
-#define PROTECTEDHEAP_H_
+#pragma once
 
 #include "Heap.h"
 
@@ -26,5 +25,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::mm;
-
-#endif /* PROTECTEDHEAP_H_ */

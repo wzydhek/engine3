@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef STREAMSERVICECLIENTPROXY_H_
-#define STREAMSERVICECLIENTPROXY_H_
+#pragma once
 
 #include "StreamServiceClient.h"
 
@@ -30,5 +29,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /*STREAMSERVICECLIENTPROXY_H_*/

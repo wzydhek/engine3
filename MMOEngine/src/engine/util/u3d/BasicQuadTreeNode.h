@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef SRC_ENGINE_UTIL_U3D_BASICQUADTREENODE_H_
-#define SRC_ENGINE_UTIL_U3D_BASICQUADTREENODE_H_
+#pragma once
 
 #include "system/util/SortedVector.h"
 
@@ -108,6 +107,3 @@ private:
 } // namespace engine
 
 using namespace engine::util::u3d;
-
-
-#endif /* SRC_ENGINE_UTIL_U3D_BASICQUADTREENODE_H_ */

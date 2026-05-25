@@ -5,9 +5,7 @@
 #pragma once
 
 #include <csignal>
-
 #include "system/lang.h"
-
 #include "system/util/Timer.h"
 #include "system/thread/atomic/AtomicTime.h"
 
@@ -247,4 +245,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::core;
-

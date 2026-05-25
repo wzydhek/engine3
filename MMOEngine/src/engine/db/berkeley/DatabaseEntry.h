@@ -9,11 +9,9 @@
  *      Author: victor
  */
 
-#ifndef DATABASEENTRY_H_
-#define DATABASEENTRY_H_
+#pragma once
 
 #include <db.h>
-
 #include "system/platform.h"
 #include "system/io/Stream.h"
 
@@ -104,5 +102,3 @@ namespace engine {
     } // namespace berkeley
   } // namespace db
 } // namespace engine
-
-#endif /* DATABASEENTRY_H_ */

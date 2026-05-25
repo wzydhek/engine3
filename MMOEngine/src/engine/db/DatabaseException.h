@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DATABASEEXCEPTION_H_
-#define DATABASEEXCEPTION_H_
+#pragma once
 
 #include "system/lang.h"
 
@@ -22,5 +21,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::db;
-
-#endif /*DATABASEEXCEPTION_H_*/

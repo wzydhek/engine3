@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef RESOURCEPOOL_H_
-#define RESOURCEPOOL_H_
+#pragma once
 
 #include "system/lang.h"
 
@@ -53,5 +52,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::util;
-
-#endif /*RESOURCEPOOL_H_*/

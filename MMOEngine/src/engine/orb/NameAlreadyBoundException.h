@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef NAMEALREADYBOUNDEXCEPTION_H_
-#define NAMEALREADYBOUNDEXCEPTION_H_
+#pragma once
 
 #include "system/lang/Exception.h"
-
 #include "object/DistributedObjectStub.h"
 
 namespace engine {
@@ -25,5 +23,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*NAMEALREADYBOUNDEXCEPTION_H_*/

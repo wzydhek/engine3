@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef NETSTATUSRESPONSEMESSAGE_H_
-#define NETSTATUSRESPONSEMESSAGE_H_
+#pragma once
 
 #include "engine/service/proto/BaseProtocol.h"
 
@@ -44,5 +43,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*NETSTATUSRESPONSEMESSAGE_H_*/

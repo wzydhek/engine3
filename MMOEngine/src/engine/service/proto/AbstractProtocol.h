@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ABSTRACTPROTOCOL_H_
-#define ABSTRACTPROTOCOL_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/service/Message.h"
 
 namespace engine {
@@ -26,5 +24,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*ABSTRACTPROTOCOL_H_*/

@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef LINKEDLIST_H_
-#define LINKEDLIST_H_
+#pragma once
 
 #include "system/lang/ArrayIndexOutOfBoundsException.h"
 #include <atomic>
@@ -182,4 +181,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::util;
-#endif /*LINKEDLIST_H_*/

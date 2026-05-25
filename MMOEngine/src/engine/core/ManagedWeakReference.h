@@ -3,17 +3,13 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef MANAGEDWEAKREFERENCE_H_
-#define MANAGEDWEAKREFERENCE_H_
+#pragma once
 
 #include <atomic>
-
 #include "system/lang.h"
-
 #include "engine/orb/object/DistributedObject.h"
 #include "ManagedReference.h"
 #include "Core.h"
-
 #include "ManagedObject.h"
 #include "engine/orb/db/DOBObjectManager.h"
 
@@ -267,6 +263,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::core;
-
-
-#endif /* MANAGEDWEAKREFERENCE_H_ */

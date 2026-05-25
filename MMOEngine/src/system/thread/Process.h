@@ -3,51 +3,48 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef PROCESS_H_
-#define PROCESS_H_
+#pragma once
 
 #include "system/platform.h"
 
 #ifndef PLATFORM_WIN
 
-#include "system/lang/Runnable.h"
+	#include "system/lang/Runnable.h"
 
-#include "system/io/Pipe.h"
+	#include "system/io/Pipe.h"
 
-namespace sys {
-  namespace thread {
+	namespace sys {
+	namespace thread {
 
-  	class Process : public Runnable {
-  	protected:
-  		pid_t pid;
+		class Process : public Runnable {
+		protected:
+			pid_t pid;
 
-  		Pipe pipe;
+			Pipe pipe;
 
-  	public:
-  		Process();
+		public:
+			Process();
 
-  		virtual void initialize();
+			virtual void initialize();
 
-  		virtual void start();
+			virtual void start();
 
-  		void wait();
+			void wait();
 
-  		void signal(int sig);
+			void signal(int sig);
 
-  		pid_t getPid() const {
-  			return pid;
-  		}
+			pid_t getPid() const {
+				return pid;
+			}
 
-  		Pipe& getPipe() {
-  			return pipe;
-  		}
-  	};
+			Pipe& getPipe() {
+				return pipe;
+			}
+		};
 
-  } // namespace thread
-} // namespace sys
+	} // namespace thread
+	} // namespace sys
 
-using namespace sys::thread;
+	using namespace sys::thread;
 
 #endif
-
-#endif /* PROCESS_H_ */

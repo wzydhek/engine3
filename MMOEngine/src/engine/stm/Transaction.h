@@ -3,18 +3,13 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ENGINE_STM_TRANSACTION_H_
-#define ENGINE_STM_TRANSACTION_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/log/Logger.h"
-
 #include "engine/core/TaskQueue.h"
 #include "engine/core/TaskScheduler.h"
-
 #include "engine/util/Command.h"
-
 #include "TransactionalObjectHandle.h"
 
 namespace engine {
@@ -326,5 +321,3 @@ namespace engine {
 
   } // namespace stm
 } // namespace engine
-
-#endif /* ENGINE_STM_TRANSACTION_H_ */

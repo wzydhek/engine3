@@ -6,11 +6,9 @@
  * OcTreeEntryInterface.h
  */
 
-#ifndef SRC_ENGINE_UTIL_U3D_OCTREEENTRYINTERFACE_H_
-#define SRC_ENGINE_UTIL_U3D_OCTREEENTRYINTERFACE_H_
+#pragma once
 
 #include "engine/util/u3d/BasicOcTreeNode.h"
-
 #include "system/util/SortedVector.h"
 
 namespace engine {
@@ -206,5 +204,3 @@ class OcTreeEntryInterface : public OcTreeEntryInterfaceBase<BasicOcTreeNode> {}
 } // namespace engine
 
 using namespace engine::util::u3d;
-
-#endif /* SRC_ENGINE_UTIL_U3D_OCTREEENTRYINTERFACE_H_ */

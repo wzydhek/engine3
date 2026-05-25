@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SINGLETON_H_
-#define SINGLETON_H_
+#pragma once
 
 #include "system/thread/ReadWriteLock.h"
 #include "system/lang/ref/Reference.h"
@@ -79,5 +78,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::util;
-
-#endif /*SINGLETON_H_*/

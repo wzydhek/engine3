@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef MESSAGE_H_
-#define MESSAGE_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "ServiceClient.h"
-
 #include "engine/orb/object/DistributedObject.h"
 
 namespace engine {
@@ -108,5 +105,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /*MESSAGE_H_*/

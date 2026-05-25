@@ -6,11 +6,9 @@
 // Created by Victor Popovici on 22/2/16.
 //
 
-#ifndef ENGINE3_LAMBDAFUNCTION_H
-#define ENGINE3_LAMBDAFUNCTION_H
+#pragma once
 
 #include "system/lang/Function.h"
-
 #include "Task.h"
 
 namespace engine {
@@ -56,5 +54,3 @@ namespace engine {
 }
 
 using namespace engine::core;
-
-#endif //ENGINE3_LAMBDAFUNCTION_H

@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef RAY_H_
-#define RAY_H_
+#pragma once
 
 /*
  * Ray class, for use with the optimized ray-box intersection test
@@ -75,5 +74,3 @@ public:
 } // engine
 
 using namespace engine::util::u3d;
-
-#endif /* RAY_H_ */

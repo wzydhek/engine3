@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef MULTIMAPMEMORYMANAGER_H_
-#define MULTIMAPMEMORYMANAGER_H_
+#pragma once
 
 #include "system/platform.h"
-
 #include "system/lang/Object.h"
-
 #include "system/thread/atomic/AtomicReference.h"
 #include "system/thread/atomic/AtomicInteger.h"
 
@@ -67,5 +64,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::mm;
-
-#endif /*MULTIMAPMEMORYMANAGER_H_*/

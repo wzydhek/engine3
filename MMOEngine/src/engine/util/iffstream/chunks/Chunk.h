@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef CHUNK2_H_
-#define CHUNK2_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/util/u3d/Matrix4.h"
 #include "engine/util/u3d/Vector3.h"
 #include "engine/util/u3d/Vector4.h"
@@ -151,5 +149,3 @@ namespace engine {
 }
 
 using namespace engine::util;
-
-#endif /*CHUNK_H_*/

@@ -9,11 +9,9 @@
  *      Author: victor
  */
 
-#ifndef UPDATEPERSISTENTOBJECTMESSAGE_H_
-#define UPDATEPERSISTENTOBJECTMESSAGE_H_
+#pragma once
 
 #include "engine/orb/DistributedObjectBroker.h"
-
 #include "DOBMessage.h"
 
 namespace engine {
@@ -66,6 +64,3 @@ namespace engine {
 }
 
 using namespace engine::ORB;
-
-
-#endif /* UPDATEPERSISTENTOBJECTMESSAGE_H_ */

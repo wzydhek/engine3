@@ -3,22 +3,16 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef BASECLIENT_H_
-#define BASECLIENT_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/service/DatagramServiceClient.h"
 #include "engine/service/DatagramServiceThread.h"
-
 #include "engine/core/TaskManager.h"
-
 #include "BasePacket.h"
 #include "BaseFragmentedPacket.h"
 #include "BaseMultiPacket.h"
-
 #include "BaseProtocol.h"
-
 #include "BaseClientStats.h"
 
 namespace engine {
@@ -242,5 +236,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*BASECLIENT_H_*/

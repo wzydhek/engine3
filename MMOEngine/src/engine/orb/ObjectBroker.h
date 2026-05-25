@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef OBJECTBROKER_H_
-#define OBJECTBROKER_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "NameAlreadyBoundException.h"
-
 #include "object/ObjectAlreadyDeployedException.h"
 #include "object/ObjectNotDeployedException.h"
 #include "object/ObjectNotLocalException.h"
@@ -66,5 +63,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*OBJECTBROKER_H_*/

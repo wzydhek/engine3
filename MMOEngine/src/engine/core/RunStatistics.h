@@ -2,8 +2,7 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef RUNSTATISTICS_H_
-#define RUNSTATISTICS_H_
+#pragma once
 
 namespace sys {
     namespace io {
@@ -100,5 +99,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::core;
-
-#endif /* RUNSTATISTICS_H_ */

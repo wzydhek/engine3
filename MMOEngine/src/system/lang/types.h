@@ -7,12 +7,11 @@
 #include "system/platform.h"
 
 #if GCC_VERSION >= 40100
-#include <typeinfo>
-#include <cxxabi.h>
+	#include <typeinfo>
+	#include <cxxabi.h>
 #endif
 
 #include <type_traits>
-
 #include "String.h"
 
 namespace sys {
@@ -290,4 +289,3 @@ namespace SerializationHelpers {
 		E3_ABORT("calling parseFromBinaryStream on an element that doesnt have it");
 	}
 }
-

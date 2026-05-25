@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef MANAGEDPROCESS_H_
-#define MANAGEDPROCESS_H_
+#pragma once
 
 namespace engine {
   namespace core {
@@ -17,6 +16,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::core;
-
-
-#endif /* MANAGEDPROCESS_H_ */

@@ -3,12 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef QUATERNION_H_
-#define QUATERNION_H_
+#pragma once
 
 #include "system/io/Serializable.h"
 #include "system/lang/String.h"
-
 #include "Vector3.h"
 #include "Matrix3.h"
 
@@ -364,5 +362,3 @@ public:
 } // namespace engine
 
 using namespace engine::util::u3d;
-
-#endif /* QUATERNION_H_ */

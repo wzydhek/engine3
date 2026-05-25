@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef FUNNEL_H_
-#define FUNNEL_H_
+#pragma once
 
 #include "Vector3.h"
 #include "Triangle.h"
@@ -29,6 +28,3 @@ namespace engine {
 }
 
 using namespace engine::util::u3d;
-
-
-#endif /* FUNNEL_H_ */

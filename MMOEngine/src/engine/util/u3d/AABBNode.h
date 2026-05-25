@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef AABBNODE_H_
-#define AABBNODE_H_
+#pragma once
 
 #include "AABB.h"
 
@@ -170,5 +169,3 @@ namespace engine {
 } // engine
 
 using namespace engine::util::u3d;
-
-#endif /* AABBNODE_H_ */

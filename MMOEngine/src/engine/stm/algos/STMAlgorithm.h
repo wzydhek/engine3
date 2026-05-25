@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef STMCOMMITSTRATEGY_H_
-#define STMCOMMITSTRATEGY_H_
+#pragma once
 
 namespace engine {
  namespace stm {
@@ -34,6 +33,3 @@ namespace engine {
  	 };
  }
 }
-
-
-#endif /* STMCOMMITSTRATEGY_H_ */

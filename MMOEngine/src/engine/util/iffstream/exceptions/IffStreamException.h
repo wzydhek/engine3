@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef IFFSTREAMEXCEPTION_H_
-#define IFFSTREAMEXCEPTION_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/util/iffstream/IffStream.h"
 
 class IffStreamException : public Exception {
@@ -24,5 +22,3 @@ public:
 	}
 
 };
-
-#endif /*IFFSTREAMEXCEPTION_H_*/

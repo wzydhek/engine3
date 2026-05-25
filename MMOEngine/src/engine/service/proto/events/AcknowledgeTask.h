@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef ACKNOWLEDGETASK_H_
-#define ACKNOWLEDGETASK_H_
+#pragma once
 
 class AcknowledgeTask : public Task {
 	Reference<BaseClient*> client;
@@ -30,6 +29,3 @@ public:
 		client->acknowledgeServerPackets(seq);
 	}
 };
-
-
-#endif /* ACKNOWLEDGETASK_H_ */

@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef OUTOFORDERTASK_H_
-#define OUTOFORDERTASK_H_
+#pragma once
 
 class OutOfOrderTask : public Task {
 	Reference<BaseClient*> client;
@@ -30,6 +29,3 @@ public:
 		client->resendPackets(seq);
 	}
 };
-
-
-#endif /* OUTOFORDERTASK_H_ */

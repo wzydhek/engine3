@@ -6,11 +6,9 @@
 #pragma once
 
 #include "mersenne/MersenneTwister.h"
-
 #include "system/platform.h"
 #include "system/io/TextStream.h"
 #include "system/thread/ThreadLocal.h"
-
 #include <thread>
 
 namespace sys {
@@ -101,4 +99,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-

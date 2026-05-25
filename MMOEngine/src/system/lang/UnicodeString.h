@@ -6,10 +6,8 @@
 #pragma once
 
 #include "system/platform.h"
-
 #include "Variable.h"
 #include "String.h"
-
 #include <locale>
 #include <codecvt>
 #include <string>
@@ -157,4 +155,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-

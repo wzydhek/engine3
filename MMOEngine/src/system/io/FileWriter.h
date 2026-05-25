@@ -2,13 +2,10 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef FILEWRITER_H_
-#define FILEWRITER_H_
+#pragma once
 
 #include "File.h"
-
 #include "Writer.h"
-
 #include "FileNotFoundException.h"
 #include "IOException.h"
 
@@ -263,5 +260,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /*FILEWRITER_H_*/

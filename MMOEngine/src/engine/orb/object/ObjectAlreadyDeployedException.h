@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef OBJECTALREADYDEPLOYEDEXCEPTION_H_
-#define OBJECTALREADYDEPLOYEDEXCEPTION_H_
+#pragma once
 
 #include "system/lang/Exception.h"
-
 #include "DistributedObjectStub.h"
 
 namespace engine {
@@ -25,5 +23,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*OBJECTALREADYDEPLOYEDEXCEPTION_H_*/

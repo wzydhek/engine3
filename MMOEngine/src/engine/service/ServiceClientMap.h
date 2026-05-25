@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SERVICECLIENTMAP_H_
-#define SERVICECLIENTMAP_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "ServiceClient.h"
 
 namespace engine {
@@ -50,5 +48,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /*SERVICECLIENTMAP_H_*/

@@ -2,11 +2,9 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef BASECLIENTCLEANUPEVENT_H_
-#define BASECLIENTCLEANUPEVENT_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/service/proto/BaseClient.h"
 
 class BaseClientCleanupEvent : public Task {
@@ -26,5 +24,3 @@ public:
 	}
 
 };
-
-#endif /*BASECLIENTCLEANUPEVENT_H_*/

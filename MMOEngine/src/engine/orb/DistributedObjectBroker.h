@@ -3,31 +3,21 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DISTRIBUTEDOBJECTBROKER_H_
-#define DISTRIBUTEDOBJECTBROKER_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/util/Singleton.h"
-
 #include "engine/service/StreamServiceThread.h"
-
 #include "ObjectBroker.h"
-
 #include "NamingDirectoryService.h"
-
 #include "messages/DOBServiceClient.h"
-
 #include "object/DistributedObject.h"
 #include "object/DistributedObjectStub.h"
 #include "object/DistributedObjectServant.h"
 #include "object/DistributedObjectAdapter.h"
-
 #include "object/DistributedObjectClassHelper.h"
 #include "object/DistributedObjectClassHelperMap.h"
-
 #include "object/DistributedMethod.h"
-
 #include "db/DistributedObjectMap.h"
 
 namespace engine {
@@ -136,5 +126,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*DISTRIBUTEDOBJECTBROKER_H_*/

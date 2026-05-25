@@ -3,13 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef OBJECTBROKERAGENT_H_
-#define OBJECTBROKERAGENT_H_
+#pragma once
 
 #include "engine/util/Singleton.h"
-
 #include "engine/orb/ObjectBroker.h"
-
 #include "ObjectBrokerDirector.h"
 
 namespace engine {
@@ -46,5 +43,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*OBJECTBROKERAGENT_H_*/

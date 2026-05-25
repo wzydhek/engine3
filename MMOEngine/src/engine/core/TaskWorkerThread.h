@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef TASKWORKERTHREAD_H_
-#define TASKWORKERTHREAD_H_
+#pragma once
 
 #include "engine/service/ServiceThread.h"
-
 #include "RunStatistics.h"
 
 namespace engine {
@@ -131,5 +129,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::core;
-
-#endif /* TASKWORKERTHREAD_H_ */

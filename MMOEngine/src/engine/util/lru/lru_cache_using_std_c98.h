@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef LRU_CACHE_USING_STD_C98_H_
-#define LRU_CACHE_USING_STD_C98_H_
+#pragma once
 
 #include <cassert>
 #include <list>
@@ -162,6 +161,3 @@ private:
   // Key-to-value lookup
   key_to_value_type _key_to_value;
 };
-
-
-#endif /* LRU_CACHE_USING_STD_C98_H_ */

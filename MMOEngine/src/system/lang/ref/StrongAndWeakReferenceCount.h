@@ -9,11 +9,10 @@
  *      Author: victor
  */
 
-#ifndef STRONGANDWEAKREFERENCECOUNT_H_
-#define STRONGANDWEAKREFERENCECOUNT_H_
+#pragma once
 
 #ifdef CXX11_COMPILER
-#include <type_traits>
+	#include <type_traits>
 #endif
 
 #include "system/thread/atomic/AtomicReference.h"
@@ -145,6 +144,3 @@ public:
 
   }
 }
-
-
-#endif /* STRONGANDWEAKREFERENCECOUNT_H_ */

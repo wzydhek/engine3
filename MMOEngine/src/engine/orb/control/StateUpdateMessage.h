@@ -3,15 +3,11 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef STATEUPDATEMESSAGE_H_
-#define STATEUPDATEMESSAGE_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/orb/messages/RemoteObjectBroker.h"
-
 #include "engine/orb/messages/DOBMessage.h"
-
 #include "ObjectBrokerDirector.h"
 
 namespace engine {
@@ -42,5 +38,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*STATEUPDATEMESSAGE_H_*/

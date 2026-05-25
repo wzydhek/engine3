@@ -6,11 +6,9 @@
  * LightweightOcTree.h
  */
 
-#ifndef SRC_ENGINE_UTIL_U3D_BASICOCTREE_H_
-#define SRC_ENGINE_UTIL_U3D_BASICOCTREE_H_
+#pragma once
 
 #include "engine/util/u3d/BasicOcTreeNode.h"
-
 #include "OcTreeEntryInterface.h"
 
 namespace engine {
@@ -83,5 +81,3 @@ public:
 } // namespace engine
 
 using namespace engine::util::u3d;
-
-#endif /* SRC_ENGINE_UTIL_U3D_BASICOCTREE_H_ */

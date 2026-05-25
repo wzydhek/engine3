@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef FILEDESCRIPTOR_H_
-#define FILEDESCRIPTOR_H_
+#pragma once
 
 #include "system/platform.h"
 
@@ -45,5 +44,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /* FILEDESCRIPTOR_H_ */

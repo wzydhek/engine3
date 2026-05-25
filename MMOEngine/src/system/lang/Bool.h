@@ -4,8 +4,8 @@
 */
 
 #pragma once
-#include "BaseTypeVariable.h"
 
+#include "BaseTypeVariable.h"
 #include "system/io/ObjectOutputStream.h"
 #include "system/io/ObjectInputStream.h"
 

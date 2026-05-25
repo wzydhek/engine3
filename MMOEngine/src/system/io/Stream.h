@@ -6,9 +6,7 @@
 #pragma once
 
 #include "system/platform.h"
-
 #include "system/util/ArrayList.h"
-
 #include "StreamIndexOutOfBoundsException.h"
 
 namespace sys {
@@ -95,4 +93,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-

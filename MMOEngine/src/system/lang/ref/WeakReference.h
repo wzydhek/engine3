@@ -3,14 +3,11 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef WEAKREFERENCE_H_
-#define WEAKREFERENCE_H_
+#pragma once
 
 #include <cstddef>
 #include <functional>
-
 #include "system/lang/Variable.h"
-
 #include "system/thread/ReadWriteLock.h"
 #include "system/thread/Locker.h"
 #include "system/thread/atomic/AtomicReference.h"
@@ -284,5 +281,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-
-#endif /* WEAKREFERENCE_H_ */

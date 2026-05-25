@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SYNCHRONIZEDLINKEDLIST_H_
-#define SYNCHRONIZEDLINKEDLIST_H_
+#pragma once
 
 namespace sys {
   namespace util {
@@ -193,4 +192,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::util;
-#endif /*LINKEDLIST_H_*/

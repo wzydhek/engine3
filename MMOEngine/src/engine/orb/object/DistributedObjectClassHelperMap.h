@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DISTRIBUTEDOBJECTCLASSHELPERMAP_H_
-#define DISTRIBUTEDOBJECTCLASSHELPERMAP_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "DistributedObjectClassHelper.h"
 
 namespace engine {
@@ -36,5 +34,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*DISTRIBUTEDOBJECTCLASSHELPERMAP_H_*/

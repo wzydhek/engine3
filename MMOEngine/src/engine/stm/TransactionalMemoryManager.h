@@ -3,24 +3,16 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ENGINE_STM_TRANSACTIONALMEMORYMANAGER_H_
-#define ENGINE_STM_TRANSACTIONALMEMORYMANAGER_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "system/mm/MemoryManager.h"
-
 #include "engine/util/Singleton.h"
-
 #include "engine/stm/task/TransactionalTaskManager.h"
-
 #include "engine/stm/orb/TransactionalObjectManager.h"
-
 #include "engine/stm/service/TransactionalSocketManager.h"
 #include "engine/stm/service/TransactionalBaseClientManager.h"
-
 #include "Transaction.h"
-
 #include "TransactionalReference.h"
 #include "TransactionalWeakReference.h"
 
@@ -161,7 +153,4 @@ namespace engine {
 } // namespace engine
 
 #include "TransactionalObjectHeader.h"
-
 #include "engine/stm/mm/TransactionalObjectCloner.h"
-
-#endif /* ENGINE_STM_TRANSACTIONALMEMORYMANAGER_H_ */

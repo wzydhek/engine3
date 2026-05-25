@@ -3,12 +3,10 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DISTRIBUTEDOBJECT_H_
-#define DISTRIBUTEDOBJECT_H_
+#pragma once
 
 #include "system/lang.h"
 #include <atomic>
-
 #include "DistributedObjectPOD.h"
 
 namespace engine {
@@ -145,5 +143,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*DISTRIBUTEDOBJECT_H_*/

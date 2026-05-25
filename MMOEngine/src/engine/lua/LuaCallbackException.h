@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef LUACALLBACKEXCEPTION_H_
-#define LUACALLBACKEXCEPTION_H_
+#pragma once
 
 #include <lua.hpp>
 
@@ -24,6 +23,3 @@ public:
 
 	}
 };
-
-
-#endif /* LUACALLBACKEXCEPTION_H_ */

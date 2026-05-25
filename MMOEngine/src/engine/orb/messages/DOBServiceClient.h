@@ -3,15 +3,11 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DOBSERVICECLIENT_H_
-#define DOBSERVICECLIENT_H_
+#pragma once
 
 #include "engine/log/Logger.h"
-
 #include "engine/service/StreamServiceClient.h"
-
 #include "system/util/SynchronizedHashTable.h"
-
 #include "DOBMessage.h"
 
 namespace engine {
@@ -59,5 +55,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*DOBSERVICECLIENT_H_*/

@@ -3,19 +3,16 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef HASHTABLE_H_
-#define HASHTABLE_H_
+#pragma once
 
 #ifdef CXX11_COMPILER
-#include <type_traits>
+	#include <type_traits>
 #endif
 
 #include "system/platform.h"
-
 #include "system/lang/StringBuffer.h"
 #include "system/lang/Variable.h"
 #include "system/lang/Math.h"
-
 #include "system/io/Serializable.h"
 #include "system/io/ObjectOutputStream.h"
 #include "system/io/ObjectInputStream.h"
@@ -759,5 +756,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::util;
-
-#endif /*HASHTABLE_H_*/

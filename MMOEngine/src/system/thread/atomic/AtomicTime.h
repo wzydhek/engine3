@@ -8,28 +8,23 @@
  * @created     : Monday Oct 15, 2018 22:10:03 CEST
  */
 
-#ifndef ATOMICTIME_H
-#define ATOMICTIME_H
+#pragma once
 
 #include "system/platform.h"
 
 #ifndef PLATFORM_WIN
-#include <unistd.h>
+	#include <unistd.h>
 #else
-#include <windows.h>
-#include <windef.h>
-#include <pthread.h>
+	#include <windows.h>
+	#include <windef.h>
+	#include <pthread.h>
 #endif
 
 #include <time.h>
-
 #include "system/lang/String.h"
 #include "system/lang/StringBuffer.h"
-
 #include "system/lang/Long.h"
-
 #include "system/io/StringTokenizer.h"
-
 #include <atomic>
 #include <chrono>
 
@@ -451,8 +446,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-
-
-
-#endif /* end of include guard ATOMICTIME_H */
-

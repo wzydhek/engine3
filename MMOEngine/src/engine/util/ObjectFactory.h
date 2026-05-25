@@ -26,8 +26,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef OBJECTFACTORY_H_
-#define OBJECTFACTORY_H_
+#pragma once
 
 #include "system/lang.h"
 
@@ -237,5 +236,3 @@ namespace engine {
 }
 
 using namespace engine::util;
-
-#endif /* OBJECTFACTORY_H_ */

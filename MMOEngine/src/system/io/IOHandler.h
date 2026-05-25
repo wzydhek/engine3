@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef IOHANDLER_H_
-#define IOHANDLER_H_
+#pragma once
 
 namespace sys {
   namespace io {
@@ -31,5 +30,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /* IOHANDLER_H_ */

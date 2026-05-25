@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef STREAMSERVICECLIENT_H_
-#define STREAMSERVICECLIENT_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "ServiceClient.h"
 
 namespace engine {
@@ -52,5 +50,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /*STREAMSERVICECLIENT_H_*/

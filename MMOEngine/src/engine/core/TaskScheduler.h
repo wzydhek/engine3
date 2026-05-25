@@ -3,19 +3,13 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef TASKSCHEDULER_H_
-#define TASKSCHEDULER_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include <atomic>
-
 #include "system/util/SynchronizedHashTable.h"
-
 #include "engine/log/Logger.h"
-
 #include "Task.h"
-
 #include "TimedTaskQueue.h"
 
 namespace engine {
@@ -109,5 +103,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::core;
-
-#endif /* TASKSCHEDULER_H_ */

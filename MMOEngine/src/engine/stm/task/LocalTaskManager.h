@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef LOCALTASKMANAGER_H_
-#define LOCALTASKMANAGER_H_
+#pragma once
 
 #include "engine/core/Task.h"
 #include "engine/core/TaskManager.h"
@@ -205,5 +204,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::stm;
-
-#endif /* LOCALTASKMANAGER_H_ */

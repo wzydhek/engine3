@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef OUTOFORDERMESSAGE_H_
-#define OUTOFORDERMESSAGE_H_
+#pragma once
 
 namespace engine {
   namespace service {
@@ -29,5 +28,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*OUTOFORDERMESSAGE_H_*/

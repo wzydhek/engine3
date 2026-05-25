@@ -3,10 +3,4 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SERVICEPROCESSOR_H_
-#define SERVICEPROCESSOR_H_
-
-
-
-
-#endif /* SERVICEPROCESSOR_H_ */
+#pragma once

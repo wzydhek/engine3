@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef OBJECTNOTLOCALEXCEPTION_H_
-#define OBJECTNOTLOCALEXCEPTION_H_
+#pragma once
 
 #include "system/lang/Exception.h"
-
 #include "DistributedObjectStub.h"
 
 namespace engine {
@@ -24,5 +22,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*OBJECTNOTLOCALEXCEPTION_H_*/

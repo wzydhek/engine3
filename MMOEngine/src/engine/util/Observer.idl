@@ -55,3 +55,4 @@ class Observer extends ManagedObject {
 		return observerType == type;
 	}
 }
+

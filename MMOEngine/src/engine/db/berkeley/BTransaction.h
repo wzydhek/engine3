@@ -9,11 +9,9 @@
  *      Author: victor
  */
 
-#ifndef ENGINE_DB_BERKLEY_TRANSACTION_H_
-#define ENGINE_DB_BERKLEY_TRANSACTION_H_
+#pragma once
 
 #include <db.h>
-
 #include "system/platform.h"
 #include "system/thread/atomic/AtomicReference.h"
 #include "Environment.h"
@@ -70,5 +68,3 @@ namespace engine {
     } // namespace berkeley
   } // namespace db
 } // namespace engine
-
-#endif /* ENGINE_DB_BERKLEY_TRANSACTION_H_ */

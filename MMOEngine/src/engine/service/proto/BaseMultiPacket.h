@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef BASEMULTIPACKET_H_
-#define BASEMULTIPACKET_H_
+#pragma once
 
 #include "BasePacket.h"
 
@@ -34,5 +33,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*BASEMULTIPACKET_H_*/

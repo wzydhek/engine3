@@ -4,8 +4,7 @@
  * @created     : Sunday Nov 24, 2019 15:15:36 UTC
  */
 
-#ifndef E3VARIANT_H
-#define E3VARIANT_H
+#pragma once
 
 #include "variant.hpp"
 
@@ -41,6 +40,3 @@ namespace sys {
 
 	}
 }
-
-#endif /* end of include guard E3VARIANT_H */
-

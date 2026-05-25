@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef SESSIONRESPONSETASK_H_
-#define SESSIONRESPONSETASK_H_
+#pragma once
 
 class SessionResponseTask : public Task {
 	Reference<BaseClient*> client;
@@ -30,6 +29,3 @@ public:
 		client->notifyReceivedSeed(seed);
 	}
 };
-
-
-#endif /* SESSIONRESPONSETASK_H_ */

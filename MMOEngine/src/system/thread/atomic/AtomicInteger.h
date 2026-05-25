@@ -3,16 +3,12 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ATOMICINTEGER_H_
-#define ATOMICINTEGER_H_
+#pragma once
 
 #include "system/platform.h"
-
 #include "system/lang/Variable.h"
-
 #include "system/io/ObjectInputStream.h"
 #include "system/io/ObjectOutputStream.h"
-
 #include <atomic>
 
 namespace sys {
@@ -113,5 +109,3 @@ namespace sys {
 } //namespace sys
 
 using namespace sys::thread::atomic;
-
-#endif /*ATOMICINTEGER_H_*/

@@ -2,8 +2,7 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef RESULTSET_H_
-#define RESULTSET_H_
+#pragma once
 
 #include "system/lang.h"
 
@@ -45,5 +44,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::db;
-
-#endif /*RESULTSET_H_*/

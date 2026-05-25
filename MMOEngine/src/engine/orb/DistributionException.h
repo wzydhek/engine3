@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DISTRIBUTIONEXCEPTION_H_
-#define DISTRIBUTIONEXCEPTION_H_
+#pragma once
 
 #include "system/lang/Exception.h"
-
 #include "object/DistributedObjectStub.h"
 
 namespace engine {
@@ -41,5 +39,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*DISTRIBUTIONEXCEPTION_H_*/

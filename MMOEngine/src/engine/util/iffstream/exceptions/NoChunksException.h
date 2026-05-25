@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef NOCHUNKSEXCEPTION_H_
-#define NOCHUNKSEXCEPTION_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "IffStreamException.h"
 
 class NoChunksException : public IffStreamException {
@@ -18,5 +16,3 @@ public:
 		message = sstr.toString();
 	}
 };
-
-#endif /*NOCHUNKSEXCEPTION_H_*/

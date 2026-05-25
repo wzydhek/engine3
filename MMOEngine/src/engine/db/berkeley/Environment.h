@@ -9,16 +9,13 @@
  *      Author: victor
  */
 
-#ifndef ENGINE_DB_BERKLEY_ENVIRONMENT_H_
-#define ENGINE_DB_BERKLEY_ENVIRONMENT_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "EnvironmentConfig.h"
 #include "TransactionConfig.h"
 #include "DatabaseConfig.h"
 #include "CheckpointConfig.h"
-
 #include <db.h>
 
 namespace engine {
@@ -96,5 +93,3 @@ namespace engine {
     } // namespace berkeley
   } // namespace db
 } // namespace engine
-
-#endif /* ENGINE_DB_BERKLEY_ENVIRONMENT_H_ */

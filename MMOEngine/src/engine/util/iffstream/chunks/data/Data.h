@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DATA_H_
-#define DATA_H_
+#pragma once
 
 #include "engine/util/iffstream/chunks/Chunk.h"
 
@@ -24,5 +23,3 @@ namespace engine {
 }
 
 using namespace engine::util;
-
-#endif /*DATA_H_*/

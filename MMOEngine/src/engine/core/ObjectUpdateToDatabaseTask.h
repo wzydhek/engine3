@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef OBJECTSAVETODATABASETASK_H_
-#define OBJECTSAVETODATABASETASK_H_
+#pragma once
 
 #include "Task.h"
 #include "ManagedWeakReference.h"
@@ -33,5 +32,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::core;
-
-#endif /* OBJECTSAVETODATABASETASK_H_ */

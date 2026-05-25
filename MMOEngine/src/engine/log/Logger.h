@@ -3,23 +3,22 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef LOGGER_H_
-#define LOGGER_H_
+#pragma once
 
 #ifdef NDEBUG
-#define E3_INFO(x)
-#define E3_DEBUG(x)
-#define E3_WARNING(x)
-#define E3_ERROR(x) error(x)
-#define E3_LOG(x) log(x)
-#define E3_FATAL(x) fatal(x)
+	#define E3_INFO(x)
+	#define E3_DEBUG(x)
+	#define E3_WARNING(x)
+	#define E3_ERROR(x) error(x)
+	#define E3_LOG(x) log(x)
+	#define E3_FATAL(x) fatal(x)
 #else
-#define E3_INFO(x) info(x)
-#define E3_DEBUG(x) debug(x)
-#define E3_WARNING(x) warning(x)
-#define E3_ERROR(x) error(x)
-#define E3_LOG(x) log(x)
-#define E3_FATAL(x) fatal(x)
+	#define E3_INFO(x) info(x)
+	#define E3_DEBUG(x) debug(x)
+	#define E3_WARNING(x) warning(x)
+	#define E3_ERROR(x) error(x)
+	#define E3_LOG(x) log(x)
+	#define E3_FATAL(x) fatal(x)
 #endif
 
 #include "system/lang.h"
@@ -447,5 +446,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::log;
-
-#endif /*LOGGER_H_*/

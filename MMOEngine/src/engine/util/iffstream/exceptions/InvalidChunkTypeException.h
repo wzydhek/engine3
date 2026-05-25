@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef INVALIDCHUNKTYPEEXCEPTION_H_
-#define INVALIDCHUNKTYPEEXCEPTION_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "IffStreamException.h"
 
 class InvalidChunkTypeException : public IffStreamException {
@@ -18,5 +16,3 @@ public:
 		message = sstr.toString();
 	}
 };
-
-#endif /*INVALIDCHUNKTYPEEXCEPTION_H_*/

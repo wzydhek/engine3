@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ENGINE_STM_KERNELCALL_H_
-#define ENGINE_STM_KERNELCALL_H_
+#pragma once
 
 namespace engine {
   namespace stm {
@@ -18,5 +17,3 @@ namespace engine {
 
   } // namespace stm
 } // namespace engine
-
-#endif /* ENGINE_STM_KERNELCALL_H_ */

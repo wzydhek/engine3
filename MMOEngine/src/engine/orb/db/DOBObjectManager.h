@@ -3,25 +3,18 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DOBOBJECTMANAGER_H_
-#define DOBOBJECTMANAGER_H_
+#pragma once
 
 #include "engine/util/bytell_hash_map.hpp"
-
 #include "system/platform.h"
 #include "system/lang/Pair.h"
 #include "system/thread/atomic/AtomicBoolean.h"
-
 #include "engine/core/Task.h"
-
 #include "engine/log/Logger.h"
-
 #include "engine/db/ObjectDatabase.h"
 #include "engine/db/ObjectDatabaseManager.h"
-
 #include "engine/util/ObjectFactory.h"
 #include "system/util/SynchronizedSortedVector.h"
-
 #include "DistributedObjectDirectory.h"
 
 namespace engine {
@@ -177,5 +170,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /* DOBOBJECTMANAGER_H_ */

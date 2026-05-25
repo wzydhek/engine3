@@ -15,4 +15,3 @@ namespace sys {
 		using Function = std::function<F>;
 	}
 }
-

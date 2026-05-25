@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef HASHSET_H_
-#define HASHSET_H_
+#pragma once
 
 #include "system/lang/Object.h"
-
 #include "HashTable.h"
 
 namespace sys {
@@ -72,5 +70,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::util;
-
-#endif /*HASHSET_H_*/

@@ -3,13 +3,11 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef ATOMICLONG_H_
-#define ATOMICLONG_H_
+#pragma once
 
 #include "system/platform.h"
 #include "system/io/ObjectInputStream.h"
 #include "system/io/ObjectOutputStream.h"
-
 #include <atomic>
 
 namespace sys {
@@ -102,5 +100,3 @@ namespace sys {
 } //namespace sys
 
 using namespace sys::thread::atomic;
-
-#endif /*ATOMICLONG_H_*/

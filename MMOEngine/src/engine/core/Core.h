@@ -6,9 +6,7 @@
 #pragma once
 
 #include "system/lang.h"
-
 #include "engine/log/Logger.h"
-
 #include "engine/orb/ObjectBroker.h"
 #include "system/util/SynchronizedHashTable.h"
 

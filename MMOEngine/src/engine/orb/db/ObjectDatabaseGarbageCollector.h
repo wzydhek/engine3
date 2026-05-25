@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef OBJECTDATABASEGARBAGECOLLECTOR_H_
-#define OBJECTDATABASEGARBAGECOLLECTOR_H_
+#pragma once
 
 #include "engine/engine.h"
 
@@ -18,6 +17,3 @@ class ObjectDatabaseGarbageCollector : public Task {
 public:
 	void run();
 };
-
-
-#endif /* OBJECTDATABASEGARBAGECOLLECTOR_H_ */

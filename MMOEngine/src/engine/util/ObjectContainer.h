@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef OBJECTCONTAINER_H_
-#define OBJECTCONTAINER_H_
+#pragma once
 
 #include "system/lang.h"
 
@@ -56,5 +55,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::util;
-
-#endif /*OBJECTCONTAINER_H_*/

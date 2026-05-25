@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SERVICEEXCEPTION_H_
-#define SERVICEEXCEPTION_H_
+#pragma once
 
 #include "system/lang/Exception.h"
 
@@ -24,5 +23,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /*SERVICEEXCEPTION_H_*/

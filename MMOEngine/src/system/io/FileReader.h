@@ -2,13 +2,10 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef FILEREADER_H_
-#define FILEREADER_H_
+#pragma once
 
 #include "File.h"
-
 #include "Reader.h"
-
 #include "FileNotFoundException.h"
 
 namespace sys {
@@ -74,5 +71,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /*FILEREADER_H_*/

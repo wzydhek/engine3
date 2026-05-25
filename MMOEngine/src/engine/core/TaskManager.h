@@ -3,18 +3,16 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef TASKMANAGER_H_
-#define TASKMANAGER_H_
+#pragma once
 
 #include "system/lang.h"
 #include "system/thread/atomic/AtomicTime.h"
 #include "system/lang/Pair.h"
 #include "system/lang/Function.h"
-
 #include "Task.h"
 
 #ifdef CXX11_COMPILER
-#include "LambdaFunction.h"
+	#include "LambdaFunction.h"
 #endif
 
 namespace engine {
@@ -229,5 +227,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::core;
-
-#endif /* TASKMANAGER_H_ */

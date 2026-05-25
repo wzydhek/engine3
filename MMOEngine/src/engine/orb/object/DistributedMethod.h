@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef DISTRIBUTEDMETHOD_H_
-#define DISTRIBUTEDMETHOD_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/orb/messages/InvokeMethodMessage.h"
 
 namespace engine {
@@ -150,5 +148,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*DISTRIBUTEDMETHOD_H_*/

@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SERVICEFILTER_H_
-#define SERVICEFILTER_H_
+#pragma once
 
 namespace engine {
   namespace service {
@@ -23,5 +22,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service;
-
-#endif /* SERVICEFILTER_H_ */

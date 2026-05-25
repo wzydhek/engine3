@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef TCPSOCKET_H_
-#define TCPSOCKET_H_
+#pragma once
 
 #include "Socket.h"
 
@@ -25,5 +24,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::net;
-
-#endif /*TCPSOCKET_H_*/

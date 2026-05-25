@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef OBJECTCLONER_H_
-#define OBJECTCLONER_H_
+#pragma once
 
 #include "system/lang/Time.h"
 
@@ -41,5 +40,3 @@ namespace sys {
 
   } // namespace mm
 } // namespace sys
-
-#endif /* OBJECTCLONER_H_ */

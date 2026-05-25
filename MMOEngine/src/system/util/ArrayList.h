@@ -6,16 +6,13 @@
 #pragma once
 
 #include "system/platform.h"
-
 #include "system/lang/Math.h"
 #include "system/lang/ArrayIndexOutOfBoundsException.h"
 #include "system/lang/IllegalArgumentException.h"
 #include "system/lang/types.h"
 #include "system/lang/Integer.h"
 #include "system/lang/Function.h"
-
 #include "system/util/Optional.h"
-
 #include <initializer_list>
 #include <algorithm>
 #include <type_traits>
@@ -853,4 +850,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::util;
-

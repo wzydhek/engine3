@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef IOPROCESSOR_H_
-#define IOPROCESSOR_H_
+#pragma once
 
 #include "system/util/Vector.h"
-
 #include "FileDescriptor.h"
 
 namespace sys {
@@ -42,5 +40,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /* IOPROCESSOR_H_ */

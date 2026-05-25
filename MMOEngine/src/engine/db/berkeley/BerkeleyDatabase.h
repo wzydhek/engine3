@@ -9,13 +9,10 @@
  *      Author: victor
  */
 
-#ifndef BERKELEYDATABASE_H_
-#define BERKELEYDATABASE_H_
+#pragma once
 
 #include <db.h>
-
 #include "engine/db/Database.h"
-
 #include "DatabaseConfig.h"
 #include "BTransaction.h"
 #include "DatabaseEntry.h"
@@ -125,5 +122,3 @@ namespace engine {
     } // namespace berkeley
   } // namespace db
 } // namespace engine
-
-#endif /* BERKELEYDATABASE_H_ */

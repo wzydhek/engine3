@@ -3,14 +3,11 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef THREADLOCAL_H_
-#define THREADLOCAL_H_
+#pragma once
 
 #include "system/platform.h"
 #include "system/lang/types.h"
-
 #include <pthread.h>
-
 #include <signal.h>
 
 namespace sys {
@@ -130,5 +127,3 @@ namespace sys {
 }
 
 using namespace sys::thread;
-
-#endif /* THREADLOCAL_H_ */

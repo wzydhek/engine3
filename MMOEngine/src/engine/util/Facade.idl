@@ -30,3 +30,4 @@ class Facade extends ManagedObject implements Logger {
 		return 0;
 	}
 }
+

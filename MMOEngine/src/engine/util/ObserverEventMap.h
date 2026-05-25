@@ -9,8 +9,7 @@
  *      Author: victor
  */
 
-#ifndef OBSERVEREVENTMAP_H_
-#define OBSERVEREVENTMAP_H_
+#pragma once
 
 namespace engine {
  namespace util {
@@ -22,7 +21,6 @@ namespace engine {
 using namespace engine::util;
 
 #include "system/lang.h"
-
 #include "engine/core/ManagedReference.h"
 
 class ObserverEventMap : public HashTable<uint32, SortedVector<ManagedReference<Observer*> > > {
@@ -48,6 +46,3 @@ public:
 	int getObserverCount(uint32 eventType) const;
 	int getFullObserverCount() const;
 };
-
-
-#endif /* OBSERVEREVENTMAP_H_ */

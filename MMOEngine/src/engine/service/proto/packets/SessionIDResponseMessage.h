@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SESSIONIDRESPONSEMESSAGE_H_
-#define SESSIONIDRESPONSEMESSAGE_H_
+#pragma once
 
 #include "engine/service/proto/BaseProtocol.h"
 
@@ -37,5 +36,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::service::proto;
-
-#endif /*SESSIONIDRESPONSEMESSAGE_H_*/

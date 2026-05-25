@@ -3,15 +3,11 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef LOOKUPOBJECTBYIDMESSAGE_H_
-#define LOOKUPOBJECTBYIDMESSAGE_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/orb/DistributedObjectBroker.h"
-
 #include "engine/orb/db/DOBObjectManager.h"
-
 #include "DOBMessage.h"
 
 namespace engine {
@@ -82,5 +78,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::ORB;
-
-#endif /*LOOKUPOBJECTBYIDMESSAGE_H_*/

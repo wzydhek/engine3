@@ -2,8 +2,7 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef LUNAR_H
-#define LUNAR_H
+#pragma once
 
 #include "lua.hpp"
 
@@ -225,5 +224,3 @@ private:
 }
 
 using namespace engine::lua;
-
-#endif

@@ -2,13 +2,10 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef FILEINPUTSTREAM_H_
-#define FILEINPUTSTREAM_H_
+#pragma once
 
 #include "File.h"
-
 #include "InputStream.h"
-
 #include "FileNotFoundException.h"
 
 namespace sys {
@@ -64,5 +61,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-
-#endif /*FILEINPUTSTREAM_H_*/

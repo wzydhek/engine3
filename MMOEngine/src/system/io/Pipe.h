@@ -6,7 +6,6 @@
 
 #include "system/platform.h"
 #include "system/lang/String.h"
-
 #include "FileDescriptor.h"
 
 #ifdef PLATFORM_WIN

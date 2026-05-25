@@ -6,7 +6,6 @@
 #pragma once
 
 #include "system/platform.h"
-
 #include "system/lang/String.h"
 #include "system/lang/StringBuffer.h"
 #include "system/lang/UnicodeString.h"
@@ -95,4 +94,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::io;
-

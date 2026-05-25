@@ -8,7 +8,6 @@
 #include "system/platform.h"
 #include "Variable.h"
 #include "ConstString.h"
-
 #include <string>
 #include <cstdarg>
 #include <type_traits>
@@ -426,5 +425,3 @@ using namespace sys::lang;
 constexpr uint32 operator""_hashCode(char const* str, std::size_t s) {
 	return String::hashCode(str);
 }
-
-

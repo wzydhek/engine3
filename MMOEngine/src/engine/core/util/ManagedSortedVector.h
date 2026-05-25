@@ -3,11 +3,9 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef MANAGEDSORTEDVECTOR_H_
-#define MANAGEDSORTEDVECTOR_H_
+#pragma once
 
 #include "system/lang.h"
-
 #include "engine/core/ManagedReference.h"
 
 namespace engine {
@@ -127,5 +125,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::core::util;
-
-#endif /*MANAGEDSORTEDVECTOR_H_*/

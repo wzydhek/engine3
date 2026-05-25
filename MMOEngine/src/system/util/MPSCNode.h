@@ -6,8 +6,7 @@
 // Created by theanswer on 1/2/18.
 //
 
-#ifndef ENGINE3_MPSCNODE_H
-#define ENGINE3_MPSCNODE_H
+#pragma once
 
 #include <atomic>
 
@@ -29,5 +28,3 @@ namespace sys {
 			};
 	}
 }
-
-#endif //ENGINE3_MPSCNODE_H

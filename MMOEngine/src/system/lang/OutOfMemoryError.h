@@ -3,8 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef OUTOFMEMORYERROR_H_
-#define OUTOFMEMORYERROR_H_
+#pragma once
 
 #include "Exception.h"
 
@@ -21,5 +20,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-
-#endif /*OUTOFMEMORYERROR_H_*/

@@ -4,9 +4,7 @@
  * @created     : Tuesday Aug 27, 2019 10:26:19 UTC
  */
 
-#ifndef LOGGERHELPERSTREAM_H
-
-#define LOGGERHELPERSTREAM_H
+#pragma once
 
 #include "Logger.h"
 
@@ -15,6 +13,3 @@ namespace engine {
 		typedef engine::log::LoggerHelper LoggerHelperStream;
 	}
 }
-
-#endif /* end of include guard LOGGERHELPERSTREAM_H */
-

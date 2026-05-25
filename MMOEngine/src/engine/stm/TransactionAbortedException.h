@@ -2,11 +2,9 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef TRANSACTIONABORTEDEXCEPTION_H_
-#define TRANSACTIONABORTEDEXCEPTION_H_
+#pragma once
 
 #include "system/lang/Exception.h"
-
 #include "Transaction.h"
 
 namespace engine {
@@ -25,6 +23,3 @@ namespace engine {
 } // namespace engine
 
 using namespace engine::stm;
-
-#endif /*TRANSACTIONABORTEDEXCEPTION_H_*/
-

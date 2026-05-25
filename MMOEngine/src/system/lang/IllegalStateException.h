@@ -2,8 +2,7 @@
 ** Copyright (C) 2007-2019 SWGEmu
 ** See file COPYING for copying conditions.
 */
-#ifndef ILLEGALSTATEEXCEPTION_H_
-#define ILLEGALSTATEEXCEPTION_H_
+#pragma once
 
 #include "Exception.h"
 
@@ -24,6 +23,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-
-#endif /*ILLEGALSTATEEXCEPTION_H_*/
-

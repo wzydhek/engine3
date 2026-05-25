@@ -14,8 +14,7 @@
 /*  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            */
 /******************************************************************************/
 
-#ifndef _lru_cache_using_std_
-#define _lru_cache_using_std_
+#pragma once
 
 #include <cassert>
 #include <list>
@@ -165,5 +164,3 @@ private:
   // Key-to-value lookup
   key_to_value_type _key_to_value;
 };
-
-#endif

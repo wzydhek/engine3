@@ -6,7 +6,6 @@
 #pragma once
 
 #include <functional>
-
 #include "system/io/ObjectOutputStream.h"
 #include "system/io/ObjectInputStream.h"
 
@@ -75,4 +74,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-

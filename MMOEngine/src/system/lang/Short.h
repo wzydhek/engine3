@@ -3,14 +3,11 @@
 ** See file COPYING for copying conditions.
 */
 
-#ifndef SHORT_H_
-#define SHORT_H_
+#pragma once
 
 #include "BaseTypeVariable.h"
-
 #include "String.h"
 #include "Integer.h"
-
 #include "system/io/ObjectOutputStream.h"
 #include "system/io/ObjectInputStream.h"
 
@@ -125,5 +122,3 @@ namespace sys {
 } // namespace sys
 
 using namespace sys::lang;
-
-#endif /* SHORT_H_ */

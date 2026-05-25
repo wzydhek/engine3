@@ -9,16 +9,12 @@
  *      Author: victor
  */
 
-#ifndef AABBTREE_H_
-#define AABBTREE_H_
+#pragma once
 
 #include "system/lang.h"
 #include "system/util/Vector.h"
-
 #include "Vector3.h"
-
 #include "AABB.h"
-
 #include "Triangle.h"
 #include "Sphere.h"
 #include "Ray.h"
@@ -49,5 +45,3 @@ namespace engine {
 	} // u3d
   } // util
 } // engine
-
-#endif /* AABTREE_H_ */

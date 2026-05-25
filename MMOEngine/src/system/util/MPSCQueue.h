@@ -6,11 +6,9 @@
 // Created by theanswer on 1/2/18.
 //
 
-#ifndef ENGINE3_MPSCQUEUE_H
-#define ENGINE3_MPSCQUEUE_H
+#pragma once
 
 #include "MPSCNode.h"
-
 
 /**
  * Wait free Multiple Producers Single Consumer Queue
@@ -82,5 +80,3 @@ namespace sys {
 		};
 	}
 }
-
-#endif //ENGINE3_MPSCQUEUE_H
