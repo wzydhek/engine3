@@ -339,7 +339,7 @@ namespace sys {
 
 	public:
 		// getters
-		inline int length() const;
+		int length() const;
 	};
 
 #ifndef STRING_INHERIT_VARIABLE
