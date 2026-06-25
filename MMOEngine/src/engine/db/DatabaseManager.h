@@ -23,9 +23,7 @@ namespace engine {
 		DatabaseManager* manager;
 
 	public:
-		BerkeleyCheckpointTask(DatabaseManager* manager) {
-			BerkeleyCheckpointTask::manager = manager;
-		}
+		BerkeleyCheckpointTask(DatabaseManager* manager);
 
 		void run();
 	};
@@ -41,51 +39,17 @@ namespace engine {
 
 		//if stream null its a delete action
 
-		UpdateObject() {
-			stream = nullptr;
-			key = nullptr;
-			database = nullptr;
-		}
+		UpdateObject();
 
-		UpdateObject(Stream* str, Stream* ke, engine::db::LocalDatabase* database, Object* obj) {
-			stream = str;
-			key = ke;
-			this->database = database;
-			object = obj;
-		}
+		UpdateObject(Stream* str, Stream* ke, engine::db::LocalDatabase* database, Object* obj);
 
-		UpdateObject(const UpdateObject& i) : Object() {
-			stream = i.stream;
-			key = i.key;
-			this->database = i.database;
-			object = i.object;
-		}
+		UpdateObject(const UpdateObject& i);
 
-		UpdateObject& operator=(const UpdateObject& o) {
-			if (this == &o) {
-				return *this;
-			}
+		UpdateObject& operator=(const UpdateObject& o);
 
-			stream = o.stream;
-			key = o.key;
-			database = o.database;
-			object = o.object;
+		uint32 getSize() const;
 
-			return *this;
-		}
-
-		uint32 getSize() const {
-			if (key && stream) {
-				return stream->size() + key->size();
-			} else {
-				return 10;
-			}
-		}
-
-		int compareTo(const UpdateObject& a) const {
-			return -1;
-		}
-
+		int compareTo(const UpdateObject& a) const;
 
 	};
 
@@ -100,42 +64,21 @@ namespace engine {
 		uint64 currentSize;
 
 	public:
-		CurrentTransaction(engine::db::berkeley::Environment* env) {
-			databaseEnvironment = env;
-			currentSize = 0;
-		}
+		CurrentTransaction(engine::db::berkeley::Environment* env);
 
-		inline void addTemporaryObject(Object* obj) {
-			temporaryObjects.add(obj);
-		}
+		void addTemporaryObject(Object* obj);
 
-		inline void clearTemporaryObjects() {
-			temporaryObjects.removeAll();
-		}
+		void clearTemporaryObjects();
 
-		inline uint32 addUpdateObject(Stream* id, Stream* str, engine::db::LocalDatabase* db, Object* obj) {
-			updateObjects.add(UpdateObject(str, id, db, obj));
+		uint32 addUpdateObject(Stream* id, Stream* str, engine::db::LocalDatabase* db, Object* obj);
 
-			return currentSize += (id->size() + str->size());
-		}
+		uint32 addDeleteObject(Stream* id, engine::db::LocalDatabase* db);
 
-		inline uint32 addDeleteObject(Stream* id, engine::db::LocalDatabase* db) {
-			updateObjects.add(UpdateObject(nullptr, id, db, nullptr));
+		Vector<UpdateObject>* getUpdateVector();
 
-			return currentSize += 100;
-		}
+		uint64 getCurrentSize() const;
 
-		inline Vector<UpdateObject>* getUpdateVector() {
-			return &updateObjects;
-		}
-
-		inline uint64 getCurrentSize() const {
-			return currentSize;
-		}
-
-		inline void resetCurrentSize() {
-			currentSize = 0;
-		}
+		void resetCurrentSize();
 
 	};
 
@@ -229,37 +172,21 @@ namespace engine {
 		void setManagedObjectsWithHashCodeMembersFlag(engine::db::berkeley::Transaction* transaction);
 		void convertDatabasesToHashCodeMembers();
 
-		inline uint64 getCurrentVersion() const {
-			return currentVersion;
-		}
+		uint64 getCurrentVersion() const;
 
-		inline LocalDatabase* getDatabase(uint16 id) const {
-			//Locker _locker(this);
+		LocalDatabase* getDatabase(uint16 id) const;
 
-			return databases.get(id);
-		}
+		LocalDatabase* getDatabase(int idx) const;
 
-		inline LocalDatabase* getDatabase(int idx) const {
-			//Locker _locker(this);
+		uint16 getDatabaseID(const String& name) const;
 
-			return databases.get(idx);
-		}
+		int getTotalDatabaseCount() const;
 
-		inline uint16 getDatabaseID(const String& name) const {
-			//Locker _locker(this);
-
-			return nameDirectory.get(name);
-		}
-
-		inline int getTotalDatabaseCount() const {
-			return databases.size();
-		}
-
-		inline engine::db::berkeley::Environment* getBerkeleyEnvironment() const {
-			return databaseEnvironment;
-		}
+		engine::db::berkeley::Environment* getBerkeleyEnvironment() const;
 
 	};
 
   } // namespace db
 } // namespace engine
+
+using namespace engine::db;

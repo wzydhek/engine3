@@ -33,13 +33,9 @@
 
 			void signal(int sig);
 
-			pid_t getPid() const {
-				return pid;
-			}
+			pid_t getPid() const;
 
-			Pipe& getPipe() {
-				return pipe;
-			}
+			Pipe& getPipe();
 		};
 
 	} // namespace thread

@@ -42,311 +42,126 @@ namespace sys {
 		Packet* clone(int startoffs = 0);
 
 		// inserting methods
-		inline void insertBoolean(bool val) {
-			writeBoolean(val);
-		}
+		void insertBoolean(bool val);
 
-		inline void insertByte(uint8 val) {
-			writeByte(val);
-		}
+		void insertByte(uint8 val);
 
-		inline void insertByte(int offs, uint8 val) {
-			writeByte(offs, val);
-		}
+		void insertByte(int offs, uint8 val);
 
-		inline void insertSignedByte(int8 val) {
-			writeSignedByte(val);
-		}
+		void insertSignedByte(int8 val);
 
-		inline void insertShort(uint16 val) {
-			writeShort(val);
-		}
+		void insertShort(uint16 val);
 
-		inline void insertSignedShort(int16 val) {
-			writeSignedShort(val);
-		}
+		void insertSignedShort(int16 val);
 
-		inline void insertShort(int offs, uint16 val) {
-			writeShort(offs, val);
-		}
+		void insertShort(int offs, uint16 val);
 
-		inline void insertShortNet(uint16 val) {
-			writeShort(htons(val));
-		}
+		void insertShortNet(uint16 val);
 
-		inline void insertInt(uint32 val) {
-			writeInt(val);
-		}
+		void insertInt(uint32 val);
 
-		inline void insertInt(int offs, uint32 val) {
-			writeInt(offs, val);
-		}
+		void insertInt(int offs, uint32 val);
 
-		inline void insertSignedInt(int32 val) {
-			writeSignedInt(val);
-		}
+		void insertSignedInt(int32 val);
 
-		inline void insertIntNet(uint32 val) {
-			writeInt(htonl(val));
-		}
+		void insertIntNet(uint32 val);
 
-		inline void insertLong(uint64 val) {
-			writeLong(val);
-		}
+		void insertLong(uint64 val);
 
-		inline void insertLong(int offs, uint64 val) {
-			writeLong(offs, val);
-		}
+		void insertLong(int offs, uint64 val);
 
-		inline void insertSignedLong(int64 val) {
-			writeSignedLong(val);
-		}
+		void insertSignedLong(int64 val);
 
-		inline void insertFloat(float val) {
-			writeFloat(val);
-		}
+		void insertFloat(float val);
 
-		inline void insertDouble(double val) {
-			writeDouble(val);
-		}
+		void insertDouble(double val);
 
-		void insertAscii(const char *ascii) {
-			int len = strlen(ascii);
+		void insertAscii(const char* ascii);
 
-			writeShort(len);
-			writeStream(ascii, len);
-		}
+		void insertAscii(const char* ascii, int len);
 
-		void insertAscii(const char *ascii, int len) {
-			writeShort(len);
-			writeStream(ascii, len);
-		}
+		void insertAscii(const String& ascii);
 
-		void insertAscii(const String& ascii) {
-			int len = ascii.length();
-			writeShort(len);
+		void insertUnicode(const UnicodeString& str);
 
-			writeStream(ascii.toCharArray(), len);
-		}
+		void insertStream(const char* buf, int len);
 
-		void insertUnicode(const UnicodeString& str) {
-			int len = str.length();
-			writeInt(len);
+		void insertStream(Stream* stream);
 
-			writeStream((char*)str.toWideCharArray(), len * 2);
-		}
+		void insertStream(Stream* stream, int len);
 
-		inline void insertStream(const char *buf, int len) {
-			writeStream(buf, len);
-		}
-
-		inline void insertStream(Stream* stream) {
-			writeStream(stream);
-		}
-
-		inline void insertStream(Stream* stream, int len) {
-			writeStream(stream, len);
-		}
-
-		inline void insertCString(const char* buf, bool nullTerminator = false) {
-			char character;
-
-			while ((character = *(buf++))) {
-				insertByte(character);
-			}
-
-			if (nullTerminator) {
-				insertByte(0);
-			}
-		}
+		void insertCString(const char* buf, bool nullTerminator = false);
 
 		// parsing methods
-		inline bool parseBoolean() {
-			return readBoolean();
-		}
+		bool parseBoolean();
 
-		inline uint8 parseByte() {
-			return readByte();
-		}
+		uint8 parseByte();
 
-		inline uint8 parseByte(int offs) {
-			return readByte(offs);
-		}
+		uint8 parseByte(int offs);
 
-		inline int8 parseSignedByte() {
-			return readSignedByte();
-		}
+		int8 parseSignedByte();
 
-		inline int8 parseSignedByte(int offs) {
-			return readSignedByte(offs);
-		}
+		int8 parseSignedByte(int offs);
 
-		inline uint16 parseShort() {
-			return readShort();
-		}
+		uint16 parseShort();
 
-		inline int16 parseSignedShort() {
-			return readSignedShort();
-		}
+		int16 parseSignedShort();
 
-		inline int16 parseSignedShort(int offs) {
-			return readSignedShort(offs);
-		}
+		int16 parseSignedShort(int offs);
 
-		inline uint16 parseShort(int offs) {
-			return readShort(offs);
-		}
+		uint16 parseShort(int offs);
 
-		inline uint16 parseNetShort() {
-			return ntohs(readShort());
-		}
+		uint16 parseNetShort();
 
-		inline uint16 parseNetShort(int offs) {
-			return ntohs(readShort(offs));
-		}
+		uint16 parseNetShort(int offs);
 
-		inline uint32 parseInt() {
-			return readInt();
-		}
+		uint32 parseInt();
 
-		inline uint32 parseInt(int offs) {
-			return readInt(offs);
-		}
+		uint32 parseInt(int offs);
 
-		inline int32 parseSignedInt() {
-			return readSignedInt();
-		}
+		int32 parseSignedInt();
 
-		inline int32 parseSignedInt(int offs) {
-			return readSignedInt(offs);
-		}
+		int32 parseSignedInt(int offs);
 
-		inline uint32 parseNetInt() {
-			return ntohl(readInt());
-		}
+		uint32 parseNetInt();
 
-		inline uint32 parseNetInt(int offs) {
-			return ntohl(readInt(offs));
-		}
+		uint32 parseNetInt(int offs);
 
-		inline uint64 parseNetLong() {
-			uint64 value = readLong();
+		uint64 parseNetLong();
 
-			return NTOHLL(value);
-		}
+		uint64 parseNetLong(int offs);
 
-		inline uint64 parseNetLong(int offs) {
-			auto value = readLong(offs);
+		uint64 parseLong();
 
-			return NTOHLL(value);
-		}
+		uint64 parseLong(int offs);
 
-		inline uint64 parseLong() {
-			return readLong();
-		}
+		int64 parseSignedLong();
 
-		inline uint64 parseLong(int offs) {
-			return readLong(offs);
-		}
+		int64 parseSignedLong(int offs);
 
-		inline int64 parseSignedLong() {
-			return readSignedLong();
-		}
+		float parseFloat();
 
-		inline int64 parseSignedLong(int offs) {
-			return readSignedLong(offs);
-		}
+		double parseDouble();
 
-		inline float parseFloat() {
-			return readFloat();
-		}
+		float parseFloat(int offs);
 
-		inline double parseDouble() {
-			return readDouble();
-		}
+		int parseAscii(char* ascii);
 
-		inline float parseFloat(int offs) {
-			return readFloat(offs);
-		}
+		void parseAscii(String& ascii);
 
-		inline int parseAscii(char *ascii) {
-			uint16 len = readShort();
-			readStream(ascii, (int) len);
+		String parseAscii();
 
-			ascii[len] = 0;
-			return len;
-		}
+		void parseAscii(int offs, String& ascii);
 
-		inline void parseAscii(String& ascii) {
-			uint32 len = readShort();
-			shiftOffset(len);
+		void parseUnicode(UnicodeString& str);
 
-			ascii = String(offset - len, len);
-		}
+		UnicodeString parseUnicode();
 
-		inline String parseAscii() {
-			uint32 len = readShort();
-			shiftOffset(len);
+		void parseUnicode(int offs, UnicodeString& str);
 
-			return String(offset - len, len);
-		}
+		void parseStream(char* buf, int len);
 
-		inline void parseAscii(int offs, String& ascii) {
-			uint32 len = readShort(offs);
-
-			char* elementOffset = elementData + offs + 2;
-			if (elementOffset > end)
-				throw StreamIndexOutOfBoundsException(this, offs + 2);
-
-			ascii = String(elementOffset - len, len);
-		}
-
-		inline void parseUnicode(UnicodeString& str) {
-			uint32 len = readInt();
-			uint32 totalLen = len * UnicodeString::UnicodeCharSize::value;
-
-			if (totalLen > MAX_UNICODE_LENGTH) {
-				throw StreamIndexOutOfBoundsException(this, MAX_UNICODE_LENGTH);
-			}
-
-			shiftOffset(totalLen);
-
-			str.clear();
-			str.append(reinterpret_cast<UnicodeString::UnicodeCharType*>((offset - totalLen)), len);
-		}
-
-		inline UnicodeString parseUnicode() {
-			UnicodeString str;
-			parseUnicode(str);
-
-			return str;
-		}
-
-		inline void parseUnicode(int offs, UnicodeString& str) {
-			uint32 len = readInt(offs);
-			uint32 totalLen = len * UnicodeString::UnicodeCharSize::value;
-
-			if (totalLen > MAX_UNICODE_LENGTH) {
-				throw StreamIndexOutOfBoundsException(this, MAX_UNICODE_LENGTH);
-			}
-
-			char* elementOffset = elementData + offs + 4;
-
-			if (elementOffset > end) {
-				throw StreamIndexOutOfBoundsException(this, offs + 4);
-			}
-
-			str.clear();
-			str.append(reinterpret_cast<UnicodeString::UnicodeCharType*>((elementOffset - totalLen)), len);
-		}
-
-		inline void parseStream(char *buf, int len) {
-			readStream(buf, len);
-		}
-
-		inline void parseStream(Stream* stream, int len) {
-			readStream(stream, len);
-		}
+		void parseStream(Stream* stream, int len);
 
 	};
 

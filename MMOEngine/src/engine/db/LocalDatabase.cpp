@@ -516,6 +516,30 @@ void LocalDatabase::associate(LocalDatabase* secondaryDB, int (*callback)(DB *se
 	}
 }
 
+LocalDatabase::DatabaseType LocalDatabase::getDatabaseType() const {
+	return dbType;
+}
+
+void LocalDatabase::setParentDatabase(LocalDatabase* database) {
+	parentDatabase = database;
+}
+
+void LocalDatabase::getDatabaseName(String& name) const {
+	name = getDatabaseName();
+}
+
+String LocalDatabase::getDatabaseName() const {
+	return databaseFileName.replaceFirst(".db", "");
+}
+
+const String& LocalDatabase::getDatabaseFileName() const {
+	return databaseFileName;
+}
+
+bool LocalDatabase::hasCompressionEnabled() const {
+	return compression;
+}
+
 LocalDatabaseIterator::LocalDatabaseIterator(engine::db::berkeley::Transaction* transaction, LocalDatabase* database)
 	: Logger("LocalDatabaseIterator") {
 
@@ -854,4 +878,17 @@ bool LocalDatabaseIterator::getSearchKeyRange(ObjectInputStream* key, ObjectInpu
 	}
 
 	return true;
+}
+
+void LocalDatabaseIterator::closeCursor() {
+	if (cursor != nullptr) {
+		int ret = cursor->close();
+
+		delete cursor;
+
+		if (ret != 0)
+			throw DatabaseException("could not close cursor ret: " + String::valueOf(ret));
+	}
+
+	cursor = nullptr;
 }

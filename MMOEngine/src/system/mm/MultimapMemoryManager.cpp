@@ -21,6 +21,20 @@ MultimapMemoryManager::~MultimapMemoryManager() {
 	close(deviceFD);
 }
 
+MultimapMemoryManager* MultimapMemoryManager::getInstance() {
+	if (inst == nullptr) {
+		setInstance(new MultimapMemoryManager());
+
+		inst->initialize();
+	}
+
+	return inst;
+}
+
+void MultimapMemoryManager::setInstance(MultimapMemoryManager* manager) {
+	inst.set(manager);
+}
+
 void MultimapMemoryManager::initialize() {
 	deviceFD = -1;
 
@@ -152,6 +166,10 @@ void MultimapMemoryManager::destroyHeap(int heapID)
 #ifdef MEMORY_PROTECTION
 	ioctl(deviceFD, MULTIMMAP_DESTROY, heapID);
 #endif
+}
+
+int MultimapMemoryManager::getDeviceFD() {
+	return deviceFD;
 }
 
 #endif

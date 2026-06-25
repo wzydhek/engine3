@@ -296,3 +296,27 @@ int BerkeleyDatabase::associate(Transaction* txn, BerkeleyDatabase* secondary, i
 
 	return dbp->associate(dbp, txn ? txn->getDBTXN() : nullptr, secondary->getDatabaseHandle(), callback, flags);
 }
+
+const String& BerkeleyDatabase::getDatabaseFile() const {
+	return filename;
+}
+
+const String& BerkeleyDatabase::getDatabaseName() const {
+	return databaseName;
+}
+
+DatabaseConfig& BerkeleyDatabase::getDatabaseConfig() {
+	return databaseConfig;
+}
+
+const DatabaseConfig& BerkeleyDatabase::getDatabaseConfig() const {
+	return databaseConfig;
+}
+
+Environment* BerkeleyDatabase::getEnvironment() const {
+	return environment;
+}
+
+DB* BerkeleyDatabase::getDatabaseHandle() const {
+	return dbp;
+}

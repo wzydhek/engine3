@@ -5,22 +5,17 @@
 
 #pragma once
 
+#include "engine/service/proto/BaseProtocol.h"
+
 namespace engine {
   namespace service {
     namespace proto {
 
 	class OutOfOrderMessage : public BasePacket {
 	public:
-		OutOfOrderMessage(sys::uint16 seq) : BasePacket(7) {
-			insertShort(0x1100);
-			insertShortNet(seq);
-			
-			setSequencing(false);
-		}
+		OutOfOrderMessage(sys::uint16 seq);
 	
-		inline static sys::uint16 parse(Packet* pack) {
-			return pack->parseNetShort();
-		}
+		static sys::uint16 parse(Packet* pack);
 	};
 
     } // namespace proto

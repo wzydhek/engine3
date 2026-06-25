@@ -13,25 +13,13 @@ namespace engine {
 
 	class DistributionException : public sys::lang::Exception {
 	public:
-		DistributionException() : Exception() {
-			message = "remote node is unreachable";
-			assert(0);
-		}
+		DistributionException();
 
-		DistributionException(uint64 objectID) : Exception() {
-			message = "object 0x" + String::valueOf(objectID) + " is unreachable";
-			assert(0);
-		}
+		DistributionException(uint64 objectID);
 
-		DistributionException(const String& name) : Exception() {
-			message = "object \'" + name + "\' is unreachable";
-			assert(0);
-		}
+		DistributionException(const String& name);
 
-		DistributionException(DistributedObjectStub* stub) : Exception() {
-			message = "object \'" + stub->_getName() + "\' is unreachable";
-			assert(0);
-		}
+		DistributionException(DistributedObjectStub* stub);
 		
 	};
 

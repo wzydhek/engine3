@@ -11,21 +11,24 @@
 
 #pragma once
 
+#include "engine/service/proto/BaseClient.h"
+
+namespace engine {
+namespace service {
+namespace proto {
+
 class OutOfOrderTask : public Task {
 	Reference<BaseClient*> client;
 	uint16 seq;
 
 public:
-	OutOfOrderTask(BaseClient* cl, uint16 sequence) {
-		client = cl;
-		seq = sequence;
+	OutOfOrderTask(BaseClient* cl, uint16 sequence);
 
-#if defined(BASECLIENT_DISABLE_STATSD) and defined(COLLECT_TASKSTATISTICS)
-		setStatsSample(0);
-#endif
-	}
-
-	void run() {
-		client->resendPackets(seq);
-	}
+	void run();
 };
+
+} // namespace proto
+} // namespace service
+} // namespace engine
+
+using namespace engine::service::proto;

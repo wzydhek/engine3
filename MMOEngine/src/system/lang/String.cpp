@@ -986,3 +986,97 @@ const char* String::strrstr(const char* s, int slen, const char* t, int tlen) {
 	return nullptr;
 }
 
+const String& String::valueOf(const String& str) {
+	return str;
+}
+
+bool String::operator==(const char* str) const {
+	return compareTo(str) == 0;
+}
+
+bool String::operator==(const String& str) const {
+	return compareTo(str) == 0;
+}
+
+bool String::operator<(const char* str) const {
+	return compareTo(str) < 0;
+}
+
+bool String::operator<(const String& str) const {
+	return compareTo(str) < 0;
+}
+
+bool String::operator>(const char* str) const {
+	return compareTo(str) > 0;
+}
+
+bool String::operator>(const String& str) const {
+	return compareTo(str) > 0;
+}
+
+bool String::operator!=(const char* str) const {
+	return compareTo(str) != 0;
+}
+
+bool String::operator!=(const String & str) const {
+	return compareTo(str) != 0;
+}
+
+const char* String::toCharArray() const {
+	return begin();
+}
+
+bool String::isEmpty() const {
+	return count == 0;
+}
+
+const char* String::begin() const {
+#ifdef SSO_STRING
+	return count < SSO_SIZE ? (const char*)sso : (const char*)value;
+#else
+	return value;
+#endif
+}
+
+const char* String::end() const {
+	return begin() + count;
+}
+
+char* String::begin() {
+#ifdef SSO_STRING
+	return count < SSO_SIZE ? (char*)sso : (char*)value;
+#else
+	return value;
+#endif
+}
+
+char* String::end() {
+	return begin() + count;
+}
+
+int String::length() const {
+	return count;
+}
+
+bool SerializableString::toBinaryStream(sys::io::ObjectOutputStream* stream) {
+	return String::toBinaryStream(stream);
+}
+
+bool SerializableString::parseFromBinaryStream(sys::io::ObjectInputStream* stream) {
+	return String::parseFromBinaryStream(stream);
+}
+
+SerializableString& SerializableString::operator=(const String& s) {
+	String::operator=(s);
+
+	return *this;
+}
+
+SerializableString& SerializableString::operator=(const SerializableString& s) {
+	if (this == &s)
+		return *this;
+
+	String::operator=(s);
+
+	return *this;
+}

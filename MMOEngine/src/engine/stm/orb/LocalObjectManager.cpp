@@ -143,3 +143,7 @@ bool LocalObjectManager::destroyObject(DistributedObjectStub* obj) {
 uint64 LocalObjectManager::getNextFreeObjectID() {
 	return objectManager->getNextFreeObjectID();
 }
+
+DOBObjectManager* LocalObjectManager::getObjectManager() {
+	return objectManager;
+}

@@ -13,13 +13,9 @@ namespace engine {
 
 	class StandaloneBaseMessage : public BasePacket {
 	public:
-		StandaloneBaseMessage() : BasePacket() {
-			setSequencing(false);
-		}
+		StandaloneBaseMessage();
 	
-		StandaloneBaseMessage(int size) : BasePacket(size) {
-			setSequencing(false);
-		}
+		StandaloneBaseMessage(int size);
 	
 	};
 

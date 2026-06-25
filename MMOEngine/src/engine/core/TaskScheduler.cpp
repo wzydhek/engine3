@@ -187,3 +187,47 @@ HashTable<String, uint64> TaskScheduler::getTasksCount() {
 
 	return copy;
 }
+
+void TaskScheduler::flushTasks() {
+	tasks.flush();
+}
+
+void TaskScheduler::clearTasks() {
+	tasks.clear();
+}
+
+void TaskScheduler::fixQueue() {
+	tasks.repair();
+}
+
+int TaskScheduler::getQueueSize() const {
+	return tasks.size();
+}
+
+uint64 TaskScheduler::getPushedTasks() const {
+	return tasks.getPushedEntries();
+}
+
+uint64 TaskScheduler::getPoppedTasks() const {
+	return tasks.getPoppedEntries();
+}
+
+uint64 TaskScheduler::getRemovedTasks() const {
+	return tasks.getRemovedEntries();
+}
+
+void TaskScheduler::printTasks() {
+	tasks.printQueue();
+}
+
+TaskManager* TaskScheduler::getTaskManager() {
+	return taskManager;
+}
+
+void TaskScheduler::setTaskManager(TaskManager* manager) {
+	taskManager = manager;
+}
+
+Mutex* TaskScheduler::getBlockMutex() {
+	return &blockMutex;
+}

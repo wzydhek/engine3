@@ -39,16 +39,9 @@ namespace engine {
 
 		bool waitForReply(DOBMessage* message);
 
-		inline RemoteObjectBroker* getRemoteObjectBroker() {
-			return rob;
-		}
+		RemoteObjectBroker* getRemoteObjectBroker();
 
-		DOBMessage* getQueuedMessage(uint32 sequence) {
-			DOBMessage* message = sentMessageQueue.remove(sequence);
-			fatal(message != nullptr) << "message is null";
-
-			return message;
-		}
+		DOBMessage* getQueuedMessage(uint32 sequence);
 	};
 
   } // namespace ORB

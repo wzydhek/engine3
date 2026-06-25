@@ -346,7 +346,6 @@ DistributedObjectStub* DistributedObjectBroker::createObjectStub(const String& c
 	return obj;
 }
 
-
 DistributedObjectPOD* DistributedObjectBroker::createObjectPOD(const String& className) {
 	DistributedObjectPOD* obj = nullptr;
 
@@ -388,3 +387,14 @@ DistributedObjectAdapter* DistributedObjectBroker::getObjectAdapter(uint64 oid) 
 	return objectManager->getAdapter(oid);
 }
 
+ObjectBroker* DistributedObjectBroker::getRootBroker() {
+	return rootObjectBroker;
+}
+
+bool DistributedObjectBroker::isRootBroker() {
+	return rootObjectBroker == nullptr;
+}
+
+DOBObjectManager* DistributedObjectBroker::getObjectManager() {
+	return objectManager;
+}

@@ -201,3 +201,14 @@ void RemoteObjectBroker::invokeMethod(DistributedMethod& method, bool asyncMetho
 	}
 }
 
+SynchronizedSortedVector<DistributedObject*>& RemoteObjectBroker::getDeployedObjects() {
+	return deployedObjects;
+}
+
+DOBObjectManager* RemoteObjectBroker::getObjectManager() {
+	return nullptr;
+}
+
+DOBServiceClient* RemoteObjectBroker::getBrokerClient() {
+	return brokerClient;
+}

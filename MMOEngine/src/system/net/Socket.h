@@ -8,11 +8,12 @@
 #include "system/platform.h"
 #include "system/io/FileDescriptor.h"
 #include "SocketAddress.h"
+#include "system/io/Stream.h"
 
 namespace sys {
-  namespace io {
-	  class Stream;
-  }
+  //namespace io {
+	 // class Stream;
+  //}
 
   namespace net {
 	class Packet;

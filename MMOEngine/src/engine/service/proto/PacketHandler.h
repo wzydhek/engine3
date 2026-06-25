@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include "system/net/Packet.h"
+
 namespace engine {
   namespace service {
     namespace proto {

@@ -8,8 +8,94 @@
 using namespace engine::db;
 using namespace engine::db::berkeley;
 
+BerkeleyCheckpointTask::BerkeleyCheckpointTask(DatabaseManager* manager) {
+	BerkeleyCheckpointTask::manager = manager;
+}
+
 void BerkeleyCheckpointTask::run() {
 	manager->checkpoint();
+}
+
+UpdateObject::UpdateObject() {
+	stream = nullptr;
+	key = nullptr;
+	database = nullptr;
+}
+
+UpdateObject::UpdateObject(Stream* str, Stream* ke, engine::db::LocalDatabase* database, Object* obj) {
+	stream = str;
+	key = ke;
+	this->database = database;
+	object = obj;
+}
+
+UpdateObject::UpdateObject(const UpdateObject& i) : Object() {
+	stream = i.stream;
+	key = i.key;
+	this->database = i.database;
+	object = i.object;
+}
+
+UpdateObject& UpdateObject::operator=(const UpdateObject& o) {
+	if (this == &o) {
+		return *this;
+	}
+
+	stream = o.stream;
+	key = o.key;
+	database = o.database;
+	object = o.object;
+
+	return *this;
+}
+
+uint32 UpdateObject::getSize() const {
+	if (key && stream) {
+		return stream->size() + key->size();
+	} else {
+		return 10;
+	}
+}
+
+int UpdateObject::compareTo(const UpdateObject& a) const {
+	return -1;
+}
+
+CurrentTransaction::CurrentTransaction(engine::db::berkeley::Environment* env) {
+	databaseEnvironment = env;
+	currentSize = 0;
+}
+
+void CurrentTransaction::addTemporaryObject(Object* obj) {
+	temporaryObjects.add(obj);
+}
+
+void CurrentTransaction::clearTemporaryObjects() {
+	temporaryObjects.removeAll();
+}
+
+uint32 CurrentTransaction::addUpdateObject(Stream* id, Stream* str, engine::db::LocalDatabase* db, Object* obj) {
+	updateObjects.add(UpdateObject(str, id, db, obj));
+
+	return currentSize += (id->size() + str->size());
+}
+
+uint32 CurrentTransaction::addDeleteObject(Stream* id, engine::db::LocalDatabase* db) {
+	updateObjects.add(UpdateObject(nullptr, id, db, nullptr));
+
+	return currentSize += 100;
+}
+
+Vector<UpdateObject>* CurrentTransaction::getUpdateVector() {
+	return &updateObjects;
+}
+
+uint64 CurrentTransaction::getCurrentSize() const {
+	return currentSize;
+}
+
+void CurrentTransaction::resetCurrentSize() {
+	currentSize = 0;
 }
 
 //#ifdef VERSION_PUBLIC
@@ -803,4 +889,34 @@ int DatabaseManager::compressDatabase(const String& name, engine::db::berkeley::
 	databaseDirectory->putData(stream, nameData, transaction);
 
 	return 0;
+}
+
+uint64 DatabaseManager::getCurrentVersion() const {
+	return currentVersion;
+}
+
+LocalDatabase* DatabaseManager::getDatabase(uint16 id) const {
+	// Locker _locker(this);
+
+	return databases.get(id);
+}
+
+LocalDatabase* DatabaseManager::getDatabase(int idx) const {
+	// Locker _locker(this);
+
+	return databases.get(idx);
+}
+
+uint16 DatabaseManager::getDatabaseID(const String& name) const {
+	// Locker _locker(this);
+
+	return nameDirectory.get(name);
+}
+
+int DatabaseManager::getTotalDatabaseCount() const {
+	return databases.size();
+}
+
+engine::db::berkeley::Environment* DatabaseManager::getBerkeleyEnvironment() const {
+	return databaseEnvironment;
 }

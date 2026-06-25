@@ -88,3 +88,12 @@ IndexDatabase::IndexDatabase(DatabaseManager* dbEnv, const String& dbFileName, b
 
 	return true;
  }
+
+ IndexDatabaseIterator::IndexDatabaseIterator(engine::db::berkeley::Transaction* transaction, LocalDatabase* database) : LocalDatabaseIterator(transaction, database) {
+ }
+
+ IndexDatabaseIterator::IndexDatabaseIterator(IndexDatabase* database, const berkeley::CursorConfig& config, bool useCurrentThreadTransaction) : LocalDatabaseIterator(database, config, useCurrentThreadTransaction) {
+ }
+
+ IndexDatabaseIterator::IndexDatabaseIterator(engine::db::berkeley::BerkeleyDatabase* databaseHandle) : LocalDatabaseIterator(databaseHandle) {
+ }

@@ -54,8 +54,7 @@
 // It would be nice to CC: rjwagner@writeme.com and Cokus@math.washington.edu
 // when you write.
 
-#ifndef ENGINE3_MERSENNETWISTER_H
-#define ENGINE3_MERSENNETWISTER_H
+#pragma once
 
 // Not thread safe (unless auto-initialization is avoided and each thread has
 // its own MTRand object)
@@ -376,7 +375,6 @@ inline void MTRand::load(MTRand::uint32 * const loadArray) {
 	pNext = &state[N - left];
 }
 
-#endif  // ENGINE3_MERSENNETWISTER_H
 // Change log:
 // v0.1 - First release on 15 May 2000
 //      - Based on code by Makoto Matsumoto, Takuji Nishimura, and Shawn Cokus

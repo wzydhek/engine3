@@ -321,3 +321,19 @@ TextStream& TextStream::operator<< (const StreamFlags flags) {
 
 	return *this;
 }
+
+bool TextStream::doHex() const {
+	return streamFlags & SF_hex;
+}
+
+bool TextStream::doUpperCase() const {
+	return streamFlags & SF_uppercase;
+}
+
+TextStream::StreamType TextStream::getStreamType() const {
+	return outStream;
+}
+
+const char* TextStream::upf(const char* lower, const char* upper) const {
+	return doUpperCase() ? upper : lower;
+}

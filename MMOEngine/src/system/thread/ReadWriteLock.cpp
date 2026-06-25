@@ -9,6 +9,30 @@
 
 #include "engine/core/TaskWorkerThread.h"
 
+ReadWriteLock::ReadWriteLock() : Lockable() {
+	pthread_rwlock_init(&rwlock, nullptr);
+}
+
+ReadWriteLock::ReadWriteLock(const String& s) : Lockable(s) {
+	pthread_rwlock_init(&rwlock, nullptr);
+}
+
+ReadWriteLock::ReadWriteLock(const ReadWriteLock& s) : Lockable() {
+	pthread_rwlock_init(&rwlock, nullptr);
+}
+
+ReadWriteLock& ReadWriteLock::operator=(const ReadWriteLock& lock) {
+	return *this;
+}
+
+ReadWriteLock::~ReadWriteLock() {
+	pthread_rwlock_destroy(&rwlock);
+}
+
+void ReadWriteLock::lock(bool doLock) ACQUIRE() {
+	wlock(doLock);
+}
+
 void ReadWriteLock::rlock(bool doLock) ACQUIRE_SHARED() {
 	if (!doLock)
 		return;
@@ -403,4 +427,29 @@ void ReadWriteLock::runlock(bool doLock) RELEASE_SHARED() {
 	}
 
 	lockReleased("r");
+}
+
+void ReadWriteLock::lock(ReadWriteLock* lockable) ACQUIRE() {
+	wlock(lockable);
+}
+
+void ReadWriteLock::lock(Mutex* lockable) ACQUIRE() {
+	wlock(lockable);
+}
+
+bool ReadWriteLock::tryWLock() TRY_ACQUIRE(true) {
+	if (pthread_rwlock_trywrlock(&rwlock) == 0) {
+		lockAcquired("w");
+
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool ReadWriteLock::destroy() {
+	pthread_rwlock_wrlock(&rwlock);
+	pthread_rwlock_unlock(&rwlock);
+
+	return pthread_rwlock_destroy(&rwlock) == 0;
 }

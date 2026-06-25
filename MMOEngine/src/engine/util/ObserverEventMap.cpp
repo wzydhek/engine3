@@ -12,6 +12,14 @@
 #include "ObserverEventMap.h"
 #include "Observer.h"
 
+ObserverEventMap::ObserverEventMap() {
+	// setNoDuplicateInsertPlan();
+}
+
+ObserverEventMap::ObserverEventMap(const ObserverEventMap& map) : HashTable<uint32, SortedVector<ManagedReference<Observer*>>>(map), observerMutex() {
+	// setNoDuplicateInsertPlan();
+}
+
 void ObserverEventMap::notifyObservers(uint32 eventType, Observable* observable, ManagedObject* arg1, int64 arg2) {
 	ReadLocker locker(&observerMutex);
 

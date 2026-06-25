@@ -25,25 +25,15 @@ namespace sys {
 		static TextStream out; //stdout
 		static TextStream err; //stderr
 
-		static inline time_t getTime() {
-			return time(nullptr);
-		}
+		static time_t getTime();
 
-		static void flushStreams() {
-			::fflush(nullptr);
-		}
+		static void flushStreams();
 
-		static void flushStream(FILE* stream) {
-			::fflush(stream);
-		}
+		static void flushStream(FILE* stream);
 
-		static void setStreamBuffer(FILE* str, char* buffer) {
-			::setbuf(str, buffer);
-		}
+		static void setStreamBuffer(FILE* str, char* buffer);
 
-		[[ noreturn ]] static void abort() {
-			::abort();
-		}
+		[[noreturn]] static void abort();
 
 		static auto getOnlineProcessors() {
 			auto val = std::thread::hardware_concurrency();
@@ -54,37 +44,13 @@ namespace sys {
 		}
 
 	#ifndef PLATFORM_WIN
-		static inline uint64 getMiliTime() {
-		    uint64 time_in_ms;
+		static uint64 getMiliTime();
 
-		    struct timeval tm;
-		    gettimeofday(&tm, nullptr);
-
-		    time_in_ms = tm.tv_sec; // Avoid overflow by doing mul in 64 bit int
-		    time_in_ms = (time_in_ms * 1000) + (uint64) (tm.tv_usec / 1000.f);
-
-		    return time_in_ms;
-		}
-
-		static inline uint64 getMikroTime() {
-		    uint64 time_in_ms;
-
-		    struct timeval tm;
-		    gettimeofday(&tm, nullptr);
-
-		    time_in_ms = tm.tv_sec; // Avoid overflow by doing mul in 64 bit int
-		    time_in_ms = (time_in_ms * 1000000) + tm.tv_usec;
-
-		    return time_in_ms;
-		}
+		static uint64 getMikroTime();
 	#else
-		static inline uint64 getMiliTime() {
-			return uint64(((float) clock() / (float) CLOCKS_PER_SEC) * 1000.f);
-		}
+		static uint64 getMiliTime();
 
-		static inline uint64 getMikroTime() {
-			return uint64(((double) clock() / (double) CLOCKS_PER_SEC) * 1000000.f);
-		}
+		static uint64 getMikroTime();
 	#endif
 
 		static uint32 random(); // integer in [0,2^32-1]

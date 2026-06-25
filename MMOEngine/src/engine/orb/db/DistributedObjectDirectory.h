@@ -58,17 +58,11 @@ namespace engine {
 
 		DistributedObjectAdapter* getAdapter(uint64 objid);
 
-		inline int getSize() const {
-			return objectMap.size();
-		}
+		int getSize() const;
 
-		const ObjectHashTable& getObjectHashTable() const {
-			return objectMap;
-		}
+		const ObjectHashTable& getObjectHashTable() const;
 
-		ObjectHashTableHelper* getDistributedObjectMap() {
-			return helperObjectMap.getMap()->getHashTable();
-		}
+		ObjectHashTableHelper* getDistributedObjectMap();
 	};
 
   } // namespace ORB

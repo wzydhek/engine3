@@ -22,6 +22,38 @@ LuaObject::LuaObject(lua_State* lState) : L(lState) {
 
 }
 
+#ifdef CXX11_COMPILER
+LuaObject::LuaObject(const LuaObject& obj) : L(obj.L), objectName(obj.objectName) {
+}
+
+LuaObject::LuaObject(LuaObject&& obj) : L(obj.L), objectName(std::move(obj.objectName)) {
+	obj.L = nullptr;
+}
+
+LuaObject& LuaObject::operator=(const LuaObject& obj) {
+	if (this == &obj)
+		return *this;
+
+	L = obj.L;
+	objectName = obj.objectName;
+
+	return *this;
+}
+
+LuaObject& LuaObject::operator=(LuaObject&& obj) {
+	if (this == &obj)
+		return *this;
+
+	L = obj.L;
+	objectName = std::move(obj.objectName);
+
+	obj.L = nullptr;
+
+	return *this;
+}
+#endif
+
+
 void LuaObject::setField(const String& key, uint64 value) {
 	lua_pushstring(L, key.toCharArray());
 	lua_pushinteger(L, value);
@@ -298,4 +330,12 @@ bool LuaObject::isValidTable() {
 
 void LuaObject::pop() {
 	lua_pop(L, 1);
+}
+
+lua_State* LuaObject::getLuaState() {
+	return L;
+}
+
+void LuaObject::operator=(lua_State* lState) {
+	L = lState;
 }

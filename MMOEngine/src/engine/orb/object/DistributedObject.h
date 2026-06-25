@@ -69,74 +69,40 @@ namespace engine {
 		}
 
 		// setters
-		inline void _setClassName(const String& n) {
-			_className = n;
-		}
+		void _setClassName(const String& n);
 
-		inline void _setName(const String& n) {
-			_name = n;
-		}
+		void _setName(const String& n);
 
-		inline void _setClassName(String&& n) {
-			_className = std::move(n);
-		}
+		void _setClassName(String&& n);
 
-		inline void _setName(String&& n) {
-			_name = std::move(n);
-		}
+		void _setName(String&& n);
 
-		inline void _setObjectID(uint64 id) {
-			_objectID = id;
-		}
+		void _setObjectID(uint64 id);
 
-		inline void _setUpdated(bool var) {
-			_updated = var;
-		}
+		void _setUpdated(bool var);
 
-		inline void _setDeletedFromDatabase(bool val) {
-		        _deletedFromDatabase = val;
-		}
+		void _setDeletedFromDatabase(bool val);
 
-		inline void _setMarkedForDeletion(bool var) {
-			_markedForDeletion = var;
-		}
+		void _setMarkedForDeletion(bool var);
 
-		inline void _setObjectBroker(ObjectBroker* broker) {
-			_objectBroker = broker;
-		}
+		void _setObjectBroker(ObjectBroker* broker);
 
 		// getters
-		inline const String& _getClassName() const {
-			return _className;
-		}
+		const String& _getClassName() const;
 
-		inline bool _isDeletedFromDatabase() const {
-			return _deletedFromDatabase;
-		}
+		bool _isDeletedFromDatabase() const;
 
-		inline const String& _getName() const {
-			return _name;
-		}
+		const String& _getName() const;
 
-		inline uint64 _getObjectID() const {
-			return _objectID;
-		}
+		uint64 _getObjectID() const;
 
-		inline ObjectBroker* _getObjectBroker() const {
-			return _objectBroker;
-		}
+		ObjectBroker* _getObjectBroker() const;
 
-		inline bool _isUpdated() const {
-			return _updated._updated.load(std::memory_order_relaxed);
-		}
+		bool _isUpdated() const;
 
-		inline bool _isMarkedForDeletion() const {
-			return _markedForDeletion._delete.load(std::memory_order_relaxed);
-		}
+		bool _isMarkedForDeletion() const;
 
-		inline const StackTrace* getLastModifiedTrace() const {
-			return _updated.lastModifiedTrace;
-		}
+		const StackTrace* getLastModifiedTrace() const;
 	};
 
   } // namespace ORB

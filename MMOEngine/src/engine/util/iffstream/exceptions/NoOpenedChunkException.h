@@ -8,12 +8,16 @@
 #include "system/lang.h"
 #include "IffStreamException.h"
 
+namespace engine {
+namespace util {
+
 class NoOpenedChunkException : public IffStreamException {
 
 public:
-	NoOpenedChunkException(IffStream* iffstream) : IffStreamException(iffstream) {
-		StringBuffer sstr;
-		sstr << "NoOpenedChunkException on file:[" << iffstream->getFileName() << "]\n";
-		message = sstr.toString();
-	}
+	NoOpenedChunkException(IffStream* iffstream);
 };
+
+} // namespace util
+} // namespace engine
+
+using namespace engine::util;

@@ -14,6 +14,27 @@ PriorityQueueEntry::PriorityQueueEntry(PriorityQueueEntry* parent,
 	npl = np;
 }
 
+void PriorityQueueEntry::clear() {
+	parentNode = nullptr;
+
+	leftNode = nullptr;
+	rightNode = nullptr;
+
+	setUnqueued();
+}
+
+void PriorityQueueEntry::setQueued() {
+	enqueued.store(true, std::memory_order_relaxed);
+}
+
+void PriorityQueueEntry::setUnqueued() {
+	enqueued.store(false, std::memory_order_relaxed);
+}
+
+bool PriorityQueueEntry::isQueued() const {
+	return enqueued.load(std::memory_order_relaxed);
+}
+
 PriorityQueue::PriorityQueue() {
 	root = nullptr;
 	count = 0;
@@ -182,4 +203,28 @@ void PriorityQueue::reclaimMemory(PriorityQueueEntry* node) const {
 		//delete node;
 		node->clear();
 	}
+}
+
+bool PriorityQueue::isEmpty() const {
+	return root == nullptr;
+}
+
+bool PriorityQueue::isFull() const {
+	return false;
+}
+
+int PriorityQueue::size() const NO_THREAD_SAFETY_ANALYSIS {
+	return count;
+}
+
+uint64 PriorityQueue::getPushedEntries() const {
+	return pushedEntries;
+}
+
+uint64 PriorityQueue::getPoppedEntries() const {
+	return poppedEntries;
+}
+
+uint64 PriorityQueue::getRemovedEntries() const {
+	return removedEntries;
 }

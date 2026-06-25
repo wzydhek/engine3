@@ -55,42 +55,24 @@ namespace engine {
 		void printReferenceTrace() const;
 
 		// setters
-		inline void setDeployingName(const String& name) {
-			_setName(name);
-		}
+		void setDeployingName(const String& name);
 
-		inline void _setClassHelper(DistributedObjectClassHelper* helper) {
-			_classHelper = helper;
-		}
+		void _setClassHelper(DistributedObjectClassHelper* helper);
 
-		inline void setDeployed(bool val) {
-			deployed = val;
-		}
+		void setDeployed(bool val);
 
-		virtual void _setImplementation(DistributedObjectServant* impl) {
-			_impl = impl;
-		}
+		virtual void _setImplementation(DistributedObjectServant* impl);
 
 		// getters
-		inline bool isDeployed() const {
-			return deployed;
-		}
+		bool isDeployed() const;
 
-		virtual DistributedObjectServant* _getImplementation() {
-			return _impl;
-		}
+		virtual DistributedObjectServant* _getImplementation();
 
-		virtual DistributedObjectServant* _getImplementationForRead() const {
-			return _impl;
-		}
+		virtual DistributedObjectServant* _getImplementationForRead() const;
 
-		inline DistributedObjectClassHelper* _getClassHelper() {
-			return _classHelper;
-		}
+		DistributedObjectClassHelper* _getClassHelper();
 
-		virtual DistributedObjectServant* getServant() {
-			return _impl;
-		}
+		virtual DistributedObjectServant* getServant();
 	};
 
 	class DummyConstructorParameter : public Singleton<DummyConstructorParameter>, public Object {

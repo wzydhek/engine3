@@ -35,9 +35,7 @@ namespace engine {
 
 		void unlock(bool doLock = true) override;
 
-		void setEnabled(bool val) {
-			enabled = val;
-		}
+		void setEnabled(bool val);
 	};
 
 	class Environment {
@@ -82,9 +80,7 @@ namespace engine {
 
 		int failCheck();
 
-		inline DB_ENV* getDatabaseEnvironmentHandle() const {
-			return databaseEnvironment;
-		}
+		DB_ENV* getDatabaseEnvironmentHandle() const;
 
 		//needs to be implemented, right now works only for current process
 		static int isAlive(DB_ENV* dbenv, pid_t pid, db_threadid_t tid, u_int32_t flags);
@@ -93,3 +89,5 @@ namespace engine {
     } // namespace berkeley
   } // namespace db
 } // namespace engine
+
+using namespace engine::db::berkeley;

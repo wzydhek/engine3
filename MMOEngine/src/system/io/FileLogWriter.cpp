@@ -160,3 +160,23 @@ void FileLogWriter::rotatefile(bool force) const {
 	currentLoggedBytes.set(0);
 	rotateMutex.unlock();
 }
+
+void FileLogWriter::setSynchronized(bool synchronized) {
+	doSynchronized = synchronized;
+}
+
+void FileLogWriter::setRotateSizeMB(uint32 maxSizeMB) {
+	maxLoggedBytes = maxSizeMB * 1024 * 1024;
+}
+
+void FileLogWriter::setRotatePrefix(String prefix) {
+	rotatePrefix = prefix; // Setup rotate to {dir}{prefix}{filename}
+}
+
+const String FileLogWriter::getFileName() const {
+	if (file != nullptr) {
+		return file->getFileName();
+	}
+
+	return "";
+}

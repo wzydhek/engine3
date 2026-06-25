@@ -3,6 +3,8 @@
 ** See file COPYING for copying conditions.
 */
 
+#include "SynchronizedMessageQueue.h"
+
 /*SynchronizedMessageQueue::SynchronizedMessageQueue(int capacity) : ArrayList<Message*>(capacity, 0), Logger("SynchronizedMessageQueue") {
 	blocked = false;
 
@@ -45,3 +47,7 @@ void SynchronizedMessageQueue::flush() {
 	//signal(condMutex);
 }
 */
+
+int SynchronizedMessageQueue::getBufferSize() const {
+	return elementCapacity;
+}

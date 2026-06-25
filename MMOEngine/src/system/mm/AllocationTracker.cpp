@@ -20,6 +20,23 @@ AllocationTracker::AllocationTracker() {
 AllocationTracker::~AllocationTracker() {
 }
 
+AllocationTracker* AllocationTracker::getInstance() {
+	if (instance == nullptr) {
+		instance = new AllocationTracker();
+	}
+
+	return instance;
+}
+
+bool AllocationTracker::isProtected(uintptr_t page) {
+	for (int i = 0; i < protectedPagesCount; ++i) {
+		if (protectedPages[i] == page)
+			return true;
+	}
+
+	return false;
+}
+
 void* AllocationTracker::onAllocate(size_t size, const void* allocator) {
 	size += sizeof(uint64);
 
@@ -143,4 +160,8 @@ void AllocationTracker::addOverWriteProtector(void* ptr, size_t size) {
 	protectedPages[protectedPagesCount++] = (uint64) page;
 
 	//ptr[20] = 34;
+}
+
+void AllocationTracker::setAllocator(Allocator* alloc) {
+	realAllocator = alloc;
 }

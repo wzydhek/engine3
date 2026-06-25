@@ -135,3 +135,27 @@ void StringTokenizer::shiftTokens(int count) {
 bool StringTokenizer::hasMoreTokens() const {
 	return index != -1;
 }
+
+String StringTokenizer::getStringToken() {
+	String val;
+
+	getStringToken(val);
+
+	return val;
+}
+
+String StringTokenizer::getRemainingString() {
+	String str;
+
+	finalToken(str);
+
+	return str;
+}
+
+void StringTokenizer::setDelimeter(const String& del) {
+	delimiter = del;
+}
+
+void StringTokenizer::setDelimiter(const String& del) {
+	delimiter = del;
+}

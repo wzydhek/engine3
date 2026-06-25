@@ -281,3 +281,31 @@ String Stream::toStringData() const {
 	return str.toString();
 }
 
+// getters
+int Stream::getOffset() const {
+	return offset - elementData;
+}
+
+bool Stream::hasData() const {
+	return offset < end;
+}
+
+char* Stream::getBuffer() {
+	return elementData;
+}
+
+const char* Stream::getBuffer() const {
+	return elementData;
+}
+
+int Stream::size() const {
+	return end - elementData;
+}
+
+const char* Stream::begin() const {
+	return elementData;
+}
+
+char* Stream::begin() {
+	return elementData;
+}

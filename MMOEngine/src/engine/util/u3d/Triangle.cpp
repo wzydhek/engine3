@@ -14,6 +14,9 @@
 
 #define LOCAL_EPSILON FLT_EPSILON
 
+Triangle::Triangle() noexcept {
+}
+
 #ifdef TRIANGLE_INHERITS_VARIABLE
 Triangle::Triangle(const Triangle& tri) noexcept : Variable() {
 	memcpy(verts, tri.verts, sizeof(verts));
@@ -425,4 +428,34 @@ Vector3 Triangle::getBarycenter() const {
 	float z = (verts[0].getZ() + verts[1].getZ() + verts[2].getZ())  / 3.f;
 
 	return Vector3(x, y, z);
+}
+
+float Triangle::area2D(const Vector3& a, const Vector3& b, const Vector3& c) {
+	float ax = b[0] - a[0];
+	float ay = b[2] - a[2];
+
+	float bx = c[0] - a[0];
+	float by = c[2] - a[2];
+
+	return bx * ay - ax * by;
+}
+
+void Triangle::set(const Vector3 vert[3]) {
+	memcpy(verts, vert, sizeof(verts));
+}
+
+Vector3& Triangle::getVertex(uint32 i) {
+#ifdef VECTORS_OUT_OF_BOUNDS_CHECK
+	if (i > 2)
+		throw ArrayIndexOutOfBoundsException(i);
+#endif
+	return verts[i];
+}
+
+const Vector3& Triangle::getVertex(uint32 i) const {
+#ifdef VECTORS_OUT_OF_BOUNDS_CHECK
+	if (i > 2)
+		throw ArrayIndexOutOfBoundsException(i);
+#endif
+	return verts[i];
 }

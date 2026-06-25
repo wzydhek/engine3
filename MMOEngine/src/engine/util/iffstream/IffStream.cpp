@@ -321,3 +321,20 @@ Vector4 IffStream::getVector4() {
 
 	return openedChunk->readVector4();
 }
+
+Chunk* IffStream::createChunk(Chunk* par, uint32 id, uint32 size, char* data) {
+	Chunk* chunk = chunkFactory.createObject(id, par, id, size, data);
+
+	if (chunk == nullptr)
+		chunk = new Chunk(par, id, size, data);
+
+	return chunk;
+}
+
+String& IffStream::getFileName() {
+	return fileName;
+}
+
+const String& IffStream::getFileName() const {
+	return fileName;
+}

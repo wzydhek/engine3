@@ -11,9 +11,15 @@
 
 #pragma once
 
+namespace engine {
+namespace lua {
+
 class LuaPanicException : public Exception {
 public:
-	LuaPanicException(const String& msg) : Exception(msg) {
-
-	}
+	LuaPanicException(const String& msg);
 };
+
+} // namespace lua
+} // namespace engine
+
+using namespace engine::lua;

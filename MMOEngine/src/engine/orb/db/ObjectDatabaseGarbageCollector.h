@@ -13,7 +13,15 @@
 
 #include "engine/engine.h"
 
+namespace engine {
+namespace ORB {
+
 class ObjectDatabaseGarbageCollector : public Task {
 public:
 	void run();
 };
+
+} // namespace ORB
+} // namespace engine
+
+using namespace engine::ORB;

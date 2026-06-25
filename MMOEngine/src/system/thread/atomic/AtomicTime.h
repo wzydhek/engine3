@@ -24,6 +24,7 @@
 #include "system/lang/String.h"
 #include "system/lang/StringBuffer.h"
 #include "system/lang/Long.h"
+#include "system/lang/Time.h"
 #include "system/io/StringTokenizer.h"
 #include <atomic>
 #include <chrono>
@@ -93,353 +94,68 @@ namespace sys {
 			this->ts.store(ts, std::memory_order_relaxed);
 		}
 
-		AtomicTime(const AtomicTime& time) : Variable(), ts(time.ts.load(std::memory_order_relaxed)) {
-		}
+		AtomicTime(const AtomicTime& time);
 
-		AtomicTime(const Time& time) : Variable(), ts(time.ts) {
-		}
+		AtomicTime(const Time& time);
 
-		bool toString(String& str) const {
-			auto ts = this->ts.load(std::memory_order_relaxed);
+		bool toString(String& str) const;
 
-			StringBuffer msg;
-			msg << ts.tv_sec << "," << ts.tv_nsec;
+		bool parseFromString(const String& str, int version = 0);
 
-			str = msg.toString();
-			return true;
-		}
+		bool toBinaryStream(ObjectOutputStream* stream);
 
-		bool parseFromString(const String& str, int version = 0) {
-			int separator = str.indexOf(',');
+		bool parseFromBinaryStream(ObjectInputStream* stream);
 
-			if (separator == -1)
-				return false;
+		void updateToCurrentTime(ClockType type = REAL_TIME);
 
-			String sec = str.subString(0, separator);
-			String nsec = str.subString(separator + 1);
+		void addMiliTime(uint64 mtime);
 
-			struct timespec ts;
+		void addMikroTime(uint64 utime);
 
-			ts.tv_sec = Integer::valueOf(sec);
-			ts.tv_nsec = Integer::valueOf(nsec);
+		void addNanoTime(uint64 ntime);
 
-			this->ts.store(ts, std::memory_order_relaxed);
+		AtomicTime& operator=(const AtomicTime& t);
 
-			return true;
-		}
+		AtomicTime& operator=(const Time& t);
 
-		bool toBinaryStream(ObjectOutputStream* stream) {
-			auto ts = this->ts.load(std::memory_order_relaxed);
+		AtomicTime& operator=(uint32 seconds);
 
-			stream->writeLong(ts.tv_sec);
-			stream->writeLong(ts.tv_nsec);
+		int compareTo(const AtomicTime& t) const;
 
-			return true;
-		}
+		int compareTo(const Time& t) const;
 
-		bool parseFromBinaryStream(ObjectInputStream* stream) {
-			struct timespec ts;
+		String getFormattedTime() const;
 
-			ts.tv_sec = stream->readLong();
-			ts.tv_nsec = stream->readLong();
+		String getFormattedTimeFull() const;
 
-			this->ts.store(ts, std::memory_order_relaxed);
+		int compareMiliTo(const Time& t) const;
 
-			return true;
-		}
+		static uint64 currentNanoTime(ClockType type = REAL_TIME);
 
-		inline void updateToCurrentTime(ClockType type = REAL_TIME) {
-			struct timespec ts;
+		bool isPast() const;
 
-			#if !defined(PLATFORM_WIN) && !defined(PLATFORM_MAC)
-				clock_gettime(type, &ts);
-			#else
-				switch (type) {
-				case REAL_TIME:
-					ts = timepointToTimespec(std::chrono::system_clock::now());
-					break;
-				case MONOTONIC_TIME:
-					ts = timepointToTimespec(std::chrono::steady_clock::now());
-					break;
-				default:
-					ts = timepointToTimespec(std::chrono::high_resolution_clock::now());
-					break;
-				}
-			#endif
+		bool isPresent() const;
 
-			this->ts.store(ts, std::memory_order_relaxed);
-		}
-
-		inline void addMiliTime(uint64 mtime) {
-			auto ts = this->ts.load(std::memory_order_relaxed);
-
-			ts.tv_sec += (long) (mtime / 1000);
-			ts.tv_nsec += (long) ((mtime % 1000) * 1000000);
-
-			checkForOverflow(ts);
-
-			this->ts.store(ts, std::memory_order_relaxed);
-		}
-
-		inline void addMikroTime(uint64 utime) {
-			auto ts = this->ts.load(std::memory_order_relaxed);
-
-			ts.tv_sec += (long) (utime / 1000000);
-			ts.tv_nsec += (long) ((utime % 1000000) * 1000);
-
-			checkForOverflow(ts);
-
-			this->ts.store(ts, std::memory_order_relaxed);
-		}
-
-		inline void addNanoTime(uint64 ntime) {
-			auto ts = this->ts.load(std::memory_order_relaxed);
-
-			ts.tv_sec += (long) (ntime / 1000000000);
-			ts.tv_nsec += (long) (ntime % 1000000000);
-
-			checkForOverflow(ts);
-
-			this->ts.store(ts, std::memory_order_relaxed);
-		}
-
-		AtomicTime& operator=(const AtomicTime& t) {
-			if (this == &t)
-				return *this;
-
-			this->ts.store(t.ts.load(std::memory_order_relaxed), std::memory_order_relaxed);
-
-			return *this;
-		}
-
-		AtomicTime& operator=(const Time& t) {
-			this->ts.store(t.ts, std::memory_order_relaxed);
-
-			return *this;
-		}
-
-		AtomicTime& operator=(uint32 seconds) {
-			struct timespec ts;
-
-			ts.tv_sec = seconds;
-			ts.tv_nsec = 0;
-
-			this->ts.store(ts, std::memory_order_relaxed);
-
-			return *this;
-		}
-
-		int compareTo(const AtomicTime& t) const {
-			auto ts = this->ts.load(std::memory_order_relaxed);
-			auto tsr = t.ts.load(std::memory_order_relaxed);
-
-			if (ts.tv_sec < tsr.tv_sec)
-				return 1;
-			else if (ts.tv_sec > tsr.tv_sec)
-				return -1;
-			else {
-				if (ts.tv_nsec < tsr.tv_nsec)
-					return 1;
-				else if (ts.tv_nsec > tsr.tv_nsec)
-					return -1;
-				else
-					return 0;
-			}
-
-		}
-
-		int compareTo(const Time& t) const {
-			auto ts = this->ts.load(std::memory_order_relaxed);
-			const auto& tsr = *t.getTimeSpec();
-
-			if (ts.tv_sec < tsr.tv_sec)
-				return 1;
-			else if (ts.tv_sec > tsr.tv_sec)
-				return -1;
-			else {
-				if (ts.tv_nsec < tsr.tv_nsec)
-					return 1;
-				else if (ts.tv_nsec > tsr.tv_nsec)
-					return -1;
-				else
-					return 0;
-			}
-
-		}
-
-		String getFormattedTime() const {
-#ifndef PLATFORM_WIN
-			char str[100];
-			auto ts = this->ts.load(std::memory_order_relaxed);
-			char* ret = ctime_r(&ts.tv_sec, str);
-
-			if (ret != nullptr)
-				return String(ret, strlen(str) - 1);
-			else
-				return String("");
-#else
-			auto ts = this->ts.load(std::memory_order_relaxed);
-			char* str = ctime(&ts.tv_sec);
-
-			if (str != nullptr)
-				return String(str, strlen(str) - 1);
-			else
-				return String("");
-#endif
-		}
-
-		String getFormattedTimeFull() const {
-			int ret;
-			struct tm t;
-			String value;
-			char buf[128];
-			int len = sizeof(buf);
-			auto ts = this->ts.load(std::memory_order_relaxed);
-
-#ifndef PLATFORM_WIN
-			if (localtime_r(&(ts.tv_sec), &t) == nullptr)
-				return value;
-#else
-			auto retval = localtime(&(ts.tv_sec));
-			if (retval == nullptr)
-				return value;
-
-			t = *retval;
-#endif
-
-			ret = strftime(buf, len, "%Y-%m-%dT%H:%M:%S", &t);
-			if (ret <= 0)
-				return value;
-
-			len -= ret - 1;
-
-			ret = snprintf(&buf[strlen(buf)], len, ".%09ld", ts.tv_nsec);
-			if (ret < 0 || ret >= len)
-				return value;
-
-			len -= ret;
-
-			char tz[32];
-
-			strftime(tz, sizeof(tz), "%z", &t);
-
-			snprintf(&buf[strlen(buf)], len, "%s", tz);
-
-			value = buf;
-
-			return value;
-		}
-
-		int compareMiliTo(const Time& t) const {
-			uint64 t1 = getMiliTime();
-			uint64 t2 = t.getMiliTime();
-
-			if (t1 < t2)
-				return 1;
-			else if (t1 > t2)
-				return -1;
-			else
-				return 0;
-		}
-
-		inline static uint64 currentNanoTime(ClockType type = REAL_TIME) {
-		#if !defined(PLATFORM_WIN) && !defined(PLATFORM_MAC)
-			struct timespec cts;
-			clock_gettime(type, &cts);
-
-			uint64 time;
-
-			time = cts.tv_sec;
-			time = (time * 1000000000) + (uint64)cts.tv_nsec;
-
-			return time;
-		#else
-			switch (type) {
-			case REAL_TIME:
-				return convertTimePointToNanos(std::chrono::system_clock::now());
-			case MONOTONIC_TIME:
-				return convertTimePointToNanos(std::chrono::steady_clock::now());
-			default:
-				return convertTimePointToNanos(std::chrono::high_resolution_clock::now());
-			}
-		#endif
-		}
-
-		inline bool isPast() const {
-			Time t;
-			return compareTo(t) > 0;
-		}
-
-		inline bool isPresent() const {
-			Time t;
-			return compareTo(t) == 0;
-		}
-
-		inline bool isFuture() const {
-			Time t;
-			return compareTo(t) < 0;
-		}
+		bool isFuture() const;
 
 	protected:
-		inline static void checkForOverflow(struct timespec& ts) {
-			if (ts.tv_nsec >= 1000000000) {
-	    			ts.tv_sec++;
-	    			ts.tv_nsec -= 1000000000;
-	  		}
-		}
+		static void checkForOverflow(struct timespec& ts);
 
 	public:
 		// getters
-		inline uint32 getTime() const {
-			return ts.load(std::memory_order_relaxed).tv_sec;
-		}
+		uint32 getTime() const;
 
-		inline Time getTimeObject() const {
-			Time val(0);
-			val.ts = ts.load(std::memory_order_relaxed);
+		Time getTimeObject() const;
 
-			return val;
-		}
+		uint64 getMiliTime() const;
 
-		inline uint64 getMiliTime() const {
-		    struct timespec ts = this->ts.load(std::memory_order_relaxed);
+		uint64 getMikroTime() const;
 
-		    uint64 time;
+		uint64 getNanoTime() const;
 
-		    time = ts.tv_sec;
-		    time = (time * 1000) + (uint64)(ts.tv_nsec / 1000000.f);
+		int64 miliDifference(Time& t) const;
 
-		    return time;
-		}
-
-		inline uint64 getMikroTime() const {
-		    struct timespec ts = this->ts.load(std::memory_order_relaxed);
-
-		    uint64 time;
-
-		    time = ts.tv_sec;
-		    time = (time * 1000000) + (uint64)(ts.tv_nsec / 1000.f);
-
-		    return time;
-		}
-
-		inline uint64 getNanoTime() const {
-		    struct timespec ts = this->ts.load(std::memory_order_relaxed);
-		    uint64 time;
-
-		    time = ts.tv_sec;
-		    time = (time * 1000000000) + (uint64)ts.tv_nsec;
-
-		    return time;
-		}
-
-		inline int64 miliDifference(Time& t) const {
-			return t.getMiliTime() - getMiliTime();
-		}
-
-		inline int64 miliDifference() const {
-			return Time().getMiliTime() - getMiliTime();
-		}
+		int64 miliDifference() const;
 	};
 
   } // namespace lang

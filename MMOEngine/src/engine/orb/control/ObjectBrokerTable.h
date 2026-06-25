@@ -14,21 +14,13 @@ namespace engine {
 		HashSet<ObjectBroker*> objectBrokers;
 	
 	public:
-		void add(ObjectBroker* broker) {
-			objectBrokers.add(broker);
-		}
+		void add(ObjectBroker* broker);
 	
-		void remove(ObjectBroker* broker) {
-			objectBrokers.remove(broker);
-		}
+		void remove(ObjectBroker* broker);
 
-		HashSetIterator<ObjectBroker*> iterator() {
-			return objectBrokers.iterator();
-		}
+		HashSetIterator<ObjectBroker*> iterator();
 
-		int getBrokerCount() {
-			return objectBrokers.size();
-		}
+		int getBrokerCount();
 	};
 
   } // namespace ORB

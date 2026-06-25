@@ -36,6 +36,13 @@ DatagramServiceClient::~DatagramServiceClient() {
 	close();
 }
 
+void DatagramServiceClient::stop() {
+	doRun = false;
+}
+
+namespace engine {
+namespace service {
+
 class ClientMessageReceiverTask : public Task {
 	Reference<DatagramServiceClient*> client;
 
@@ -60,6 +67,11 @@ public:
 			client->handleMessage(message);
 	}
 };
+
+}
+}
+
+using namespace engine::service;
 
 void DatagramServiceClient::recieveMessages() {
 	Packet packet;

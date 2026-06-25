@@ -69,13 +69,9 @@ namespace engine {
 		int _inRange(BasicQuadTreeNode* node, float x, float y, float range, Vector<QuadTreeEntryInterface* >& objects);
 
 	public:
-		static void setLogging(bool doLog) {
-			logTree = doLog;
-		}
+		static void setLogging(bool doLog);
 
-		inline static bool doLog() {
-			return logTree;
-		}
+		static bool doLog();
 	};
 
   	} // u3d

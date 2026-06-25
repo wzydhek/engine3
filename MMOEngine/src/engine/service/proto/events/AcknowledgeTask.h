@@ -11,21 +11,22 @@
 
 #pragma once
 
+namespace engine {
+namespace service {
+namespace proto {
+
 class AcknowledgeTask : public Task {
 	Reference<BaseClient*> client;
 	uint16 seq;
 
 public:
-	AcknowledgeTask(BaseClient* cl, uint16 sequence) {
-		client = cl;
-		seq = sequence;
+	AcknowledgeTask(BaseClient* cl, uint16 sequence);
 
-#if defined(BASECLIENT_DISABLE_STATSD) and defined(COLLECT_TASKSTATISTICS)
-		setStatsSample(0);
-#endif
-	}
-
-	void run() {
-		client->acknowledgeServerPackets(seq);
-	}
+	void run();
 };
+
+} // namespace proto
+} // namespace service
+} // namespace engine
+
+using namespace engine::service::proto;

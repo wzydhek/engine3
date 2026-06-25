@@ -11,24 +11,19 @@
 
 #pragma once
 
+namespace engine {
+namespace ORB {
+
 class DestroyFromRamObjectsTask : public Task {
 	Vector<DistributedObject*>* objects;
 
 public:
-	DestroyFromRamObjectsTask(Vector<DistributedObject*>* obj) {
-		objects = obj;
-	}
+	DestroyFromRamObjectsTask(Vector<DistributedObject*>* obj);
 
-	void run() {
-		Logger::console.info("starting to delete " + String::valueOf(objects->size()) + " objects from ram...", true);
-
-		for (int i = 0; i < objects->size(); ++i) {
-			objects->get(i)->_destroyIgnoringCount();
-		}
-
-		delete objects;
-		objects = nullptr;
-
-		Logger::console.info("finished deleting objects from ram", true);
-	}
+	void run();
 };
+
+} // namespace ORB
+} // namespace engine
+
+using namespace engine::ORB;

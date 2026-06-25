@@ -57,3 +57,38 @@ void ServiceMessageHandlerThread::removeConnections() {
 
 	clients->removeAll();
 }
+
+// message functions
+void ServiceMessageHandlerThread::addMessage(Message* msg) {
+	messageQueue.push(msg);
+}
+
+Message* ServiceMessageHandlerThread::getMessage() {
+	return messageQueue.pop();
+}
+
+void ServiceMessageHandlerThread::flushMessages() {
+	messageQueue.flush();
+}
+
+// getters
+MessageQueue* ServiceMessageHandlerThread::getMessageQueue() {
+	return &messageQueue;
+}
+
+int ServiceMessageHandlerThread::getServicePort() const {
+	return port;
+}
+
+Socket* ServiceMessageHandlerThread::getSocket() const {
+	return socket;
+}
+
+// setters
+void ServiceMessageHandlerThread::setHandler(ServiceHandler* handler) {
+	serviceHandler = handler;
+}
+
+void ServiceMessageHandlerThread::setFilter(ServiceFilter* filter) {
+	serviceFilter = filter;
+}

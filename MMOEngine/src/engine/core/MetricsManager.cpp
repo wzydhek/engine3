@@ -52,3 +52,7 @@ MetricsManager::Result MetricsManager::publish(const char* name, const char* val
 
 	return SUCCESS;
 }
+
+void MetricsManager::setGlobalPrefix(const String& prefix) {
+	globalPrefix = prefix;
+}

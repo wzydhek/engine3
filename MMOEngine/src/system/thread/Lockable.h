@@ -18,11 +18,11 @@
 	#define TRACE_BLOCK_TIME
 #endif
 
-namespace sys {
-  namespace lang {
-	  class Time;
-  }
-}
+//namespace sys {
+//  namespace lang {
+//	  class Time;
+//  }
+//}
 
 namespace sys {
   namespace thread {
@@ -64,200 +64,45 @@ namespace sys {
 		RELEASE() virtual void unlock(bool doLock = true) = 0;
 
 	protected:
-		inline uint64 lockAcquiring(const char* modifier = "") {
-		#ifdef LOG_LOCKS
-			int cnt = lockCount.increment();
+		uint64 lockAcquiring(const char* modifier = "");
 
-			if (doLog)
-				System::out << "(" << Time::currentNanoTime() << " nsec) [" << lockName
-							<< "] acquiring " << modifier << "lock #" << cnt << "\n";
-		#endif
+		uint64 lockAcquiring(Lockable* lockable, const char* modifier = "");
 
-		#ifdef TRACE_BLOCK_TIME
-			return Time::currentNanoTime(Time::MONOTONIC_TIME);
-		#else
-			return 0;
-		#endif
-		}
+		uint64 lockAcquired(const char* modifier = "");
 
-		inline uint64 lockAcquiring(Lockable* lockable, const char* modifier = "") {
-		#ifdef LOG_LOCKS
-			int cnt = lockCount.increment();
+		uint64 lockAcquired(Lockable* lockable, const char* modifier = "");
 
-			if (doLog)
-				System::out << "(" << Time::currentNanoTime() << " nsec) [" << lockName
-							<< " (" << lockable->lockName << ")] acquiring cross "
-							<< modifier << "lock #" << cnt << "\n";
-		#endif
+		void lockReleasing(const char* modifier = "");
 
-		#ifdef TRACE_BLOCK_TIME
-			return Time::currentNanoTime(Time::MONOTONIC_TIME);
-		#else
-			return 0;
-		#endif
-		}
-
-		inline uint64 lockAcquired(const char* modifier = "") {
-		#ifdef LOG_LOCKS
-			currentCount = cnt;
-
-			if (doLog)
-				System::out << "(" << Time::currentNanoTime() << " nsec) [" << lockName
-							<< "] acquired " << modifier << "lock #" << cnt << "\n";
-		#endif
-
-		#ifdef TRACE_LOCKS
-			if (modifier[0] != 'r')
-				refreshTrace();
-		#endif
-
-			if (modifier[0] != 'r')
-				threadLockHolder.set(Thread::getCurrentThread(), std::memory_order_relaxed);
-
-		#ifdef TRACE_BLOCK_TIME
-			return Time::currentNanoTime(Time::MONOTONIC_TIME);
-		#else
-			return 0;
-		#endif
-		}
-
-		inline uint64 lockAcquired(Lockable* lockable, const char* modifier = "") {
-		#ifdef LOG_LOCKS
-			currentCount = cnt;
-
-			if (doLog)
-				System::out << "(" << Time::currentNanoTime() << " nsec) [" << lockName
-							<< " (" << lockable->lockName << ")] acquired cross "
-							<< modifier << "lock #" << cnt << "\n";
-		#endif
-
-		#ifdef TRACE_LOCKS
-			if (modifier[0] != 'r')
-				refreshTrace();
-		#endif
-
-			if (modifier[0] != 'r')
-				threadLockHolder.set(Thread::getCurrentThread(), std::memory_order_relaxed);
-
-		#ifdef TRACE_BLOCK_TIME
-			return Time::currentNanoTime(Time::MONOTONIC_TIME);
-		#else
-			return 0;
-		#endif
-		}
-
-		inline void lockReleasing(const char* modifier = "") {
-			if (modifier[0] != 'r') {
-				threadLockHolder.set(nullptr, std::memory_order_relaxed);
-			}
-
-		#ifdef TRACE_LOCKS
-			if (modifier[0] != 'r') {
-				deleteTrace();
-
-				refreshUnlockTrace();
-			}
-		#endif
-
-		#ifdef LOG_LOCKS
-			if (doLog)
-				System::out << "(" << Time::currentNanoTime() << " nsec) [" << lockName
-							<< "] releasing " << modifier << "lock #" << currentCount << "\n";
-		#endif
-		}
-
-		inline void lockReleased(const char* modifier = "") {
-		#ifdef LOG_LOCKS
-			if (doLog)
-				System::out << "(" << Time::currentNanoTime() << " nsec) [" << lockName
-							<< "] released " << modifier << "lock #" << currentCount << "\n";
-		#endif
-		}
+		void lockReleased(const char* modifier = "");
 
 		void traceDeadlock(const char* modifier = "");
 
-		inline void refreshTrace() {
-		#ifdef TRACE_LOCKS
-			if (doTrace) {
-				if (trace != nullptr)
-					delete trace;
+		void refreshTrace();
 
-				trace = new StackTrace();
-			}
-		#endif
+		void deleteTrace();
 
-		}
+		void refreshUnlockTrace();
 
-		inline void deleteTrace() {
-		#ifdef TRACE_LOCKS
-			if (doTrace) {
-				if (trace != nullptr) {
-					delete trace;
-					trace = nullptr;
-				}
-			}
-		#endif
-		}
+		void deleteUnlockTrace();
 
-		inline void refreshUnlockTrace() {
-		#ifdef TRACE_LOCKS
-			if (doTrace) {
-				if (unlockTrace != nullptr)
-					delete unlockTrace;
+		void clearCurrentLockHolder();
 
-				unlockTrace = new StackTrace();
-			}
-		#endif
-		}
-
-		inline void deleteUnlockTrace() {
-		#ifdef TRACE_LOCKS
-			if (doTrace) {
-				if (unlockTrace != nullptr) {
-					delete unlockTrace;
-					unlockTrace = nullptr;
-				}
-			}
-		#endif
-		}
-
-		inline void clearCurrentLockHolder() {
-			threadLockHolder.set(nullptr, std::memory_order_relaxed);
-		}
-
-		inline void setCurrentLockHolder(Thread*  thread) {
-			threadLockHolder.set(thread, std::memory_order_relaxed);
-		}
+		void setCurrentLockHolder(Thread* thread);
 
 	public:
-		inline bool isLockedByCurrentThread() const {
-			return threadLockHolder.get() == Thread::getCurrentThread();
-		}
+		bool isLockedByCurrentThread() const;
 
-		inline bool isReadLocked() const {
-			 return readLockCount > 0;
-		}
+		bool isReadLocked() const;
 
-		inline Thread* getLockHolderThread() {
-			return threadLockHolder.get();
-		}
+		Thread* getLockHolderThread();
 
 		// setters
-		inline void setLockName(const String& s) {
-			//lockName = s;
-		}
+		void setLockName(const String& s);
 
-		inline void setLockLogging(bool dolog) {
-#ifdef LOG_LOCKS
-			doLog = dolog;
-#endif
-		}
+		void setLockLogging(bool dolog);
 
-		inline void setLockTracing(bool tracing) {
-#ifdef TRACE_LOCKS
-			doTrace = tracing;
-#endif
-		}
+		void setLockTracing(bool tracing);
 	};
 
   } // namespace thread

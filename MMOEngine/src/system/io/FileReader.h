@@ -15,56 +15,20 @@ namespace sys {
   		File* file;
 
   	public:
-  		FileReader(File* file) {
-  			file->setReadOnly();
+		FileReader(File* file);
 
-  			FileReader::file = file;
-  		}
+  		void close();
 
-  		void close() {
-  			validateReadable();
+  		int read(char* buf, int len);
 
-  			file->close();
-  		}
+  		int read(char* buf, uint32 off, int len);
 
-  		int read(char* buf, int len) {
-  			validateReadable();
+  		bool readLine(String& line);
 
-  			return fread(buf, 1, len, file->getDescriptor());
-  		}
-
-  		int read(char* buf, uint32 off, int len) {
-  			validateReadable();
-
-  			file->seek(off);
-
-  			return fread(buf, 1, len, file->getDescriptor());
-  		}
-
-  		bool readLine(String& line) {
-  			validateReadable();
-
-  			char buf[4096];
-
-  			if (fgets(buf, 4096, file->getDescriptor()) != nullptr) {
-  				line = buf;
-
-  				return true;
-  			} else
-  				return false;
-  		}
-
-  		int skip(int n) {
-  			validateReadable();
-
-  			return file->seek(n, SEEK_CUR);
-  		}
+  		int skip(int n);
 
   	protected:
-  		void validateReadable() {
-  			if (!file->exists())
-  				throw FileNotFoundException(file);
-  		}
+		void validateReadable();
   	};
 
   } // namespace io

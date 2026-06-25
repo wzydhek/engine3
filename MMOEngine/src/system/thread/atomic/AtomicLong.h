@@ -18,81 +18,37 @@ namespace sys {
 		std::atomic<uint64> value{0};
 
 	public:
-		AtomicLong() : value{0} {
-		}
+		AtomicLong();
 
-		AtomicLong(uint64 val) : value{val} {
-		}
+		AtomicLong(uint64 val);
 
-		AtomicLong(const AtomicLong& val) : value{val.value.load(std::memory_order_relaxed)} {
+		AtomicLong(const AtomicLong& val);
 
-		}
+		AtomicLong& operator=(const AtomicLong& v);
 
-		AtomicLong& operator=(const AtomicLong& v) {
-			value.store(v.value.load(std::memory_order_relaxed));
+		AtomicLong& operator=(const uint64 val);
 
-			return *this;
-		}
+		uint64 increment();
 
-		AtomicLong& operator=(const uint64 val) {
-			value.store(val);
+		uint64 decrement();
 
-			return *this;
-		}
+		uint64 add(uint64 val);
 
-		inline uint64 increment() {
-			return ++value;
-		}
+		uint64 compareAndSetReturnOld(uint64 oldval, uint64 newval);
 
-		inline uint64 decrement() {
-			return --value;
-		}
+		bool compareAndSet(uint64 oldval, uint64 newval);
 
-		inline uint64 add(uint64 val) {
-			return value += val;
-		}
+		uint64 get() const;
 
-		inline uint64 compareAndSetReturnOld(uint64 oldval, uint64 newval) {
-			uint64 val = oldval;
+		void set(uint64 val);
 
-			value.compare_exchange_strong(val, newval);
+		operator uint64() const;
 
-			return val;
-		}
+		bool operator==(const uint64 val) const;
 
-		inline bool compareAndSet(uint64 oldval, uint64 newval) {
-			uint64 val = oldval;
+		bool toBinaryStream(sys::io::ObjectOutputStream* stream);
 
-			return value.compare_exchange_strong(val, newval);
-		}
-
-		inline uint64 get() const {
-			return value.load(std::memory_order_relaxed);
-		}
-
-		inline void set(uint64 val) {
-			while (!compareAndSet(value, val)) ;
-		}
-
-		operator uint64() const {
-			return value.load(std::memory_order_relaxed);
-		}
-
-		inline bool operator== (const uint64 val) const {
-			return val == value.load(std::memory_order_relaxed);
-		}
-
-		bool toBinaryStream(sys::io::ObjectOutputStream* stream) {
-			stream->writeLong(value);
-
-			return true;
-		}
-
-		bool parseFromBinaryStream(sys::io::ObjectInputStream* stream) {
-			value = stream->readLong();
-
-			return true;
-		}
+		bool parseFromBinaryStream(sys::io::ObjectInputStream* stream);
 	};
 
 	} // namespace atomic

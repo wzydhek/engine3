@@ -13,12 +13,9 @@ namespace engine {
 
 	class PingMessage : public BasePacket {
 	public:
-		PingMessage() : BasePacket(7) {
-			insertShort(0x0600);
-		}
+		PingMessage();
 	
-		static void parse(Packet* pack) {
-		}
+		static void parse(Packet* pack);
 		
 	};
 

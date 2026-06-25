@@ -88,351 +88,70 @@ namespace sys {
 			ts.tv_nsec = 0;
 		}
 
-		Time(const Time& time) {
-			ts = time.ts;
-		}
-
-		bool toString(String& str) const {
-			StringBuffer msg;
-			msg << ts.tv_sec << "," << ts.tv_nsec;
-
-			str = msg.toString();
-			return true;
-		}
-
-		bool parseFromString(const String& str, int version = 0) {
-			int separator = str.indexOf(',');
-
-			if (separator == -1)
-				return false;
-
-			String sec = str.subString(0, separator);
-			String nsec = str.subString(separator + 1);
-
-			ts.tv_sec = Integer::valueOf(sec);
-			ts.tv_nsec = Integer::valueOf(nsec);
-
-			return true;
-		}
-
-		bool toBinaryStream(ObjectOutputStream* stream) {
-			stream->writeLong(ts.tv_sec);
-			stream->writeLong(ts.tv_nsec);
-
-			return true;
-		}
-
-		bool parseFromBinaryStream(ObjectInputStream* stream) {
-			ts.tv_sec = stream->readLong();
-			ts.tv_nsec = stream->readLong();
-
-			return true;
-		}
-
-		inline void updateToCurrentTime(ClockType type = REAL_TIME) {
-			#if !defined(PLATFORM_WIN) && !defined(PLATFORM_MAC)
-				clock_gettime(type, &ts);
-			#else
-				switch (type) {
-				case REAL_TIME:
-					this->ts = timepointToTimespec(std::chrono::system_clock::now());
-					break;
-				case MONOTONIC_TIME:
-					this->ts = timepointToTimespec(std::chrono::steady_clock::now());
-					break;
-				default:
-					this->ts = timepointToTimespec(std::chrono::high_resolution_clock::now());
-					break;
-				}
-			#endif
-		}
-
-		inline void addMiliTime(uint64 mtime) {
-			ts.tv_sec += (long) (mtime / 1000);
-			ts.tv_nsec += (long) ((mtime % 1000) * 1000000);
-
-			checkForOverflow();
-		}
-
-		inline void addMikroTime(uint64 utime) {
-			ts.tv_sec += (long) (utime / 1000000);
-			ts.tv_nsec += (long) ((utime % 1000000) * 1000);
-
-			checkForOverflow();
-		}
-
-		inline void addNanoTime(uint64 ntime) {
-			ts.tv_sec += (long) (ntime / 1000000000);
-			ts.tv_nsec += (long) (ntime % 1000000000);
-
-			checkForOverflow();
-		}
-
-		Time& operator=(const Time& t) {
-			if (this == &t) {
-				return *this;
-			}
-
-			ts = t.ts;
-
-			return *this;
-		}
-
-		Time& operator=(uint32 seconds) {
-			ts.tv_sec = seconds;
-			ts.tv_nsec = 0;
-
-			return *this;
-		}
-
-		int compareTo(const Time& t) const {
-			if (ts.tv_sec < t.ts.tv_sec)
-				return 1;
-			else if (ts.tv_sec > t.ts.tv_sec)
-				return -1;
-			else {
-				if (ts.tv_nsec < t.ts.tv_nsec)
-					return 1;
-				else if (ts.tv_nsec > t.ts.tv_nsec)
-					return -1;
-				else
-					return 0;
-			}
+		Time(const Time& time);
 
-		}
+		bool toString(String& str) const;
 
-		String getFormattedTime() const {
-#ifndef PLATFORM_WIN
-			char str[100];
+		bool parseFromString(const String& str, int version = 0);
 
-			char* ret = ctime_r(&ts.tv_sec, str);
-
-			if (ret != nullptr)
-				return String(ret, strlen(str) - 1);
-			else
-				return String("");
-#else
-			char* ret = ctime(&ts.tv_sec);
-
-			if (ret != nullptr)
-				return String(ret, strlen(ret) - 1);
-			else
-				return String("");
-#endif
-		}
-
-		String getFormattedTimeShort() const {
-			return getFormattedTimeFull(false);
-		}
-
-		String getFormattedTimeFull(bool include_ms = true) const {
-			int ret;
-			struct tm t;
-			String value;
-			char buf[128];
-			int len = sizeof(buf);
-
-#ifndef PLATFORM_WIN
-			if (localtime_r(&(ts.tv_sec), &t) == nullptr)
-				return value;
-#else
-			auto retval = localtime(&(ts.tv_sec));
-			if (retval == nullptr)
-				return value;
-
-			t = *retval;
-#endif
-
-			ret = strftime(buf, len, "%Y-%m-%dT%H:%M:%S", &t);
-
-			if (ret <= 0 || !include_ms) {
-				value = buf;
-
-				return value;
-			}
-
-			len -= ret - 1;
-
-			auto ret2 = snprintf(&buf[ret], len, ".%09ld", ts.tv_nsec);
-			if (ret2 < 0 || ret2 >= len)
-				return value;
-
-			len -= ret2;
-
-			char tz[32];
-
-			strftime(tz, sizeof(tz), "%z", &t);
-
-			snprintf(&buf[ret + ret2], len, "%s", tz);
-
-			value = buf;
-
-			return value;
-		}
-
-		String getFormattedTime(const String& format) const {
-			struct tm t;
-			String value;
-			char buf[4096];
-
-#ifndef PLATFORM_WIN
-			if (localtime_r(&(ts.tv_sec), &t) == nullptr)
-				return value;
-#else
-			auto retval = localtime(&(ts.tv_sec));
-			if (retval == nullptr)
-				return value;
-
-			t = *retval;
-#endif
-
-			int ret = strftime(buf, sizeof(buf), format.toCharArray(), &t);
-
-			if (ret <= 0)
-				return value;
-
-			value = buf;
-
-			return value;
-		}
-
-		int compareMiliTo(const Time& t) const {
-			uint64 t1 = getMiliTime();
-			uint64 t2 = t.getMiliTime();
-
-			if (t1 < t2)
-				return 1;
-			else if (t1 > t2)
-				return -1;
-			else
-				return 0;
-		}
-
-		static Time fromISO8601(const String& isoString) {
-			struct tm tm = {};
-			const char* str = isoString.toCharArray();
-
-			// Parse ISO 8601 basic format: "2025-10-03T10:25:30" (with optional Z or timezone)
-			// Note: This handles the basic format, not all ISO 8601 variations
-			char* result = strptime(str, "%Y-%m-%dT%H:%M:%S", &tm);
-
-			if (result == nullptr) {
-				// Failed to parse, return epoch
-				return Time(0);
-			}
-
-#ifndef PLATFORM_WIN
-			// Use timegm() for UTC conversion (GNU extension, available on Linux/BSD)
-			time_t timestamp = timegm(&tm);
-#else
-			// Windows fallback: use mktime and adjust for timezone
-			time_t timestamp = mktime(&tm);
-			timestamp -= _timezone;
-#endif
-
-			if (timestamp == -1) {
-				// Invalid time
-				return Time(0);
-			}
-
-			// Note: Still limited to 2038 due to uint32 cast in Time constructor
-			return Time((uint32)timestamp);
-		}
-
-		inline static uint64 currentNanoTime(ClockType type = REAL_TIME) {
-			#if !defined(PLATFORM_WIN) && !defined(PLATFORM_MAC)
-				struct timespec cts;
-				clock_gettime(type, &cts);
-
-				uint64 time;
-
-				time = cts.tv_sec;
-				time = (time * 1000000000) + (uint64)cts.tv_nsec;
-
-				return time;
-			#else
-				switch (type) {
-				case REAL_TIME:
-					return convertTimePointToNanos(std::chrono::system_clock::now());
-				case MONOTONIC_TIME:
-					return convertTimePointToNanos(std::chrono::steady_clock::now());
-				default:
-					return convertTimePointToNanos(std::chrono::high_resolution_clock::now());
-				}
-			#endif
-		}
-
-		inline bool isPast() const {
-			Time t;
-			return compareTo(t) > 0;
-		}
-
-		inline bool isPresent() const {
-			Time t;
-			return compareTo(t) == 0;
-		}
-
-		inline bool isFuture() const {
-			Time t;
-			return compareTo(t) < 0;
-		}
+		bool toBinaryStream(ObjectOutputStream* stream);
+
+		bool parseFromBinaryStream(ObjectInputStream* stream);
+
+		void updateToCurrentTime(ClockType type = REAL_TIME);
+
+		void addMiliTime(uint64 mtime);
+
+		void addMikroTime(uint64 utime);
+
+		void addNanoTime(uint64 ntime);
+
+		Time& operator=(const Time& t);
+
+		Time& operator=(uint32 seconds);
+
+		int compareTo(const Time& t) const;
+
+		String getFormattedTime() const;
+
+		String getFormattedTimeShort() const;
+
+		String getFormattedTimeFull(bool include_ms = true) const;
+
+		String getFormattedTime(const String& format) const;
+
+		int compareMiliTo(const Time& t) const;
+
+		static Time fromISO8601(const String& isoString);
+
+		static uint64 currentNanoTime(ClockType type = REAL_TIME);
+
+		bool isPast() const;
+
+		bool isPresent() const;
+
+		bool isFuture() const;
 
 	protected:
-		inline void checkForOverflow() {
-			if (ts.tv_nsec >= 1000000000) {
-				ts.tv_sec++;
-				ts.tv_nsec -= 1000000000;
-			}
-		}
+		void checkForOverflow();
 
 	public:
 		// getters
-		inline uint32 getTime() const {
-			return ts.tv_sec;
-		}
+		uint32 getTime() const;
 
-		inline uint64 getMiliTime() const {
-		    uint64 time;
+		uint64 getMiliTime() const;
 
-		    time = ts.tv_sec;
-		    time = (time * 1000) + (uint64)(ts.tv_nsec / 1000000.f);
+		uint64 getMikroTime() const;
 
-		    return time;
-		}
+		uint64 getNanoTime() const;
 
-		inline uint64 getMikroTime() const {
-		    uint64 time;
+		int64 miliDifference(const Time& t) const;
 
-		    time = ts.tv_sec;
-		    time = (time * 1000000) + (uint64)(ts.tv_nsec / 1000.f);
+		int64 miliDifference(ClockType type = REAL_TIME) const;
 
-		    return time;
-		}
+		struct timespec* getTimeSpec();
 
-		inline uint64 getNanoTime() const {
-		    uint64 time;
-
-		    time = ts.tv_sec;
-		    time = (time * 1000000000) + (uint64)ts.tv_nsec;
-
-		    return time;
-		}
-
-		inline int64 miliDifference(const Time& t) const {
-			return t.getMiliTime() - getMiliTime();
-		}
-
-		inline int64 miliDifference(ClockType type = REAL_TIME) const {
-			return Time(type).getMiliTime() - getMiliTime();
-		}
-
-		inline struct timespec* getTimeSpec() {
-			return &ts;
-		}
-
-		inline const struct timespec* getTimeSpec() const {
-			return &ts;
-		}
+		const struct timespec* getTimeSpec() const;
 
 		friend class AtomicTime;
 
@@ -441,35 +160,17 @@ namespace sys {
 	class SerializableTime : public Time, public Variable {
 	public:
 
-		SerializableTime() : Time(), Variable() {
-		}
+		SerializableTime();
 
-		SerializableTime(const SerializableTime& time) : Time(time), Variable() {
-		}
+		SerializableTime(const SerializableTime& time);
 
-		SerializableTime& operator=(const SerializableTime& time) {
-			if (this == &time) {
-				return *this;
-			}
+		SerializableTime& operator=(const SerializableTime& time);
 
-			Time::operator=(time);
+		SerializableTime& operator=(const Time& time);
 
-			return *this;
-		}
+		bool parseFromBinaryStream(ObjectInputStream* stream);
 
-		SerializableTime& operator=(const Time& time) {
-			Time::operator=(time);
-
-			return *this;
-		}
-
-		bool parseFromBinaryStream(ObjectInputStream* stream) {
-			return Time::parseFromBinaryStream(stream);
-		}
-
-		bool toBinaryStream(ObjectOutputStream* stream) {
-			return Time::toBinaryStream(stream);
-		}
+		bool toBinaryStream(ObjectOutputStream* stream);
 
 
 	};

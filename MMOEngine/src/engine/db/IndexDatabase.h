@@ -31,17 +31,11 @@ namespace engine {
 
 	class IndexDatabaseIterator : public LocalDatabaseIterator {
 	public:
-		IndexDatabaseIterator(engine::db::berkeley::Transaction* transaction, LocalDatabase* database)
-			: LocalDatabaseIterator(transaction, database) {
-		}
+		IndexDatabaseIterator(engine::db::berkeley::Transaction* transaction, LocalDatabase* database);
 
-		IndexDatabaseIterator(IndexDatabase* database, const berkeley::CursorConfig& config = berkeley::CursorConfig::DEFAULT, bool useCurrentThreadTransaction = false)
-			: LocalDatabaseIterator(database, config, useCurrentThreadTransaction) {
-		}
+		IndexDatabaseIterator(IndexDatabase* database, const berkeley::CursorConfig& config = berkeley::CursorConfig::DEFAULT, bool useCurrentThreadTransaction = false);
 
-		IndexDatabaseIterator(engine::db::berkeley::BerkeleyDatabase* databaseHandle)
-			: LocalDatabaseIterator(databaseHandle) {
-		}
+		IndexDatabaseIterator(engine::db::berkeley::BerkeleyDatabase* databaseHandle);
 
 		bool setKeyAndGetValue(uint64 key, uint64& primaryKey, ObjectInputStream* data,
 				uint32 lockMode = berkeley::LockMode::READ_UNCOMMITED, bool compressed = false);
@@ -52,3 +46,5 @@ namespace engine {
 
   }
 }
+
+using namespace engine::db;

@@ -17,141 +17,56 @@ namespace engine {
 		Vector3 previousPosition;
 
 	public:
-		Coordinate() {
-		}
+		Coordinate();
 
-		Coordinate(const Coordinate& ct) {
-			position = ct.position;
+		Coordinate(const Coordinate& ct);
 
-			previousPosition = ct.previousPosition;
-		}
+		Coordinate(float x, float z, float y);
 
-		Coordinate(float x, float z, float y) {
-			position.set(x, z, y);
+		Coordinate& operator=(const Coordinate& ct);
 
-			updatePreviousPosition();
-		}
+		void initializePosition(float x, float z, float y);
 
-		Coordinate& operator=(const Coordinate& ct) {
-			if (this == &ct)
-				return *this;
+		void initializePosition(const Vector3& pos);
 
-			position = ct.position;
-			previousPosition = ct.previousPosition;
+		bool toBinaryStream(ObjectOutputStream* stream);
 
-			return *this;
-		}
+		bool parseFromBinaryStream(ObjectInputStream* stream);
 
-		inline void initializePosition(float x, float z, float y) {
-			position.set(x, z, y);
+		void randomizePosition(float maxRadius, float minRadius = 1.f);
 
-			updatePreviousPosition();
-		}
+		void setPosition(float x, float z, float y);
 
-		inline void initializePosition(const Vector3& pos) {
-			position = pos;
+		void setPosition(const Vector3& pos);
 
-			updatePreviousPosition();
-		}
+		void setPositionX(float x);
 
-		bool toBinaryStream(ObjectOutputStream* stream) {
-			position.toBinaryStream(stream);
-			previousPosition.toBinaryStream(stream);
+		void setPositionZ(float z);
 
-			return true;
-		}
+		void setPositionY(float y);
 
-		bool parseFromBinaryStream(ObjectInputStream* stream) {
-			position.parseFromBinaryStream(stream);
-			previousPosition.parseFromBinaryStream(stream);
-
-			return true;
-		}
-
-		void randomizePosition(float maxRadius, float minRadius = 1.f) {
-			updatePreviousPosition();
-
-			float angle = (45 + System::random(200)) / 3.14;
-			float distance = System::random((int)(maxRadius - minRadius)) + minRadius;
-
-			position.setX(position.getX() + cos(angle) * distance);
-			position.setY(position.getY() + sin(angle) * distance);
-		}
-
-		inline void setPosition(float x, float z, float y) {
-			updatePreviousPosition();
-
-			position.set(x, z, y);
-		}
-
-		inline void setPosition(const Vector3& pos) {
-			updatePreviousPosition();
-
-			position = pos;
-		}
-
-		inline void setPositionX(float x) {
-			previousPosition.setX(x);
-
-			position.setX(x);
-		}
-
-		inline void setPositionZ(float z) {
-			previousPosition.setZ(z);
-
-			position.setZ(z);
-		}
-
-		inline void setPositionY(float y) {
-			previousPosition.setY(y);
-
-			position.setY(y);
-		}
-
-		inline void updatePreviousPosition() {
-			previousPosition = position;
-		}
+		void updatePreviousPosition();
 
 		// getters
-		inline float getPositionX() const {
-			return position.getX();
-		}
+		float getPositionX() const;
 
-		inline float getPositionZ() const {
-			return position.getZ();
-		}
+		float getPositionZ() const;
 
-		inline float getPositionY() const {
-			return position.getY();
-		}
+		float getPositionY() const;
 
-		inline float getPreviousPositionX() const {
-			return previousPosition.getX();
-		}
+		float getPreviousPositionX() const;
 
-		inline float getPreviousPositionZ() const {
-			return previousPosition.getZ();
-		}
+		float getPreviousPositionZ() const;
 
-		inline float getPreviousPositionY() const {
-			return previousPosition.getY();
-		}
+		float getPreviousPositionY() const;
 
-		inline const Vector3& getPosition() const {
-			return position;
-		}
+		const Vector3& getPosition() const;
 
-		inline const Vector3& getPreviousPosition() const {
-			return previousPosition;
-		}
+		const Vector3& getPreviousPosition() const;
 
-		inline Vector3& getPosition(){
-			return position;
-		}
+		Vector3& getPosition();
 
-		inline Vector3& getPreviousPosition() {
-			return previousPosition;
-		}
+		Vector3& getPreviousPosition();
 
 	};
 

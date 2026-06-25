@@ -4,12 +4,16 @@
 */
 #pragma once
 
+#include "system/platform.h"
+
 namespace sys {
     namespace io {
         class ObjectOutputStream;
         class ObjectInputStream;
     }
 }
+
+using namespace sys::io;
 
 namespace engine {
   namespace core {
@@ -21,34 +25,11 @@ namespace engine {
           uint64 totalRunCount;
           uint64 minRunTime;
 
-          int compareTo(const RunStatistics& t) const {
-            if (totalRunTime < t.totalRunTime)
-              return 1;
-            else if (totalRunTime > t.totalRunTime)
-              return -1;
-            else {
-              if (maxRunTime < t.maxRunTime)
-                return 1;
-              else if (maxRunTime > t.maxRunTime)
-                return -1;
-              else {
-                if (totalRunCount < t.totalRunCount)
-                  return 1;
-                else if (totalRunCount > t.totalRunCount)
-                  return -1;
-                else
-                  return 0;
-              }
-            }
-          }
+          int compareTo(const RunStatistics& t) const;
 
-          bool toBinaryStream(ObjectOutputStream* stream) {
-				return true;
-          }
+          bool toBinaryStream(ObjectOutputStream* stream);
 
-          bool parseFromBinaryStream(ObjectInputStream* stream) {
-				return true;
-          }
+          bool parseFromBinaryStream(ObjectInputStream* stream);
       };
 
       class RunStatisticsOrderedByMaxTime {
@@ -61,38 +42,13 @@ namespace engine {
           RunStatisticsOrderedByMaxTime() = default;
           RunStatisticsOrderedByMaxTime(const RunStatisticsOrderedByMaxTime&) = default;
 
-          RunStatisticsOrderedByMaxTime(const RunStatistics& r) : totalRunTime(r.totalRunTime), maxRunTime(r.maxRunTime),
-                                                                    totalRunCount(r.totalRunCount), minRunTime(r.minRunTime) {
-          }
+          RunStatisticsOrderedByMaxTime(const RunStatistics& r);
 
-          int compareTo(const RunStatisticsOrderedByMaxTime& t) const {
-              if (maxRunTime < t.maxRunTime)
-                  return 1;
-              else if (maxRunTime > t.maxRunTime)
-                  return -1;
-              else {
-                  if (totalRunTime < t.totalRunTime)
-                      return 1;
-                  else if (totalRunTime > t.totalRunTime)
-                      return -1;
-                  else {
-                      if (totalRunCount < t.totalRunCount)
-                          return 1;
-                      else if (totalRunCount > t.totalRunCount)
-                          return -1;
-                      else
-                          return 0;
-                  }
-              }
-          }
+          int compareTo(const RunStatisticsOrderedByMaxTime& t) const;
 
-          bool toBinaryStream(ObjectOutputStream* stream) {
-              return true;
-          }
+          bool toBinaryStream(ObjectOutputStream* stream);
 
-          bool parseFromBinaryStream(ObjectInputStream* stream) {
-              return true;
-          }
+          bool parseFromBinaryStream(ObjectInputStream* stream);
       };
 
   } // namespace core

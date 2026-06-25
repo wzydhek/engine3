@@ -26,16 +26,11 @@ namespace engine {
 		float radiusSquared;
 
 	public:
-		Sphere() : radius(0), radiusSquared(0) {
-		}
+		Sphere();
 
-		Sphere(const Vector3& orig, float rad) : origin(orig), radius(rad),
-			radiusSquared(rad * rad) {
-		}
+		Sphere(const Vector3& orig, float rad);
 
-		bool containsPoint(const Vector3 point) const {
-			return (point - getCenter()).length() < getRadius();
-		}
+		bool containsPoint(const Vector3 point) const;
 
 		bool intersects(const Triangle& tri) const;/* {
 			return (tri.distSqrd(origin) <= radiusSquared);
@@ -44,21 +39,13 @@ namespace engine {
 		bool intersects(const AABB& aabb) const;
 		// renders a sphere
 
-		inline float getRadius() const {
-			return radius;
-		}
+		float getRadius() const;
 
-		inline float getRadiusSquared() const {
-			return radiusSquared;
-		}
+		float getRadiusSquared() const;
 
-		inline Vector3& getCenter() {
-			return origin;
-		}
+		Vector3& getCenter();
 
-		inline const Vector3& getCenter() const {
-			return origin;
-		}
+		const Vector3& getCenter() const;
 	};
 
    	} // u3d

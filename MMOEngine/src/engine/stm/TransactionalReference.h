@@ -184,3 +184,5 @@ public:
 
 } // namespace stm
 } // namespace engine
+
+using namespace engine::stm;

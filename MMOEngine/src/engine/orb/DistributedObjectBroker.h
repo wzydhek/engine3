@@ -86,21 +86,15 @@ namespace engine {
 		uint64 getNextFreeObjectID();
 
 		// getters
-		ObjectBroker* getRootBroker() {
-			return rootObjectBroker;
-		}
+		ObjectBroker* getRootBroker();
 
-		bool isRootBroker() {
-			return rootObjectBroker == nullptr;
-		}
+		bool isRootBroker();
 
 		/*inline DistributedObjectClassHelperMap* getClassMap() {
 			return &classMap;
 		}*/
 
-		DOBObjectManager* getObjectManager() {
-			return objectManager;
-		}
+		DOBObjectManager* getObjectManager();
 
 		// setters
 		void setCustomObjectManager(DOBObjectManager* manager);

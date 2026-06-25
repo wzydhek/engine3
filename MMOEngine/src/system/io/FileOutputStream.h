@@ -15,137 +15,54 @@ namespace sys {
   		File* file;
 
   	public:
-  		FileOutputStream(File* file) {
-  			file->setBinary();
+		FileOutputStream(File* file);
 
-  			file->setWriteable();
+  		void close();
 
-  			FileOutputStream::file = file;
-  		}
+  		void flush();
 
-  		void close() {
-  			validateWriteable();
+  		int write(byte* buf, int len);
 
-  			file->flush();
+  		int write(byte* buf, uint32 off, int len);
 
-  			file->close();
-  		}
+  		int write(char ch);
 
-  		void flush() {
-  			validateWriteable();
+  		int write(int val);
 
-  			file->flush();
-  		}
+  		int write(uint32 val);
 
-  		int write(byte* buf, int len) {
-  			validateWriteable();
+  		int write(long val);
 
-  			return fwrite(buf, 1, len, file->getDescriptor());
-  		}
+  		int write(int64 val);
 
-  		int write(byte* buf, uint32 off, int len) {
-  			validateWriteable();
+  		int write(uint64 val);
 
-  			file->seek(off);
+  		int write(float val);
 
-  			return fwrite(buf, 1, len, file->getDescriptor());
-  		}
+  		int write(const char* str);
 
-  		int write(char ch) {
-			return fwrite(&ch, 1, 1, file->getDescriptor());
-		}
+  		int write(const String& str);
 
-  		int write(int val) {
-			return fwrite(&val, 1, 4, file->getDescriptor());
-		}
+  		FileOutputStream& operator<<(char ch);
 
-  		int write(uint32 val) {
-			return fwrite(&val, 1, 4, file->getDescriptor());
-		}
+  		FileOutputStream& operator<<(int val);
 
-  		int write(long val) {
-			return fwrite(&val, 1, sizeof(long), file->getDescriptor());
-		}
+  		FileOutputStream& operator<<(uint32 val);
 
-  		int write(int64 val) {
-  			return fwrite(&val, 1, 8, file->getDescriptor());
-		}
+  		FileOutputStream& operator<<(long val);
 
-  		int write(uint64 val) {
-			return fwrite(&val, 1, 8, file->getDescriptor());
-		}
+  		FileOutputStream& operator<<(int64 val);
 
-  		int write(float val) {
-			return fwrite(&val, 1, sizeof(float), file->getDescriptor());
-		}
+  		FileOutputStream& operator<<(uint64 val);
 
-  		int write(const char* str) {
-  			return fwrite(str, 1, strlen(str), file->getDescriptor());
-  		}
+  		FileOutputStream& operator<<(float val);
 
-  		int write(const String& str) {
-  			return write((byte*) str.toCharArray(), str.length());
-  		}
+  		FileOutputStream& operator<<(const char* str);
 
-  		FileOutputStream& operator<< (char ch) {
-			write(ch);
-
-			return *this;
-		}
-
-  		FileOutputStream& operator<< (int val) {
-			write(val);
-
-			return *this;
-		}
-
-  		FileOutputStream& operator<< (uint32 val) {
-			write(val);
-
-			return *this;
-		}
-
-  		FileOutputStream& operator<< (long val) {
-			write(val);
-
-			return *this;
-		}
-
-  		FileOutputStream& operator<< (int64 val) {
-			write(val);
-
-			return *this;
-		}
-
-  		FileOutputStream& operator<< (uint64 val) {
-			write(val);
-
-			return *this;
-		}
-
-  		FileOutputStream& operator<< (float val) {
-			write(val);
-
-			return *this;
-		}
-
-  		FileOutputStream& operator<< (const char* str) {
-			write(str);
-
-			return *this;
-		}
-
-  		FileOutputStream& operator<< (const String& str) {
-			write(str);
-
-			return *this;
-		}
+  		FileOutputStream& operator<<(const String& str);
 
   	protected:
-  		void validateWriteable() {
-  			if (!file->exists())
-  				throw FileNotFoundException(file);
-  		}
+		void validateWriteable();
   	};
   } // namespace io
 } // namespace sys

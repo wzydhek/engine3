@@ -38,14 +38,7 @@ namespace engine {
 			 chunkFactory.registerObject<K>(key);
 		 }
 
-		 Chunk* createChunk(Chunk* par, uint32 id, uint32 size, char* data) {
-			 Chunk* chunk = chunkFactory.createObject(id, par, id, size, data);
-
-			 if (chunk == nullptr)
-				 chunk = new Chunk(par, id, size, data);
-
-			 return chunk;
-		 }
+		 Chunk* createChunk(Chunk* par, uint32 id, uint32 size, char* data);
 
 		 Chunk* openForm(uint32 formType);
 		 bool closeForm(uint32 formType);
@@ -60,13 +53,9 @@ namespace engine {
 
 		 void skipChunks(int num = 1);
 
-		 inline String& getFileName() {
-			 return fileName;
-		 }
+		 String& getFileName();
 
-		 inline const String& getFileName() const {
-			 return fileName;
-		 }
+		 const String& getFileName() const;
 
 		 uint32 getFormType();
 		 uint32 getNextFormType();

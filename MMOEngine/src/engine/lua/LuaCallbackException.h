@@ -12,14 +12,17 @@
 #pragma once
 
 #include <lua.hpp>
+#include "system/lang/Exception.h"
+
+namespace engine {
+namespace lua {
 
 class LuaCallbackException : public Exception {
 public:
-	LuaCallbackException(lua_State *L, const String& msg) : Exception() {
-		luaL_where (L, 1);
-		String luaMethodName = lua_tostring(L, -1);
-
-		message = msg + " at " + luaMethodName;
-
-	}
+	LuaCallbackException(lua_State* L, const String& msg);
 };
+
+} // namespace lua
+} // namespace engine
+
+using namespace engine::lua;

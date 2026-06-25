@@ -27,3 +27,5 @@ namespace engine {
  	 };
  }
 }
+
+using namespace engine::stm;

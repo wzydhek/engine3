@@ -29,19 +29,9 @@ namespace engine {
 
 	  Segment& operator=(const Segment& s);
 
-	  bool toBinaryStream(ObjectOutputStream* stream) {
-		  pointA.toBinaryStream(stream);
-		  pointB.toBinaryStream(stream);
+	  bool toBinaryStream(ObjectOutputStream* stream);
 
-		  return true;
-	  }
-
-	  bool parseFromBinaryStream(ObjectInputStream* stream) {
-		  pointA.parseFromBinaryStream(stream);
-		  pointB.parseFromBinaryStream(stream);
-
-		  return true;
-	  }
+	  bool parseFromBinaryStream(ObjectInputStream* stream);
 
 	  /**
 	   * returns closest point on the segment to point

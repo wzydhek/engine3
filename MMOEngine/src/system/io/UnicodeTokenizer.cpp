@@ -161,3 +161,23 @@ void UnicodeTokenizer::shiftTokens(int count) {
 bool UnicodeTokenizer::hasMoreTokens() const {
 	return index != -1;
 }
+
+UnicodeString UnicodeTokenizer::getRemainingString() {
+	UnicodeString str;
+
+	finalToken(str);
+
+	return str;
+}
+
+void UnicodeTokenizer::setDelimeter(const String& del) {
+	delimeter = del;
+}
+
+void UnicodeTokenizer::setDelimiter(const UnicodeString& del) {
+	delimeter = del;
+}
+
+void UnicodeTokenizer::setDelimiter(const char* ascii) {
+	delimeter = ascii;
+}

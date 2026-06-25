@@ -8,17 +8,21 @@
 #include "system/lang.h"
 #include "engine/util/iffstream/IffStream.h"
 
+namespace engine {
+namespace util {
+
 class IffStreamException : public Exception {
 protected:
 	IffStream* iffStream;
 
 public:
-	IffStreamException(IffStream* stream) : Exception("IffStreamException\n") {
-		iffStream = stream;
-	}
+	IffStreamException(IffStream* stream);
 
-	IffStream* getIffStream() {
-		return iffStream;
-	}
+	IffStream* getIffStream();
 
 };
+
+} // namespace util
+} // namespace engine
+
+using namespace engine::util;

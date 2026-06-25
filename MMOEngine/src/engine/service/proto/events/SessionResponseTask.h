@@ -11,21 +11,24 @@
 
 #pragma once
 
+#include "engine/service/proto/BaseClient.h"
+
+namespace engine {
+namespace service {
+namespace proto {
+
 class SessionResponseTask : public Task {
 	Reference<BaseClient*> client;
 	uint32 seed;
 
 public:
-	SessionResponseTask(BaseClient* cl, uint32 seed) {
-		client = cl;
-		this->seed = seed;
+	SessionResponseTask(BaseClient* cl, uint32 seed);
 
-#if defined(BASECLIENT_DISABLE_STATSD) and defined(COLLECT_TASKSTATISTICS)
-		setStatsSample(0);
-#endif
-	}
-
-	void run() {
-		client->notifyReceivedSeed(seed);
-	}
+	void run();
 };
+
+} // namespace proto
+} // namespace service
+} // namespace engine
+
+using namespace engine::service::proto;

@@ -14,14 +14,12 @@ namespace sys {
 
 	class FileWriterMkDirException : public IOException {
 	public:
-		FileWriterMkDirException(const String& msg) : IOException(msg) {
-		}
+		FileWriterMkDirException(const String& msg);
 	};
 
 	class FileWriterOpenException : public IOException {
 	public:
-		FileWriterOpenException(const String& msg) : IOException(msg) {
-		}
+		FileWriterOpenException(const String& msg);
 	};
 
   	class FileWriter : public Writer {
@@ -34,227 +32,62 @@ namespace sys {
   	public:
 		constexpr const static int bufferLength = 64;
 
-		FileWriter(File* file, bool append = false, bool delayOpen = false) {
-  			FileWriter::file = file;
-			FileWriter::append = append;
+		FileWriter(File* file, bool append = false, bool delayOpen = false);
 
-			if (!delayOpen) {
-				validateWriteable();
-			}
-  		}
+  		void close() override;
 
-  		void close() override {
-			if (!isOpen.get()) {
-				return;
-			}
+  		void flush() override;
 
-  			validateWriteable();
+  		int write(const char* str, int len) override;
 
-  			//file->flush(); close already does flush internally
+  		int write(const char* str, uint32 off, int len) override;
 
-  			file->close();
-  		}
+  		int write(char ch);
 
-  		void flush() override {
-			if (!isOpen.get()) {
-				return;
-			}
+  		int write(int val);
 
-  			validateWriteable();
+  		int write(uint32 val);
 
-  			file->flush();
-  		}
+  		int write(long val);
 
-  		int write(const char* str, int len) override {
-  			validateWriteable();
+  		int write(int64 val);
 
-  			return fwrite(str, 1, len, file->getDescriptor());
-  		}
+  		int write(uint64 val);
 
-  		int write(const char* str, uint32 off, int len) override {
-  			validateWriteable();
+  		int write(float val);
 
-  			file->seek(off);
+  		int write(const char* str);
 
-  			return fwrite((byte*) str, 1, len, file->getDescriptor());
-  		}
+  		int write(const String& str);
 
-  		int write(char ch) {
-			return write(&ch, 1);
-		}
+  		int writeLine(const String& str);
 
-  		int write(int val) {
-  			char buf[bufferLength];
+  		FileWriter& operator<<(char ch);
 
-			int written = snprintf(buf, sizeof(buf), "%i", val);
+  		FileWriter& operator<<(int val);
 
-			E3_ASSERT(written >= 0 && written < static_cast<int>(sizeof(buf)));
+  		FileWriter& operator<<(uint32 val);
 
-			return write(buf, written);
-		}
+  		FileWriter& operator<<(long val);
 
-  		int write(uint32 val) {
-  			char buf[bufferLength];
+  		FileWriter& operator<<(int64 val);
 
-			int written = snprintf(buf, sizeof(buf), "%u", val);
+  		FileWriter& operator<<(uint64 val);
 
-			E3_ASSERT(written >= 0 && written < static_cast<int>(sizeof(buf)));
+  		FileWriter& operator<<(float val);
 
-			return write(buf, written);
-		}
+  		FileWriter& operator<<(const char* str);
 
-  		int write(long val) {
-  			char buf[bufferLength];
+  		FileWriter& operator<<(const String& str);
 
-			int written = snprintf(buf, sizeof(buf), "%ld", val);
+		FileWriter& operator<<(const StringBuffer& str);
 
-			E3_ASSERT(written >= 0 && written < static_cast<int>(sizeof(buf)));
+  		File* getFile();
 
-			return write(buf, written);
-		}
-
-  		int write(int64 val) {
-  			char buf[bufferLength];
-
-			int written = sprintf(buf, "%lld", (long long) val);
-
-			E3_ASSERT(written >= 0 && written < static_cast<int>(sizeof(buf)));
-
-			return write(buf, written);
-		}
-
-  		int write(uint64 val) {
-  			char buf[bufferLength];
-
-			int written = snprintf(buf, sizeof(buf), "%llu", (unsigned long long) val);
-
-			E3_ASSERT(written >= 0 && written < static_cast<int>(sizeof(buf)));
-
-			return write(buf, written);
-		}
-
-  		int write(float val) {
-  			char buf[bufferLength];
-
-			int written = snprintf(buf, sizeof(buf), "%f", val);
-
-			E3_ASSERT(written >= 0 && written < static_cast<int>(sizeof(buf)));
-
-			return write(buf, written);
-		}
-
-  		int write(const char* str) {
-  			return write(str, strlen(str));
-  		}
-
-  		int write(const String& str) {
-  			return write(str.toCharArray(), str.length());
-  		}
-
-  		int writeLine(const String& str) {
-  			int written = write(str.toCharArray(), str.length());
-			written += write("\n", 1);
-
-			return written;
-  		}
-
-  		FileWriter& operator<< (char ch) {
-			write(ch);
-
-			return *this;
-		}
-
-  		FileWriter& operator<< (int val) {
-			write(val);
-
-			return *this;
-		}
-
-  		FileWriter& operator<< (uint32 val) {
-			write(val);
-
-			return *this;
-		}
-
-  		FileWriter& operator<< (long val) {
-			write(val);
-
-			return *this;
-		}
-
-  		FileWriter& operator<< (int64 val) {
-			write(val);
-
-			return *this;
-		}
-
-  		FileWriter& operator<< (uint64 val) {
-			write(val);
-
-			return *this;
-		}
-
-  		FileWriter& operator<< (float val) {
-			write(val);
-
-			return *this;
-		}
-
-  		FileWriter& operator<< (const char* str) {
-			write(str);
-
-			return *this;
-		}
-
-  		FileWriter& operator<< (const String& str) {
-			write(str);
-
-			return *this;
-		}
-
-		FileWriter& operator<< (const StringBuffer& str) {
-			write(str.getBuffer(), str.length());
-
-			return *this;
-		}
-
-  		inline File* getFile() {
-  			return file;
-  		}
-
-		inline const File* getFile() const {
-  			return file;
-  		}
+		inline const File* getFile() const;
 
   	protected:
-		void validateWriteable() {
-			validateMutex.lock();
-
-			try {
-				if (!isOpen.get()) {
-					if (!file->mkdirs()) {
-						throw FileWriterMkDirException(file->getFileName());
-					}
-
-					bool success = append ? file->setAppendable() : file->setWriteable();
-
-					if (!success) {
-						throw FileWriterOpenException(file->getFileName());
-					}
-
-					isOpen.set(true);
-				}
-
-				if (!file->exists()) {
-					throw FileNotFoundException(file);
-				}
-			} catch(...) {
-				validateMutex.unlock();
-				throw;
-			}
-
-			validateMutex.unlock();
-  		}
+		void validateWriteable();
   	};
   } // namespace io
 } // namespace sys

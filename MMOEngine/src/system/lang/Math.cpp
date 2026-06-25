@@ -17,6 +17,35 @@ const constexpr double Math::DEG2RAD;
 const constexpr double Math::RAD2DEG;
 const constexpr double Math::E;
 
+double Math::sqrt(double number) {
+	return ::sqrt(number);
+}
+
+double Math::cbrt(double number) {
+	return ::cbrt(number);
+}
+
+float Math::getPrecision(float num, int digits) {
+	float power = pow((float)10, digits);
+	return float(floor(num * power + .05f) / power);
+}
+
+double Math::acos(double arg) {
+	return ::acos(arg);
+}
+
+double Math::sin(double arg) {
+	return ::sin(arg);
+}
+
+double Math::cos(double arg) {
+	return ::cos(arg);
+}
+
+double Math::ln(float value) {
+	return (log10(value) / log10(E));
+}
+
 /*double Math::sqrt(double number) { // from Q3 fix for 64 bit
 	long i;
 	float x, y;

@@ -77,6 +77,25 @@ pthread_once_t Thread::initThread = PTHREAD_ONCE_INIT;
 
 ThreadLocal<Thread*> Thread::currentThread(ThreadNs::threadDtor);
 
+LockableTrace::LockableTrace(Lockable* l, byte value, Lockable* cross, bool monitor) : lockable(l), locked(value), crossedTo(cross), monitorLike(monitor) {
+}
+
+LockableTrace::LockableTrace(const LockableTrace& l) : lockable(l.lockable), locked(l.locked), crossedTo(l.crossedTo), trace(l.trace), monitorLike(l.monitorLike) {
+}
+
+LockableTrace& LockableTrace::operator=(const LockableTrace& l) {
+	if (this == &l)
+		return *this;
+
+	lockable = l.lockable;
+	locked = l.locked;
+	crossedTo = l.crossedTo;
+	monitorLike = l.monitorLike;
+	trace = l.trace;
+
+	return *this;
+}
+
 void Thread::initializeThread(Thread* thread) {
 	currentThread.set(thread);
 }
@@ -309,4 +328,49 @@ void Thread::assignToCPU(int cpu) {
 	}
 #endif
 #endif*/
+}
+
+String Thread::getCustomThreadName() const {
+	return customName;
+}
+
+void Thread::setThreadInitializer(ThreadInitializer* init) {
+	threadInitializer = init;
+}
+
+ThreadInitializer* Thread::getThreadInitializer() {
+	return threadInitializer;
+}
+
+uint32 Thread::getThreadNumber() {
+	return threadNumber;
+}
+
+const String& Thread::getName() {
+	return name;
+}
+
+ArrayList<Lockable*>* Thread::getAcquiredLockables() {
+	return &acquiredLockables;
+}
+
+ArrayList<LockableTrace>* Thread::getLockableTrace() {
+	return &lockableTrace;
+}
+
+void Thread::addAcquiredLockable(Lockable* lockable, Lockable* cross, bool monitorLike, bool addToTrace) {
+	acquiredLockables.add(lockable);
+
+	if (addToTrace)
+		lockableTrace.add(LockableTrace(lockable, 1, cross, monitorLike));
+}
+
+void Thread::removeAcquiredLockable(Lockable* lockable) {
+	acquiredLockables.removeElement(lockable);
+
+	lockableTrace.add(LockableTrace(lockable, 0));
+}
+
+engine::core::TaskWorkerThread* Thread::asTaskWorkerThread() {
+	return nullptr;
 }

@@ -37,13 +37,9 @@ namespace engine {
 
 		bool isAvailable();
 
-		inline bool isDisconnected() const {
-			return disconnected;
-		}
+		bool isDisconnected() const;
 
-		inline bool hasError() const {
-			return errored;
-		}
+		bool hasError() const;
 
 		virtual void finalize();
 
@@ -52,42 +48,24 @@ namespace engine {
 		virtual void release();
 
 		// setters
-		void setHandler(ServiceHandler* handler) {
-			serviceHandler = handler;
-		}
+		void setHandler(ServiceHandler* handler);
 
-		inline void setAddress(const String& host, int port) {
-			addr = SocketAddress(host, port);
-		}
+		void setAddress(const String& host, int port);
 
-		inline void setError() {
-			errored = true;
-		}
+		void setError();
 
-		inline void setPacketLoss(int ratio) {
-			packetLossChance = ratio;
-		}
+		void setPacketLoss(int ratio);
 
 		// getters
-		inline uint64 getNetworkID() const {
-			return addr.getNetworkID();
-		}
+		uint64 getNetworkID() const;
 
-		inline SocketAddress& getAddress() {
-			return addr;
-		}
+		SocketAddress& getAddress();
 
-		inline const SocketAddress& getAddress() const {
-			return addr;
-		}
+		const SocketAddress& getAddress() const;
 
-		inline Socket* getSocket() {
-			return socket;
-		}
+		Socket* getSocket();
 
-		inline const Socket* getSocket() const {
-			return socket;
-		}
+		const Socket* getSocket() const;
 	};
 
   } // namespace service

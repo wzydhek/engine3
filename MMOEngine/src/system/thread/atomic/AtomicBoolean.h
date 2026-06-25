@@ -19,58 +19,31 @@ namespace sys {
 		std::atomic<bool> value{false};
 
 	public:
-		AtomicBoolean() {
-		}
+		AtomicBoolean();
 
-		AtomicBoolean(bool val) : value(val) {
-		}
+		AtomicBoolean(bool val);
 
-		AtomicBoolean(AtomicBoolean&& val) : value(val.value.load(std::memory_order_seq_cst)) {
-		}
+		AtomicBoolean(AtomicBoolean&& val);
 
-		AtomicBoolean(const AtomicBoolean& val) : value(val.value.load(std::memory_order_seq_cst)) {
-		}
+		AtomicBoolean(const AtomicBoolean& val);
 
-		~AtomicBoolean() {
-		}
+		~AtomicBoolean();
 
-		bool compareAndSet(bool oldval, bool newval) {
-			return value.compare_exchange_strong(oldval, newval);
-		}
+		bool compareAndSet(bool oldval, bool newval);
 
-		bool get(std::memory_order m = std::memory_order_relaxed) const {
-			return value.load(m);
-		}
+		bool get(std::memory_order m = std::memory_order_relaxed) const;
 
-		void set(bool val, std::memory_order m = std::memory_order_relaxed) {
-			value.store(val, m);
-		}
+		void set(bool val, std::memory_order m = std::memory_order_relaxed);
 
-		AtomicBoolean& operator=(const bool val) {
-			value = val;
+		AtomicBoolean& operator=(const bool val);
 
-			return *this;
-		}
+		bool operator==(const bool val) const;
 
-		bool operator== (const bool val) const {
-			return val == value.load(std::memory_order_relaxed);
-		}
+		operator bool() const;
 
-		operator bool() const {
-			return value.load(std::memory_order_seq_cst);
-		}
+		bool toBinaryStream(sys::io::ObjectOutputStream* stream) NO_THREAD_SAFETY_ANALYSIS;
 
-		bool toBinaryStream(sys::io::ObjectOutputStream* stream) NO_THREAD_SAFETY_ANALYSIS {
-			stream->writeInt(value);
-
-			return true;
-		}
-
-		bool parseFromBinaryStream(sys::io::ObjectInputStream* stream) NO_THREAD_SAFETY_ANALYSIS {
-			*this = stream->readInt();
-
-			return true;
-		}
+		bool parseFromBinaryStream(sys::io::ObjectInputStream* stream) NO_THREAD_SAFETY_ANALYSIS;
 	};
 
 	} // namespace atomic

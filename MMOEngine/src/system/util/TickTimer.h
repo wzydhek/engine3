@@ -16,51 +16,21 @@ namespace sys {
     	struct tms elapsedTicks;
 
     public:
-    	TickTimer() {
-    		clearStartTicks();
-    		clearElapsedTicks();
-    	}
+		TickTimer();
 
-    	void start() {
-    		assert(startTicks.tms_utime == 0);
-    		times(&startTicks);
+    	void start();
 
-    		clearElapsedTicks();
-    	}
+    	void stop();
 
-    	void stop() {
-    		assert(startTicks.tms_utime != 0);
+    	uint64 elapsedUserTicks() const;
 
-    		times(&elapsedTicks);
-    	}
+    	uint64 elapsedSystemTicks() const;
 
-    	uint64 elapsedUserTicks() const {
-    		if (startTicks.tms_utime != 0)
-    			return elapsedTicks.tms_utime - startTicks.tms_utime;
-    		else
-    			return 0;
-    	}
+    	void clearStartTicks();
 
-    	uint64 elapsedSystemTicks() const {
-    		if (startTicks.tms_utime != 0)
-    			return elapsedTicks.tms_stime - startTicks.tms_stime;
-    		else
-    			return 0;
-    	}
+    	void clearElapsedTicks();
 
-    	void clearStartTicks() {
-    		startTicks.tms_utime = 0;
-    		startTicks.tms_stime = 0;
-    	}
-
-    	void clearElapsedTicks() {
-    		elapsedTicks.tms_utime = 0;
-    		elapsedTicks.tms_stime = 0;
-    	}
-
-    	static uint64 getTicksPerSec() {
-    		return sysconf(_SC_CLK_TCK);
-    	}
+    	static uint64 getTicksPerSec();
 
     };
 

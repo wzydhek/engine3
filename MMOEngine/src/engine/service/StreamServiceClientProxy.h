@@ -12,13 +12,9 @@ namespace engine {
 
 	class StreamServiceClientProxy : public StreamServiceClient {
 	public:
-		StreamServiceClientProxy(Socket* sock) : StreamServiceClient(sock) {
-			doRun = true;
-		}
+		StreamServiceClientProxy(Socket* sock);
 
-		StreamServiceClientProxy(Socket* sock, SocketAddress& addr) : StreamServiceClient(sock, addr) {
-			doRun = true;
-		}
+		StreamServiceClientProxy(Socket* sock, SocketAddress& addr);
 
 		virtual ~StreamServiceClientProxy() {
 		}

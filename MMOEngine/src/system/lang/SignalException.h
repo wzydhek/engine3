@@ -48,32 +48,24 @@ template <class SignalCallbackClass> class SignalCallbackTranslator {
 		}
 };
 
-class AbortedException : public Exception {
+	class AbortedException : public Exception {
 	public:
-		AbortedException(int cause) : Exception() {
-			System::err << "Exception aborted with cause " << cause << " at\n" << flush;
-			printStackTrace();
+		AbortedException(int cause);
 
-			exit(1);
-		}
+		static int GetSignalNumber();
+	};
 
-		static int GetSignalNumber() {
-			return SIGABRT;
-		}
-};
-
-class FloatingPointException : public Exception {
+	class FloatingPointException : public Exception {
 	public:
-		FloatingPointException(int) :Exception() {
-			printStackTrace();
-		}
+		FloatingPointException(int);
 
-		static int GetSignalNumber() {
-			return SIGFPE;
-		}
-};
+		static int GetSignalNumber();
+	};
 
 	}
 }
 
+using namespace sys::lang;
+
 #endif
+

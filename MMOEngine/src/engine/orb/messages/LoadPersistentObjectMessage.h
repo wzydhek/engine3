@@ -23,41 +23,15 @@ namespace engine {
 		bool found;
 
 	public:
-		LoadPersistentObjectMessage(uint64 objectid) : DOBMessage(LOADPERSISTENTOBJECTMESSAGE, 40), objectID(objectid) {
-			insertLong(objectid);
+		LoadPersistentObjectMessage(uint64 objectid);
 
-			found = false;
-		}
+		LoadPersistentObjectMessage(Packet* message);
 
-		LoadPersistentObjectMessage(Packet* message) : DOBMessage(message) {
-			objectID = message->parseLong();
+		void execute();
 
-			found = false;
-		}
+		void handleReply(Packet* response);
 
-		void execute() {
-			DistributedObjectBroker* orb = DistributedObjectBroker::instance();
-			DOBObjectManager* objectManager = orb->getObjectManager();
-
-			DistributedObject* obj = objectManager->loadPersistentObject(objectID);
-
-			if (obj != nullptr) {
-				insertBoolean(true);
-				insertAscii(obj->_getClassName());
-				insertLong(obj->_getObjectID());
-			} else
-				insertByte(0);
-
-			client->sendReply(this);
-		}
-
-		void handleReply(Packet* response) {
-			found = response->parseBoolean();
-		}
-
-		bool isFound() {
-			return found;
-		}
+		bool isFound();
 	};
 
   }

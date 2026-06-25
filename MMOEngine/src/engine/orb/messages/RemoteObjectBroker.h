@@ -45,19 +45,13 @@ namespace engine {
 		void addDeployedObject(DistributedObject* obj);
 		void removeDeployedObject(DistributedObject* obj);
 
-		SynchronizedSortedVector<DistributedObject*>& getDeployedObjects() {
-			return deployedObjects;
-		}
+		SynchronizedSortedVector<DistributedObject*>& getDeployedObjects();
 
-		DOBObjectManager* getObjectManager() {
-			return nullptr;
-		}
+		DOBObjectManager* getObjectManager();
 
 		uint64 getNextFreeObjectID();
 
-		DOBServiceClient* getBrokerClient() {
-			return brokerClient;
-		}
+		DOBServiceClient* getBrokerClient();
 	};
 
   } // namespace ORB

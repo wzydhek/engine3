@@ -8,6 +8,25 @@
 #include "Mutex.h"
 #include "engine/core/TaskWorkerThread.h"
 
+Mutex::Mutex() : Lockable() {
+	pthread_mutexattr_init(&attr);
+	pthread_mutex_init(&mutex, &attr);
+}
+
+Mutex::Mutex(const Mutex& m) : Lockable() {
+	pthread_mutexattr_init(&attr);
+	pthread_mutex_init(&mutex, &attr);
+}
+
+Mutex& Mutex::operator=(const Mutex& m) {
+	return *this;
+}
+
+Mutex::~Mutex() {
+	pthread_mutex_destroy(&mutex);
+	pthread_mutexattr_destroy(&attr);
+}
+
 void Mutex::lock(bool doLock) {
 	if (!doLock)
 		return;

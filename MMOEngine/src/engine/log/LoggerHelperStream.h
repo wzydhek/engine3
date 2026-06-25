@@ -13,3 +13,5 @@ namespace engine {
 		typedef engine::log::LoggerHelper LoggerHelperStream;
 	}
 }
+
+using namespace engine::log;

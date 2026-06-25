@@ -13,24 +13,22 @@
 
 #include "engine/service/proto/BaseClient.h"
 
+namespace engine {
+namespace service {
+namespace proto {
+
 class SessionStartTask : public Task {
 	Reference<BaseClient*> client;
 	uint32 connectionID;
 
 public:
-	SessionStartTask(BaseClient* cl, uint32 cid) {
-		client = cl;
-		connectionID = cid;
+	SessionStartTask(BaseClient* cl, uint32 cid);
 
-#if defined(BASECLIENT_DISABLE_STATSD) and defined(COLLECT_TASKSTATISTICS)
-		setStatsSample(0);
-#endif
-	}
-
-	void run() {
-		client->setConnectionID(connectionID);
-
-		Packet* msg = new SessionIDResponseMessage(client);
-		client->send(msg);
-	}
+	void run();
 };
+
+} // namespace proto
+} // namespace service
+} // namespace engine
+
+using namespace engine::service::proto;

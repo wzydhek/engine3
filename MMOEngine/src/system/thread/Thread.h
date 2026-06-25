@@ -45,26 +45,11 @@ namespace sys {
   		 StackTrace trace;
   		 bool monitorLike;
 
-  		 LockableTrace(Lockable* l, byte value, Lockable* cross = nullptr, bool monitor = false) :
-  			lockable(l), locked(value), crossedTo(cross), monitorLike(monitor) {
-  		 }
+  		 LockableTrace(Lockable* l, byte value, Lockable* cross = nullptr, bool monitor = false);
 
-  		 LockableTrace(const LockableTrace& l) : lockable(l.lockable), locked(l.locked),
-  				 crossedTo(l.crossedTo), trace(l.trace), monitorLike(l.monitorLike) {
-  		 }
+  		 LockableTrace(const LockableTrace& l);
 
-  		 LockableTrace& operator=(const LockableTrace& l) {
-  			if (this == &l)
-  				return *this;
-
-  			lockable = l.lockable;
-  			locked = l.locked;
-  			crossedTo = l.crossedTo;
-  			monitorLike = l.monitorLike;
-  			trace = l.trace;
-
-  			return *this;
-  		 }
+  		 LockableTrace& operator=(const LockableTrace& l);
   	 };
 
  	class Thread;
@@ -139,9 +124,7 @@ namespace sys {
 
 		void setCustomThreadName(const String& name);
 
-		String getCustomThreadName() const {
-			return customName;
-		}
+		String getCustomThreadName() const;
 
 		void setDetached();
 
@@ -152,49 +135,26 @@ namespace sys {
 		//does nothing on osx
 		void assignToCPU(int cpu);
 
-		static void setThreadInitializer(ThreadInitializer* init) {
-			threadInitializer = init;
-		}
+		static void setThreadInitializer(ThreadInitializer* init);
 
-		static ThreadInitializer* getThreadInitializer() {
-			return threadInitializer;
-		}
+		static ThreadInitializer* getThreadInitializer();
 
-		uint32 getThreadNumber() {
-			return threadNumber;
-		}
+		uint32 getThreadNumber();
 
-		const String& getName() {
-			return name;
-		}
+		const String& getName();
 
-		ArrayList<Lockable*>* getAcquiredLockables() {
-			return &acquiredLockables;
-		}
+		ArrayList<Lockable*>* getAcquiredLockables();
 
-		ArrayList<LockableTrace>* getLockableTrace() {
-			return &lockableTrace;
-		}
+		ArrayList<LockableTrace>* getLockableTrace();
 
 		void addModifiedObject(engine::ORB::DistributedObject* object);
 		void addDeleteFromDatabaseObject(engine::ORB::DistributedObject* object);
 
-		void addAcquiredLockable(Lockable* lockable, Lockable* cross = nullptr, bool monitorLike = false, bool addToTrace = true) {
-			acquiredLockables.add(lockable);
+		void addAcquiredLockable(Lockable* lockable, Lockable* cross = nullptr, bool monitorLike = false, bool addToTrace = true);
 
-			if (addToTrace)
-				lockableTrace.add(LockableTrace(lockable, 1, cross, monitorLike));
-		}
+		void removeAcquiredLockable(Lockable* lockable);
 
-		void removeAcquiredLockable(Lockable* lockable) {
-			acquiredLockables.removeElement(lockable);
-
-			lockableTrace.add(LockableTrace(lockable, 0));
-		}
-
-		virtual engine::core::TaskWorkerThread* asTaskWorkerThread() {
-			return nullptr;
-		}
+		virtual engine::core::TaskWorkerThread* asTaskWorkerThread();
 
 		ModifiedObjectsList* takeModifiedObjects();
 		DeleteFromDatabaseObjectsList* takeDeleteFromDatabaseObjects();

@@ -16,16 +16,9 @@ namespace sys {
 		class Stream const* stream;
 
 	public:
-		StreamIndexOutOfBoundsException(const Stream* strm, int index) : Exception(), stream(strm) {
-			StringBuffer str;
-			str << "StreamIndexOutOfBoundsException at " << index << "\n";
-			message = str.toString();
-			//System::out << message;
-		}
+		StreamIndexOutOfBoundsException(const Stream* strm, int index);
 
-		const Stream* getStream() const {
-			return stream;
-		}
+		const Stream* getStream() const;
 
 	};
 

@@ -321,3 +321,5 @@ namespace sys {
 
   } // namespace util
 } // namespace sys
+
+using namespace sys::util;

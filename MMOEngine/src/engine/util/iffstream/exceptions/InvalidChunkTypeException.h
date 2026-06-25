@@ -8,11 +8,15 @@
 #include "system/lang.h"
 #include "IffStreamException.h"
 
+namespace engine {
+namespace util {
+
 class InvalidChunkTypeException : public IffStreamException {
 public:
-	InvalidChunkTypeException(IffStream* iffstream) : IffStreamException(iffstream) {
-		StringBuffer sstr;
-		sstr << "InvalidChunkTypeException on file:[" << iffstream->getFileName() << "]\n";
-		message = sstr.toString();
-	}
+	InvalidChunkTypeException(IffStream* iffstream);
 };
+
+} // namespace util
+} // namespace engine
+
+using namespace engine::util;

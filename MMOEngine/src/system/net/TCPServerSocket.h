@@ -12,14 +12,7 @@ namespace sys {
 
 	class TCPServerSocket : public Socket {
 	public:
-		TCPServerSocket(SocketAddress* addr) : Socket() {
-			fileDescriptor = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-	
-			if (fileDescriptor < 0)
-				throw SocketException("unable to create server socket");
-	
-			bindTo(addr);
-		}
+		TCPServerSocket(SocketAddress* addr);
 		
 	};
 

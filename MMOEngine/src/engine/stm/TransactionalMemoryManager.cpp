@@ -333,3 +333,47 @@ void TransactionalMemoryManager::printStatistics() {
 	failedCompetingCommited.set(0);
 	deletedTransactions.set(0);
 }
+
+void TransactionalMemoryManager::closeThread() {
+	instance()->reclaimObjects(5000, 0);
+}
+
+TransactionalTaskManager* TransactionalMemoryManager::getTaskManager() {
+	return taskManager;
+}
+
+TransactionalObjectManager* TransactionalMemoryManager::getObjectManager() {
+	return objectManager;
+}
+
+TransactionalSocketManager* TransactionalMemoryManager::getSocketManager() {
+	return socketManager;
+}
+
+TransactionalBaseClientManager* TransactionalMemoryManager::getBaseClientManager() {
+	return baseClientManager;
+}
+
+void TransactionalMemoryManager::blockTransactions() ACQUIRE(Transaction::blockLock) {
+	Transaction::blockLock.wlock();
+}
+
+void TransactionalMemoryManager::increaseFailedByExceptions() {
+	failedToExceptions.increment();
+}
+
+void TransactionalMemoryManager::increaseFailedByObjectChanged() {
+	failedOnAcquireRW.increment();
+}
+
+void TransactionalMemoryManager::increaseFailedByCompetingCommited() {
+	failedCompetingCommited.increment();
+}
+
+void TransactionalMemoryManager::unblockTransactions() RELEASE(Transaction::blockLock) {
+	Transaction::blockLock.unlock();
+}
+
+void TransactionalMemoryManager::increaseDeletedTransactions() {
+	deletedTransactions.increment();
+}

@@ -31,6 +31,9 @@ namespace sys {
 
 using namespace sys::io;
 
+namespace sys {
+	namespace lang {
+
 template<typename T> class TypeInfo;
 
 template<typename T> class TypeInfoAtomicBase {
@@ -289,3 +292,8 @@ namespace SerializationHelpers {
 		E3_ABORT("calling parseFromBinaryStream on an element that doesnt have it");
 	}
 }
+
+  } // namespace lang
+} // namespace sys
+
+using namespace sys::lang;

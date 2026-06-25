@@ -45,3 +45,5 @@ namespace engine {
 	} // u3d
   } // util
 } // engine
+
+using namespace engine::util::u3d;

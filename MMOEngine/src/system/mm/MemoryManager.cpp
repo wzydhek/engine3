@@ -18,6 +18,17 @@ AtomicInteger CloneCounter::cloneCount;
 
 AtomicReference<MemoryManager*> MemoryManager::inst;
 
+MemoryManager* MemoryManager::getInstance() {
+	if (inst == nullptr)
+		setInstance(new MemoryManager());
+
+	return inst;
+}
+
+void MemoryManager::setInstance(MemoryManager* manager) {
+	inst.set(manager);
+}
+
 void MemoryManager::reclaim(Object* object) {
 	object->destroy();
 }

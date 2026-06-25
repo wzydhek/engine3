@@ -8,6 +8,9 @@
 #include "system/platform.h"
 #include "system/lang/System.h"
 
+namespace sys {
+namespace util {
+
 template <class O> class BinarySearchTree;
 
 template <class O> class BinaryNode {
@@ -197,3 +200,7 @@ private:
 	}
 
 };
+} // namespace util
+} // namespace sys
+
+using namespace sys::util;

@@ -173,3 +173,14 @@ bool DOBServiceClient::waitForReply(DOBMessage* message) {
 
 	return res;
 }
+
+RemoteObjectBroker* DOBServiceClient::getRemoteObjectBroker() {
+	return rob;
+}
+
+DOBMessage* DOBServiceClient::getQueuedMessage(uint32 sequence) {
+	DOBMessage* message = sentMessageQueue.remove(sequence);
+	fatal(message != nullptr) << "message is null";
+
+	return message;
+}

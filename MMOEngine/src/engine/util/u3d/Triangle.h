@@ -32,8 +32,7 @@ namespace engine {
 		Vector3 verts[3];
 
 	public:
-		Triangle() noexcept {
-		}
+		Triangle() noexcept;
 
 #ifdef TRIANGLE_INHERITS_VARIABLE
 		Triangle(const Triangle& tri) noexcept;
@@ -88,35 +87,13 @@ namespace engine {
 		//uses vertices x and z
 		float area2D() const;
 
-		static float area2D(const Vector3& a, const Vector3& b, const Vector3& c) {
-			float ax = b[0] - a[0];
-			float ay = b[2] - a[2];
+		static float area2D(const Vector3& a, const Vector3& b, const Vector3& c);
 
-			float bx = c[0] - a[0];
-			float by = c[2] - a[2];
+		void set(const Vector3 vert[3]);
 
-			return bx * ay - ax * by;
-		}
+		Vector3& getVertex(uint32 i);
 
-		inline void set(const Vector3 vert[3]) {
-			memcpy(verts, vert, sizeof(verts));
-		}
-
-		inline Vector3& getVertex(uint32 i) {
-#ifdef VECTORS_OUT_OF_BOUNDS_CHECK
-			if (i > 2)
-				throw ArrayIndexOutOfBoundsException(i);
-#endif
-			return verts[i];
-		}
-
-		 inline const Vector3& getVertex(uint32 i) const {
-#ifdef VECTORS_OUT_OF_BOUNDS_CHECK
-			 if (i > 2)
-				throw ArrayIndexOutOfBoundsException(i);
-#endif
-			 return verts[i];
-		 }
+		const Vector3& getVertex(uint32 i) const;
 	};
 
   	} // u3d

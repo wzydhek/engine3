@@ -14,59 +14,25 @@ namespace sys {
 
 	class Double : public BaseTypeVariable<double> {
 	public:
-		inline Double() : BaseTypeVariable<double>(0) {
+		Double();
 
-		}
+		Double(double val);
 
-		inline Double(double val) : BaseTypeVariable<double>(val) {
+		Double(const Double& val);
 
-		}
+		Double& operator=(const Double& val);
 
-		inline Double(const Double& val) : BaseTypeVariable<double>(val) {
+		bool parseFromString(const String& str, int version = 0);
 
-		}
+		bool toString(String& str) const;
 
-		inline Double& operator=(const Double& val) {
-			if (this == &val) {
-				return *this;
-			}
+		bool toBinaryStream(ObjectOutputStream* stream);
 
-			BaseTypeVariable<double>::operator=(val);
+		bool parseFromBinaryStream(ObjectInputStream* stream);
 
-			return *this;
-		}
+		static float valueOf(const String& str);
 
-		bool parseFromString(const String& str, int version = 0) {
-			*this = valueOf(str);
-
-			return true;
-		}
-
-		bool toString(String& str) const {
-			str = String::valueOf(*this);
-
-			return true;
-		}
-
-		bool toBinaryStream(ObjectOutputStream* stream) {
-			stream->writeFloat(get());
-
-			return true;
-		}
-
-		bool parseFromBinaryStream(ObjectInputStream* stream) {
-			*this = stream->readFloat();
-
-			return true;
-		}
-
-		static float valueOf(const String& str) {
-			return atof(str.toCharArray());
-		}
-
-		static uint32 hashCode(double value) {
-			return (uint32) std::hash<double>{}(value);
-		}
+		static uint32 hashCode(double value);
 
 	};
 

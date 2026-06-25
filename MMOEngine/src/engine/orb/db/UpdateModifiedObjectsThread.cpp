@@ -143,3 +143,84 @@ void UpdateModifiedObjectsThread::commitObjectsToDatabase() {
 		throw;
 	}
 }
+
+void UpdateModifiedObjectsThread::setObjectsToUpdateVector(ArrayList<DistributedObject*>* objectsToUpdate) {
+	this->objectsToUpdate = objectsToUpdate;
+}
+
+void UpdateModifiedObjectsThread::setObjectsToDeleteVector(ArrayList<DistributedObject*>* objectsToDelete) {
+	this->objectsToDelete = objectsToDelete;
+}
+
+void UpdateModifiedObjectsThread::setTransaction(engine::db::berkeley::Transaction* trans) {
+	transaction = trans;
+}
+
+void UpdateModifiedObjectsThread::setStartOffset(int offset) {
+	startOffset = offset;
+}
+
+void UpdateModifiedObjectsThread::setEndOffset(int offset) {
+	endOffset = offset;
+}
+
+void UpdateModifiedObjectsThread::stopWork() {
+	doRun = false;
+
+	signalCopyFinished();
+
+	waitFinishedWork();
+
+	join();
+}
+
+void UpdateModifiedObjectsThread::setRAMCopyFinished(bool val) {
+	copyRAMFinished = val;
+}
+
+bool UpdateModifiedObjectsThread::hasFinishedCommiting() const {
+	return finishedCommiting;
+}
+
+void UpdateModifiedObjectsThread::signalMasterTransactionFinish() {
+	blockMutex.lock();
+
+	waitMasterTransaction.broadcast(&blockMutex);
+
+	blockMutex.unlock();
+}
+
+void UpdateModifiedObjectsThread::signalCopyFinished() {
+	blockMutex.lock();
+
+	setRAMCopyFinished(true);
+
+	waitCondition.broadcast(&blockMutex);
+
+	blockMutex.unlock();
+}
+
+void UpdateModifiedObjectsThread::signalActivity() {
+	blockMutex.lock();
+
+	working = true;
+
+	waitCondition.broadcast(&blockMutex);
+
+	blockMutex.unlock();
+}
+
+void UpdateModifiedObjectsThread::waitFinishedWork() {
+	blockMutex.lock();
+
+	while (doRun && waitingToStart && objectsToUpdate != nullptr) {
+		waitCondition.broadcast(&blockMutex);
+		blockMutex.unlock();
+		blockMutex.lock();
+	}
+
+	if (working)
+		finishedWorkCondition.wait(&blockMutex);
+
+	blockMutex.unlock();
+}

@@ -74,29 +74,15 @@ namespace sys {
 				return true;
 			}*/
 
-			bool toBinaryStream(ObjectOutputStream* stream) {
-				writeObject(stream);
+			bool toBinaryStream(ObjectOutputStream* stream);
 
-				return true;
-			}
+			bool parseFromBinaryStream(ObjectInputStream* stream);
 
-			bool parseFromBinaryStream(ObjectInputStream* stream) {
-				readObject(stream);
+			void _setClassName(const String& name);
 
-				return true;
-			}
+			String& _getClassName();
 
-			inline void _setClassName(const String& name) {
-				_className = name;
-			}
-
-			inline String& _getClassName() {
-				return _className;
-			}
-
-			inline const String& _getClassName() const {
-				return _className;
-			}
+			const String& _getClassName() const;
 
 			static int getObjectData(const String& str, String& obj);
 
@@ -180,67 +166,31 @@ namespace sys {
 			uint8 type;
 
 		public:
-			VariableName() {
-				version = 0;
-				type = 0;
-				name = nullptr;
-			}
+			VariableName();
 
-			VariableName(const char* name, int version) {
-				VariableName::name = name;
-				VariableName::version = version;
+			VariableName(const char* name, int version);
 
-				type = 0;
-			}
+			VariableName(const VariableName& v);
 
-			VariableName(const VariableName& v) {
-				name = v.name;
-				version = v.version;
-				type = v.type;
-			}
-
-			VariableName& operator=(const VariableName& v) {
-				if (this == &v)
-					return *this;
-
-				name = v.name;
-				version = v.version;
-				type = v.type;
-
-				return *this;
-			}
+			VariableName& operator=(const VariableName& v);
 
 			~VariableName() {
 
 			}
 
-			int compareTo(const VariableName& str) const {
-				return strcmp(name, str.name);
-			}
+			int compareTo(const VariableName& str) const;
 
-			inline const char* getName() const {
-				return name;
-			}
+			const char* getName() const;
 
-			inline void setName(const char* str) {
-				name = str;
-			}
+			void setName(const char* str);
 
-			inline void setVersion(int ver) {
-				version = (uint8) ver;
-			}
+			void setVersion(int ver);
 
-			inline void setType(int typ) {
-				type = (uint8) typ;
-			}
+			void setType(int typ);
 
-			inline int getVersion() const {
-				return (int) version;
-			}
+			int getVersion() const;
 
-			inline int getType() const {
-				return (int) type;
-			}
+			int getType() const;
 
 			/*bool toString(String& str) {
 				return false;
@@ -250,13 +200,9 @@ namespace sys {
 				return false;
 			}*/
 
-			bool toBinaryStream(ObjectOutputStream* stream) {
-				return false;
-			}
+			bool toBinaryStream(ObjectOutputStream* stream);
 
-			bool parseFromBinaryStream(ObjectInputStream* stream) {
-				return false;
-			}
+			bool parseFromBinaryStream(ObjectInputStream* stream);
 
 		};
 	}

@@ -60,33 +60,19 @@ namespace sys {
 		String toStringData() const;
 
 		// getters
-		inline int getOffset() const {
-			return offset - elementData;
-		}
+		int getOffset() const;
 
-		inline bool hasData() const {
-			return offset < end;
-		}
+		bool hasData() const;
 
-		inline char* getBuffer() {
-			return elementData;
-		}
+		char* getBuffer();
 
-		inline const char* getBuffer() const {
-			return elementData;
-		}
+		const char* getBuffer() const;
 
-		inline int size() const {
-			return end - elementData;
-		}
+		int size() const;
 
-		inline const char* begin() const {
-			return elementData;
-		}
+		const char* begin() const;
 
-		inline char* begin() {
-			return elementData;
-		}
+		char* begin();
 	};
 
   } // namespace io

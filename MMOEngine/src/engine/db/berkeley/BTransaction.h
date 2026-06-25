@@ -42,24 +42,16 @@ namespace engine {
 		/**
 		 * End the transaction, not committing synchronously, deletes this from memory regarding result
 		 */
-		inline int commitNoSync() NO_THREAD_SAFETY_ANALYSIS {
-			return commit(DB_TXN_NOSYNC);
-		}
+		int commitNoSync() NO_THREAD_SAFETY_ANALYSIS;
 
 		/**
 		 * End the transaction, committing synchronously, deletes this from memory regarding result
 		 */
-		inline int commitSync() NO_THREAD_SAFETY_ANALYSIS {
-			return commit(DB_TXN_SYNC);
-		}
+		int commitSync() NO_THREAD_SAFETY_ANALYSIS;
 
-		inline DB_TXN* getDBTXN() const {
-			return transaction;
-		}
+		DB_TXN* getDBTXN() const;
 
-		inline DB_TXN** getDBTXNPTR() {
-			return &transaction;
-		}
+		DB_TXN** getDBTXNPTR();
 
 		friend class Environment;
 
@@ -68,3 +60,5 @@ namespace engine {
     } // namespace berkeley
   } // namespace db
 } // namespace engine
+
+using namespace engine::db::berkeley;

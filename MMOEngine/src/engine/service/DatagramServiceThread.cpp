@@ -91,6 +91,9 @@ public:
 	}
 };
 
+namespace engine {
+namespace service {
+
 class DatagramMessageHandler : public IOHandler {
 	DatagramServiceThread* service;
 
@@ -119,6 +122,11 @@ public:
 	}
 
 };
+
+} // namespace service
+} // namespace engine
+
+using namespace engine::service;
 
 void DatagramServiceThread::receiveMessages() {
 	IOProcessor processor;

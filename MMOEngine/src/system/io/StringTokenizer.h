@@ -30,37 +30,22 @@ namespace sys {
 
 		void getStringToken(String& token);
 
-		String getStringToken() {
-			String val;
-
-			getStringToken(val);
-
-			return val;
-		}
+		String getStringToken();
 
 		void getStringToken(StringBuffer& token);
 
 		void finalToken(String& s);
 
-		String getRemainingString() {
-			String str;
-
-			finalToken(str);
-
-			return str;
-		}
+		String getRemainingString();
 
 		void shiftTokens(int count);
 
 		bool hasMoreTokens() const;
 
-		inline void setDelimeter(const String& del) {
-			delimiter = del;
-		}
+		void setDelimeter(const String& del);
 
-		inline void setDelimiter(const String& del) {
-			delimiter = del;
-		}
+		void setDelimiter(const String& del);
+
 	private:
 		void nextToken(String& s);
 		void nextToken(StringBuffer& s);

@@ -40,3 +40,5 @@ namespace sys {
 
   } // namespace mm
 } // namespace sys
+
+using namespace sys::mm;

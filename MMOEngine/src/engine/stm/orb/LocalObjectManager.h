@@ -46,9 +46,7 @@ namespace engine {
 		Reference<DistributedObject*> lookUp(const String& name);
 		Reference<DistributedObject*> lookUp(uint64 objid);
 		
-		DOBObjectManager* getObjectManager() {
-                    return objectManager;
-                }
+		DOBObjectManager* getObjectManager();
 
 		bool destroyObject(DistributedObjectStub* obj);
 

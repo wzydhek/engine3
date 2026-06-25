@@ -156,3 +156,7 @@ LocalTaskManager* TransactionalTaskManager::getLocalTaskManager() {
 
 	return impl;
 }
+
+TaskManagerImpl* TransactionalTaskManager::getTaskManagerImpl() {
+	return taskManager;
+}

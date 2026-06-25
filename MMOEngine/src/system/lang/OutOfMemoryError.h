@@ -12,8 +12,7 @@ namespace sys {
 
 	class OutOfMemoryError : public Exception {
 	public:
-		OutOfMemoryError() : Exception("OutOfMemoryError\n") {
-		}
+		OutOfMemoryError();
 	};
 
   } // namespace lang

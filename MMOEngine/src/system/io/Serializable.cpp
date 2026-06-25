@@ -948,3 +948,92 @@ int Serializable::getVariableDataMap(const String& serializedData, VectorMap<Str
 	return map.size();
 }
 
+bool Serializable::toBinaryStream(ObjectOutputStream* stream) {
+	writeObject(stream);
+
+	return true;
+}
+
+bool Serializable::parseFromBinaryStream(ObjectInputStream* stream) {
+	readObject(stream);
+
+	return true;
+}
+
+void Serializable::_setClassName(const String& name) {
+	_className = name;
+}
+
+String& Serializable::_getClassName() {
+	return _className;
+}
+
+const String& Serializable::_getClassName() const {
+	return _className;
+}
+
+VariableName::VariableName() {
+	version = 0;
+	type = 0;
+	name = nullptr;
+}
+
+VariableName::VariableName(const char* name, int version) {
+	VariableName::name = name;
+	VariableName::version = version;
+
+	type = 0;
+}
+
+VariableName::VariableName(const VariableName& v) {
+	name = v.name;
+	version = v.version;
+	type = v.type;
+}
+
+VariableName& VariableName::operator=(const VariableName& v) {
+	if (this == &v)
+		return *this;
+
+	name = v.name;
+	version = v.version;
+	type = v.type;
+
+	return *this;
+}
+
+int VariableName::compareTo(const VariableName& str) const {
+	return strcmp(name, str.name);
+}
+
+const char* VariableName::getName() const {
+	return name;
+}
+
+void VariableName::setName(const char* str) {
+	name = str;
+}
+
+void VariableName::setVersion(int ver) {
+	version = (uint8)ver;
+}
+
+void VariableName::setType(int typ) {
+	type = (uint8)typ;
+}
+
+int VariableName::getVersion() const {
+	return (int)version;
+}
+
+int VariableName::getType() const {
+	return (int)type;
+}
+
+bool VariableName::toBinaryStream(ObjectOutputStream* stream) {
+	return false;
+}
+
+bool VariableName::parseFromBinaryStream(ObjectInputStream* stream) {
+	return false;
+}

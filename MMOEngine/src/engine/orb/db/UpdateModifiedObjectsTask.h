@@ -13,14 +13,12 @@ namespace engine {
 
 	class UpdateModifiedObjectsTask : public Task {
 	public:
-		UpdateModifiedObjectsTask() {
-		}
+		UpdateModifiedObjectsTask();
 
-		void run() {
-			if (DistributedObjectBroker::instance()->isRootBroker())
-				DistributedObjectBroker::instance()->getObjectManager()->createBackup();
-		}
+		void run();
 	};
 
   } // namespace ORB
 } // namespace engine
+
+using namespace engine::ORB;

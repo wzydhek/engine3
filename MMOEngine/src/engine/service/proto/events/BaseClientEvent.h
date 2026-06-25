@@ -31,22 +31,9 @@ namespace engine {
 		WeakReference<BaseClient*> client;
 
 	public:
-		BaseClientEvent(BaseClient* cl) {
-			client = cl;
+		BaseClientEvent(BaseClient* cl);
 
- #if defined(BASECLIENT_DISABLE_STATSD) and defined(COLLECT_TASKSTATISTICS)
-			setStatsSample(0);
-#endif
-		}
-
-		void run() {
-			Reference<BaseClient*> strong = client.get();
-
-			if (strong == nullptr)
-				return;
-
-			strong->run();
-		}
+		void run();
 
 	};
 

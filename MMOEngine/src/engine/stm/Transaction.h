@@ -26,8 +26,7 @@ namespace engine {
 
 	class TransactionalObjectMap : public HashTable<uint64, Reference<TransactionalObjectHandleBase*> > {
 	public:
-		TransactionalObjectMap() : HashTable<uint64, Reference<TransactionalObjectHandleBase*> >(1000) {
-		}
+		TransactionalObjectMap();
 
 		template<class O> TransactionalObjectHandle<O>* put(TransactionalObjectHeader<O>* header, TransactionalObjectHandle<O>* handle) {
 			return transaction_cast<TransactionalObjectHandle<O>*>(HashTable<uint64, Reference<TransactionalObjectHandleBase*> >::put((uint64) header, handle).get());
@@ -39,15 +38,10 @@ namespace engine {
 	};
 
 	class TransactionalObjectHandleVector : public SortedVector<TransactionalObjectHandleBase* > {
-		int compare(TransactionalObjectHandleBase* const& o1, TransactionalObjectHandleBase* const& o2) const override {
-			//this needs a specific order based on the header to not create cycle helps
-			return o1->compareTo(o2);
-		}
+		int compare(TransactionalObjectHandleBase* const& o1, TransactionalObjectHandleBase* const& o2) const override;
 
 	public:
-		TransactionalObjectHandleVector() {
-			setInsertPlan(NO_DUPLICATE);
-		}
+		TransactionalObjectHandleVector();
 
 		template<class O> void addHandle(TransactionalObjectHandle<O>* handle) {
 			SortedVector<TransactionalObjectHandleBase* >::put(handle);
@@ -64,8 +58,7 @@ namespace engine {
 
 	class TransactionalObjectHeaderMap : public HashTable<uint64, Reference<TransactionalObjectHeader<Object*>*> > {
 	public:
-		TransactionalObjectHeaderMap() : HashTable<uint64, Reference<TransactionalObjectHeader<Object*>*> >(1000) {
-		}
+		TransactionalObjectHeaderMap();
 
 		template<class O> TransactionalObjectHeader<O>* put(Object* object, TransactionalObjectHeader<O>* header) {
 
@@ -129,33 +122,19 @@ namespace engine {
 
 		String toString() const;
 
-		inline bool isInitial() const {
-			return status == INITIAL;
-		}
+		bool isInitial() const;
 
-		inline bool isUndecided() const {
-			return status == UNDECIDED;
-		}
+		bool isUndecided() const;
 
-		inline bool isReadChecking() const {
-			return status == READ_CHECKING;
-		}
+		bool isReadChecking() const;
 
-		inline bool isAborted() const {
-			return status == ABORTED;
-		}
+		bool isAborted() const;
 
-		inline bool isCommited() const {
-			return status == COMMITTED;
-		}
+		bool isCommited() const;
 
-		uint64 getIdentifier() {
-			return tid;
-		}
+		uint64 getIdentifier();
 
-		Task* getTask() {
-			return task;
-		}
+		Task* getTask();
 
 	protected:
 		template<class O> void createObject(TransactionalObjectHeader<O>* header);
@@ -189,9 +168,7 @@ namespace engine {
 
 		void deleteObject(Object* object);
 
-		Vector<Object*>* getDeletedObjects() {
-			return &reclaimedObjects;
-		}
+		Vector<Object*>* getDeletedObjects();
 
 		friend class TaskManager;
 		friend class TransactionalMemoryManager;
@@ -321,3 +298,5 @@ namespace engine {
 
   } // namespace stm
 } // namespace engine
+
+using namespace engine::stm;

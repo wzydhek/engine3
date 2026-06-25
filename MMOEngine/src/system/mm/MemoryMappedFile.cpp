@@ -25,6 +25,10 @@ MemoryMappedFile::MemoryMappedFile(const char* name, uint32 size) {
 	openDevice();
 }
 
+void MemoryMappedFile::create() {
+	Heap::create(fileSize);
+}
+
 void MemoryMappedFile::openDevice() {
 	deviceFD = open(fileName, O_RDWR | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
 

@@ -49,9 +49,7 @@ namespace engine {
 
   		Task* getTask();
 
-  		inline TaskManagerImpl* getTaskManagerImpl() {
-  			return taskManager;
-  		}
+  		TaskManagerImpl* getTaskManagerImpl();
 
   		bool isTaskScheduled(const Task* task);
 

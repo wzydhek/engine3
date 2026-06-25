@@ -13,12 +13,7 @@ namespace engine {
 
 	class ErrorMessage : public BasePacket {
 	public:
-		ErrorMessage(const String& ErrorType, const String& ErrorMsg, bool Fatal) : BasePacket(50) {
-			insertShort(0x03);
-			insertAscii(ErrorType);
-			insertAscii(ErrorMsg);
-			insertByte(Fatal);
-		}
+		ErrorMessage(const String& ErrorType, const String& ErrorMsg, bool Fatal);
 	};
 
     } // namespace proto

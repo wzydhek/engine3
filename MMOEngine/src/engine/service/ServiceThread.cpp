@@ -51,3 +51,19 @@ void ServiceThread::stop(bool doJoin) {
 	 /*else
 		throw ServiceException("unable to stop not running service");*/
 }
+
+void ServiceThread::setRunning(bool val) {
+	doRun = val;
+}
+
+bool ServiceThread::isRunning() const {
+	return doRun;
+}
+
+void ServiceThread::setReady(bool val) {
+	serviceReady = val;
+}
+
+bool ServiceThread::isReady() const {
+	return serviceReady;
+}

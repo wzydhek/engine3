@@ -26,6 +26,9 @@
 DOBMessageFactory::DOBMessageFactory() {
 }
 
+namespace engine {
+namespace ORB {
+
 class ControlMessageProcessorTask : public Task {
 	DOBMessage* message;
 
@@ -38,6 +41,11 @@ public:
 		message->execute();
 	}
 };
+
+  } // namespace ORB
+} // namespace engine
+
+using namespace engine::ORB;
 
 void DOBMessageFactory::process(DOBServiceClient* client, Packet* message) {
 	//printf("received dob message:%s\n", message->toStringData().toCharArray());

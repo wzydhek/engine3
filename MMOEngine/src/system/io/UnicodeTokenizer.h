@@ -39,29 +39,18 @@ namespace sys {
 		void finalToken(String& s);
 		void finalToken(UnicodeString& u);
 
-		UnicodeString getRemainingString() {
-			UnicodeString str;
-
-			finalToken(str);
-
-			return str;
-		}
+		UnicodeString getRemainingString();
 
 		void shiftTokens(int count);
 
 		bool hasMoreTokens() const;
 
-		inline void setDelimeter(const String& del) {
-			delimeter = del;
-		}
+		void setDelimeter(const String& del);
 
-		inline void setDelimiter(const UnicodeString& del) {
-			delimeter = del;
-		}
+		void setDelimiter(const UnicodeString& del);
 
-		inline void setDelimiter(const char* ascii) {
-			delimeter = ascii;
-		}
+		void setDelimiter(const char* ascii);
+
 	private:
 		void nextToken(UnicodeString& s);
 

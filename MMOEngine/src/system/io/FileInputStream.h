@@ -16,45 +16,18 @@ namespace sys {
   		File* file;
 
   	public:
-  		FileInputStream(File* file) {
-  			file->setBinary();
+		FileInputStream(File* file);
 
-  			file->setReadOnly();
+  		void close();
 
-  			FileInputStream::file = file;
-  		}
+  		int read(byte* buf, int len);
 
-  		void close() {
-  			validateReadable();
+  		int read(byte* buf, uint32 off, int len);
 
-  			file->close();
-  		}
-
-  		int read(byte* buf, int len) {
-  			validateReadable();
-
-  			return fread(buf, 1, len, file->getDescriptor());
-  		}
-
-  		int read(byte* buf, uint32 off, int len) {
-  			validateReadable();
-
-  			file->seek(off);
-
-  			return fread(buf, 1, len, file->getDescriptor());
-  		}
-
-  		int skip(int n) {
-  			validateReadable();
-
-  			return file->seek(n, SEEK_CUR);
-  		}
+  		int skip(int n);
 
   	protected:
-  		void validateReadable() {
-  			if (!file->exists())
-  				throw FileNotFoundException(file);
-  		}
+		void validateReadable();
   	};
 
   } // namespace io

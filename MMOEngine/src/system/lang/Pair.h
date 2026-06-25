@@ -122,3 +122,5 @@ namespace sys {
 	}
   }
 }
+
+using namespace sys::lang;

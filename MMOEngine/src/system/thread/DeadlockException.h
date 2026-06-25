@@ -23,33 +23,19 @@ namespace sys {
   		  StackTrace trace;
 
   	  public:
-  		  DeadlockException() : lockable(nullptr) {
+		  DeadlockException();
 
-  		  }
+  		  DeadlockException(const String& msg);
 
-  		  DeadlockException(const String& msg) : lockable(nullptr), message(msg) {
+  		  DeadlockException(Lockable* lock, const String& msg = "");
 
-  		  }
+  		  StackTrace* getStackTrace();
 
-  		  DeadlockException(Lockable* lock, const String& msg = "") : lockable(lock), message(msg) {
+  		  void printStackTrace();
 
-  		  }
+  		  Lockable* getLockable();
 
-  		  inline StackTrace* getStackTrace() {
-  			  return &trace;
-  		  }
-
-  		  inline void printStackTrace() {
-  			  trace.print();
-  		  }
-
-  		  inline Lockable* getLockable() {
-  			  return lockable;
-  		  }
-
-  		  inline String getMessage() {
-  			  return message;
-  		  }
+  		  String getMessage();
   	  };
   }
 }

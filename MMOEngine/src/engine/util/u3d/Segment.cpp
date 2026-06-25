@@ -53,3 +53,17 @@ Vector3 Segment::getClosestPoint(const Vector3& segmentA, const Vector3& segment
 Vector3 Segment::getClosestPointTo(const Vector3& point) const {
 	return getClosestPoint(pointA, pointB, point);
 }
+
+bool Segment::toBinaryStream(ObjectOutputStream* stream) {
+	pointA.toBinaryStream(stream);
+	pointB.toBinaryStream(stream);
+
+	return true;
+}
+
+bool Segment::parseFromBinaryStream(ObjectInputStream* stream) {
+	pointA.parseFromBinaryStream(stream);
+	pointB.parseFromBinaryStream(stream);
+
+	return true;
+}

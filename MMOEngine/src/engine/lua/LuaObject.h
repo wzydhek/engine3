@@ -25,34 +25,13 @@ namespace lua {
 		LuaObject(lua_State* lState);
 
 #ifdef CXX11_COMPILER
-		LuaObject(const LuaObject& obj) : L(obj.L), objectName(obj.objectName) {
-		}
+		LuaObject(const LuaObject& obj);
 
-		LuaObject(LuaObject&& obj) : L(obj.L), objectName(std::move(obj.objectName)) {
-			obj.L = nullptr;
-		}
+		LuaObject(LuaObject&& obj);
 
-		LuaObject& operator=(const LuaObject& obj) {
-			if (this == &obj)
-				return *this;
+		LuaObject& operator=(const LuaObject& obj);
 
-			L = obj.L;
-			objectName = obj.objectName;
-
-			return *this;
-		}
-
-		LuaObject& operator=(LuaObject&& obj) {
-			if (this == &obj)
-				return *this;
-
-			L = obj.L;
-			objectName = std::move(obj.objectName);
-
-			obj.L = nullptr;
-
-			return *this;
-		}
+		LuaObject& operator=(LuaObject&& obj);
 #endif
 
 		virtual ~LuaObject() {
@@ -89,13 +68,9 @@ namespace lua {
 
 		virtual void pop();
 
-		inline lua_State* getLuaState() {
-			return L;
-		}
+		lua_State* getLuaState();
 
-		inline void operator=(lua_State* lState) {
-			L = lState;
-		}
+		void operator=(lua_State* lState);
 
 	};
 }

@@ -82,154 +82,70 @@ namespace engine {
 		void execute();
 		void executeInThread();
 
-		virtual const char* getTaskName() {
-			if (!taskName.isEmpty()) {
-				return taskName.toCharArray();
-			} else {
-				return typeid(*this).name();
-			}
-		}
+		virtual const char* getTaskName();
 
-		int compareTo(const PriorityQueueEntry* node) const {
-			const Task* task = static_cast<const Task*>(node);
+		int compareTo(const PriorityQueueEntry* node) const;
 
-			if (task == this)
-				return 0;
-
-			int cmp = nextExecutionTime.compareTo(task->nextExecutionTime);
-			if (cmp == 0) {
-				if (std::less<const Task*>()(this, task))
-					return 1;
-				else
-					return -1;
-			} else
-				return cmp;
-		}
-
-		virtual String toStringData() const {
-			StringBuffer s;
-			s << nextExecutionTime.getMiliTime() << "(ptr = " << this << ")";
-			return s.toString();
-		}
+		virtual String toStringData() const;
 
 	protected:
 		void initialize();
 
 		void doExecute();
 
-		void setExecutionTime(const Time& time) {
-			nextExecutionTime = time;
-		}
+		void setExecutionTime(const Time& time);
 
-		void updateExecutionTime(uint64 mtime = 0) {
-			nextExecutionTime.updateToCurrentTime();
+		void updateExecutionTime(uint64 mtime = 0);
 
-			if (mtime != 0)
-				nextExecutionTime.addMiliTime(mtime);
-		}
-
-		inline const Time& getNextExecutionTime() const {
-			return nextExecutionTime;
-		}
+		const Time& getNextExecutionTime() const;
 
 	public:
-		inline TaskScheduler* getTaskScheduler() {
-			return taskScheduler;
-		}
+		TaskScheduler* getTaskScheduler();
 
-		inline const TaskScheduler* getTaskScheduler() const {
-			return taskScheduler;
-		}
+		const TaskScheduler* getTaskScheduler() const;
 
-		inline int getPriroty() const {
-			return priority;
-		}
+		int getPriroty() const;
 
-		inline bool isPeriodic() const {
-			return period != 0;
-		}
+		bool isPeriodic() const;
 
-		inline bool doRunInScheduler() const {
-			return runInScheduler;
-		}
+		bool doRunInScheduler() const;
 
-		inline void setRunInScheduler(bool val) {
-			runInScheduler = val;
-		}
+		void setRunInScheduler(bool val);
 
-		inline bool setTaskScheduler(TaskScheduler* scheduler) {
-			return taskScheduler.compareAndSet(nullptr, scheduler);
-		}
+		bool setTaskScheduler(TaskScheduler* scheduler);
 
-		inline bool clearTaskScheduler() {
-			TaskScheduler* scheduler = taskScheduler.get();
+		bool clearTaskScheduler();
 
-			return taskScheduler.compareAndSet(scheduler, nullptr);
-		}
+		void setPriority(int priority);
 
-		inline void setPriority(int priority) {
-			Task::priority = priority;
-		}
+		uint64 getPeriod() const;
 
-		inline uint64 getPeriod() const {
-			return period;
-		}
+		void setPeriod(uint64 per);
 
-		inline void setPeriod(uint64 per) {
-			period = per;
-		}
+		void setCustomTaskQueue(const String& queue);
 
-		inline void setCustomTaskQueue(const String& queue) {
-			customTaskQueue = queue;
-		}
+		void setCustomTaskQueue(String&& queue);
 
-		inline void setCustomTaskQueue(String&& queue) {
-			customTaskQueue = std::move(queue);
-		}
+		const String& getCustomTaskQueue() const;
 
-		inline const String& getCustomTaskQueue() const {
-			return customTaskQueue;
-		}
+		void setTaskName(const char* name);
 
-		inline void setTaskName(const char* name) {
-			taskName = name;
-		}
+		void setTaskName(const String& name);
 
-		inline void setTaskName(const String& name) {
-			taskName = name;
-		}
-
-		inline void setTaskName(String&& name) {
-			taskName = std::move(name);
-		}
+		void setTaskName(String&& name);
 
 	#ifdef COLLECT_TASKSTATISTICS
-		void setStatsSample(bool val) {
-			statsSampleRate = val;
-		}
+		void setStatsSample(bool val);
 
-		inline int getStatsSampleRate() const {
-			return statsSampleRate;
-		}
+		int getStatsSampleRate() const;
 	#endif
 
-		inline uint64 getLastElapsedTime() const {
-	  		return lastElapsedTime;
-	  	}
+		uint64 getLastElapsedTime() const;
 
 	#ifdef TRACE_TASKS
-		void setScheduleTrace() {
-			if (scheduleTrace != nullptr)
-				delete scheduleTrace;
+		void setScheduleTrace();
 
-			scheduleTrace = new StackTrace();
-		}
-
-		void printScheduleTrace() {
-			assert(scheduleTrace != nullptr);
-
-			scheduleTrace->print();
-		}
+		void printScheduleTrace();
 	#endif
 
 		friend class TimedTaskQueue;

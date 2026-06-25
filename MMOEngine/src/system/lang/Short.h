@@ -16,105 +16,43 @@ namespace sys {
 
 	class Short : public BaseTypeVariable<int16> {
 	public:
-		inline Short() : BaseTypeVariable<int16>(0) {
+		Short();
 
-		}
+		Short(int16 val);
 
-		inline Short(int16 val) : BaseTypeVariable<int16>(val) {
+		Short(const Short& val);
 
-		}
+		Short& operator=(const Short& val);
 
-		inline Short(const Short& val) : BaseTypeVariable<int16>(val) {
+		bool parseFromString(const String& str, int version = 0);
 
-		}
+		bool toString(String& str) const;
 
-		inline Short& operator=(const Short& val) {
-			if (this == &val) {
-				return *this;
-			}
+		bool toBinaryStream(ObjectOutputStream* stream);
 
-			BaseTypeVariable<int16>::operator=(val);
+		bool parseFromBinaryStream(ObjectInputStream* stream);
 
-			return *this;
-		}
-
-		bool parseFromString(const String& str, int version = 0) {
-			*this = (int16) Integer::valueOf(str);
-
-			return true;
-		}
-
-		bool toString(String& str) const {
-			str = String::valueOf((int)*this);
-
-			return true;
-		}
-
-		bool toBinaryStream(ObjectOutputStream* stream) {
-			stream->writeSignedShort(get());
-
-			return true;
-		}
-
-		bool parseFromBinaryStream(ObjectInputStream* stream) {
-			*this = stream->readSignedShort();
-
-			return true;
-		}
-
-		static uint32 hashCode(int16 value) {
-			return (uint32) value;
-		}
+		static uint32 hashCode(int16 value);
 
 	};
 
 	class UnsignedShort : public BaseTypeVariable<uint16> {
 	public:
-		inline UnsignedShort() : BaseTypeVariable<uint16>(0) {
+		UnsignedShort();
 
-		}
+		UnsignedShort(uint16 val);
 
-		inline UnsignedShort(uint16 val) : BaseTypeVariable<uint16>(val) {
+		UnsignedShort& operator=(const UnsignedShort& val);
 
-		}
+		bool parseFromString(const String& str, int version = 0);
 
-		inline UnsignedShort& operator=(const UnsignedShort& val) {
-			if (this == &val) {
-				return *this;
-			}
+		bool toString(String& str) const;
 
-			BaseTypeVariable<uint16>::operator=(val);
+		bool toBinaryStream(ObjectOutputStream* stream);
 
-			return *this;
-		}
+		bool parseFromBinaryStream(ObjectInputStream* stream);
 
-		bool parseFromString(const String& str, int version = 0) {
-			*this = (int16) UnsignedInteger::valueOf(str);
-
-			return true;
-		}
-
-		bool toString(String& str) const {
-			str = String::valueOf((uint32)*this);
-
-			return true;
-		}
-
-		bool toBinaryStream(ObjectOutputStream* stream) {
-			stream->writeShort(get());
-
-			return true;
-		}
-
-		bool parseFromBinaryStream(ObjectInputStream* stream) {
-			*this = stream->readShort();
-
-			return true;
-		}
-
-		static uint32 hashCode(uint16 value) {
-			return (uint32) value;
-		}
+		static uint32 hashCode(uint16 value);
 
 	};
 

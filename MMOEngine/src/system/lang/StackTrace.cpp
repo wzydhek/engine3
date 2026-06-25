@@ -147,3 +147,15 @@ bool StackTrace::equals(const StackTrace& trace) const {
 
 	return true;
 }
+
+int StackTrace::getCount() const {
+	return count;
+}
+
+void StackTrace::setBinaryName(const String& name) {
+	binaryName = name;
+}
+
+const String& StackTrace::getBinaryName() {
+	return binaryName;
+}

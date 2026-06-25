@@ -86,42 +86,23 @@ namespace engine {
 
 		void logTask(const char* taskName, uint64 elapsedTime) const;
 
-		inline void addMutexWaitTime(uint64 time) {
-			mutexesAcquired++;
-			mutexWaitTime += time;
-		}
+		void addMutexWaitTime(uint64 time);
 
-		void clearMutexWaitTime() {
-			mutexWaitTime = 0;
-		}
+		void clearMutexWaitTime();
 
-		uint64 getTotalBdbTime() const {
-			return totalBdbTime;
-		}
+		uint64 getTotalBdbTime() const;
 
-		uint64 getMutexWaitTime() const {
-			return mutexWaitTime;
-		}
+		uint64 getMutexWaitTime() const;
 
-		TaskQueue* getTaskQueue() const {
-			return queue;
-		}
+		TaskQueue* getTaskQueue() const;
 
-		TaskWorkerThread* asTaskWorkerThread() {
-			return this;
-		}
+		TaskWorkerThread* asTaskWorkerThread();
 
-		inline Mutex* getBlockMutex() {
-			return &blockMutex;
-		}
+		Mutex* getBlockMutex();
 
-		inline bool doBlockWorkerDuringSave() const {
-			return blockDuringSave;
-		}
+		bool doBlockWorkerDuringSave() const;
 
-		inline Task* getCurrentTask() const {
-			return currentTask;
-		}
+		Task* getCurrentTask() const;
 
 	};
 

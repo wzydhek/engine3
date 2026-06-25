@@ -42,10 +42,8 @@ namespace sys {
 
 		void setAnonymous();
 
-		Allocator* getAllocator() {
-			return allocator;
-		}
-};
+		Allocator* getAllocator();
+	};
 
 } // namespace mm
 } // namespace sys

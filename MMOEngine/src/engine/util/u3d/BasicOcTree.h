@@ -67,13 +67,9 @@ private:
 	int _inRange(BasicOcTreeNode* node, float x, float y, float z, float range, Vector<OcTreeEntryInterface*>& objects);
 
 public:
-	static void setLogging(bool doLog) {
-		logTree = doLog;
-	}
+	static void setLogging(bool doLog);
 
-	inline static bool doLog() {
-		return logTree;
-	}
+	static bool doLog();
 };
 
 } // namespace u3d

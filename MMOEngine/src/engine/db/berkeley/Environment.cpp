@@ -28,6 +28,10 @@ using namespace engine::db::berkeley;
 EnvironmentConfig EnvironmentConfig::DEFAULT;
 EnvironmentMutex Environment::guard;
 
+void EnvironmentMutex::setEnabled(bool val) {
+	enabled = val;
+}
+
 namespace BDBNS {
 	static Logger logger("BerkeleyEnvironment");
 
@@ -261,4 +265,8 @@ int Environment::isAlive(DB_ENV* dbenv, pid_t pid, db_threadid_t tid, u_int32_t 
 
 	return alive;
 #endif
+}
+
+DB_ENV* Environment::getDatabaseEnvironmentHandle() const {
+	return databaseEnvironment;
 }

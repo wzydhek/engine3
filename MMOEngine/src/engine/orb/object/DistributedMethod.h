@@ -127,17 +127,11 @@ namespace engine {
 			return object;
 		}
 
-		const DistributedObject* getObject() const {
-			return object;
-		}
+		const DistributedObject* getObject() const;
 
-		InvokeMethodMessage* getInvocationMessage() const {
-			return invocationMessage;
-		}
+		InvokeMethodMessage* getInvocationMessage() const;
 
-		Packet* getResponseMessage() const {
-			return response;
-		}
+		Packet* getResponseMessage() const;
 
 	private:
 		void execute(bool asyncMethod = false);

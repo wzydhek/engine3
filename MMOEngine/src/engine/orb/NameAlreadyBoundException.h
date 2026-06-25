@@ -13,9 +13,7 @@ namespace engine {
 
 	class NameAlreadyBoundException : public sys::lang::Exception {
 	public:
-		NameAlreadyBoundException(DistributedObjectStub* stub) : Exception() {
-			message = "\'" + stub->_getName() + "\' is already deployed";
-		}
+		NameAlreadyBoundException(DistributedObjectStub* stub);
 		
 	};
 

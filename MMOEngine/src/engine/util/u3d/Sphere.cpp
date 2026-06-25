@@ -12,6 +12,16 @@
 #include "Sphere.h"
 #include "AABBTree.h"
 
+Sphere::Sphere() : radius(0), radiusSquared(0) {
+}
+
+Sphere::Sphere(const Vector3& orig, float rad) : origin(orig), radius(rad), radiusSquared(rad * rad) {
+}
+
+bool Sphere::containsPoint(const Vector3 point) const {
+	return (point - getCenter()).length() < getRadius();
+}
+
 bool Sphere::intersects(const AABB& aabb) const {
 	float distSqrtToOrigin = aabb.distSqrd(origin);
 	bool ret = ( distSqrtToOrigin <= radiusSquared);
@@ -226,4 +236,20 @@ bool Sphere::intersects(const Triangle& tri) const {
 	//Logger::console.info("Squared distance from triangle " + String::valueOf(fabsf(SqrDist)), true);
 
 	return fabsf(SqrDist) < mRadius2;
+}
+
+float Sphere::getRadius() const {
+	return radius;
+}
+
+float Sphere::getRadiusSquared() const {
+	return radiusSquared;
+}
+
+Vector3& Sphere::getCenter() {
+	return origin;
+}
+
+const Vector3& Sphere::getCenter() const {
+	return origin;
 }

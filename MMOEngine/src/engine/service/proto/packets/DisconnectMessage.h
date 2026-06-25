@@ -13,17 +13,9 @@ namespace engine {
 
 	class DisconnectMessage : public BasePacket {
 	public:
-		DisconnectMessage(BaseProtocol* proto) : BasePacket(7) {
-			insertShort(0x0500);
-			insertInt(proto->getConnectionID());
-			insertShort(0x0600);
-			
-			setSequencing(false);
-		}
+		DisconnectMessage(BaseProtocol* proto);
 	
-		inline static sys::uint16 parse(Packet* pack) {
-			return pack->parseNetShort();
-		}
+		static sys::uint16 parse(Packet* pack);
 	};
 
     } // namespace proto

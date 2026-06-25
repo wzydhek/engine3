@@ -22,75 +22,38 @@ namespace engine {
  class AABB {
 	 Vector3 mBounds[2]; // box bounds - min followed by max
  public:
-	 AABB() {
-	 }
+	 AABB();
 
-	 AABB(const Vector3& boxmin, const Vector3& boxmax) {
-		 mBounds[0] = boxmin;
-		 mBounds[1] = boxmax;
-	 }
+	 AABB(const Vector3& boxmin, const Vector3& boxmax);
 
 	 // calc aabb from trilist
 	 AABB(const ArrayList<Triangle*>& triangles);
 
-	 AABB(const AABB& aab) {
-		 mBounds[0] = aab.mBounds[0];
-		 mBounds[1] = aab.mBounds[1];
-	 }
+	 AABB(const AABB& aab);
 
-	 AABB& operator=(const AABB& aabb) {
-	 	if (this == &aabb) {
-			return *this;
-		}
+	 AABB& operator=(const AABB& aabb);
 
-		mBounds[0] = aabb.mBounds[0];
-		mBounds[1] = aabb.mBounds[1];
+	 bool toBinaryStream(ObjectOutputStream* stream);
 
-		return *this;
-	 }
-
-	 bool toBinaryStream(ObjectOutputStream* stream) {
-		 mBounds[0].toBinaryStream(stream);
-		 mBounds[1].toBinaryStream(stream);
-
-		 return true;
-	 }
-
-	 bool parseFromBinaryStream(ObjectInputStream* stream) {
-		 mBounds[0].parseFromBinaryStream(stream);
-		 mBounds[1].parseFromBinaryStream(stream);
-
-		 return true;
-	 }
+	 bool parseFromBinaryStream(ObjectInputStream* stream);
 
 	 // returns a sub box of the octant specified, with the partition as the new corner.
 	 float distSqrd(const Vector3& point) const;
 
 	 // calculate the floating point error metric
-	 float errorMetric() const {
-		 return (Vector3(1.0f) + (mBounds[1] - mBounds[0])).product();
-	 }
+	 float errorMetric() const;
 
 	 // intersection scalar (used for weighting in building aabb)
 	 uint32 longestAxis() const;
 	 // mid-point
 
-	 Vector3 midPoint() const {
-		 return (mBounds[0] + mBounds[1]) * .5f;
-	 }
+	 Vector3 midPoint() const;
 
-	 inline Vector3 center() const {
-		 return midPoint();
-	 }
+	 Vector3 center() const;
 
-	 Vector3 extents() const {
-		 return (mBounds[1] - mBounds[0]) * .5f;
-	 }
+	 Vector3 extents() const;
 	 // copy
-	 void copy(const AABB& box) {
-		 mBounds[0] = box.mBounds[0];
-		 mBounds[1] = box.mBounds[1];
-	 }
+	 void copy(const AABB& box);
 
 	 // make this box encompass the current box as well as this one - returns * this
 	 void encompass(const AABB& encbox);
@@ -108,45 +71,25 @@ namespace engine {
 
 	 bool intersects(const Ray &r, float t0, float t1) const;
 
-	 inline const Vector3* getMinBound() const {
-		 return &mBounds[0];
-	 }
+	 const Vector3* getMinBound() const;
 
-	 inline Vector3* getMinBound() {
-		 return &mBounds[0];
-	 }
+	 Vector3* getMinBound();
 
-	 inline float getXMin() const {
-		 return mBounds[0].getX();
-	 }
+	 float getXMin() const;
 
-	 inline float getYMin() const {
-		 return mBounds[0].getY();
-	 }
+	 float getYMin() const;
 
-	 inline float getZMin() const {
-		 return mBounds[0].getZ();
-	 }
+	 float getZMin() const;
 
-	 inline float getXMax() const {
-		 return mBounds[1].getX();
-	 }
+	 float getXMax() const;
 
-	 inline float getYMax() const {
-		 return mBounds[1].getY();
-	 }
+	 float getYMax() const;
 
-	 inline float getZMax() const {
-		 return mBounds[1].getZ();
-	 }
+	 float getZMax() const;
 
-	 inline Vector3* getMaxBound() {
-		 return &mBounds[1];
-	 }
+	 Vector3* getMaxBound();
 
-	 inline const Vector3* getMaxBound() const {
-		 return &mBounds[1];
-	 }
+	 const Vector3* getMaxBound() const;
 
  };
 

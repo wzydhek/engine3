@@ -17,153 +17,31 @@ namespace sys {
 		  Lockable* lockable;
 
 	public:
-		  Locker(Locker&& locker) : lockable(locker.lockable) {
-		  	locker.lockable = nullptr;
-		  }
+		Locker(Locker&& locker);
 
-		  Locker(const Locker&) = delete;
-		  Locker& operator=(const Locker&) = delete;
+		Locker(const Locker&) = delete;
+		Locker& operator=(const Locker&) = delete;
 
 
-		  Locker(Lockable* lock) ACQUIRE(lock) {
-			  const auto doLock = !lock->isLockedByCurrentThread();
+		Locker(Lockable* lock) ACQUIRE(lock);
 
-			  if (doLock) {
-				  lockable = lock;
+		Locker(Mutex* lock) ACQUIRE(lock);
 
-				  lock->lock();
-			  } else {
-				  lockable = nullptr;
-			  }
-		  }
+		Locker(ReadWriteLock* lock) ACQUIRE(lock);
 
-		  Locker(Mutex* lock) ACQUIRE(lock) {
-			  const auto doLock = !lock->isLockedByCurrentThread();
+		Locker(Mutex* lock, Mutex* cross) ACQUIRE(lock);
 
-			  if (doLock) {
-				  lockable = lock;
+		Locker(ReadWriteLock* lock, ReadWriteLock* cross) ACQUIRE(lock);
 
-				  lock->lock();
-			  } else {
-				  lockable = nullptr;
-			  }
-		  }
+		Locker(ReadWriteLock* lock, Mutex* cross) ACQUIRE(lock);
 
-		  Locker(ReadWriteLock* lock) ACQUIRE(lock) {
-			  const auto doLock = !lock->isLockedByCurrentThread();
+		Locker(Mutex* lock, ReadWriteLock* cross) ACQUIRE(lock);
 
-			  if (doLock) {
-				  lockable = lock;
+		Locker(Lockable* lock, Lockable* cross) ACQUIRE(lock);
 
-				  lock->lock();
-			  } else {
-				  lockable = nullptr;
-			  }
-		  }
+		~Locker() RELEASE();
 
-		  Locker(Mutex* lock, Mutex* cross) ACQUIRE(lock) {
-			  const auto doLock = !lock->isLockedByCurrentThread();
-
-			  if (doLock) {
-				  lockable = lock;
-
-				  if (lock != cross) {
-					  assert(cross->isLockedByCurrentThread());
-
-					  lock->lock(cross);
-				  } else {
-					  lock->lock();
-				  }
-			  } else {
-				  lockable = nullptr;
-			  }
-		  }
-
-		 Locker(ReadWriteLock* lock, ReadWriteLock* cross) ACQUIRE(lock) {
-			  const auto doLock = !lock->isLockedByCurrentThread();
-
-			  if (doLock) {
-				  lockable = lock;
-
-				  if (lock != cross) {
-					  assert(cross->isLockedByCurrentThread());
-
-					  lock->lock(cross);
-				  } else {
-					  lock->lock();
-				  }
-			  } else {
-				  lockable = nullptr;
-			  }
-		  }
-
-		 Locker(ReadWriteLock* lock, Mutex* cross) ACQUIRE(lock) {
-			  const auto doLock = !lock->isLockedByCurrentThread();
-
-			  if (doLock) {
-				  lockable = lock;
-
-				  if (static_cast<Lockable*>(lock) != static_cast<Lockable*>(cross)) {
-					  assert(cross->isLockedByCurrentThread());
-
-					  lock->lock(cross);
-				  } else {
-					  lock->lock();
-				  }
-			  } else {
-				  lockable = nullptr;
-			  }
-		  }
-
-		 Locker(Mutex* lock, ReadWriteLock* cross) ACQUIRE(lock) {
-			  const auto doLock = !lock->isLockedByCurrentThread();
-
-			  if (doLock) {
-				  lockable = lock;
-
-				  if (static_cast<Lockable*>(lock) != static_cast<Lockable*>(cross)) {
-					  assert(cross->isLockedByCurrentThread());
-
-					  lock->lock(cross);
-				  } else {
-					  lock->lock();
-				  }
-			  } else {
-				  lockable = nullptr;
-			  }
-		  }
-
-		  Locker(Lockable* lock, Lockable* cross) ACQUIRE(lock) {
-			  const auto doLock = !lock->isLockedByCurrentThread();
-
-			  if (doLock) {
-				  lockable = lock;
-
-				  if (lock != cross) {
-					  assert(cross->isLockedByCurrentThread());
-
-					  lock->lock(cross);
-				  } else {
-					  lock->lock();
-				  }
-			  } else {
-				  lockable = nullptr;
-			  }
-		  }
-
-		  ~Locker() RELEASE() {
-			  if (lockable != nullptr) {
-				  lockable->unlock();
-			  }
-		  }
-
-		  inline void release() RELEASE() {
-			  if (lockable != nullptr) {
-				  lockable->unlock();
-
-				  lockable = nullptr;
-			  }
-		  }
+		void release() RELEASE();
 	  };
 
   } // namespace thread

@@ -56,17 +56,11 @@ namespace sys {
 		bool equals(const StackTrace& trace) const;
 		bool containsAddress(const void* address) const;
 
-		int getCount() const {
-			return count;
-		}
+		int getCount() const;
 
-		static void setBinaryName(const String& name) {
-			binaryName = name;
-		}
+		static void setBinaryName(const String& name);
 
-		static const String& getBinaryName() {
-			return binaryName;
-		}
+		static const String& getBinaryName();
 
 		static engine::log::Logger* getLogger();
 	};

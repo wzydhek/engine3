@@ -12,30 +12,26 @@
 #pragma once
 
 #include "engine/log/Logger.h"
+#include "engine/service/proto/BaseClient.h"
+
+namespace engine {
+namespace service {
+namespace proto {
 
 class NetStatusResponseTask : public Task {
 	Reference<BaseClient*> client;
 	Packet* pack;
 public:
 
-	NetStatusResponseTask(BaseClient* cl, Packet* inPack) {
-		client = cl;
-		pack = inPack->clone();
+	NetStatusResponseTask(BaseClient* cl, Packet* inPack);
 
-#if defined(BASECLIENT_DISABLE_STATSD) and defined(COLLECT_TASKSTATISTICS)
-		setStatsSample(0);
-#endif
-	}
+	~NetStatusResponseTask();
 
-	~NetStatusResponseTask() {
-		if (pack != nullptr) {
-			delete pack;
-		}
-	}
-
-	void run() {
-		client->handleNetStatusRequest(pack);
-		delete pack;
-		pack = nullptr;
-	}
+	void run();
 };
+
+} // namespace proto
+} // namespace service
+} // namespace engine
+
+using namespace engine::service::proto;

@@ -92,3 +92,6 @@ void RequestServantMessage::handleReply(Packet* message) {
 	}
 }
 
+uint64 RequestServantMessage::getObjectID() const {
+	return objectID;
+}

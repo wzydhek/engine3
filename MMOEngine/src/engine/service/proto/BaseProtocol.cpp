@@ -444,6 +444,23 @@ bool BaseProtocol::testCRC(const Packet* pack, uint16 crcLength) const {
 	return crctest;
 }
 
+void BaseProtocol::setConnectionID(sys::uint32 id) {
+	connectionID = id;
+}
+
+void BaseProtocol::setSeed(sys::uint32 seed) {
+	crcSeed = seed;
+}
+
+// getters
+sys::uint32 BaseProtocol::getConnectionID() const {
+	return connectionID;
+}
+
+unsigned int BaseProtocol::getSeed() const {
+	return crcSeed;
+}
+
 #if defined (__clang__) && (__clang_major__ >= 18)
 	#pragma clang diagnostic pop
 #endif

@@ -29,83 +29,33 @@ protected:
 	ReferenceCounter weakReferenceCount;
 	AtomicReference<Object*> object;
 public:
-	StrongAndWeakReferenceCount(uint32 strongCount, uint32 weakCount, Object* obj) :
-		strongReferenceCount(strongCount), weakReferenceCount(weakCount), object(obj) {
-	}
+	StrongAndWeakReferenceCount(uint32 strongCount, uint32 weakCount, Object* obj);
 
-	StrongAndWeakReferenceCount(const StrongAndWeakReferenceCount& r) :
-		strongReferenceCount(r.strongReferenceCount), weakReferenceCount(r.weakReferenceCount),
-		object(r.object) {
-	}
+	StrongAndWeakReferenceCount(const StrongAndWeakReferenceCount& r);
 
-	StrongAndWeakReferenceCount& operator=(const StrongAndWeakReferenceCount& r) {
-		if (this == &r)
-			return *this;
+	StrongAndWeakReferenceCount& operator=(const StrongAndWeakReferenceCount& r);
 
-		strongReferenceCount = r.strongReferenceCount;
-		weakReferenceCount = r.weakReferenceCount;
-		object = r.object;
+	void markAsDestroyed() volatile;
 
-		return *this;
-	}
+	uint32 increaseStrongCount() volatile;
 
-	inline void markAsDestroyed() volatile {
-		strongReferenceCount.increaseCount();
-		strongReferenceCount.setLowestBit();
-	}
+	uint32 increaseWeakCount() volatile;
 
-	inline uint32 increaseStrongCount() volatile {
-		return strongReferenceCount.increaseCount();
-	}
+	uint32 decrementAndTestAndSetStrongCount();
 
-	inline uint32 increaseWeakCount() volatile {
-		return weakReferenceCount.increaseCount();
-	}
+	bool tryStrongFinalDecrement();
 
-	inline uint32 decrementAndTestAndSetStrongCount() {
-		uint32 ret = strongReferenceCount.decrementAndTestAndSet();
+	uint32 decrementAndTestAndSetWeakCount() volatile;
 
-		if (ret != 0) {
-			object = nullptr;
-		}
+	void clearStrongCountLowestBit() volatile;
 
-		return ret;
-	}
+	uint32 getStrongReferenceCount() volatile const;
 
-	inline bool tryStrongFinalDecrement() {
-		bool ret = strongReferenceCount.tryFinalDecrement();
+	void setObject(Object* obj);
 
-		if (ret) {
-			object = nullptr;
-		}
+	Object* getObject() const;
 
-		return ret;
-	}
-
-	inline uint32 decrementAndTestAndSetWeakCount() volatile {
-		return weakReferenceCount.decrementAndTestAndSet();
-	}
-
-	inline void clearStrongCountLowestBit() volatile {
-		strongReferenceCount.clearLowestBit();
-	}
-
-	inline uint32 getStrongReferenceCount() volatile const {
-		return strongReferenceCount.getReferenceCount();
-	}
-
-	void setObject(Object* obj) {
-		object = obj;
-	}
-
-	Object* getObject() const {
-		return object;
-	}
-
-	inline void resetCountsToZero() {
-		strongReferenceCount.reset();
-		weakReferenceCount.reset();
-	}
+	void resetCountsToZero();
 
 	template<class R, bool virt>
 	class Helper {
@@ -144,3 +94,5 @@ public:
 
   }
 }
+
+using namespace sys::lang;

@@ -34,9 +34,7 @@ namespace engine {
 		virtual void writeObject(ObjectOutputStream* stream) = 0;
 		virtual void writeObjectCompact(ObjectOutputStream* stream) = 0;
 
-		uint64 _getObjectID() const { //for compat reasons
-			return 0;
-		}
+		uint64 _getObjectID() const;
 	};
 
   } // namespace ORB

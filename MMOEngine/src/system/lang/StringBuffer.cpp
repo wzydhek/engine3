@@ -441,3 +441,48 @@ bool StringBuffer::operator==(const String& buff) const {
 
 	return memcmp(getBuffer(), buff.toCharArray(), length() * sizeof(char)) == 0;
 }
+
+bool StringBuffer::operator!=(const StringBuffer& buff) const {
+	return !(operator==(buff));
+}
+
+bool StringBuffer::operator!=(const String& str) const {
+	return !(operator==(str));
+}
+
+// getters
+bool StringBuffer::doHex() const {
+	return streamFlags & SF_hex;
+}
+
+bool StringBuffer::doUpperCase() const {
+	return streamFlags & SF_uppercase;
+}
+
+bool StringBuffer::doCommas() const {
+	return streamFlags & SF_commas;
+}
+
+int StringBuffer::length() const {
+	return ArrayList<char>::size();
+}
+
+const char* StringBuffer::getBuffer() const {
+	return ArrayList<char>::begin();
+}
+
+const char* StringBuffer::begin() const {
+	return ArrayList<char>::begin();
+}
+
+char* StringBuffer::begin() {
+	return ArrayList<char>::begin();
+}
+
+const char* StringBuffer::end() const {
+	return begin() + length();
+}
+
+char* StringBuffer::end() {
+	return begin() + length();
+}

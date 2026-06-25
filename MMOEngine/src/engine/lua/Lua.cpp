@@ -737,3 +737,51 @@ String Lua::dumpStack(lua_State* L) {
 }
 
 //Field
+
+String Lua::getString(int index, bool pop) {
+	return getStringParameter(L, index, pop);
+}
+
+int32 Lua::getInt(int index, bool pop) {
+	return getIntParameter(L, index, pop);
+}
+
+sys::uint32 Lua::getUnsignedInt(int index, bool pop) {
+	return getUnsignedIntParameter(L, index, pop);
+}
+
+int64 Lua::getLong(int index, bool pop) {
+	return getLongParameter(L, index, pop);
+}
+
+uint64 Lua::getUnsignedLong(int index, bool pop) {
+	return getUnsignedLongParameter(L, index, pop);
+}
+
+int16 Lua::getShort(int index, bool pop) {
+	return getShortParameter(L, index, pop);
+}
+
+sys::uint16 Lua::getUnsignedShort(int index, bool pop) {
+	return getUnsignedShortParameter(L, index, pop);
+}
+
+int8 Lua::getByte(int index, bool pop) {
+	return getByteParameter(L, index, pop);
+}
+
+sys::uint8 Lua::getUnsignedByte(int index, bool pop) {
+	return getUnsignedByteParameter(L, index, pop);
+}
+
+float Lua::getFloat(int index, bool pop) {
+	return getFloatParameter(L, index, pop);
+}
+
+bool Lua::getBoolean(int index, bool pop) {
+	return getBooleanParameter(L, index, pop);
+}
+
+void Lua::setDeinitOnDestruction(bool val) {
+	deinitOnDestruction = val;
+}

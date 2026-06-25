@@ -84,5 +84,102 @@ int Cursor::putCurrent(DatabaseEntry* data) {
 	return dbc->put(dbc, nullptr, data->getDBT(), DB_CURRENT);
 }
 
+int Cursor::getCurrent(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_CURRENT | lockMode);
+}
 
+int Cursor::getFirst(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_FIRST | lockMode);
+}
 
+int Cursor::getLast(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_LAST | lockMode);
+}
+
+int Cursor::getNext(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_NEXT | lockMode);
+}
+
+int Cursor::pGetSet(DatabaseEntry* key, DatabaseEntry* primaryKey, DatabaseEntry* data, uint32 lockMode) {
+	return pget(key, primaryKey, data, DB_SET | lockMode);
+}
+
+int Cursor::pGetNext(DatabaseEntry* key, DatabaseEntry* primaryKey, DatabaseEntry* data, uint32 lockMode) {
+	return pget(key, primaryKey, data, DB_NEXT | lockMode);
+}
+
+int Cursor::getNextMultiple(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_MULTIPLE_KEY | DB_NEXT | lockMode);
+}
+
+int Cursor::getNextDup(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_NEXT_DUP | lockMode);
+}
+
+int Cursor::pGetNextDup(DatabaseEntry* key, DatabaseEntry* primaryKey, DatabaseEntry* data, uint32 lockMode) {
+	return pget(key, primaryKey, data, DB_NEXT_DUP | lockMode);
+}
+
+int Cursor::getNextNoDup(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_NEXT_NODUP | lockMode);
+}
+
+int Cursor::getPrev(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_PREV | lockMode);
+}
+
+int Cursor::getPrevDup(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_PREV_DUP | lockMode);
+}
+
+int Cursor::getPrevNoDup(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_PREV_NODUP | lockMode);
+}
+
+int Cursor::getSearchBoth(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_GET_BOTH | lockMode);
+}
+
+int Cursor::getSearchBothRange(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_GET_BOTH_RANGE | lockMode);
+}
+
+int Cursor::getSearchKey(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_SET | lockMode);
+}
+
+int Cursor::getSearchKeyRange(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_SET_RANGE | lockMode);
+}
+
+int Cursor::getSearchRecordNumber(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode) {
+	return get(key, data, DB_SET_RECNO | lockMode);
+}
+
+int Cursor::putAfter(DatabaseEntry* key, DatabaseEntry* data) {
+	return put(key, data, DB_AFTER);
+}
+
+int Cursor::putBefore(DatabaseEntry* key, DatabaseEntry* data) {
+	return put(key, data, DB_BEFORE);
+}
+
+int Cursor::putKeyFirst(DatabaseEntry* key, DatabaseEntry* data) {
+	return put(key, data, DB_KEYFIRST);
+}
+
+int Cursor::putKeyLast(DatabaseEntry* key, DatabaseEntry* data) {
+	return put(key, data, DB_KEYLAST);
+}
+
+int Cursor::putNoDupData(DatabaseEntry* key, DatabaseEntry* data) {
+	return put(key, data, DB_NODUPDATA);
+}
+
+CursorConfig Cursor::getConfig() {
+	return config;
+}
+
+BerkeleyDatabase* Cursor::getDatabase() {
+	return database;
+}

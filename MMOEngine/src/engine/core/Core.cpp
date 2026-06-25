@@ -156,7 +156,10 @@ void Core::finalizeContext() {
 	Logger::closeGlobalFileLogger();
 }
 
-class CoreInitializationTask : public Task {
+namespace engine {
+namespace core {
+
+	class CoreInitializationTask : public Task {
 	Core* core;
 
 public:
@@ -168,6 +171,11 @@ public:
 		core->initialize();
 	}
 };
+
+} // namespace core
+} // namespace engine
+
+using namespace engine::core;
 
 void Core::start() {
 	Reference<Task*> initializerTask = new CoreInitializationTask(this);
@@ -444,4 +452,14 @@ double Core::getDoubleProperty(const String& key, double defaultValue) {
 	} else {
 		return defaultValue;
 	}
+}
+
+SegmentationFault::SegmentationFault(int cause) : Exception() {
+	System::out << "Segmentation Fault caused by " << cause << " at\n";
+	printStackTrace();
+	exit(cause);
+}
+
+int SegmentationFault::GetSignalNumber() {
+	return SIGSEGV;
 }

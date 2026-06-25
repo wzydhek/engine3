@@ -13,16 +13,9 @@ namespace engine {
 
 	class AcknowledgeMessage : public BasePacket {
 	public:
-		AcknowledgeMessage(sys::uint16 seq) : BasePacket(7) {
-			insertShort(0x1500);
-			insertShortNet(seq);
-			
-			setSequencing(false);
-		}
+		AcknowledgeMessage(sys::uint16 seq);
 	
-		inline static sys::uint16 parse(Packet* pack) {
-			return pack->parseNetShort();
-		}
+		static sys::uint16 parse(Packet* pack);
 	};
 
     } // namespace proto

@@ -3,6 +3,7 @@
 ** See file COPYING for copying conditions.
 */
 
+#include "events/BasePacketChekupEvent.h"
 #include "events/BaseClientNetStatusCheckupEvent.h"
 #include "events/BaseClientEvent.h"
 
@@ -21,6 +22,10 @@ BaseClientProxy::BaseClientProxy(Socket* sock, SocketAddress& addr) : BaseClient
    	//setMutexLogging(false);
 
    	//setFileLogger("log/" + addr.getFullPrintableIPAddress());
+}
+
+BaseClientProxy::~BaseClientProxy() {
+	socket = nullptr;
 }
 
 void BaseClientProxy::init(DatagramServiceThread* serv) {

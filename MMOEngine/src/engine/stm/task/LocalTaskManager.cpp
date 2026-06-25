@@ -9,6 +9,91 @@
 
 #include "LocalTaskManager.h"
 
+TaskReference::TaskReference() {
+	task = nullptr;
+}
+
+TaskReference::TaskReference(const Task* t) {
+	task = const_cast<Task*>(t);
+}
+
+TaskReference::TaskReference(const TaskReference& t) {
+	task = t.task;
+}
+
+bool TaskReference::toBinaryStream(ObjectOutputStream* stream) {
+	return false;
+}
+
+bool TaskReference::parseFromBinaryStream(ObjectInputStream* stream) {
+	return false;
+}
+
+TaskReference& TaskReference::operator=(const TaskReference& t) {
+	if (this == &t)
+		return *this;
+
+	task = t.task;
+
+	return *this;
+}
+
+int TaskReference::compareTo(const TaskReference& ref) const {
+	if (task == ref.task)
+		return 0;
+	else if (task < ref.task)
+		return 1;
+	else
+		return -1;
+}
+
+TaskReference::operator Task*() {
+	return task;
+}
+
+Task* TaskReference::operator->() {
+	return task;
+}
+
+Task* TaskReference::getTask() {
+	return task;
+}
+
+TaskAction::TaskAction(const TaskAction& a) : Object() {
+	type = a.type;
+	task = a.task;
+	nextExecutionTime = a.nextExecutionTime;
+}
+
+TaskAction::TaskAction(int type, Reference<Task*> task, const AtomicTime& nextExecutionTime) {
+	TaskAction::type = type;
+	TaskAction::task = task;
+	TaskAction::nextExecutionTime = nextExecutionTime;
+}
+
+TaskAction& TaskAction::operator=(const TaskAction& a) {
+	if (this == &a)
+		return *this;
+
+	type = a.type;
+	task = a.task;
+	nextExecutionTime = a.nextExecutionTime;
+
+	return *this;
+}
+
+int TaskAction::getType() const {
+	return type;
+}
+
+Task* TaskAction::getTask() const {
+	return task;
+}
+
+AtomicTime& TaskAction::getNextExecutionTime() {
+	return nextExecutionTime;
+}
+
 LocalTaskManager::LocalTaskManager() {
 	merging = false;
 
@@ -60,6 +145,27 @@ void LocalTaskManager::executeTask(Task* task) {
 	}*/
 
 }
+
+#ifdef CXX11_COMPILER
+
+void LocalTaskManager::executeTask(Function<void()>&& function, const char* name) {
+	TaskManager::executeTask(std::move(function), name);
+}
+
+void LocalTaskManager::executeTask(const Function<void()>& function, const char* name) {
+	TaskManager::executeTask(function, name);
+}
+
+void LocalTaskManager::scheduleTask(Function<void()>&& function, const char* name, uint64 delay) {
+	TaskManager::scheduleTask(std::move(function), name, delay);
+}
+
+void LocalTaskManager::scheduleTask(const Function<void()>& function, const char* name, uint64 delay) {
+	TaskManager::scheduleTask(function, name, delay);
+}
+
+#endif
+
 
 bool LocalTaskManager::getNextExecutionTime(const Task* task, AtomicTime& nextExecutionTime) {
 	TaskAction* action = lastTaskAction.get(task);
@@ -327,4 +433,8 @@ int LocalTaskManager::getScheduledTaskSize() {
 int LocalTaskManager::getExecutingTaskSize() {
 	//return executedTasks.size();
 	return 0;
+}
+
+bool LocalTaskManager::isMerging() {
+	return merging;
 }

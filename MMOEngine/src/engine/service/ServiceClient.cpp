@@ -58,6 +58,14 @@ bool ServiceClient::isAvailable() {
 	return !(errored || disconnected);
 }
 
+bool ServiceClient::isDisconnected() const {
+	return disconnected;
+}
+
+bool ServiceClient::hasError() const {
+	return errored;
+}
+
 void ServiceClient::finalize() {
 	release();
 }
@@ -68,4 +76,41 @@ void ServiceClient::acquire() {
 
 void ServiceClient::release() {
 	Object::release();
+}
+
+void ServiceClient::setHandler(ServiceHandler* handler) {
+	serviceHandler = handler;
+}
+
+ void ServiceClient::setAddress(const String& host, int port) {
+	addr = SocketAddress(host, port);
+}
+
+void ServiceClient::setError() {
+	errored = true;
+}
+
+void ServiceClient::setPacketLoss(int ratio) {
+	packetLossChance = ratio;
+}
+
+// getters
+uint64 ServiceClient::getNetworkID() const {
+	return addr.getNetworkID();
+}
+
+SocketAddress& ServiceClient::getAddress() {
+	return addr;
+}
+
+const SocketAddress& ServiceClient::getAddress() const {
+	return addr;
+}
+
+Socket* ServiceClient::getSocket() {
+	return socket;
+}
+
+const Socket* ServiceClient::getSocket() const {
+	return socket;
 }

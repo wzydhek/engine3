@@ -18,9 +18,7 @@ namespace sys {
 
   		void start();
 
-  		virtual bool isDeadlocked() {
-  			return false;
-  		}
+  		virtual bool isDeadlocked();
 
   		virtual void handleCrash() {
   		}

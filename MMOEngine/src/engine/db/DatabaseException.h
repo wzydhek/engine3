@@ -12,8 +12,7 @@ namespace engine {
 
 	class DatabaseException : public Exception {
 	public:
-		DatabaseException(const String& msg) : Exception(msg) {
-		}
+		DatabaseException(const String& msg);
 		
 	};
 

@@ -17,21 +17,11 @@ namespace engine {
 		int flags;
 
 	public:
-		ControlMessage(int command, int flags) : DOBMessage(CONTROLMESSAGE, 20), command(command) {
-			insertInt(command);
-			insertInt(flags);
-		}
+		ControlMessage(int command, int flags);
 
-		ControlMessage(Packet* message) : DOBMessage(message) {
-			command = message->parseInt();
-			flags = message->parseInt();
-		}
+		ControlMessage(Packet* message);
 
-		void execute() {
-			ObjectBrokerAgent* agent = ObjectBrokerAgent::instance();
-
-			agent->doCommand((ObjectBrokerDirector::Command) command, flags);
-		}
+		void execute();
 	};
 
   } // namespace ORB

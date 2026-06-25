@@ -71,22 +71,14 @@ namespace sys {
 		TextStream& operator<< (const StreamFlags flags);
 
 		// getters
-		inline bool doHex() const {
-			return streamFlags & SF_hex;
-		}
+		bool doHex() const;
 
-		inline bool doUpperCase() const {
-			return streamFlags & SF_uppercase;
-		}
+		bool doUpperCase() const;
 
-		inline StreamType getStreamType() const {
-			return outStream;
-		}
+		StreamType getStreamType() const;
 
 	private:
-		inline const char* upf(const char* lower, const char* upper) const {
-			return doUpperCase() ? upper : lower;
-		}
+		const char* upf(const char* lower, const char* upper) const;
 
 	};
 

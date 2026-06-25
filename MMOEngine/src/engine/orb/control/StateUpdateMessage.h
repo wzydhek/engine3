@@ -17,21 +17,11 @@ namespace engine {
 		int state;
 
 	public:
-		StateUpdateMessage(int state) : DOBMessage(STATEUPDATEMESSAGE, 20), state(state) {
-			insertInt(state);
-		}
+		StateUpdateMessage(int state);
 
-		StateUpdateMessage(Packet* message) : DOBMessage(message) {
-			state = message->parseInt();
-		}
+		StateUpdateMessage(Packet* message);
 
-		void execute() {
-			ObjectBrokerDirector* director = ObjectBrokerDirector::instance();
-
-			RemoteObjectBroker* remoteBroker = getClient()->getRemoteObjectBroker();
-
-			director->handleStateUpdate(remoteBroker, state);
-		}
+		void execute();
 	};
 
   } // namespace ORB

@@ -34,26 +34,13 @@ namespace sys {
 
 		virtual int compareTo(const PriorityQueueEntry* node) const = 0;
 
-		inline void clear() {
-			parentNode = nullptr;
+		void clear();
 
-			leftNode = nullptr;
-			rightNode = nullptr;
+		void setQueued();
 
-			setUnqueued();
-		}
+		void setUnqueued();
 
-		inline void setQueued() {
-			enqueued.store(true, std::memory_order_relaxed);
-		}
-
-		inline void setUnqueued() {
-			enqueued.store(false, std::memory_order_relaxed);
-		}
-
-		inline bool isQueued() const {
-			return enqueued.load(std::memory_order_relaxed);
-		}
+		bool isQueued() const;
 
 		friend class PriorityQueue;
 	};
@@ -86,29 +73,17 @@ namespace sys {
 		void clear();
 		void clearWithoutTraverse();
 
-		inline bool isEmpty() const {
-			return root == nullptr;
-		}
+		bool isEmpty() const;
 
-		inline bool isFull() const {
-			return false;
-		}
+		bool isFull() const;
 
-		int size() const NO_THREAD_SAFETY_ANALYSIS {
-			return count;
-		}
+		int size() const NO_THREAD_SAFETY_ANALYSIS;
 
-		inline uint64 getPushedEntries() const {
-			return pushedEntries;
-		}
+		uint64 getPushedEntries() const;
 
-		inline uint64 getPoppedEntries() const {
-			return poppedEntries;
-		}
+		uint64 getPoppedEntries() const;
 
-		inline uint64 getRemovedEntries() const {
-			return removedEntries;
-		}
+		uint64 getRemovedEntries() const;
 
 	private:
 		PriorityQueueEntry* merge(PriorityQueueEntry* h1, PriorityQueueEntry* h2) const;

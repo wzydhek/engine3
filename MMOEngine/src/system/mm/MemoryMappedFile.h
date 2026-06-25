@@ -19,9 +19,7 @@ namespace sys {
 	public:
 		MemoryMappedFile(const char* name, uint32 size);
 
-		void create() {
-			Heap::create(fileSize);
-		}
+		void create();
 
 	protected:
 		void openDevice();

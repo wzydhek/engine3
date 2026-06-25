@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include "system/util/Vector.h"
+
 namespace engine {
   namespace stm {
 
@@ -14,12 +16,7 @@ namespace engine {
 		static const int RETIRED_TRESHOLD = 100;
 
 	public:
-		void retireObject(Object* object) {
-			retireList.add(object);
-
-			if (retireList.size() > RETIRED_TRESHOLD)
-				scan();
-		}
+		void retireObject(Object* object);
 
 		void scan() {
 
@@ -29,3 +26,5 @@ namespace engine {
 
   } // namespace stm
 } // namespace engine
+
+using namespace engine::stm;

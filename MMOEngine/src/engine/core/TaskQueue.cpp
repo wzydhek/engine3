@@ -190,3 +190,7 @@ int TaskQueue::size() const {
 
 	return size;
 }
+
+const String& TaskQueue::getName() const {
+	return name;
+}

@@ -16,16 +16,9 @@ namespace sys {
 		static AtomicReference<MemoryManager*> inst;
 
 	public:
-		static MemoryManager* getInstance() {
-			if (inst == nullptr)
-				setInstance(new MemoryManager());
+		static MemoryManager* getInstance();
 
-			return inst;
-		}
-
-		static void setInstance(MemoryManager* manager) {
-			inst.set(manager);
-		}
+		static void setInstance(MemoryManager* manager);
 
 		virtual void reclaim(Object* object);
 		virtual void create(Object* object);

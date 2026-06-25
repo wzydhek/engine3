@@ -12,11 +12,9 @@ namespace engine {
 
 	class ServiceException : public sys::lang::Exception {
 	public:
-		ServiceException() : Exception() {
-		}
+		ServiceException();
 
-		ServiceException(const String& msg) : Exception(msg) {
-		}
+		ServiceException(const String& msg);
 	};
 
   } // namespace service

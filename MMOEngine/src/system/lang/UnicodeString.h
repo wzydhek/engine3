@@ -80,49 +80,29 @@ namespace sys {
 			return toString();
 		}
 
-		inline bool isEmpty() const {
-			return count == 0;
-		}
+		bool isEmpty() const;
 
-		bool operator== (const UnicodeString& str) const {
-			return compareTo(str) == 0;
-		}
+		bool operator==(const UnicodeString& str) const;
 
-		bool operator< (const UnicodeString& str) const {
-			return compareTo(str) < 0;
-		}
+		bool operator<(const UnicodeString& str) const;
 
-		bool operator> (const UnicodeString& str) const {
-			return compareTo(str) > 0;
-		}
+		bool operator>(const UnicodeString& str) const;
 
-		bool operator!= (const UnicodeString& str) const {
-			return compareTo(str) != 0;
-		}
+		bool operator!=(const UnicodeString& str) const;
 
 		friend UnicodeString operator+(const UnicodeString& str1, const UnicodeString& str2) {
 			return str1.concat(str2);
 		}
 
-		inline UnicodeCharType* begin() {
-			return uString;
-		}
+		UnicodeCharType* begin();
 
-		inline const UnicodeCharType* begin() const {
-			return uString;
-		}
+		const UnicodeCharType* begin() const;
 
-		inline UnicodeCharType* end() {
-			return uString + count;
-		}
+		UnicodeCharType* end();
 
-		inline const UnicodeCharType* end() const {
-			return uString + count;
-		}
+		const UnicodeCharType* end() const;
 
-		inline uint32 length() const {
-			return count;
-		}
+		uint32 length() const;
 
 	private:
 		void create(const char* ascii, int len);
@@ -145,9 +125,7 @@ namespace sys {
 		}
 
 	public:
-		String toString() const {
-			return convertToString<UnicodeCharSize::value>();
-		}
+		String toString() const;
 	};
 
 

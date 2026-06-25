@@ -202,3 +202,137 @@ String Object::toString() const {
 
 	return String(buf);
 }
+
+#ifdef CXX11_COMPILER
+Object::Object(Object&& o) : referenceCounters(nullptr) {
+	E3_ASSERT(o.referenceCounters == nullptr && "Cant move objects that are referenced");
+
+#ifdef TRACE_REFERENCES
+	referenceHolders = nullptr;
+#endif
+}
+
+Object& Object::operator = (Object && o) {
+	if (this == &o)
+		return *this;
+
+	E3_ASSERT(o.referenceCounters == nullptr && "Cant move objects that are referenced");
+
+	return *this;
+}
+#endif
+
+Object& Object::operator = (const Object& o) {
+	if (this == &o)
+		return *this;
+
+	return *this;
+}
+
+Object* Object::clone() {
+	E3_ABORT("clone method not declared");
+
+	return nullptr;
+}
+
+Object* Object::clone(void* object) {
+	return clone();
+}
+
+int Object::compareTo(Object* object) {
+	if (this == object)
+		return 0;
+	else if (this < object)
+		return 1;
+	else
+		return -1;
+}
+
+bool Object::notifyDestroy() {
+	return true;
+}
+
+bool Object::toBinaryStream(ObjectOutputStream* stream) {
+	return false;
+}
+
+bool Object::parseFromBinaryStream(ObjectInputStream* stream) {
+	return false;
+}
+
+void Object::createStrongAndWeakReferenceCount() const {
+	auto newCount = new StrongAndWeakReferenceCount(0, 2, const_cast<Object*>(this));
+
+	if (!referenceCounters.compareAndSet(nullptr, newCount)) {
+		delete newCount;
+
+		referenceCounters->increaseStrongCount();
+	} else {
+		newCount->increaseStrongCount();
+	}
+}
+
+void Object::acquire() const {
+	auto counters = referenceCounters.get();
+
+	if (counters == nullptr) {
+		createStrongAndWeakReferenceCount();
+	} else {
+		counters->increaseStrongCount();
+	}
+}
+
+bool Object::release() const {
+	if (referenceCounters->decrementAndTestAndSetStrongCount() != 0) {
+		if (const_cast<Object*>(this)->notifyDestroy()) {
+#ifdef WITH_STM
+			MemoryManager::getInstance()->reclaim(this);
+#else
+			const_cast<Object*>(this)->destroy();
+
+			return true;
+#endif
+		}
+	}
+
+	return false;
+}
+
+bool Object::tryFinalRelease() const {
+	if (referenceCounters->tryStrongFinalDecrement()) {
+		if (const_cast<Object*>(this)->notifyDestroy()) {
+#ifdef WITH_STM
+			MemoryManager::getInstance()->reclaim(this);
+#else
+			const_cast<Object*>(this)->destroy();
+
+			return true;
+#endif
+		}
+	}
+
+	return false;
+}
+
+void Object::_markAsDestroyed() {
+	if (referenceCounters != nullptr)
+		referenceCounters->markAsDestroyed();
+}
+
+uint32 Object::getReferenceCount() {
+	if (referenceCounters == nullptr)
+		return 0;
+	else
+		return referenceCounters->getStrongReferenceCount();
+}
+
+StrongAndWeakReferenceCount* Object::requestWeak() {
+	if (referenceCounters == nullptr) {
+		auto newCount = new StrongAndWeakReferenceCount(0, 2, this);
+
+		if (!referenceCounters.compareAndSet(nullptr, newCount))
+			delete newCount;
+	}
+
+	return referenceCounters.get();
+}

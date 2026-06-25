@@ -45,34 +45,19 @@ namespace engine {
 
 		bool waitForReply(uint32 timeout = 10000);
 
-		DOBServiceClient* getClient() {
-			return client;
-		}
+		DOBServiceClient* getClient();
 
-		const DOBServiceClient* getClient() const {
-			return client;
-		}
+		const DOBServiceClient* getClient() const;
 
-		uint32 getSequence() const {
-			return sequence;
-		}
+		uint32 getSequence() const;
 
-		void setClient(DOBServiceClient* cli) {
-			client = cli;
-		}
+		void setClient(DOBServiceClient* cli);
 
-		void setSequence(uint32 seq) {
-			sequence = seq;
-			insertInt(8, seq); // sequence
-		}
+		void setSequence(uint32 seq);
 
-		void setSize() {
-			insertInt(0, size());
-		}
+		void setSize();
 
-		bool isAsync() const {
-			return async;
-		}
+		bool isAsync() const;
 	};
 
   } // namespace ORB

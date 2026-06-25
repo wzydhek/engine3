@@ -69,3 +69,87 @@ void BasePacket::close() {
 	insertByte(0x00);
 	insertByte(0x00);
 }
+
+bool BasePacket::isDataChannelPacket() {
+	if (parseShort(0) == 0x0900)
+		return true;
+	else
+		return false;
+}
+
+bool BasePacket::isMultiPacket() {
+	if (parseShort(0) == 0x0300 || parseShort(4) == 0x1900)
+		return true;
+	else
+		return false;
+}
+
+// setters
+void BasePacket::setSequence(sys::uint32 seq) {
+	insertShort(2, htons((sys::uint16)(sequence = seq)));
+}
+
+void BasePacket::setSequencing(bool seq) {
+	doSeq = seq;
+}
+
+void BasePacket::setEncryption(bool enc) {
+	doEncr = enc;
+}
+
+void BasePacket::setCompression(bool comp) {
+	doComp = comp;
+}
+
+void BasePacket::setCRCChecking(bool crctest) {
+	doCRCTest = crctest;
+}
+
+void BasePacket::setTimestamp() {
+	timestamp.updateToCurrentTime();
+}
+
+void BasePacket::setTimeout(uint64 time) {
+	timeout.updateToCurrentTime();
+	timeout.addMiliTime(time);
+}
+
+// getters
+sys::uint32 BasePacket::getSequence() const {
+	if (doSeq)
+		return sequence;
+	else
+		return 0xFFFFFFFF;
+}
+
+bool BasePacket::doSequencing() const {
+	return doSeq;
+}
+
+bool BasePacket::doEncryption() const {
+	return doEncr;
+}
+
+bool BasePacket::doCompression() const {
+	return doComp;
+}
+
+bool BasePacket::doCRCChecking() const {
+	return doCRCTest;
+}
+
+Time& BasePacket::getTimestamp() {
+	return timestamp;
+}
+
+const Time& BasePacket::getTimestamp() const {
+	return timestamp;
+}
+
+const Time& BasePacket::getTimeout() const {
+	return timeout;
+}
+
+Time& BasePacket::getTimeout() {
+	return timeout;
+}

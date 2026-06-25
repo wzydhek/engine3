@@ -29,29 +29,17 @@ namespace io {
 	public:
 		static Reference<FileLogWriter*> getWriter(const String& fileName, bool append = false, bool rotateAtStart = false);
 
-		inline void setSynchronized(bool synchronized) {
-			doSynchronized = synchronized;
-		}
+		void setSynchronized(bool synchronized);
 
-		inline void setRotateSizeMB(uint32 maxSizeMB) {
-			maxLoggedBytes = maxSizeMB * 1024 * 1024;
-		}
+		void setRotateSizeMB(uint32 maxSizeMB);
 
-		inline void setRotatePrefix(String prefix) {
-			rotatePrefix = prefix; // Setup rotate to {dir}{prefix}{filename}
-		}
+		void setRotatePrefix(String prefix);
 
 		void closeLog(bool force = false);
 		int write(const char* str, int len) override;
 		void rotatefile(bool force = false) const;
 
-		const String getFileName() const {
-			if (file != nullptr) {
-				return file->getFileName();
-			}
-
-			return "";
-		}
+		const String getFileName() const;
 	};
 } // namespace io
 } // namespace sys

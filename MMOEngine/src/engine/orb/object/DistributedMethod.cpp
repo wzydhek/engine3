@@ -280,3 +280,15 @@ DistributedObject* DistributedMethod::getObjectParameter() {
 		return nullptr;
 	}
 }
+
+const DistributedObject* DistributedMethod::getObject() const {
+	return object;
+}
+
+InvokeMethodMessage* DistributedMethod::getInvocationMessage() const {
+	return invocationMessage;
+}
+
+Packet* DistributedMethod::getResponseMessage() const {
+	return response;
+}

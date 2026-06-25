@@ -8,11 +8,15 @@
 #include "system/lang.h"
 #include "IffStreamException.h"
 
+namespace engine {
+namespace util {
+
 class NoChunksException : public IffStreamException {
 public:
-	NoChunksException(IffStream* iffstream) : IffStreamException(iffstream) {
-		StringBuffer sstr;
-		sstr << "NoChunksException on file:[" << iffstream->getFileName() << "]\n";
-		message = sstr.toString();
-	}
+	NoChunksException(IffStream* iffstream);
 };
+
+} // namespace util
+} // namespace engine
+
+using namespace engine::util;

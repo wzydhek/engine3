@@ -84,17 +84,11 @@ namespace engine {
 
 		void createBackup(int flags = SAVE_DELTA);
 
-		static void setUpdateToDatabaseTime(int value) {
-			UPDATETODATABASETIME = value;
-		}
+		static void setUpdateToDatabaseTime(int value);
 
-		static void setDumpLastModifiedTraces(bool val) {
-			dumpLastModifiedTraces = val;
-		}
+		static void setDumpLastModifiedTraces(bool val);
 
-		static bool getDumpLastModifiedTraces() {
-			return dumpLastModifiedTraces;
-		}
+		static bool getDumpLastModifiedTraces();
 
 		void scheduleUpdateToDatabase();
 
@@ -127,9 +121,7 @@ namespace engine {
 
 		virtual uint64 getNextFreeObjectID();
 
-		DistributedObjectDirectory* getLocalObjectDirectory() {
-			return &localObjectDirectory;
-		}
+		DistributedObjectDirectory* getLocalObjectDirectory();
 
 	protected:
 		using UpdateCollection = ArrayList<Pair<ArrayList<DistributedObject*>*, ArrayList<DistributedObject*>*>>;

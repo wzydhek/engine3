@@ -8,11 +8,15 @@
 #include "system/lang.h"
 #include "IffStreamException.h"
 
+namespace engine {
+namespace util {
+
 class InvalidFileTypeException : public IffStreamException {
 public:
-	InvalidFileTypeException(IffStream* iffstream) : IffStreamException(iffstream) {
-		StringBuffer sstr;
-		sstr << "InvalidFileTypeException on file:[" << iffstream->getFileName() << "]\n";
-		message = sstr.toString();
-	}
+	InvalidFileTypeException(IffStream* iffstream);
 };
+
+} // namespace util
+} // namespace engine
+
+using namespace engine::util;

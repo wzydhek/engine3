@@ -18,6 +18,10 @@
 using namespace engine::db;
 using namespace engine::db::berkeley;
 
+ObjectDatabase::ObjectDatabase() {
+	dbType = LocalDatabase::OBJECTDATABASE;
+}
+
 ObjectDatabase::ObjectDatabase(DatabaseManager* dbEnv, const String& dbFileName, bool compression, DatabaseType databaseType)
 	: LocalDatabase(dbEnv, dbFileName, compression, databaseType) {
 
@@ -260,6 +264,15 @@ int ObjectDatabase::deleteData(uint64 objKey, engine::db::berkeley::Transaction*
 	/*StringBuffer msg;
 	msg << "added to deleteData objid" << hex << objKey;
 	info(msg);*/
+}
+
+ObjectDatabaseIterator::ObjectDatabaseIterator(engine::db::berkeley::Transaction* transaction, LocalDatabase* database) : LocalDatabaseIterator(transaction, database) {
+}
+
+ObjectDatabaseIterator::ObjectDatabaseIterator(ObjectDatabase* database, const berkeley::CursorConfig& config, bool useCurrentThreadTransaction) : LocalDatabaseIterator(database, config, useCurrentThreadTransaction) {
+}
+
+ObjectDatabaseIterator::ObjectDatabaseIterator(engine::db::berkeley::BerkeleyDatabase* databaseHandle) : LocalDatabaseIterator(databaseHandle) {
 }
 
 bool ObjectDatabaseIterator::getNextKeyAndValue(uint64& key, ObjectInputStream* data, uint32 lockMode, bool compressed) {

@@ -28,3 +28,20 @@ void Exception::printStackTrace() const {
 void Exception::printMessage() const {
 	System::err << message << endl;
 }
+
+		// setters and getters
+void Exception::setMessage(const String& msg) {
+	message = msg;
+}
+
+const String& Exception::getMessage() const {
+	return message;
+}
+
+const StackTrace& Exception::getStackTrace() const {
+	return trace;
+}
+
+const char* Exception::what() const {
+	return message.toCharArray();
+}

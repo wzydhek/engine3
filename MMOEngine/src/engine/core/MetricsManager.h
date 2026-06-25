@@ -48,10 +48,10 @@ namespace engine {
 			Result publish(const char* name, const char* value, const char* type, const char* sampleTime = nullptr);
 			Result publish(const engine::Metrics& metrics);
 
-			void setGlobalPrefix(const String& prefix) {
-				globalPrefix = prefix;
-			}
+			void setGlobalPrefix(const String& prefix);
 		};
 
 	}
 }
+
+using namespace engine::core;

@@ -10,6 +10,11 @@
 #include "engine/core/ManagedObject.h"
 #include <chrono>
 
+using ObjectHashTable = EngineObjectHashTable;
+
+namespace engine {
+namespace ORB {
+
 class DirectoryKeyHandler : public KeyHandler<uint64> {
 	AtomicLong id;
 
@@ -18,6 +23,11 @@ public:
 		return id.increment();
 	}
 };
+
+} // namespace ORB
+} // namespace engine
+
+using namespace engine::ORB;
 
 namespace DOBT {
 	int hash(const uint64& keyValue) {
@@ -109,3 +119,14 @@ DistributedObjectAdapter* DistributedObjectDirectory::getAdapter(uint64 objid) {
 	return objectMap.get(objid);
 }
 
+int DistributedObjectDirectory::getSize() const {
+	return objectMap.size();
+}
+
+const ObjectHashTable& DistributedObjectDirectory::getObjectHashTable() const {
+	return objectMap;
+}
+
+ObjectHashTableHelper* DistributedObjectDirectory::getDistributedObjectMap() {
+	return helperObjectMap.getMap()->getHashTable();
+}

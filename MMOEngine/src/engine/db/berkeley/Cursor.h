@@ -50,86 +50,60 @@ namespace engine {
 		/**
 		 * Returns the key/data pair to which the cursor refers.
 		 */
-		inline int getCurrent(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_CURRENT | lockMode);
-		}
+		int getCurrent(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 		/**
 		 * Move the cursor to the first key/data pair of the database, and return that pair.
 		 */
-		inline int getFirst(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_FIRST | lockMode);
-		}
+		int getFirst(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 		/**
 	         * Move the cursor to the last key/data pair of the database, and return that pair.
 		 */
-		inline int getLast(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_LAST | lockMode);
-		}
+		int getLast(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 		/**
 		 * Move the cursor to the next key/data pair and return that pair.
 		 */
-		inline int getNext(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_NEXT | lockMode);
-		}
+		int getNext(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
-		inline int pGetSet(DatabaseEntry* key, DatabaseEntry* primaryKey, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return pget(key, primaryKey, data, DB_SET | lockMode);
-		}
+		int pGetSet(DatabaseEntry* key, DatabaseEntry* primaryKey, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
-		inline int pGetNext(DatabaseEntry* key, DatabaseEntry* primaryKey, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return pget(key, primaryKey, data, DB_NEXT | lockMode);
-		}
+		int pGetNext(DatabaseEntry* key, DatabaseEntry* primaryKey, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 		/**
 		 * Move the cursor to the next key/data pair and return that pair.
 		 */
-		inline int getNextMultiple(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_MULTIPLE_KEY | DB_NEXT | lockMode);
-		}
+		int getNextMultiple(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 		/**
 		 * If the next key/data pair of the database is a duplicate data record for the current key/data pair, move the cursor to the next key/data pair of the database and return that pair.
 		 */
-		inline int getNextDup(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_NEXT_DUP | lockMode);
-		}
+		int getNextDup(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
-		inline int pGetNextDup(DatabaseEntry* key, DatabaseEntry* primaryKey, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return pget(key, primaryKey, data, DB_NEXT_DUP | lockMode);
-		}
+		int pGetNextDup(DatabaseEntry* key, DatabaseEntry* primaryKey, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 		/**
 		 * Move the cursor to the next non-duplicate key/data pair and return that pair.
 		 */
 
-		inline int getNextNoDup(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_NEXT_NODUP | lockMode);
-		}
+		int getNextNoDup(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 
 		/**
 		 * Move the cursor to the previous key/data pair and return that pair.
 		 */
-		inline int getPrev(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_PREV | lockMode);
-		}
+		int getPrev(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 		/**
 		 * If the previous key/data pair of the database is a duplicate data record for the current key/data pair, move the cursor to the previous key/data pair of the database and return that pair.
 		 */
-		inline int getPrevDup(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_PREV_DUP | lockMode);
-		}
+		int getPrevDup(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 		/**
 		 * Move the cursor to the previous non-duplicate key/data pair and return that pair.
 		 */
-		inline int getPrevNoDup(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_PREV_NODUP | lockMode);
-		}
+		int getPrevNoDup(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 		/**
 		 * Return the record number associated with the cursor.
@@ -139,37 +113,27 @@ namespace engine {
 		/**
 		 * Move the cursor to the specified key/data pair, where both the key and data items must match.
 		 */
-		inline int getSearchBoth(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_GET_BOTH | lockMode);
-		}
+		int getSearchBoth(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 		/**
 		 * Move the cursor to the specified key and closest matching data item of the database.
 		 */
-		inline int getSearchBothRange(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_GET_BOTH_RANGE | lockMode);
-		}
+		int getSearchBothRange(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 		/**
 		 * Move the cursor to the given key of the database, and return the datum associated with the given key.
 		 */
-		inline int getSearchKey(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_SET | lockMode);
-		}
+		int getSearchKey(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 		/**
 		 * Move the cursor to the closest matching key of the database, and return the data item associated with the matching key.
 		 */
-		inline int getSearchKeyRange(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_SET_RANGE | lockMode);
-		}
+		int getSearchKeyRange(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 		/**
 		 * Move the cursor to the specific numbered record of the database, and return the associated key/data pair.
 		 */
-		inline int getSearchRecordNumber(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT) {
-			return get(key, data, DB_SET_RECNO | lockMode);
-		}
+		int getSearchRecordNumber(DatabaseEntry* key, DatabaseEntry* data, uint32 lockMode = LockMode::DEFAULT);
 
 		/**
 		 * Store a key/data pair into the database.
@@ -179,16 +143,12 @@ namespace engine {
 		/**
 		 * Store a key/data pair into the database.
 		 */
-		inline int putAfter(DatabaseEntry* key, DatabaseEntry* data) {
-			return put(key, data, DB_AFTER);
-		}
+		int putAfter(DatabaseEntry* key, DatabaseEntry* data);
 
 		/**
 		 * Store a key/data pair into the database.
 		 */
-		inline int putBefore(DatabaseEntry* key, DatabaseEntry* data) {
-			return put(key, data, DB_BEFORE);
-		}
+		inline int putBefore(DatabaseEntry* key, DatabaseEntry* data);
 
 		/**
 		 * Replaces the data in the key/data pair at the current cursor position.
@@ -198,23 +158,17 @@ namespace engine {
 		/**
 		 * Store a key/data pair into the database.
 		 */
-		inline int putKeyFirst(DatabaseEntry* key, DatabaseEntry* data) {
-			return put(key, data, DB_KEYFIRST);
-		}
+		int putKeyFirst(DatabaseEntry* key, DatabaseEntry* data);
 
 		/**
 		 * Store a key/data pair into the database.
 		 */
-		inline int putKeyLast(DatabaseEntry* key, DatabaseEntry* data) {
-			return put(key, data, DB_KEYLAST);
-		}
+		int putKeyLast(DatabaseEntry* key, DatabaseEntry* data);
 
 		/**
 		 * Store a key/data pair into the database.
 		 */
-		inline int putNoDupData(DatabaseEntry* key, DatabaseEntry* data) {
-			return put(key, data, DB_NODUPDATA);
-		}
+		int putNoDupData(DatabaseEntry* key, DatabaseEntry* data);
 
 		/**
 		 * Store a key/data pair into the database.
@@ -226,16 +180,12 @@ namespace engine {
 		/**
 		 * Return this cursor's configuration.
 		 */
-		inline CursorConfig getConfig() {
-			return config;
-		}
+		CursorConfig getConfig();
 
 		/**
 		 * Return the Database handle associated with this Cursor.
 		 */
-		inline BerkeleyDatabase* getDatabase() {
-			return database;
-		}
+		BerkeleyDatabase* getDatabase();
 
 		int get(DatabaseEntry* key, DatabaseEntry* data, uint32 flags);
 		int pget(DatabaseEntry* key, DatabaseEntry* primaryKey, DatabaseEntry* data, uint32 flags);
@@ -247,3 +197,5 @@ namespace engine {
     } // namespace berkeley
   } // namespace db
 } // namespace engine
+
+using namespace engine::db::berkeley;

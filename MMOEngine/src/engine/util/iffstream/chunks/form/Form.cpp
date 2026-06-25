@@ -33,3 +33,7 @@ void Form::parseSubObjects() {
 
 	shiftOffset(size);
 }
+
+uint32 Form::getFormType() {
+	return formType;
+}

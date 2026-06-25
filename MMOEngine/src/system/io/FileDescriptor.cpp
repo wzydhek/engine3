@@ -15,6 +15,9 @@
 
 #include "FileDescriptor.h"
 
+FileDescriptor::FileDescriptor() : fileDescriptor(-1), handler(nullptr) {
+}
+
 void FileDescriptor::setBlocking(bool b) {
 	#ifndef PLATFORM_WIN
 		unsigned long mode = !b;
@@ -23,4 +26,16 @@ void FileDescriptor::setBlocking(bool b) {
 		if (ret < 0)
 			throw IOException("unable to set blocking mode");
 	#endif
+}
+
+int FileDescriptor::getFileDescriptor() const {
+	return fileDescriptor;
+}
+
+IOHandler* FileDescriptor::getHandler() const {
+	return handler;
+}
+
+void FileDescriptor::setHandler(IOHandler* hand) {
+	handler = hand;
 }

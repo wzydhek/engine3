@@ -20,45 +20,15 @@ namespace engine {
 		uint64 objectID;
 
 	public:	
-		UndeployObjectMessage(const String& name) : DOBMessage(UNDEPLOYOBJECTMESSAGE, 40) {
-			insertAscii(name);
-
-			objectID = 0;
-		}
+		UndeployObjectMessage(const String& name);
 	
-		UndeployObjectMessage(Packet* message) : DOBMessage(message) {
-			message->parseAscii(name);
+		UndeployObjectMessage(Packet* message);
 
-			objectID = 0;
-		}
+		void execute();
 
-		void execute() {
-			DistributedObjectBroker* broker = DistributedObjectBroker::instance();
+		void handleReply(Packet* message);
 
-			DistributedObjectStub* obj = nullptr;
-			try {
-				obj = broker->undeployRemote(name);
-			} catch (const Exception& e) {
-				e.printStackTrace();
-			}
-
-			uint64 objectID = 0;
-			if (obj != nullptr)
-				objectID = obj->_getObjectID();
-
-			insertLong(objectID);
-
-			client->sendReply(this);
-
-		}
-
-		void handleReply(Packet* message) {
-			objectID = message->parseLong();
-		}
-
-		uint64 getObjectID() {
-			return objectID;
-		}
+		uint64 getObjectID();
 	};
 
   } // namespace ORB

@@ -48,9 +48,7 @@ public:
 	// Add a object to this node
 	void addObject(OcTreeEntryInterface *obj);
 
-	OcTreeEntryInterface* getObject(int index) const {
-		return objects.get(index);
-	}
+	OcTreeEntryInterface* getObject(int index) const;
 
 	// Remove a object by GUID
 	void removeObject(OcTreeEntryInterface *obj);
@@ -65,38 +63,19 @@ public:
 	// Check if this node makes any sense to exist
 	void check();
 
-	bool validateNode() const {
-		if (dividerZ != -1) {
-			if (minX > maxX || minY > maxY || minZ > maxZ) {
-				return false;
-			}
-		} else if (minX > maxX || minY > maxY) {
-			return false;
-		}
-
-		return true;
-	}
+	bool validateNode() const;
 
 	// Check if this node has any associated objects
-	inline bool isEmpty() const {
-		return objects.isEmpty();
-	}
+	bool isEmpty() const;
 
 	// Check if this node has children nodes
-	inline bool hasSubNodes() const {
-		return nwNode != nullptr || neNode != nullptr || swNode != nullptr || seNode != nullptr
-			|| nwNode2 != nullptr || neNode2 != nullptr || swNode2 != nullptr || seNode2 != nullptr;
-	}
+	bool hasSubNodes() const;
 
 
 	// Test if the point is inside this node
-	inline bool testInside(float x, float y, float z) const {
-		return x >= minX && x < maxX && y >= minY && y < maxY && z >= minZ && z < maxZ;
-	}
+	bool testInside(float x, float y, float z) const;
 
-	inline bool testInside(float x, float y) const {
-		return x >= minX && x < maxX && y >= minY && y < maxY;
-	}
+	bool testInside(float x, float y) const;
 
 	// Test if the object is inside this node
 	bool testInside(OcTreeEntryInterface* obj) const;

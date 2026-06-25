@@ -17,73 +17,27 @@ namespace sys {
 
 	class Float : public BaseTypeVariable<float> {
 	public:
-		inline Float() : BaseTypeVariable<float>(0.f) {
+		Float();
 
-		}
+		Float(float val);
 
-		inline Float(float val) : BaseTypeVariable<float>(val) {
+		Float(const Float& val);
 
-		}
+		Float& operator=(const Float& val);
 
-		inline Float(const Float& val) : BaseTypeVariable<float>(val) {
+		bool parseFromString(const String& str, int version = 0);
 
-		}
+		bool toString(String& str) const;
 
-		inline Float& operator=(const Float& val) {
-			if (this == &val) {
-				return *this;
-			}
+		bool toBinaryStream(sys::io::ObjectOutputStream* stream);
 
-			BaseTypeVariable<float>::operator=(val);
+		bool parseFromBinaryStream(sys::io::ObjectInputStream* stream);
 
-			return *this;
-		}
+		static float valueOf(const String& str);
 
-		bool parseFromString(const String& str, int version = 0) {
-			*this = valueOf(str);
+		static uint32 hashCode(float value);
 
-			return true;
-		}
-
-		bool toString(String& str) const {
-			str = String::valueOf(*this);
-
-			return true;
-		}
-
-		bool toBinaryStream(sys::io::ObjectOutputStream* stream) {
-			stream->writeFloat(BaseTypeVariable<float>::get());
-
-			return true;
-		}
-
-		bool parseFromBinaryStream(sys::io::ObjectInputStream* stream) {
-			*this = stream->readFloat();
-
-			return true;
-		}
-
-		static float valueOf(const String& str) {
-			return atof(str.toCharArray());
-		}
-
-		static uint32 hashCode(float value) {
-			return (uint32) std::hash<float>{}(value);
-		}
-
-		static bool areAlmostEqualRelative(float A, float B, float maxRelDiff = FLT_EPSILON) {
-			float diff = fabs(A - B);
-
-			A = fabs(A);
-			B = fabs(B);
-
-			float largest = (B > A) ? B : A;
-
-			if (diff <= largest * maxRelDiff)
-				return true;
-
-			return false;
-		}
+		static bool areAlmostEqualRelative(float A, float B, float maxRelDiff = FLT_EPSILON);
 
 	};
 

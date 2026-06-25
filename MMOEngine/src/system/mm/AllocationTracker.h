@@ -43,30 +43,15 @@ namespace sys {
 		~AllocationTracker();
 
 	public:
-		static AllocationTracker* getInstance() {
-			if (instance == nullptr) {
-				instance = new AllocationTracker();
-			}
+		static AllocationTracker* getInstance();
 
-			return instance;
-		}
-
-		bool isProtected(uintptr_t page) {
-			for (int i = 0; i < protectedPagesCount; ++i) {
-				if (protectedPages[i] == page)
-					return true;
-			}
-
-			return false;
-		}
+		bool isProtected(uintptr_t page);
 
 		void* onAllocate(size_t size, const void* allocator);
 		void onFree(void* ptr, const void*);
 		void* onReallocate(void* ptr, size_t size, const void* alloc);
 
-		void setAllocator(Allocator* alloc) {
-			realAllocator = alloc;
-		}
+		void setAllocator(Allocator* alloc);
 
 	protected:
 		size_t sizeOfPointer(void* ptr);

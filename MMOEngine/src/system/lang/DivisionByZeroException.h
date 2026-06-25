@@ -12,8 +12,7 @@ namespace sys {
 
 	class DivisionByZeroException : public Exception {
 	public:
-		DivisionByZeroException() : Exception("DivisionByZeroException") {
-		}
+		DivisionByZeroException();
 	};
 
   } // namespace lang

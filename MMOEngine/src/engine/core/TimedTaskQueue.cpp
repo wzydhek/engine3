@@ -326,3 +326,11 @@ void TimedTaskQueue::printQueue() {
 
 	info(s);*/
 }
+
+void TimedTaskQueue::setTaskScheduler(TaskScheduler* scheduler) {
+	taskScheduler = scheduler;
+}
+
+void TimedTaskQueue::setMutexName(const String& s) {
+	condMutex->setLockName(s);
+}

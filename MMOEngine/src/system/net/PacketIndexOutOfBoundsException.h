@@ -17,17 +17,9 @@ namespace sys {
 		const Packet* packet;
 
 	public:
-		PacketIndexOutOfBoundsException(const Packet* pack, int index) : Exception() {
-			packet = pack;
+		PacketIndexOutOfBoundsException(const Packet* pack, int index);
 
-			StringBuffer str;
-			str << "PacketIndexOutOfBoundsException at " << index << "\n";
-			message = str.toString();
-		}
-
-		const Packet* getPacket() const {
-			return packet;
-		}
+		const Packet* getPacket() const;
 
 	};
 

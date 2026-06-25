@@ -26,37 +26,23 @@ namespace engine {
 		static CheckpointConfig DEFAULT;
 
 	public:
-		CheckpointConfig() {
-			KBytes = 0;
-			minutes = 0;
-			force = false;
-		}
+		CheckpointConfig();
 
-		inline void setKBytes(uint32 kbytes) {
-			KBytes = kbytes;
-		}
+		void setKBytes(uint32 kbytes);
 
-		inline void setMinutes(uint32 min) {
-			minutes = min;
-		}
+		void setMinutes(uint32 min);
 
-		inline void setForce(bool forceCheckpoint) {
-			force = forceCheckpoint;
-		}
+		void setForce(bool forceCheckpoint);
 
-		inline uint32 getKBytes() const {
-			return KBytes;
-		}
+		uint32 getKBytes() const;
 
-		inline uint32 getMinutes() const {
-			return minutes;
-		}
+		uint32 getMinutes() const;
 
-		inline bool getForce() const {
-			return force;
-		}
+		bool getForce() const;
 	};
 
     } // namespace berkeley
   } // namespace db
 } // namespace engine
+
+using namespace engine::db::berkeley;

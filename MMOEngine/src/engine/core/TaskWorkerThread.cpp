@@ -456,3 +456,40 @@ void TaskWorkerThread::setPause(bool val) {
 		queue->wake();
 	}
 }
+
+void TaskWorkerThread::addMutexWaitTime(uint64 time) {
+	mutexesAcquired++;
+	mutexWaitTime += time;
+}
+
+void TaskWorkerThread::clearMutexWaitTime() {
+	mutexWaitTime = 0;
+}
+
+uint64 TaskWorkerThread::getTotalBdbTime() const {
+	return totalBdbTime;
+}
+
+uint64 TaskWorkerThread::getMutexWaitTime() const {
+	return mutexWaitTime;
+}
+
+TaskQueue* TaskWorkerThread::getTaskQueue() const {
+	return queue;
+}
+
+TaskWorkerThread* TaskWorkerThread::asTaskWorkerThread() {
+	return this;
+}
+
+Mutex* TaskWorkerThread::getBlockMutex() {
+	return &blockMutex;
+}
+
+bool TaskWorkerThread::doBlockWorkerDuringSave() const {
+	return blockDuringSave;
+}
+
+Task* TaskWorkerThread::getCurrentTask() const {
+	return currentTask;
+}

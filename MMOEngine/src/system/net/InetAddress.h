@@ -32,18 +32,12 @@ namespace sys {
 		}
 
 		// setters
-		inline void setHostName(const String& host) {
-			hostname = host;
-		}
+		void setHostName(const String& host);
 
 		// getters
-		inline const String& getHostAddress() const {
-			return ipaddress;
-		}
+		const String& getHostAddress() const;
 
-		inline const String& getHostName() const {
-			return hostname;
-		}
+		const String& getHostName() const;
 
 	};
 

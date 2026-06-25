@@ -39,89 +39,43 @@ namespace engine {
 
 		int compareTo(BasePacket* pack);
 
-		bool isDataChannelPacket() {
-			if (parseShort(0) == 0x0900)
-				return true;
-			else
-				return false;
-		}
+		bool isDataChannelPacket();
 
-		bool isMultiPacket() {
-			if (parseShort(0) == 0x0300 || parseShort(4) == 0x1900)
-				return true;
-			else
-				return false;
-		}
+		bool isMultiPacket();
 
 		// setters
-		inline void setSequence(sys::uint32 seq) {
-			insertShort(2, htons((sys::uint16) (sequence = seq)));
-		}
+		void setSequence(sys::uint32 seq);
 
-		inline void setSequencing(bool seq) {
-			doSeq = seq;
-		}
+		void setSequencing(bool seq);
 
-		inline void setEncryption(bool enc) {
-			doEncr = enc;
-		}
+		void setEncryption(bool enc);
 
-		inline void setCompression(bool comp) {
-			doComp = comp;
-		}
+		void setCompression(bool comp);
 
-		inline void setCRCChecking(bool crctest) {
-			doCRCTest = crctest;
-		}
+		void setCRCChecking(bool crctest);
 
-		inline void setTimestamp() {
-			timestamp.updateToCurrentTime();
-		}
+		void setTimestamp();
 
-		inline void setTimeout(uint64 time) {
-			timeout.updateToCurrentTime();
-			timeout.addMiliTime(time);
-		}
+		void setTimeout(uint64 time);
 
 		// getters
-		inline sys::uint32 getSequence() const {
-			if (doSeq)
-				return sequence;
-			else
-				return 0xFFFFFFFF;
-		}
+		sys::uint32 getSequence() const;
 
-		inline bool doSequencing() const {
-			return doSeq;
-		}
+		bool doSequencing() const;
 
-		inline bool doEncryption() const {
-			return doEncr;
-		}
+		bool doEncryption() const;
 
-		inline bool doCompression() const {
-			return doComp;
-		}
+		bool doCompression() const;
 
-		inline bool doCRCChecking() const {
-			return doCRCTest;
-		}
+		bool doCRCChecking() const;
 
-		inline Time& getTimestamp() {
-			return timestamp;
-		}
+		Time& getTimestamp();
 
-		inline const Time& getTimestamp() const {
-			return timestamp;
-		}
+		const Time& getTimestamp() const;
 
-		inline const Time& getTimeout() const {
-			return timeout;
-		}
+		const Time& getTimeout() const;
 
-		inline Time& getTimeout() {
-			return timeout;
-		}
+		Time& getTimeout();
 	};
 
     } // namespace proto

@@ -23,27 +23,20 @@ namespace engine {
 
 		
 	public:
-		DistributedObjectAdapter(DistributedObjectStub* obj) {
-			//impl = obj;
-			stub = nullptr;
-		}
+		DistributedObjectAdapter(DistributedObjectStub* obj);
 		
 		virtual ~DistributedObjectAdapter() {
 		}
 		
 		virtual void invokeMethod(sys::uint32 methid, DistributedMethod* inv) = 0;
 		
-		inline void setStub(DistributedObjectStub* stb) {
-			stub = stb;
-		}
+		void setStub(DistributedObjectStub* stb);
 		
 		/*inline DistributedObjectServant* getImplementation() {
 			return impl;
 		}*/
 	
-		inline DistributedObjectStub* getStub() {
-			return stub;
-		}
+		DistributedObjectStub* getStub();
 	
 	};
 

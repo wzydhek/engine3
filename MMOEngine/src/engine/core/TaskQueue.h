@@ -40,9 +40,7 @@ namespace engine {
 
 		int size() const;
 
-		const String& getName() const {
-			return name;
-		}
+		const String& getName() const;
 	};
 
   } // namespace service

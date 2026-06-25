@@ -18,17 +18,13 @@ namespace sys {
 
 	class ObjectInputStream : public virtual Stream {
 	public:
-		ObjectInputStream() : Stream() {
-		}
+		ObjectInputStream();
 
-		ObjectInputStream(int initsize) : Stream(initsize) {
-		}
+		ObjectInputStream(int initsize);
 
-		ObjectInputStream(int initsize, int capincr) : Stream(initsize, capincr) {
-		}
+		ObjectInputStream(int initsize, int capincr);
 
-		ObjectInputStream(char *buf, int len) : Stream(buf, len) {
-		}
+		ObjectInputStream(char *buf, int len);
 
 		virtual ~ObjectInputStream() {
 		}
@@ -61,89 +57,47 @@ namespace sys {
 		}
 
 		// reading methods
-		inline bool readBoolean() {
-			return readPrimitive<uint8>();
-		}
+		bool readBoolean();
 
-		inline uint8 readByte() {
-			return readPrimitive<uint8>();
-		}
+		uint8 readByte();
 
-		inline uint8 readByte(int offs) {
-			return readPrimitiveFrom<uint8>(offs);
-		}
+		uint8 readByte(int offs);
 
-		inline int8 readSignedByte() {
-			return readPrimitive<int8>();
-		}
+		int8 readSignedByte();
 
-		inline int8 readSignedByte(int offs) {
-			return readPrimitiveFrom<int8>(offs);
-		}
+		int8 readSignedByte(int offs);
 
-		inline uint16 readShort() {
-			return readPrimitive<uint16>();
-		}
+		uint16 readShort();
 
-		inline uint16 readShort(int offs) {
-			return readPrimitiveFrom<uint16>(offs);
-		}
+		uint16 readShort(int offs);
 
-		inline int16 readSignedShort(int offs) {
-			return readPrimitiveFrom<int16>(offs);
-		}
+		int16 readSignedShort(int offs);
 
-		inline int16 readSignedShort() {
-			return readPrimitive<int16>();
-		}
+		int16 readSignedShort();
 
-		inline uint32 readInt() {
-			return readPrimitive<uint32>();
-		}
+		uint32 readInt();
 
-		inline uint32 readNetInt() {
-			return ntohl(readInt());
-		}
+		uint32 readNetInt();
 
-		inline uint32 readInt(int offs) {
-			return readPrimitiveFrom<uint32>(offs);
-		}
+		uint32 readInt(int offs);
 
-		inline int32 readSignedInt() {
-			return readPrimitive<int32>();
-		}
+		int32 readSignedInt();
 
-		inline int32 readSignedInt(int offs) {
-			return readPrimitiveFrom<int32>(offs);
-		}
+		int32 readSignedInt(int offs);
 
-		inline uint64 readLong() {
-			return readPrimitive<uint64>();
-		}
+		uint64 readLong();
 
-		inline uint64 readLong(int offs) {
-			return readPrimitiveFrom<uint64>(offs);
-		}
+		uint64 readLong(int offs);
 
-		inline int64 readSignedLong() {
-			return readPrimitive<int64>();
-		}
+		int64 readSignedLong();
 
-		inline int64 readSignedLong(int offs) {
-			return readPrimitiveFrom<int64>(offs);
-		}
+		int64 readSignedLong(int offs);
 
-		inline float readFloat() {
-			return readPrimitive<float>();
-		}
+		float readFloat();
 
-		inline float readFloat(int offs) {
-			return readPrimitiveFrom<float>(offs);
-		}
+		float readFloat(int offs);
 
-		inline double readDouble() {
-			return readPrimitive<double>();
-		}
+		double readDouble();
 	};
 
   } // namespace io

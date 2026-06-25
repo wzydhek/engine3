@@ -92,29 +92,17 @@ namespace engine {
 		 */
 		uint64 count(bool forceCalculation = false, Transaction* txn = nullptr);
 
-		inline const String& getDatabaseFile() const {
-			return filename;
-		}
+		const String& getDatabaseFile() const;
 
-		inline const String& getDatabaseName() const {
-			return databaseName;
-		}
+		const String& getDatabaseName() const;
 
-		inline DatabaseConfig& getDatabaseConfig() {
-			return databaseConfig;
-		}
+		DatabaseConfig& getDatabaseConfig();
 
-		inline const DatabaseConfig& getDatabaseConfig() const {
-			return databaseConfig;
-		}
+		const DatabaseConfig& getDatabaseConfig() const;
 
-		inline Environment* getEnvironment() const {
-			return environment;
-		}
+		Environment* getEnvironment() const;
 
-		inline DB* getDatabaseHandle() const {
-			return dbp;
-		}
+		DB* getDatabaseHandle() const;
 
 		friend class Environment;
 	};
@@ -122,3 +110,5 @@ namespace engine {
     } // namespace berkeley
   } // namespace db
 } // namespace engine
+
+using namespace engine::db::berkeley;

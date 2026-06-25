@@ -18,8 +18,10 @@
 
 #include "ChildProcess.h"
 
-class ChildHandler : public IOHandler
-{
+namespace sys {
+namespace thread {
+
+	class ChildHandler : public IOHandler {
 	static ChildProcess* process;
 
 	bool crashed;
@@ -148,6 +150,11 @@ public:
 	}
 };
 
+} // namespace thread
+} // namespace sys
+
+using namespace sys::thread;
+
 ChildProcess* ChildHandler::process = 0;
 
 class WatchDogThread: public Thread {
@@ -162,6 +169,10 @@ public:
 };
 
 ChildProcess::ChildProcess() {
+}
+
+bool ChildProcess::isDeadlocked() {
+	return false;
 }
 
 void ChildProcess::initialize() {

@@ -45,18 +45,9 @@ namespace engine {
 
 		virtual uint64 getNextFreeObjectID() = 0;
 
-		virtual DistributedObjectPOD* createObjectPOD(const String& className) {
-			return nullptr;
-		}
+		virtual DistributedObjectPOD* createObjectPOD(const String& className);
 
-		int compareTo(ObjectBroker*& b) {
-			if (this < b)
-				return 1;
-			else if (this > b)
-				return -1;
-			else
-				return 0;
-		}
+		int compareTo(ObjectBroker*& b);
 	};
 
   } // namespace ORB

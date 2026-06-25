@@ -25,13 +25,9 @@ namespace engine {
 		static CursorConfig DEFAULT;
 
 	public:
-		CursorConfig() {
-			flags = 0;
-		}
+		CursorConfig();
 
-		CursorConfig(uint32 flag) {
-			flags = flag;
-		}
+		CursorConfig(uint32 flag);
 
 		/**
 		 * Specify that the cursor will be used to do bulk operations on the underlying database.
@@ -47,49 +43,29 @@ namespace engine {
 		/**
 		 * Configure the cursor for read committed isolation.
 		 */
-		void setReadCommitted(bool readCommitted) {
-			if (readCommitted)
-				flags |= DB_READ_COMMITTED;
-			else
-				flags &= ~DB_READ_COMMITTED;
-		}
+		void setReadCommitted(bool readCommitted);
 
 		/**
 		 * Configure read operations performed by the cursor to return modified but not yet committed data.
 		 */
-		void setReadUncommitted(bool readUncommitted) {
-			if (readUncommitted)
-				flags |= DB_READ_UNCOMMITTED;
-			else
-				flags &= ~DB_READ_UNCOMMITTED;
-		}
+		void setReadUncommitted(bool readUncommitted);
 
 		/**
 		 * Configure read operations performed by the cursor to return data as it was when the cursor opened without locking, if DatabaseConfig.setMultiversion(boolean) was configured.
 		 */
-		void setSnapshot(bool snapshot) {
-			if (snapshot)
-				flags |= DB_TXN_SNAPSHOT;
-			else
-				flags &= ~DB_TXN_SNAPSHOT;
-		}
+		void setSnapshot(bool snapshot);
 
 		/**
 		 * Specify the Concurrent Data Store environment cursor will be used to update the database.
 		 */
-		void setWriteCursor(bool writeCursor) {
-			if (writeCursor)
-				flags |= DB_WRITECURSOR;
-			else
-				flags &= ~DB_WRITECURSOR;
-		}
+		void setWriteCursor(bool writeCursor);
 
-		inline uint32 getFlags() const {
-			return flags;
-		}
+		uint32 getFlags() const;
 
 	};
 
     } // namespace berkeley
   } // namespace db
 } // namespace engine
+
+using namespace engine::db::berkeley;

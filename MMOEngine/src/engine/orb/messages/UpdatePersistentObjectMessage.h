@@ -23,41 +23,13 @@ namespace engine {
 		  uint32 success;
 
 	  public:
-		  UpdatePersistentObjectMessage(DistributedObject* object) : DOBMessage(UPDATEPERSISTENTOBJECTMESSAGE, 40) {
-			  insertLong(object->_getObjectID());
+		  UpdatePersistentObjectMessage(DistributedObject* object);
 
-			  success = 0;
-		  }
+		  UpdatePersistentObjectMessage(Packet* message);
 
-		  UpdatePersistentObjectMessage(Packet* message) : DOBMessage(message) {
-			  objectID = message->parseLong();
+		  void execute();
 
-			  success = 0;
-		  }
-
-		  void execute() {
-			  DistributedObjectBroker* orb = DistributedObjectBroker::instance();
-			  DOBObjectManager* objectManager = orb->getObjectManager();
-
-			  DistributedObject* obj = objectManager->getObject(objectID);
-
-			  uint32 success;
-
-			  if (obj != nullptr) {
-				  orb->error("could not locate object in  DOBMessageFactory::handleUpdatePersistentObjectMessage");
-
-				  success = 0;
-			  } else {
-				  success = objectManager->updatePersistentObject(obj);
-			  }
-
-			  insertInt(success);
-			  client->sendReply(this);
-		  }
-
-		  void handleReply(Packet* response) {
-			  success = response->parseInt();
-		  }
+		  void handleReply(Packet* response);
 	  };
 
   }

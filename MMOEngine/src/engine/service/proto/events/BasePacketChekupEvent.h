@@ -6,6 +6,7 @@
 #pragma once
 
 #include "engine/core/Task.h"
+#include "engine/service/proto/BaseClient.h"
 
 namespace engine {
   namespace service {
@@ -38,32 +39,17 @@ namespace engine {
 		void run();
 
 		// setters and getters
-		inline void update(BasePacket* pack) {
-			packet = pack;
-			lastUpdateTimeStamp.updateToCurrentTime(Time::MONOTONIC_TIME);
-		}
+		void update(BasePacket* pack);
 
-		inline void setCheckupTime(uint32 time) {
-			checkupTime = time;
-		}
+		void setCheckupTime(uint32 time);
 
-		void increaseCheckupTime(uint32 time) {
-			if (checkupTime < maxCheckupTime)
-				checkupTime += time;
-		}
+		void increaseCheckupTime(uint32 time);
 
-		void decreaseCheckupTime(uint32 time) {
-			if (checkupTime > minCheckupTime)
-				checkupTime -= time;
-		}
+		void decreaseCheckupTime(uint32 time);
 
-		inline uint32 getCheckupTime() {
-			return checkupTime;
-		}
+		uint32 getCheckupTime();
 
-		inline int64 getElapsedTimeMs() {
-			return lastUpdateTimeStamp.miliDifference(Time::MONOTONIC_TIME);
-		}
+		int64 getElapsedTimeMs();
 
 	};
 

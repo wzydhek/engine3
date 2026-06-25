@@ -18,3 +18,17 @@ void DistributedObjectServant::setDeployingName(const String& name) {
 String DistributedObjectServant::toString() const {
 	return _stub.get()->_getName();
 }
+
+void DistributedObjectServant::_setStub(DistributedObjectStub* stub) {
+	_stub = stub;
+}
+
+// setters
+void DistributedObjectServant::_setClassHelper(DistributedObjectClassHelper* helper) {
+	_classHelper = helper;
+}
+
+// getters
+DistributedObjectClassHelper* DistributedObjectServant::_getClassHelper() {
+	return _classHelper;
+}

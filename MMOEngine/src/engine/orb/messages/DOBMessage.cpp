@@ -41,3 +41,32 @@ bool DOBMessage::waitForReply(uint32 timeout) {
 
 	return replyCondition.timedWait(&time) == 0;
 }
+
+DOBServiceClient* DOBMessage::getClient() {
+	return client;
+}
+
+const DOBServiceClient* DOBMessage::getClient() const {
+	return client;
+}
+
+uint32 DOBMessage::getSequence() const {
+	return sequence;
+}
+
+void DOBMessage::setClient(DOBServiceClient* cli) {
+	client = cli;
+}
+
+void DOBMessage::setSequence(uint32 seq) {
+	sequence = seq;
+	insertInt(8, seq); // sequence
+}
+
+void DOBMessage::setSize() {
+	insertInt(0, size());
+}
+
+bool DOBMessage::isAsync() const {
+	return async;
+}

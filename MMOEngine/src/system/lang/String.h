@@ -169,9 +169,7 @@ namespace sys {
 		uint32 hashCode() const;
 
 		static constexpr uint32 hashCode(const char* string, uint32 startCRC = 0xFFFFFFFF) {
-			return *string ?
-					hashCode(string + 1, StringHashCodeTable::crctable[((startCRC >> 24) ^ (byte)(*string)) & 0xFF] ^ (startCRC << 8))
-					: ~startCRC;
+			return *string ? hashCode(string + 1, StringHashCodeTable::crctable[((startCRC >> 24) ^ (byte)(*string)) & 0xFF] ^ (startCRC << 8)) : ~startCRC;
 		}
 
 		static uint32 hashCode(const String& str);
@@ -208,9 +206,7 @@ namespace sys {
 		static String withCommas(float val, int precision = -1);
 		static String withCommas(double val, int precision = -1);
 
-		static const String& valueOf(const String& str) {
-			return str;
-		}
+		static const String& valueOf(const String& str);
 
 		String replaceFirst(const String& regex, const String& replacement) const ;
 		String replaceAll(const String& regex, const String& replacement) const ;
@@ -234,37 +230,21 @@ namespace sys {
 
 		String& operator=(String&& str);
 
-		bool operator== (const char* str) const {
-			return compareTo(str) == 0;
-		}
+		bool operator==(const char* str) const;
 
-		bool operator== (const String& str) const {
-			return compareTo(str) == 0;
-		}
+		bool operator==(const String& str) const;
 
-		bool operator< (const char* str) const {
-			return compareTo(str) < 0;
-		}
+		bool operator<(const char* str) const;
 
-		bool operator< (const String& str) const {
-			return compareTo(str) < 0;
-		}
+		bool operator<(const String& str) const;
 
-		bool operator> (const char* str) const {
-			return compareTo(str) > 0;
-		}
+		bool operator>(const char* str) const;
 
-		bool operator> (const String& str) const {
-			return compareTo(str) > 0;
-		}
+		bool operator>(const String& str) const;
 
-		bool operator!= (const char* str) const {
-			return compareTo(str) != 0;
-		}
+		bool operator!=(const char* str) const;
 
-		bool operator!= (const String& str) const {
-			return compareTo(str) != 0;
-		}
+		bool operator!=(const String& str) const;
 
 		bool toString(String& str);
 		bool parseFromString(const String& str, int version = 0);
@@ -338,37 +318,17 @@ namespace sys {
 
 		char charAt(int index) const;
 
-		inline const char* toCharArray() const {
-			return begin();
-		}
+		const char* toCharArray() const;
 
-		inline bool isEmpty() const {
-			return count == 0;
-		}
+		bool isEmpty() const;
 
-		inline const char* begin() const {
-#ifdef SSO_STRING
-			return count < SSO_SIZE ? (const char*) sso : (const char*) value;
-#else
-			return value;
-#endif
-		}
+		const char* begin() const;
 
-		inline const char* end() const {
-			return begin() + count;
-		}
+		const char* end() const;
 
-		inline char* begin() {
-#ifdef SSO_STRING
-			return count < SSO_SIZE ? (char*) sso : (char*) value;
-#else
-			return value;
-#endif
-		}
+		char* begin();
 
-		inline char* end() {
-			return begin() + count;
-		}
+		char* end();
 
 	protected:
 		void create(const char* str, int len);
@@ -379,9 +339,7 @@ namespace sys {
 
 	public:
 		// getters
-		inline int length() const {
-			return count;
-		}
+		inline int length() const;
 	};
 
 #ifndef STRING_INHERIT_VARIABLE
@@ -390,28 +348,13 @@ namespace sys {
 	class SerializableString : public String {
 #endif
 	public:
-		bool toBinaryStream(sys::io::ObjectOutputStream* stream) {
-			return String::toBinaryStream(stream);
-		}
+		bool toBinaryStream(sys::io::ObjectOutputStream* stream);
 
-		bool parseFromBinaryStream(sys::io::ObjectInputStream* stream) {
-			return String::parseFromBinaryStream(stream);
-		}
+		bool parseFromBinaryStream(sys::io::ObjectInputStream* stream);
 
-		SerializableString& operator=(const String& s) {
-			String::operator=(s);
+		SerializableString& operator=(const String& s);
 
-			return *this;
-		}
-
-		SerializableString& operator=(const SerializableString& s) {
-			if (this == &s)
-				return *this;
-
-			String::operator=(s);
-
-			return *this;
-		}
+		SerializableString& operator=(const SerializableString& s);
 	};
 
 	} // namespace lang

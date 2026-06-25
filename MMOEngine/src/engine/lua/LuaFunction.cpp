@@ -194,3 +194,30 @@ lua_State* LuaFunction::callFunction() {
 	return getLuaState();
 }
 
+lua_State* LuaFunction::getLuaState() const {
+	return L;
+}
+
+int LuaFunction::getNumberOfArgs() const {
+	return numberOfArgs;
+}
+
+int LuaFunction::getNumberOfReturnArgs() const {
+	return numberOfArgsToReturn;
+}
+
+String& LuaFunction::getFunctionName() {
+	return functionName;
+}
+
+const String& LuaFunction::getFunctionName() const {
+	return functionName;
+}
+
+String& LuaFunction::getObject() {
+	return object;
+}
+
+const String& LuaFunction::getObject() const {
+	return object;
+}

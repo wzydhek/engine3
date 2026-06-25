@@ -12,11 +12,7 @@ namespace engine {
 
 	class TransactionAbortedException {
 	public:
-		TransactionAbortedException() {
-			Transaction* currentTransaction = Transaction::currentTransaction();
-
-			currentTransaction->setState(Transaction::ABORTED);
-		}
+		TransactionAbortedException();
 	};
 
   } // namespace stm

@@ -100,50 +100,28 @@ namespace sys {
 		bool operator==(const StringBuffer& buff) const;
 		bool operator==(const String& str) const;
 
-		bool operator!=(const StringBuffer& buff) const {
-			return !(operator==(buff));
-		}
+		bool operator!=(const StringBuffer& buff) const;
 
-		bool operator!=(const String& str) const {
-			return !(operator==(str));
-		}
+		bool operator!=(const String& str) const;
 
 		// getters
-		inline bool doHex() const {
-			return streamFlags & SF_hex;
-		}
+		bool doHex() const;
 
-		inline bool doUpperCase() const {
-			return streamFlags & SF_uppercase;
-		}
+		bool doUpperCase() const;
 
-		inline bool doCommas() const {
-			return streamFlags & SF_commas;
-		}
+		bool doCommas() const;
 
-		inline int length() const {
-			return ArrayList<char>::size();
-		}
+		int length() const;
 
-		inline const char* getBuffer() const {
-			return ArrayList<char>::begin();
-		}
+		const char* getBuffer() const;
 
-		inline const char* begin() const {
-			return ArrayList<char>::begin();
-		}
+		const char* begin() const;
 
-		inline char* begin() {
-			return  ArrayList<char>::begin();
-		}
+		char* begin();
 
-		inline const char* end() const {
-			return begin() + length();
-		}
+		const char* end() const;
 
-		inline char* end() {
-			return begin() + length();
-		}
+		char* end();
 
 		StringBuffer& operator<< (char ch);
 		StringBuffer& operator<< (int val);

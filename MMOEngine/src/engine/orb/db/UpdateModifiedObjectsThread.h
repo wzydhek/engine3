@@ -46,87 +46,32 @@ namespace engine {
 		void commitObjectsToDatabase();
 		void commitTransaction() NO_THREAD_SAFETY_ANALYSIS;
 
-		inline void setObjectsToUpdateVector(ArrayList<DistributedObject*>* objectsToUpdate) {
-			this->objectsToUpdate = objectsToUpdate;
-		}
+		void setObjectsToUpdateVector(ArrayList<DistributedObject*>* objectsToUpdate);
 
-		inline void setObjectsToDeleteVector(ArrayList<DistributedObject*>* objectsToDelete) {
-			this->objectsToDelete = objectsToDelete;
-		}
+		void setObjectsToDeleteVector(ArrayList<DistributedObject*>* objectsToDelete);
 
-		inline void setTransaction(engine::db::berkeley::Transaction* trans) {
-			transaction = trans;
-		}
+		void setTransaction(engine::db::berkeley::Transaction* trans);
 
-		inline void setStartOffset(int offset) {
-			startOffset = offset;
-		}
+		void setStartOffset(int offset);
 
-		inline void setEndOffset(int offset) {
-			endOffset = offset;
-		}
+		void setEndOffset(int offset);
 
-		inline void stopWork() {
-			doRun = false;
+		void stopWork();
 
-			signalCopyFinished();
+		void setRAMCopyFinished(bool val);
 
-			waitFinishedWork();
+		bool hasFinishedCommiting() const;
 
-			join();
-		}
+		void signalMasterTransactionFinish();
 
-		inline void setRAMCopyFinished(bool val) {
-			copyRAMFinished = val;
-		}
+		void signalCopyFinished();
 
-		inline bool hasFinishedCommiting() const {
-			return finishedCommiting;
-		}
+		void signalActivity();
 
-		inline void signalMasterTransactionFinish() {
-			blockMutex.lock();
-
-			waitMasterTransaction.broadcast(&blockMutex);
-
-			blockMutex.unlock();
-		}
-
-		inline void signalCopyFinished() {
-			blockMutex.lock();
-
-			setRAMCopyFinished(true);
-
-			waitCondition.broadcast(&blockMutex);
-
-			blockMutex.unlock();
-		}
-
-		inline void signalActivity() {
-			blockMutex.lock();
-
-			working = true;
-
-			waitCondition.broadcast(&blockMutex);
-
-			blockMutex.unlock();
-		}
-
-		inline void waitFinishedWork() {
-			blockMutex.lock();
-
-			while (doRun && waitingToStart && objectsToUpdate != nullptr) {
-				waitCondition.broadcast(&blockMutex);
-				blockMutex.unlock();
-				blockMutex.lock();
-			}
-
-			if (working)
-				finishedWorkCondition.wait(&blockMutex);
-
-			blockMutex.unlock();
-		}
+		void waitFinishedWork();
 	};
 
   } // namespace ORB
 } // namespace engine
+
+using namespace engine::ORB;

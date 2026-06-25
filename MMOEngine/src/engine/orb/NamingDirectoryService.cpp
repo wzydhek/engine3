@@ -32,3 +32,11 @@ DistributedObject* NamingDirectoryService::unbind(const String& name) {
 
 	return obj;
 }
+
+HashTableIterator<String, DistributedObjectStub*> NamingDirectoryService::getBoundObjects() {
+	return objectNameMap.iterator();
+}
+
+void NamingDirectoryService::clearNameMap() {
+	objectNameMap.removeAll();
+}

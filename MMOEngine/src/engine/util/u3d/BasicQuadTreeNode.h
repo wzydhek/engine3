@@ -44,9 +44,7 @@ public:
 	// Add a object to this node
 	void addObject(QuadTreeEntryInterface *obj);
 
-	QuadTreeEntryInterface* getObject(int index) const {
-		return objects.get(index);
-	}
+	QuadTreeEntryInterface* getObject(int index) const;
 
 	// Remove a object by GUID
 	void removeObject(QuadTreeEntryInterface *obj);
@@ -60,28 +58,16 @@ public:
 	// Check if this node makes any sense to exist
 	void check();
 
-	bool validateNode() const {
-		if (minX > maxX || minY > maxY)
-			return false;
-		else
-			return true;
-	}
+	bool validateNode() const;
 
 	// Check if this node has any associated objects
-	inline bool isEmpty() const {
-		return objects.isEmpty();
-	}
+	bool isEmpty() const;
 
 	// Check if this node has children nodes
-	inline bool hasSubNodes() const {
-		return nwNode != nullptr || neNode != nullptr || swNode != nullptr || seNode
-				!= nullptr;
-	}
+	bool hasSubNodes() const;
 
 	// Test if the point is inside this node
-	inline bool testInside(float x, float y) const {
-		return x >= minX && x < maxX && y >= minY && y < maxY;
-	}
+	bool testInside(float x, float y) const;
 
 	// Test if the object is inside this node
 	bool testInside(QuadTreeEntryInterface* obj) const;

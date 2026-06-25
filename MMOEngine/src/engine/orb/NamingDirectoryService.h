@@ -26,13 +26,9 @@ namespace engine {
 		
 		DistributedObject* unbind(const String& name);
 		
-		HashTableIterator<String, DistributedObjectStub*> getBoundObjects() {
-			return objectNameMap.iterator();
-		}
+		HashTableIterator<String, DistributedObjectStub*> getBoundObjects();
 
-		void clearNameMap() {
-			objectNameMap.removeAll();
-		}
+		void clearNameMap();
 
 	};
 

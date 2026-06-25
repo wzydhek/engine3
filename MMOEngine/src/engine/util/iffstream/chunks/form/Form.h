@@ -22,9 +22,7 @@ namespace engine {
 		void parseData();
 		void parseSubObjects();
 
-		inline uint32 getFormType() {
-			return formType;
-		}
+		uint32 getFormType();
 
 	};
 

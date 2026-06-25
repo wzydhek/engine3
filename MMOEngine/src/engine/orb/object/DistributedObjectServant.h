@@ -27,9 +27,7 @@ namespace engine {
 
 		void setDeployingName(const String& name);
 
-		virtual void _setStub(DistributedObjectStub* stub) {
-			_stub = stub;
-		}
+		virtual void _setStub(DistributedObjectStub* stub);
 
 		virtual void _serializationHelperMethod() = 0;
 
@@ -38,14 +36,10 @@ namespace engine {
 		String toString() const;
 
 		// setters
-		inline void _setClassHelper(DistributedObjectClassHelper* helper) {
-			_classHelper = helper;
-		}
+		void _setClassHelper(DistributedObjectClassHelper* helper);
 
 		// getters
-		inline DistributedObjectClassHelper* _getClassHelper() {
-			return _classHelper;
-		}
+		DistributedObjectClassHelper* _getClassHelper();
 	};
 
   } // namespace ORB

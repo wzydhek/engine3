@@ -33,59 +33,25 @@ namespace engine {
  		Triangle* triangle;
 
  	public:
- 		IntersectionResult() {
- 			intersectionDistance = 0;
- 			triangle = nullptr;
- 		}
+		IntersectionResult();
 
- 		IntersectionResult(float intersectionDistance, Triangle* triangle) {
- 			this->intersectionDistance = intersectionDistance;
- 			this->triangle = triangle;
- 		}
+ 		IntersectionResult(float intersectionDistance, Triangle* triangle);
 
- 		IntersectionResult(const IntersectionResult& r) {
- 			intersectionDistance = r.intersectionDistance;
- 			triangle = r.triangle;
- 		}
+ 		IntersectionResult(const IntersectionResult& r);
 
- 		IntersectionResult& operator=(const IntersectionResult& r) {
- 			if (this == &r)
- 				return *this;
+ 		IntersectionResult& operator=(const IntersectionResult& r);
 
- 			intersectionDistance = r.intersectionDistance;
- 			triangle = r.triangle;
+ 		bool toBinaryStream(sys::io::ObjectOutputStream* stream);
 
- 			return *this;
- 		}
+ 		bool parseFromBinaryStream(sys::io::ObjectInputStream* stream);
 
- 		bool toBinaryStream(sys::io::ObjectOutputStream* stream) {
- 			return false;
- 		}
+ 		int compareTo(const IntersectionResult& r) const;
 
- 		bool parseFromBinaryStream(sys::io::ObjectInputStream* stream) {
- 			return false;
- 		}
+ 		float getIntersectionDistance() const;
 
- 		int compareTo(const IntersectionResult& r) const {
- 			if (intersectionDistance < r.intersectionDistance)
- 				return 1;
- 			else if (intersectionDistance > r.intersectionDistance)
- 				return -1;
- 			else
- 				return 0;
- 		}
+ 		Triangle* getTriangle();
 
- 		inline float getIntersectionDistance() const {
- 			return intersectionDistance;
- 		}
-
- 		inline Triangle* getTriangle() {
- 			return triangle;
- 		}
-
-		inline const Triangle* getTriangle() const {
-			return triangle;
-		}
+		const Triangle* getTriangle() const;
 
  	};
 
@@ -116,51 +82,22 @@ namespace engine {
 		int intersects(const Ray& ray, float maxDistance, SortedVector<IntersectionResult>& result) const;
 
 		//returns all the triangles from the mesh
-		void getTriangles(ArrayList<Triangle*>& triangles) const {
-			triangles.addAll(mTriangles);
-
-			if (mChildren[0] != nullptr) {
-				mChildren[0]->getTriangles(triangles);
-				mChildren[1]->getTriangles(triangles);
-			}
-		}
+		void getTriangles(ArrayList<Triangle*>& triangles) const;
 
 		//returns all triangles from the mesh sorted
-		void getTriangles(SortedVector<Triangle*>& triangles) const {
-			for (int i = 0; i < mTriangles.size(); ++i) {
-				triangles.put(mTriangles.getUnsafe(i));
-			}
+		void getTriangles(SortedVector<Triangle*>& triangles) const;
 
-			if (mChildren[0] != nullptr) {
-				mChildren[0]->getTriangles(triangles);
-				mChildren[1]->getTriangles(triangles);
-			}
+		AABB& getBoundingBox();
 
-		}
+		const AABB& getBoundingBox() const;
 
-		inline AABB& getBoundingBox() {
-			return mBox;
-		}
+		AABBNode* getLeftChild();
 
-		inline const AABB& getBoundingBox() const {
-			return mBox;
-		}
+		const AABBNode* getLeftChild() const;
 
-		inline AABBNode* getLeftChild() {
-			return mChildren[0];
-		}
+		AABBNode* getRightChild();
 
-		inline const AABBNode* getLeftChild() const {
-			return mChildren[0];
-		}
-
-		inline AABBNode* getRightChild() {
-			return mChildren[1];
-		}
-
-		inline const AABBNode* getRightChild() const {
-			return mChildren[1];
-		}
+		const AABBNode* getRightChild() const;
 
 	};
 

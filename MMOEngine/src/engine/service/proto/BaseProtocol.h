@@ -54,22 +54,14 @@ namespace engine {
 		static unsigned int generateCRC(const Stream* stream, uint32 seed = 1);
 
 		// setters
-		inline void setConnectionID(sys::uint32 id) {
-			connectionID = id;
-		}
+		void setConnectionID(sys::uint32 id);
 
-		inline void setSeed(sys::uint32 seed) {
-			crcSeed = seed;
-		}
+		void setSeed(sys::uint32 seed);
 
 		// getters
-		inline sys::uint32 getConnectionID() const {
-			return connectionID;
-		}
+		sys::uint32 getConnectionID() const;
 
-		inline unsigned int getSeed() const {
-			return crcSeed;
-		}
+		unsigned int getSeed() const;
 
 	};
 

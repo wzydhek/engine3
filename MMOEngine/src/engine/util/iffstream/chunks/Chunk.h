@@ -38,110 +38,43 @@ namespace engine {
 
 		virtual void parseData();
 
-		inline void setIffStream(IffStream* iff) {
-			iffStream = iff;
-		}
+		void setIffStream(IffStream* iff);
 
-		inline IffStream* getIffStream() {
-			return iffStream;
-		}
+		IffStream* getIffStream();
 
-		inline void setLastOpenedSubChunk(int value) {
-			lastOpenedSubChunk = value;
-		}
+		void setLastOpenedSubChunk(int value);
 
-		inline void getChildren(Vector<Chunk*>& child) {
-			child = subChunks;
-		}
+		void getChildren(Vector<Chunk*>& child);
 
-		inline bool isFORM() {
-			return chunkID == FORM;
-		}
+		bool isFORM();
 
-		inline bool isDATA() {
-			return chunkID == DATA;
-		}
+		bool isDATA();
 
-		inline Chunk* getParent() {
-			return parent;
-		}
+		Chunk* getParent();
 
-		void addChunk(Chunk* chunk) {
-			subChunks.add(chunk);
-		}
+		void addChunk(Chunk* chunk);
 
-		Chunk* getChunk(int idx) {
-			return subChunks.get(idx);
-		}
+		Chunk* getChunk(int idx);
 
-		Chunk* getNextChunk() {
-			return subChunks.get(++lastOpenedSubChunk);
-		}
+		Chunk* getNextChunk();
 
-		uint32 getChunksSize() {
-			return subChunks.size();
-		}
+		uint32 getChunksSize();
 
-		inline int getLastOpenedChunkIdx() {
-			return lastOpenedSubChunk;
-		}
+		int getLastOpenedChunkIdx();
 
-		inline uint32 getChunkID() {
-			return chunkID;
-		}
+		uint32 getChunkID();
 
-		inline int getChunkSize() {
-			return chunkSize;
-		}
+		int getChunkSize();
 
-		void readString(String& str) {
-			StringBuffer stream;
-			char byte;
+		void readString(String& str);
 
-			while ((byte = readSignedByte()) != 0)
-				stream << byte;
+		String readString();
 
-			str = stream.toString();
-		}
+		Matrix4 readMatrix3x4Transform();
 
-		String readString() {
-			String val;
-			readString(val);
+		Vector3 readVector3();
 
-			return val;
-		}
-
-		Matrix4 readMatrix3x4Transform() {
-			Matrix4 mat;
-
-			for (int x = 0; x < 3; ++x) {
-				for (int y = 0; y < 4; ++y) {
-					mat[x][y] = readFloat();
-				}
-			}
-
-			return mat;
-		}
-
-		Vector3 readVector3() {
-			Vector3 vec;
-
-			for (int i = 0; i < 3; ++i) {
-				vec[i] = readFloat();
-			}
-
-			return vec;
-		}
-
-		Vector4 readVector4() {
-			Vector4 vec;
-
-			for (int i = 0; i < 4; ++i) {
-				vec[i] = readFloat();
-			}
-
-			return vec;
-		}
+		Vector4 readVector4();
 
 	};
 

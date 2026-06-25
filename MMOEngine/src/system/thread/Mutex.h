@@ -19,10 +19,7 @@ namespace sys {
 		pthread_mutexattr_t attr;
 
 	public:
-		Mutex() : Lockable() {
-			pthread_mutexattr_init(&attr);
-			pthread_mutex_init(&mutex, &attr);
-		}
+		Mutex();
 
 		explicit Mutex(bool recursive) : Lockable() {
 			pthread_mutexattr_init(&attr);
@@ -45,19 +42,11 @@ namespace sys {
 			pthread_mutex_init(&mutex, &attr);
 		}
 
-		Mutex(const Mutex& m) : Lockable() {
-			pthread_mutexattr_init(&attr);
-			pthread_mutex_init(&mutex, &attr);
-		}
+		Mutex(const Mutex& m);
 
-		Mutex& operator=(const Mutex& m) {
-			return *this;
-		}
+		Mutex& operator=(const Mutex& m);
 
-		~Mutex() {
-			pthread_mutex_destroy(&mutex);
-			pthread_mutexattr_destroy(&attr);
-		}
+		~Mutex();
 
 		void lock(bool doLock = true) ACQUIRE();
 		void lock(Mutex* m) ACQUIRE();

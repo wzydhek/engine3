@@ -17,29 +17,17 @@ namespace sys {
 		pthread_rwlock_t rwlock;
 
 	public:
-		ReadWriteLock() : Lockable() {
-			pthread_rwlock_init(&rwlock, nullptr);
-		}
+		ReadWriteLock();
 
-		ReadWriteLock(const String& s) : Lockable(s) {
-			pthread_rwlock_init(&rwlock, nullptr);
-		}
+		ReadWriteLock(const String& s);
 
-		ReadWriteLock(const ReadWriteLock& s) : Lockable() {
-			pthread_rwlock_init(&rwlock, nullptr);
-		}
+		ReadWriteLock(const ReadWriteLock& s);
 
-		ReadWriteLock& operator=(const ReadWriteLock& lock) {
-			return *this;
-		}
+		ReadWriteLock& operator=(const ReadWriteLock& lock);
 
-		~ReadWriteLock() {
-			pthread_rwlock_destroy(&rwlock);
-		}
+		~ReadWriteLock();
 
-		inline void lock(bool doLock = true) ACQUIRE() {
-			wlock(doLock);
-		}
+		void lock(bool doLock = true) ACQUIRE();
 
 		virtual void rlock(bool doLock = true) ACQUIRE_SHARED();
 
@@ -51,34 +39,17 @@ namespace sys {
 
 		void lock(Lockable* lockable) ACQUIRE();
 
-		inline void lock(ReadWriteLock* lockable) ACQUIRE() {
-			wlock(lockable);
-		}
+		void lock(ReadWriteLock* lockable) ACQUIRE();
 
-		inline void lock(Mutex* lockable) ACQUIRE() {
-			wlock(lockable);
-		}
+		void lock(Mutex* lockable) ACQUIRE();
 
-		inline bool tryWLock() TRY_ACQUIRE(true) {
-			if (pthread_rwlock_trywrlock(&rwlock) == 0) {
-				lockAcquired("w");
-
-				return true;
-			} else {
-				return false;
-			}
-		}
+		bool tryWLock() TRY_ACQUIRE(true);
 
 		void unlock(bool doLock = true) RELEASE();
 
 		virtual void runlock(bool doLock = true) RELEASE_SHARED();
 
-		inline bool destroy() {
-			pthread_rwlock_wrlock(&rwlock);
-			pthread_rwlock_unlock(&rwlock);
-
-			return pthread_rwlock_destroy(&rwlock) == 0;
-		}
+		bool destroy();
 
 		friend class Condition;
 	};

@@ -569,6 +569,194 @@ String Logger::msToString(uint64 milli) {
 	return output.toString();
 }
 
+const String Logger::getLogFileName() const {
+	if (logFile != nullptr) {
+		return logFile->getFileName();
+	}
+
+	return "";
+}
+
+void Logger::info(const char* msg) const {
+	info(msg, false);
+}
+
+LoggerHelper Logger::info(bool forcedLog) const {
+	return LoggerHelper(*this, LogLevel::INFO, forcedLog);
+}
+
+void Logger::log(const char* msg) const {
+	log(msg, LogLevel::LOG);
+}
+
+LoggerHelper Logger::log(bool forceSync) const {
+	return LoggerHelper(*this, LogLevel::LOG, forceSync);
+}
+
+LoggerHelper Logger::error() const {
+	return LoggerHelper(*this, LogLevel::ERROR, false);
+}
+
+LoggerHelper Logger::fatal(bool assertion) const {
+	return LoggerHelper(*this, LogLevel::FATAL, assertion);
+}
+
+LoggerHelper Logger::fatal() const {
+	return LoggerHelper(*this, LogLevel::FATAL, false);
+}
+
+void Logger::fatal(bool assertion, const char* msg) const {
+	if (!assertion) {
+		fatal(msg);
+	}
+}
+
+void Logger::fatal(bool assertion, const String& msg) const {
+	if (!assertion) {
+		fatal(msg);
+	}
+}
+
+void Logger::fatal(bool assertion, const StringBuffer& msg) const {
+	if (!assertion) {
+		fatal(msg);
+	}
+}
+
+LoggerHelper Logger::debug() const {
+	return LoggerHelper(*this, LogLevel::DEBUG, false);
+}
+
+LoggerHelper Logger::warning() const {
+	return LoggerHelper(*this, LogLevel::WARNING, false);
+}
+
+bool Logger::hasToLog(LogLevel level) const {
+	return logLevel >= level || (doGlobalLog && globalLogFile && globalLogLevel >= level);
+}
+
+void Logger::setLogging(bool doLog) {
+	if (doLog)
+		logLevel = LogLevel::DEBUG;
+	else
+		logLevel = LogLevel::LOG;
+}
+
+void Logger::setLogLevel(LogLevel level) {
+	logLevel = level;
+}
+
+void Logger::setInfoLogLevel() {
+	logLevel = LogLevel::INFO;
+}
+
+void Logger::setDebugLogLevel() {
+	logLevel = LogLevel::DEBUG;
+}
+
+void Logger::setGlobalLogging(bool doLog) {
+	doGlobalLog = doLog;
+}
+
+void Logger::setLogToConsole(bool doLog) {
+	logToConsole = doLog;
+}
+
+void Logger::setSyncFileLogging(bool val) {
+	doSyncLog = val;
+}
+
+void Logger::setLogTimeToFile(bool val) {
+	logTimeToFile = val;
+}
+
+void Logger::setLogLevelToFile(bool val) {
+	logLevelToFile = val;
+}
+
+void Logger::setLoggingName(const char* s) {
+	name = s;
+}
+
+void Logger::setLoggingName(const String& s) {
+	name = s;
+}
+
+void Logger::setLogJSON(bool val) {
+	logJSON = val;
+}
+
+void Logger::setLogSynchronized(bool synchronized) {
+	if (logFile == nullptr)
+		return;
+
+	logFile->setSynchronized(synchronized);
+}
+
+void Logger::setRotateLogSizeMB(uint32 maxSizeMB) {
+	rotateLogSizeMB = maxSizeMB;
+
+	if (logFile != nullptr) {
+		logFile->setRotateSizeMB(rotateLogSizeMB);
+	}
+}
+
+void Logger::setRotatePrefix(String prefix) {
+	rotatePrefix = prefix;
+
+	if (logFile != nullptr) {
+		logFile->setRotatePrefix(rotatePrefix);
+	}
+}
+
+void Logger::rotateLogFile() {
+	if (logFile == nullptr)
+		return;
+
+	logFile->rotatefile();
+}
+
+void Logger::setLoggerCallback(LoggerCallback&& funct) {
+	callback = new LoggerCallback(std::move(funct));
+}
+
+void Logger::setLoggerCallback(const LoggerCallback& funct) {
+	callback = new LoggerCallback(funct);
+}
+
+void Logger::clearLoggerCallback() {
+	callback = nullptr;
+}
+
+// getters
+String& Logger::getLoggingName() {
+	return name;
+}
+
+const String& Logger::getLoggingName() const {
+	return name;
+}
+
+FileLogWriter* Logger::getFileLogger() const {
+	return logFile;
+}
+
+Logger::LogLevel Logger::getLogLevel() const {
+	return logLevel;
+}
+
+bool Logger::getLogJSON() const {
+	return logJSON;
+}
+
+Logger::LoggerCallback* Logger::getLoggerCallback() {
+	return callback;
+}
+
+const Logger::LoggerCallback* Logger::getLoggerCallback() const {
+	return callback;
+}
+
 LoggerHelper::LoggerHelper(const Logger& logger, const int logLevel, const bool boolParam)
 	: logger(logger), logLevel(logLevel), boolParam(boolParam) {
 
@@ -627,4 +815,28 @@ void LoggerHelper::flush(bool clearBuffer) {
 	if (clearBuffer) {
 		buffer.deleteAll();
 	}
+}
+
+StringBuffer& LoggerHelper::getBuffer() {
+	return buffer;
+}
+
+const StringBuffer& LoggerHelper::getBuffer() const {
+	return buffer;
+}
+
+const Logger& LoggerHelper::getLogger() const {
+	return logger;
+}
+
+bool LoggerHelper::getWillLog() const {
+	return willLog;
+}
+
+int LoggerHelper::getLogLevel() const {
+	return logLevel;
+}
+
+bool LoggerHelper::getBoolParam() const {
+	return boolParam;
 }

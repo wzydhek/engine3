@@ -9,6 +9,9 @@
 
 #define MAX_COMPLETE_FRAG_SIZE 1500000
 
+FragmentedPacketParseException::FragmentedPacketParseException(const String& msg) : Exception(msg) {
+}
+
 namespace BPDetail {
 	static Logger logger("BaseFragmentedPacket");
 }
@@ -30,6 +33,13 @@ BaseFragmentedPacket::BaseFragmentedPacket(BasePacket* pack) : BasePacket() {
 BaseFragmentedPacket::~BaseFragmentedPacket() {
 	if (singlePacket != nullptr)
 		delete singlePacket;
+}
+
+StringBuffer& BaseFragmentedPacket::addError() {
+	if (error.length()) {
+		error << endl;
+	}
+	return error;
 }
 
 bool BaseFragmentedPacket::addFragment(Packet* pack) {
@@ -105,4 +115,12 @@ bool BaseFragmentedPacket::isComplete() {
 
 bool BaseFragmentedPacket::hasFragments() const {
 	return totalSize < singlePacket->size();
+}
+
+bool BaseFragmentedPacket::hasError() const {
+	return !error.length();
+}
+
+String BaseFragmentedPacket::getError() const {
+	return error.toString();
 }

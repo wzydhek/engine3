@@ -192,3 +192,40 @@ void DistributedObjectStub::printReferenceTrace() const {
 		}
 	#endif
 }
+
+void DistributedObjectStub::setDeployingName(const String& name) {
+	_setName(name);
+}
+
+void DistributedObjectStub::_setClassHelper(DistributedObjectClassHelper* helper) {
+	_classHelper = helper;
+}
+
+void DistributedObjectStub::setDeployed(bool val) {
+	deployed = val;
+}
+
+void DistributedObjectStub::_setImplementation(DistributedObjectServant* impl) {
+	_impl = impl;
+}
+
+// getters
+bool DistributedObjectStub::isDeployed() const {
+	return deployed;
+}
+
+DistributedObjectServant* DistributedObjectStub::_getImplementation() {
+	return _impl;
+}
+
+DistributedObjectServant* DistributedObjectStub::_getImplementationForRead() const {
+	return _impl;
+}
+
+DistributedObjectClassHelper* DistributedObjectStub::_getClassHelper() {
+	return _classHelper;
+}
+
+DistributedObjectServant* DistributedObjectStub::getServant() {
+	return _impl;
+}

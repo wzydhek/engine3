@@ -16,6 +16,9 @@
 #include "engine/orb/control/ObjectBrokerDirector.h"
 #include "DOBMessageFactory.h"
 
+namespace engine {
+namespace ORB {
+
 class DOBServiceHandler : public ServiceHandler {
 	DOBMessageFactory messageFactory;
 
@@ -36,3 +39,8 @@ public:
 
 	bool handleError(ServiceClient* client, Exception& e);
 };
+
+} // namespace ORB
+} // namespace engine
+
+using namespace engine::ORB;

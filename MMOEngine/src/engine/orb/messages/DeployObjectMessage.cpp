@@ -73,3 +73,11 @@ void DeployObjectMessage::handleReply(Packet* message) {
 		//printf("successful response to DeployObjectMessage with oid:%d\n", (int)objectID);
 	}
 }
+
+bool DeployObjectMessage::isDeployed() const {
+	return deployed;
+}
+
+uint64 DeployObjectMessage::getObjectID() const {
+	return objectID;
+}

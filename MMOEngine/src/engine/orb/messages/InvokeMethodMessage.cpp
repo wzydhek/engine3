@@ -86,3 +86,75 @@ void InvokeMethodMessage::execute() {
 	}
 
 }
+
+void InvokeMethodMessage::handleReply(Packet* resp) {
+	packet = resp->clone();
+}
+
+Packet* InvokeMethodMessage::getResponseMessage() {
+	return packet;
+}
+
+bool InvokeMethodMessage::getBooleanParameter() {
+	return packet->parseBoolean();
+}
+
+byte InvokeMethodMessage::getByteParameter() {
+	return packet->parseByte();
+}
+
+char InvokeMethodMessage::getSignedCharParameter() {
+	return packet->parseSignedByte();
+}
+
+unsigned char InvokeMethodMessage::getUnsignedCharParameter() {
+	return packet->parseByte();
+}
+
+int InvokeMethodMessage::getSignedIntParameter() {
+	return packet->parseSignedInt();
+}
+
+unsigned int InvokeMethodMessage::getUnsignedIntParameter() {
+	return packet->parseInt();
+}
+
+long long InvokeMethodMessage::getSignedLongParameter() {
+	return packet->parseSignedLong();
+}
+
+unsigned long long InvokeMethodMessage::getUnsignedLongParameter() {
+	return packet->parseLong();
+}
+
+short InvokeMethodMessage::getSignedShortParameter() {
+	return packet->parseSignedShort();
+}
+
+unsigned short InvokeMethodMessage::getUnsignedShortParameter() {
+	return packet->parseShort();
+}
+
+float InvokeMethodMessage::getFloatParameter() {
+	return packet->parseFloat();
+}
+
+double InvokeMethodMessage::getDoubleParameter() {
+	return packet->parseDouble();
+}
+
+String& InvokeMethodMessage::getAsciiParameter(String& ascii) {
+	packet->parseAscii(ascii);
+
+	return ascii;
+}
+
+UnicodeString& InvokeMethodMessage::getUnicodeParameter(UnicodeString& str) {
+	packet->parseUnicode(str);
+
+	return str;
+}
+
+Packet* InvokeMethodMessage::getIncomingPacket() {
+	return packet;
+}

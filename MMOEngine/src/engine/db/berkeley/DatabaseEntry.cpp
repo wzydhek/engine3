@@ -58,3 +58,41 @@ void DatabaseEntry::setData(void* addr, int size) {
 
 	setUserBuffer(size, true);
 }
+
+void DatabaseEntry::setUserBuffer(int length, bool usermem) {
+	databaseEntry.ulen = length;
+
+	if (usermem) {
+		databaseEntry.flags |= DB_DBT_USERMEM;
+		databaseEntry.flags &= ~DB_DBT_MALLOC;
+		databaseEntry.flags &= ~DB_DBT_REALLOC;
+	} else {
+		databaseEntry.flags &= ~DB_DBT_USERMEM;
+		databaseEntry.flags &= ~DB_DBT_REALLOC;
+		databaseEntry.flags |= DB_DBT_MALLOC;
+	}
+}
+
+void DatabaseEntry::setReuseBuffer(bool reuse) {
+	if (reuse) {
+		databaseEntry.flags &= ~DB_DBT_MALLOC;
+		databaseEntry.flags &= ~DB_DBT_USERMEM;
+		databaseEntry.flags |= DB_DBT_REALLOC;
+	} else {
+		databaseEntry.flags &= ~DB_DBT_REALLOC;
+		databaseEntry.flags &= ~DB_DBT_USERMEM;
+		databaseEntry.flags |= DB_DBT_MALLOC;
+	}
+}
+
+void* DatabaseEntry::getData() {
+	return databaseEntry.data;
+}
+
+int DatabaseEntry::getSize() {
+	return databaseEntry.size;
+}
+
+DBT* DatabaseEntry::getDBT() {
+	return &databaseEntry;
+}

@@ -10,6 +10,7 @@
 
 #include "BaseClient.h"
 
+#include "events/BasePacketChekupEvent.h"
 #include "events/BaseClientNetStatusCheckupEvent.h"
 #include "events/BaseClientCleanupEvent.h"
 #include "events/BaseClientNetStatusRequestEvent.h"
@@ -96,6 +97,10 @@ namespace {
 	}
 }
 
+namespace engine {
+namespace service {
+namespace proto {
+
 class AcknowledgeClientPackets : public Task {
         Reference<BaseClient*> client;
         uint16 seq;
@@ -110,6 +115,12 @@ public:
                 client->acknowledgeClientPackets(seq);
         }
 };
+
+} // namespace proto
+} // namespace service
+} // namespace engine
+
+using namespace engine::service::proto;
 
 void BaseClient::initializeCommon(const String& addr) {
 	ip_full = addr;
@@ -1512,6 +1523,10 @@ bool BaseClient::checkNetStatus() {
 	return false;
 }
 
+namespace engine {
+namespace service {
+namespace proto {
+
 class ConnectTask : public Task {
 	Reference<BaseClient*> client;
 
@@ -1525,6 +1540,12 @@ public:
 		client->send(sreq, false);
 	}
 };
+
+} // namespace proto
+} // namespace service
+} // namespace engine
+
+using namespace engine::service::proto;
 
 bool BaseClient::connect() {
 	try {
@@ -1578,6 +1599,10 @@ void BaseClient::notifyReceivedSeed(uint32 seed) {
 	connectionEstablishedCondition.signal(this);
 
 	unlock();
+}
+
+void BaseClient::disconnect(const char* msg, bool doLock) {
+	disconnect(String(msg), doLock);
 }
 
 void BaseClient::disconnect(const String& msg, bool doLock) {
@@ -1722,4 +1747,56 @@ void BaseClient::runHealthCheck() {
 	reportStats("PeriodicReport");
 
 	healthEvent->rescheduleInIoScheduler(getHealthCheckInterval() * 1000);
+}
+
+bool BaseClient::isClientDisconnected() const {
+	return clientDisconnected;
+}
+
+// setters
+void BaseClient::setClientDisconnected() {
+	clientDisconnected = true;
+}
+
+void BaseClient::setNullBufferedPacket() {
+	bufferedPacket = nullptr;
+}
+
+// getters
+const String& BaseClient::getFullIPAddress() const {
+	return ip_full;
+}
+
+String BaseClient::getIPAddress() const {
+	return ip_address.isEmpty() ? addr.getIPAddress() : ip_address;
+}
+
+void BaseClient::setIPAddress(const String& newIP) {
+	ip_address = newIP;
+}
+
+int BaseClient::getSentPacketCount() const {
+	return serverSequence;
+}
+
+int BaseClient::getResentPacketCount() const {
+	return resentPackets;
+}
+
+BaseMultiPacket* BaseClient::getRawBufferedPacket() {
+	return bufferedPacket;
+}
+
+const BaseMultiPacket* BaseClient::getRawBufferedPacket() const {
+	return bufferedPacket;
+}
+
+int BaseClient::tickDiff(uint16 tick1, uint16 tick2) {
+	uint16 delta = tick1 - tick2;
+
+	if (delta > 0x7FFF) {
+		delta = 0xFFFF - delta;
+	}
+
+	return (int)delta;
 }

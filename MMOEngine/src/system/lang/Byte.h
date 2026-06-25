@@ -15,49 +15,21 @@ namespace sys {
 
 	class Byte : public UnsignedCharacter {
 	public:
-		inline Byte() : UnsignedCharacter(0) {
-		}
+		Byte();
 
-		inline Byte(unsigned char val) : UnsignedCharacter(val) {
-		}
+		Byte(unsigned char val);
 
-		inline Byte(const Byte& val) : UnsignedCharacter(val) {
-		}
+		Byte(const Byte& val);
 
-		Byte& operator=(const Byte& b)
-		{
-			if (this == &b) {
-				return *this;
-			}
+		Byte& operator=(const Byte& b);
 
-			UnsignedCharacter::operator=(b);
+		bool toBinaryStream(ObjectOutputStream* stream);
 
-			return *this;
-		}
+		bool parseFromBinaryStream(ObjectInputStream* stream);
 
-		bool toBinaryStream(ObjectOutputStream* stream) {
-			stream->writeByte(get());
+		bool toString(String& str) const;
 
-			return true;
-		}
-
-		bool parseFromBinaryStream(ObjectInputStream* stream) {
-			*this = stream->readByte();
-
-			return true;
-		}
-
-		bool toString(String& str) const {
-			str = String::valueOf((unsigned int)get());
-
-			return true;
-		}
-
-		bool parseFromString(const String& str, int version = 0) {
-			*this = (unsigned char) UnsignedInteger::valueOf(str);
-
-			return true;
-		}
+		bool parseFromString(const String& str, int version = 0);
 
 	};
 

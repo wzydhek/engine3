@@ -31,13 +31,9 @@ namespace engine {
 
 		void handleReply(Packet* message);
 
-		bool isDeployed() const {
-			return deployed;
-		}
+		bool isDeployed() const;
 
-		uint64 getObjectID() const {
-			return objectID;
-		}
+		uint64 getObjectID() const;
 	};
 
   } // namespace ORB

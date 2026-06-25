@@ -72,148 +72,45 @@ namespace sys {
 		Object(const Object& obj);
 
 #ifdef CXX11_COMPILER
-		Object(Object&& o) : referenceCounters(nullptr) {
-			E3_ASSERT(o.referenceCounters == nullptr
-					&& "Cant move objects that are referenced");
+		Object(Object&& o);
 
-#ifdef TRACE_REFERENCES
-			referenceHolders = nullptr;
-#endif
-		}
+		Object& operator=(Object&& o);
 #endif
 
 		~Object();
 
-		Object& operator=(const Object& o) {
-			if (this == &o)
-				return *this;
+		Object& operator=(const Object& o);
 
-			return *this;
-		}
+		virtual Object* clone();
 
-#ifdef CXX11_COMPILER
-		Object& operator=(Object&& o) {
-			if (this == &o)
-				return *this;
+		virtual Object* clone(void* object);
 
-			E3_ASSERT(o.referenceCounters == nullptr
-					&& "Cant move objects that are referenced");
+		virtual int compareTo(Object* object);
 
-			return *this;
-		}
-#endif
-		virtual Object* clone() {
-			E3_ABORT("clone method not declared");
-
-			return nullptr;
-		}
-
-		virtual Object* clone(void* object) {
-			return clone();
-		}
-
-		virtual int compareTo(Object* object) {
-			if (this == object)
-				return 0;
-			else if (this < object)
-				return 1;
-			else
-				return -1;
-		}
-
-		virtual bool notifyDestroy() {
-			return true;
-		}
+		virtual bool notifyDestroy();
 
 		void finalize() {
 		}
 
-		bool toBinaryStream(ObjectOutputStream* stream) {
-			return false;
-		}
+		bool toBinaryStream(ObjectOutputStream* stream);
 
-		bool parseFromBinaryStream(ObjectInputStream* stream) {
-			return false;
-		}
+		bool parseFromBinaryStream(ObjectInputStream* stream);
 
-		void createStrongAndWeakReferenceCount() const {
-			auto newCount = new StrongAndWeakReferenceCount(0, 2, const_cast<Object*>(this));
+		void createStrongAndWeakReferenceCount() const;
 
-			if (!referenceCounters.compareAndSet(nullptr, newCount)) {
-				delete newCount;
+		void acquire() const;
 
-				referenceCounters->increaseStrongCount();
-			} else {
-				newCount->increaseStrongCount();
-			}
-		}
+		bool release() const;
 
-		inline void acquire() const {
-			auto counters = referenceCounters.get();
-
-			if (counters == nullptr) {
-				createStrongAndWeakReferenceCount();
-			} else {
-				counters->increaseStrongCount();
-			}
-		}
-
-		inline bool release() const {
-			if (referenceCounters->decrementAndTestAndSetStrongCount() != 0) {
-				if (const_cast<Object*>(this)->notifyDestroy()) {
-#ifdef WITH_STM
-					MemoryManager::getInstance()->reclaim(this);
-#else
-					const_cast<Object*>(this)->destroy();
-
-					return true;
-#endif
-				}
-			}
-
-			return false;
-		}
-
-		inline bool tryFinalRelease() const {
-			if (referenceCounters->tryStrongFinalDecrement()) {
-				if (const_cast<Object*>(this)->notifyDestroy()) {
-#ifdef WITH_STM
-					MemoryManager::getInstance()->reclaim(this);
-#else
-					const_cast<Object*>(this)->destroy();
-
-					return true;
-#endif
-				}
-			}
-
-			return false;
-		}
+		bool tryFinalRelease() const;
 
 		void _destroyIgnoringCount();
 
-		inline void _markAsDestroyed() {
-			if (referenceCounters != nullptr)
-				referenceCounters->markAsDestroyed();
-		}
+		void _markAsDestroyed();
 
-		inline uint32 getReferenceCount() {
-			if (referenceCounters == nullptr)
-				return 0;
-			else
-				return referenceCounters->getStrongReferenceCount();
-		}
+		uint32 getReferenceCount();
 
-		StrongAndWeakReferenceCount* requestWeak() {
-			if (referenceCounters == nullptr) {
-				auto newCount = new StrongAndWeakReferenceCount(0, 2, this);
-
-				if (!referenceCounters.compareAndSet(nullptr, newCount))
-					delete newCount;
-			}
-
-			return referenceCounters.get();
-		}
+		StrongAndWeakReferenceCount* requestWeak();
 
 		virtual String toString() const;
 

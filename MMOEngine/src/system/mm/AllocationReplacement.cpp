@@ -13,6 +13,11 @@
 
 AllocationReplacement* AllocationReplacement::instance = nullptr;
 
+AllocationReplacement::AllocationReplacement() {
+	instance = nullptr;
+	realAllocator = nullptr;
+}
+
 void* AllocationReplacement::onAllocate(size_t size, const void* allocator) {
 	return realAllocator->allocate(size);
 }
@@ -29,4 +34,16 @@ void* AllocationReplacement::onReallocate(void* ptr, size_t size, const void* al
 		return onAllocate(size, alloc);
 
 	return realAllocator->reallocate(ptr, size);
+}
+
+AllocationReplacement* AllocationReplacement::getInstance() {
+	if (instance == nullptr) {
+		instance = new AllocationReplacement();
+	}
+
+	return instance;
+}
+
+void AllocationReplacement::setRealAllocator(Allocator* allocator) {
+	realAllocator = allocator;
 }

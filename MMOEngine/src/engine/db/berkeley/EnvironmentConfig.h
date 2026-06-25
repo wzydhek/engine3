@@ -45,142 +45,60 @@ namespace engine {
 		static EnvironmentConfig DEFAULT;
 
 	public:
-		EnvironmentConfig() {
-			environmentFlags = 0;
-			threadCount = 0;
-			logAutoRemove = false;
-			lockDetectMode = LockDetectMode::DEFAULT;
-			maxLogFileSize = 10000; //10mb
-		}
+		EnvironmentConfig();
 
-		inline void setRegister(bool val) {
-			if (!val)
-				environmentFlags &= ~DB_REGISTER;
-			else
-				environmentFlags |= DB_REGISTER;
-		}
+		void setRegister(bool val);
 
-		inline void setLockDown(bool lockDownToMemory) {
-			if (!lockDownToMemory)
-				environmentFlags &= ~DB_LOCKDOWN;
-			else
-				environmentFlags |= DB_LOCKDOWN;
-		}
+		void setLockDown(bool lockDownToMemory);
 
-		inline void setAllowCreate(bool allowCreate) {
-			if (!allowCreate)
-				environmentFlags &= ~DB_CREATE;
-			else
-				environmentFlags |= DB_CREATE;
-		}
+		void setAllowCreate(bool allowCreate);
 
-		inline void setInitializeLocking(bool initializeLocking) {
-			if (!initializeLocking)
-				environmentFlags &= ~DB_INIT_LOCK;
-			else
-				environmentFlags |= DB_INIT_LOCK;
-		}
+		void setInitializeLocking(bool initializeLocking);
 
-		inline void setInitializeLogging(bool initializeLogging) {
-			if (!initializeLogging)
-				environmentFlags &= ~DB_INIT_LOG;
-			else
-				environmentFlags |= DB_INIT_LOG;
-		}
+		void setInitializeLogging(bool initializeLogging);
 
-		inline void setRecover(bool recover) {
-			if (!recover)
-				environmentFlags &= ~DB_RECOVER;
-			else
-				environmentFlags |= DB_RECOVER;
-		}
+		void setRecover(bool recover);
 
-		inline void setPrivate(bool val) {
-			if (!val)
-				environmentFlags &= ~DB_PRIVATE;
-			else
-				environmentFlags |= DB_PRIVATE;
-		}
+		void setPrivate(bool val);
 
-		inline void setLogAutoRemove(bool logAutoRemove) {
-			this->logAutoRemove = logAutoRemove;
-		}
+		void setLogAutoRemove(bool logAutoRemove);
 
-		inline void setMaxLogFileSize(int maxLogFileSize) {
-			this->maxLogFileSize = maxLogFileSize;
-		}
+		void setMaxLogFileSize(int maxLogFileSize);
 
-		inline void setThreaded(bool threaded) {
-			if (!threaded)
-				environmentFlags &= ~DB_THREAD;
-			else
-				environmentFlags |= DB_THREAD;
-		}
+		void setThreaded(bool threaded);
 
-		inline void setLockDetectMode(uint32 mode) {
-			lockDetectMode = mode;
-		}
+		void setLockDetectMode(uint32 mode);
 
-		inline void setThreadCount(int count) {
-			threadCount = count;
-		}
+		void setThreadCount(int count);
 
-		inline void setTransactional(bool transactional) {
-			if (!transactional)
-				environmentFlags &= ~DB_INIT_TXN;
-			 else
-				environmentFlags |= DB_INIT_TXN;
-		}
+		void setTransactional(bool transactional);
 
-		inline void setInitializeCache(bool initializeCache) {
-			if (!initializeCache)
-				environmentFlags &= ~DB_INIT_MPOOL;
-			else
-				environmentFlags |= DB_INIT_MPOOL;
-		}
+		void setInitializeCache(bool initializeCache);
 
-		inline void setMultiVersionConcurrencyControl(bool val) {
-			mvcc = val;
-		}
+		void setMultiVersionConcurrencyControl(bool val);
 
-		inline void setDirectAccess(bool val) {
-			direct = val;
-		}
+		void setDirectAccess(bool val);
 
-		inline bool isThreaded() const {
-			return environmentFlags & DB_THREAD;
-		}
+		bool isThreaded() const;
 
-		inline uint32 getEnvironmentFlags() const {
-			return environmentFlags;
-		}
+		uint32 getEnvironmentFlags() const;
 
-		inline uint32 getThreadCount() const {
-			return threadCount;
-		}
+		uint32 getThreadCount() const;
 
-		inline uint32 getLockDetectMode() const {
-			return lockDetectMode;
-		}
+		uint32 getLockDetectMode() const;
 
-		inline int getMaxLogFileSize() const {
-			return maxLogFileSize;
-		}
+		int getMaxLogFileSize() const;
 
-		inline bool getLogAutoRemove() const {
-			return logAutoRemove;
-		}
+		bool getLogAutoRemove() const;
 
-		inline bool isDirectAccess() const {
-			return direct;
-		}
+		bool isDirectAccess() const;
 
-		inline bool isMVCC() const {
-			return mvcc;
-		}
+		bool isMVCC() const;
 
 	};
 
     } // namespace berkeley
   } // namespace db
 } // namespace engine
+
+using namespace engine::db::berkeley;

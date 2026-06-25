@@ -25,95 +25,53 @@ namespace engine {
 		static TransactionConfig DEFAULT;
 
 	public:
-		TransactionConfig() {
-			transactionFlags = 0;
-		}
+		TransactionConfig();
 
 		/**
 		 * Configure the transaction to not write or synchronously flush the log it when commits.
 		 */
-		void setNoSync(bool noSync) {
-			if (noSync)
-				transactionFlags |= DB_TXN_NOSYNC;
-			else
-				transactionFlags &= ~DB_TXN_NOSYNC;
-		}
+		void setNoSync(bool noSync);
 
 		/**
 		 * Configure the transaction to not wait if a lock request cannot be immediately granted.
 		 */
-		void setNoWait(bool noWait) {
-			if (noWait)
-				transactionFlags |= DB_TXN_NOWAIT;
-			else
-				transactionFlags &= ~DB_TXN_NOWAIT;
-		}
+		void setNoWait(bool noWait);
 
 		/**
 		 * Configure the transaction for read committed isolation.
 		 */
-		void setReadCommitted(bool readCommitted) {
-			if (readCommitted)
-				transactionFlags |= DB_READ_COMMITTED;
-			else
-				transactionFlags &= ~DB_READ_COMMITTED;
-		}
+		void setReadCommitted(bool readCommitted);
 
 		/**
 		 * Configure read operations performed by the transaction to return modified but not yet committed data.
 		 */
-		void setReadUncommitted(bool readUncommitted) {
-			if (readUncommitted)
-				transactionFlags |= DB_READ_UNCOMMITTED;
-			else
-				transactionFlags &= ~DB_READ_UNCOMMITTED;
-		}
+		void setReadUncommitted(bool readUncommitted);
 
 		/**
 		 * This transaction will execute with snapshot isolation.
 		 */
-		void setSnapshot(bool snapshot) {
-			if (snapshot)
-				transactionFlags |= DB_TXN_SNAPSHOT;
-			else
-				transactionFlags &= ~DB_TXN_SNAPSHOT;
-		}
+		void setSnapshot(bool snapshot);
 
 		/**
 		 * Configure the transaction to write and synchronously flush the log it when commits.
 		 */
-		void setSync(bool sync) {
-			if (sync)
-				transactionFlags |= DB_TXN_SYNC;
-			else
-				transactionFlags &= ~DB_TXN_SYNC;
-		}
+		void setSync(bool sync);
 
 		/**
         * Configure the transaction to wait if a lock request cannot be immediately granted.
         */
-		void setWait(bool wait) {
-			if (wait)
-				transactionFlags |= DB_TXN_WAIT;
-			else
-				transactionFlags &= ~DB_TXN_WAIT;
-		}
+		void setWait(bool wait);
 
 		/**
 		 * Configure the transaction to write but not synchronously flush the log it when commits.
 		 */
-		void setWriteNoSync(bool writeNoSync) {
-			if (writeNoSync)
-				transactionFlags |= DB_TXN_WRITE_NOSYNC;
-			else
-				transactionFlags &= ~DB_TXN_WRITE_NOSYNC;
-		}
+		void setWriteNoSync(bool writeNoSync);
 
-		inline uint32 getFlags() const {
-			return transactionFlags;
-		}
+		uint32 getFlags() const;
 	};
 
     } // namespace berkeley
   } // namespace db
 } // namespace engine
+
+using namespace engine::db::berkeley;

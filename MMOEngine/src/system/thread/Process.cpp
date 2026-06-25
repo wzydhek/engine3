@@ -29,4 +29,12 @@ void Process::signal(int sig) {
 	kill(pid, sig);
 }
 
+pid_t Process::getPid() const {
+	return pid;
+}
+
+Pipe& Process::getPipe() {
+	return pipe;
+}
+
 #endif

@@ -87,4 +87,8 @@ void Heap::setAnonymous() {
 #endif
 }
 
+Allocator* Heap::getAllocator() {
+	return allocator;
+}
+
 #endif

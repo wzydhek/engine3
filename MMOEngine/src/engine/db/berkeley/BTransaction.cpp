@@ -42,3 +42,19 @@ int Transaction::commit(uint32 flags) NO_THREAD_SAFETY_ANALYSIS {
 
 	return ret;
 }
+
+int Transaction::commitNoSync() NO_THREAD_SAFETY_ANALYSIS {
+	return commit(DB_TXN_NOSYNC);
+}
+
+int Transaction::commitSync() NO_THREAD_SAFETY_ANALYSIS {
+	return commit(DB_TXN_SYNC);
+}
+
+DB_TXN* Transaction::getDBTXN() const {
+	return transaction;
+}
+
+DB_TXN** Transaction::getDBTXNPTR() {
+	return &transaction;
+}

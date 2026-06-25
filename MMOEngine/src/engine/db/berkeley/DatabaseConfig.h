@@ -46,80 +46,38 @@ namespace engine {
 		static DatabaseConfig DEFAULT;
 
 	public:
-		DatabaseConfig() {
-			databaseFlags = 0;
-			databaseType = DatabaseType::UNKNOWN;
-			duplicates = false;
-		}
+		DatabaseConfig();
 
-		void setAllowCreate(bool allowCreate) {
-			if (!allowCreate)
-				databaseFlags &= ~DB_CREATE;
-			else
-				databaseFlags |= DB_CREATE;
-		}
+		void setAllowCreate(bool allowCreate);
 
-		void setReadOnly(bool val) {
-			if (!val)
-				databaseFlags &= ~DB_RDONLY;
-			else
-				databaseFlags |= DB_RDONLY;
-		}
+		void setReadOnly(bool val);
 
-		void setDuplicates(bool val) {
-			duplicates = val;
-		}
+		void setDuplicates(bool val);
 
 		/**
 		 * Enclose the database open within a transaction.
 		 */
 
-		void setAutoCommit(bool transactional) {
-			if (transactional)
-				databaseFlags |= DB_AUTO_COMMIT;
-			else
-				databaseFlags &= ~DB_AUTO_COMMIT;
-		}
+		void setAutoCommit(bool transactional);
 
-		void setThreaded(bool threaded) {
-			if (threaded)
-				databaseFlags |= DB_THREAD;
-			else
-				databaseFlags &= ~DB_THREAD;
-		}
+		void setThreaded(bool threaded);
 
-		void setReadUncommited(bool value) {
-			if (value)
-				databaseFlags |= DB_READ_UNCOMMITTED;
-			else
-				databaseFlags &= ~DB_READ_UNCOMMITTED;
-		}
+		void setReadUncommited(bool value);
 
-		void setMultiVersionConcurrencyControl(bool value) {
-			if (value)
-				databaseFlags |= DB_MULTIVERSION;
-			else
-				databaseFlags &= ~DB_MULTIVERSION;
-		}
+		void setMultiVersionConcurrencyControl(bool value);
 
-		inline void setType(DBTYPE type) {
-			databaseType = type;
-		}
+		void setType(DBTYPE type);
 
-		inline uint32 getDatabaseFlags() const {
-			return databaseFlags;
-		}
+		uint32 getDatabaseFlags() const;
 
-		inline DBTYPE getDatabaseType() const {
-			return databaseType;
-		}
+		DBTYPE getDatabaseType() const;
 
-		inline bool hasDuplicates() const {
-			return duplicates;
-		}
+		bool hasDuplicates() const;
 
 	};
 
     } // namespace berkeley
   } // namespace db
 } // namespace engine
+
+using namespace engine::db::berkeley;

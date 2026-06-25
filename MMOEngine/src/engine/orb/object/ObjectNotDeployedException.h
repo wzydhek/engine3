@@ -18,17 +18,7 @@ namespace engine {
 
 	class ObjectNotDeployedException : public sys::lang::Exception {
 	public:
-		ObjectNotDeployedException(const DistributedObjectStub* stub) : Exception() {
-			message = "\'" + stub->_getName() + "\' is not deployed";
-			
-			System::out << message << "\n";
-			
-			stub->printReferenceTrace();
-			
-			Logger::closeGlobalFileLogger();
-
-			raise(SIGSEGV);
-		}
+		ObjectNotDeployedException(const DistributedObjectStub* stub);
 		
 	};
 

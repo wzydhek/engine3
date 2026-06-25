@@ -19,89 +19,43 @@ namespace sys {
 		std::atomic<uint32> value{0};
 
 	public:
-		AtomicInteger() {
-		}
+		AtomicInteger();
 
-		AtomicInteger(uint32 val) : value(val) {
-		}
+		AtomicInteger(uint32 val);
 
-		AtomicInteger(const AtomicInteger& v) : value{v.value.load(std::memory_order_relaxed)} {
-		}
+		AtomicInteger(const AtomicInteger& v);
 
-		~AtomicInteger() {
-		}
+		~AtomicInteger();
 
-		AtomicInteger& operator=(const AtomicInteger& val) {
-			value.store(val.value.load(std::memory_order_relaxed));
+		AtomicInteger& operator=(const AtomicInteger& val);
 
-			return *this;
-		}
+		uint32 add(uint32 val);
 
-		inline uint32 add(uint32 val) {
-			return value += val;
-		}
+		uint32 increment();
 
-		inline uint32 increment() {
-			return ++value;
-		}
+		uint32 postIncrement();
 
-		inline uint32 postIncrement() {
-			return value++;
-		}
+		uint32 decrement();
 
-		inline uint32 decrement() {
-			return --value;
-		}
+		uint32 postDecrement();
 
-		inline uint32 postDecrement() {
-			return value--;
-		}
+		uint32 compareAndSetReturnOld(uint32 oldval, uint32 newval);
 
-		inline uint32 compareAndSetReturnOld(uint32 oldval, uint32 newval) {
-			uint32 val = oldval;
+		bool compareAndSet(uint32 oldval, uint32 newval);
 
-			value.compare_exchange_strong(val, newval);
+		uint32 get(std::memory_order m = std::memory_order_relaxed) const;
 
-			return val;
-		}
+		void set(uint32 val, std::memory_order m = std::memory_order_seq_cst);
 
-		inline bool compareAndSet(uint32 oldval, uint32 newval) {
-			uint32 val = oldval;
+		uint32 operator=(const uint32 val);
 
-			return value.compare_exchange_strong(val, newval);
-		}
+		bool operator==(const int val) const;
 
-		inline uint32 get(std::memory_order m = std::memory_order_relaxed) const {
-			return value.load(m);
-		}
+		operator uint32() const;
 
-		void set(uint32 val, std::memory_order m = std::memory_order_seq_cst) {
-			value.store(val, m);
-		}
+		bool toBinaryStream(sys::io::ObjectOutputStream* stream);
 
-		uint32 operator=(const uint32 val) {
-			return value = val;
-		}
-
-		inline bool operator== (const int val) const {
-			return (uint32)val == value.load(std::memory_order_relaxed);
-		}
-
-		inline operator uint32() const {
-			return value.load(std::memory_order_relaxed);
-		}
-
-		bool toBinaryStream(sys::io::ObjectOutputStream* stream) {
-			stream->writeInt(value);
-
-			return true;
-		}
-
-		bool parseFromBinaryStream(sys::io::ObjectInputStream* stream) {
-			*this = stream->readInt();
-
-			return true;
-		}
+		bool parseFromBinaryStream(sys::io::ObjectInputStream* stream);
 	};
 
 	} // namespace atomic

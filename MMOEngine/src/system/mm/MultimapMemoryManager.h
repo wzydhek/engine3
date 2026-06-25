@@ -23,19 +23,9 @@ namespace sys {
 	public:
 		~MultimapMemoryManager();
 
-		static MultimapMemoryManager* getInstance() {
-			if (inst == nullptr) {
-				setInstance(new MultimapMemoryManager());
+		static MultimapMemoryManager* getInstance();
 
-				inst->initialize();
-			}
-
-			return inst;
-		}
-
-		static void setInstance(MultimapMemoryManager* manager) {
-			inst.set(manager);
-		}
+		static void setInstance(MultimapMemoryManager* manager);
 
 		void* createHeapBase(size_t size);
 
@@ -49,9 +39,7 @@ namespace sys {
 
 		void destroyHeap(int heapID);
 
-		int getDeviceFD() {
-			return deviceFD;
-		}
+		int getDeviceFD();
 
 	private:
 		void initialize();

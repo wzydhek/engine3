@@ -49,13 +49,9 @@ namespace engine {
 		void wake();
 
 		// setters and getters
-		inline void setTaskScheduler(TaskScheduler* scheduler) {
-			taskScheduler = scheduler;
-		}
+		void setTaskScheduler(TaskScheduler* scheduler);
 
-		inline void setMutexName(const String& s) {
-			condMutex->setLockName(s);
-		}
+		void setMutexName(const String& s);
 	};
 
   } // namespace core

@@ -5,9 +5,10 @@
 
 #pragma once
 
+
 namespace sys {
   namespace util {
-		
+
 	template<class O> class SynchronizedLinkedList;
 	template<class O> class SynchronizedLinkedListIterator;
 	

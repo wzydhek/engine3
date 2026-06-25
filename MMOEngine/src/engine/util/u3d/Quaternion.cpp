@@ -1,0 +1,311 @@
+#include "Quaternion.h"
+
+Quaternion::Quaternion() {
+	w = 1.0f;
+	x = 0.0f;
+	y = 0.0f;
+	z = 0.0f;
+}
+
+Quaternion::Quaternion(const Quaternion& qt) : Variable() {
+	w = qt.w;
+	x = qt.x;
+	y = qt.y;
+	z = qt.z;
+}
+
+/**
+ * Create a quaternion based on four scalar values.
+ * float fx = vector x
+ * float fy = vector y
+ * float fz = vector z
+ * float fw = scalar
+ */
+Quaternion::Quaternion(float fw, float fx, float fy, float fz) {
+	w = fw;
+	x = fx;
+	y = fy;
+	z = fz;
+}
+
+/**
+ * Create a quaternion based on a vector and an angle of direction.
+ * \param v The vector to base rotation off of. Should be a UNIT vector.
+ * \param angle The angle in radians.
+ */
+Quaternion::Quaternion(const Vector3& axis, float angle) {
+	// Based on the formula q = cos(A/2)+sin(A/2)*(x*i+y*j+z*k).
+	float halfangle = angle * .5;
+	float fsin = Math::sin(halfangle);
+
+	w = Math::cos(halfangle);
+	x = axis.getX() * fsin;
+	y = axis.getY() * fsin;
+	z = axis.getZ() * fsin;
+}
+
+bool Quaternion::readObjectMember(ObjectInputStream* stream, const String& name) {
+	if (name == "x") {
+		TypeInfo<float>::parseFromBinaryStream(&x, stream);
+
+		return true;
+	} else if (name == "w") {
+		TypeInfo<float>::parseFromBinaryStream(&w, stream);
+
+		return true;
+	} else if (name == "y") {
+		TypeInfo<float>::parseFromBinaryStream(&y, stream);
+
+		return true;
+	} else if (name == "z") {
+		TypeInfo<float>::parseFromBinaryStream(&z, stream);
+
+		return true;
+	}
+
+	return false;
+}
+
+int Quaternion::writeObjectMembers(ObjectOutputStream* stream) {
+	String _name;
+	int _offset;
+	uint32 _totalSize;
+
+	_name = "z";
+	_name.toBinaryStream(stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float>::toBinaryStream(&z, stream);
+	_totalSize = (uint32)(stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+
+	_name = "y";
+	_name.toBinaryStream(stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float>::toBinaryStream(&y, stream);
+	_totalSize = (uint32)(stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+
+	_name = "x";
+	_name.toBinaryStream(stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float>::toBinaryStream(&x, stream);
+	_totalSize = (uint32)(stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+
+	_name = "w";
+	_name.toBinaryStream(stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float>::toBinaryStream(&w, stream);
+	_totalSize = (uint32)(stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+
+	String emptyName; // making it serialize the same way as Serializable so bas doesnt have to update all the objects
+
+	_name = "_className";
+	_name.toBinaryStream(stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<String>::toBinaryStream(&emptyName, stream);
+	_totalSize = (uint32)(stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+
+	return 5;
+}
+
+bool Quaternion::toBinaryStream(ObjectOutputStream* stream) {
+	int _currentOffset = stream->getOffset();
+	stream->writeShort(0);
+	int _varCount = writeObjectMembers(stream);
+	stream->writeShort(_currentOffset, _varCount);
+
+	return true;
+}
+
+bool Quaternion::parseFromBinaryStream(ObjectInputStream* stream) {
+	uint16 _varCount = stream->readShort();
+
+	for (int i = 0; i < _varCount; ++i) {
+		String _name;
+		_name.parseFromBinaryStream(stream);
+
+		uint32 _varSize = stream->readInt();
+
+		int _currentOffset = stream->getOffset();
+
+		if (readObjectMember(stream, _name)) {
+		}
+
+		stream->setOffset(_currentOffset + _varSize);
+	}
+
+	return true;
+}
+
+Quaternion& Quaternion::operator=(const Quaternion& q) {
+	w = q.w;
+	x = q.x;
+	y = q.y;
+	z = q.z;
+
+	return *this;
+}
+
+Quaternion Quaternion::operator+(const Quaternion& q) const {
+	return Quaternion(w + q.w, x + q.x, y + q.y, z + q.z);
+}
+
+Quaternion Quaternion::operator-(const Quaternion& q) const {
+	return Quaternion(w - q.w, x - q.x, y - q.y, z - q.z);
+}
+
+Quaternion Quaternion::operator*(const Quaternion& q) const {
+	return Quaternion(w * q.w - x * q.x - y * q.y - z * q.z, w * q.x + x * q.w + y * q.z - z * q.y, w * q.y + y * q.w + z * q.x - x * q.z, w * q.z + z * q.w + x * q.y - y * q.x);
+}
+
+Quaternion Quaternion::operator*(const float scalar) const {
+	return Quaternion(scalar * w, scalar * x, scalar * y, scalar * z);
+}
+
+bool Quaternion::operator==(const Quaternion& q) const {
+	return (w == q.w && x == q.x && y == q.y && z == q.z);
+}
+
+bool Quaternion::operator!=(const Quaternion& q) const {
+	return (w != q.w || x != q.x || y != q.y || z != q.z);
+}
+
+float Quaternion::dotProduct(const Quaternion& q) const {
+	return (w * q.w + x * q.x + y * q.y + z * q.z);
+}
+
+float Quaternion::lengthSquared() const {
+	return (w * w + x * x + y * y + z * z);
+}
+
+float Quaternion::length() const {
+	return Math::sqrt(lengthSquared());
+}
+
+float Quaternion::normalize() {
+	float magnitude = length();
+
+	w /= magnitude;
+	x /= magnitude;
+	y /= magnitude;
+	z /= magnitude;
+
+	return magnitude;
+}
+
+/**
+ * Computes the inverse of this quaternion.
+ * @return The inverse quaternion.
+ */
+Quaternion Quaternion::inverse() const {
+	// Compute the norm squared (w^2 + x^2 + y^2 + z^2)
+	float normSquared = (w * w) + (x * x) + (y * y) + (z * z);
+
+	// Prevent division by zero
+	if (normSquared == 0.0f) {
+		return Quaternion(1.0f, 0.0f, 0.0f, 0.0f); // Return identity quaternion if degenerate
+	}
+
+	// Compute the inverse as conjugate / normSquared
+	float invNorm = 1.0f / normSquared;
+
+	return Quaternion(w * invNorm, -x * invNorm, -y * invNorm, -z * invNorm);
+}
+
+/**
+ * Rotates the quaternion on an axis of rotation n degrees.
+ * \param axis The unit axis of rotation.
+ * \param degrees How many degrees to rotate the quaternion.
+ * \return Returns this quaternion, rotated.
+ */
+Quaternion& Quaternion::rotate(const Vector3& axis, float degrees) {
+	Quaternion qrotate(axis, Math::deg2rad(degrees));
+	*this = qrotate * *this;
+	return *this;
+}
+
+/**
+ * Converts this quaternion to a matrix4.
+ * \return Matrix4 The matrix4 equivalent of this quaternion.
+ */
+// inline Matrix4 toMatrix() { }
+
+Matrix3 Quaternion::toMatrix3() const {
+	/*float len = length();
+
+		if (len > 0.9999 && len < 1.0001)
+			throw Exception("quaternion is not normalized");*/
+
+	return Matrix3(Vector3(1 - 2 * (y * y + z * z), 2 * (x * y - w * z), 2 * (x * z + w * y)), Vector3(2 * (x * y + w * z), 1 - 2 * (x * x + z * z), 2 * (y * z - w * x)), Vector3(2 * (x * z - w * y), 2 * (y * z + w * x), 1 - 2 * (x * x + y * y)));
+}
+
+float Quaternion::getX() const {
+	return x;
+}
+
+float Quaternion::getY() const {
+	return y;
+}
+
+float Quaternion::getZ() const {
+	return z;
+}
+
+float Quaternion::getW() const {
+	return w;
+}
+
+float Quaternion::getRadians() const {
+	float angle;
+
+	float dirW = w;
+
+	if (w * w + y * y > 0.0f) {
+		if (w > 0.f && y < 0.0f)
+			dirW *= -1.0f;
+
+		angle = 2.0f * Math::acos(dirW);
+	} else {
+		angle = 0.0f;
+	}
+
+	return angle;
+}
+
+Quaternion Quaternion::getConjugate() const {
+	return Quaternion(w, -x, -y, -z);
+}
+
+float Quaternion::getSpecialDegrees() const { // returns 0-100 degrees
+	return (getRadians() / 6.283f) * 100.f;
+}
+
+float Quaternion::getDegrees() const {
+	return (getRadians() / 6.283f) * 360.f;
+}
+
+bool Quaternion::isIdentity() const {
+	return (*this == IDENTITY);
+}
+
+void Quaternion::set(float fw, float fx, float fy, float fz) {
+	w = fw;
+	x = fx;
+	y = fy;
+	z = fz;
+}
+
+void Quaternion::setHeadingDirection(float radians) {
+	float halfAngle = radians / 2;
+
+	w = Math::cos(halfAngle);
+	y = Math::sin(halfAngle);
+}

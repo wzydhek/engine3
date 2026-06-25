@@ -12,9 +12,7 @@ namespace sys {
 
 	class FileNotFoundException : public IOException {
 	public:
-		FileNotFoundException(File* file) : IOException("FileNotFoundException") {
-			message = message + " - file \'" + file->getName() + " not found";
-		}
+		FileNotFoundException(File* file);
 	};
 
   } // namespace io

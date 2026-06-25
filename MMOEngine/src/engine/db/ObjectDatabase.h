@@ -16,9 +16,7 @@ namespace engine {
 
 	class ObjectDatabase : public LocalDatabase {
 	protected:
-		ObjectDatabase() {
-			dbType = LocalDatabase::OBJECTDATABASE;
-		}
+		ObjectDatabase();
 
 	public:
 		ObjectDatabase(DatabaseManager* dbEnv, const String& dbFileName, bool compression, DatabaseType databaseType = LocalDatabase::OBJECTDATABASE);
@@ -41,19 +39,11 @@ namespace engine {
 
 	class ObjectDatabaseIterator : public LocalDatabaseIterator {
 	public:
-		ObjectDatabaseIterator(engine::db::berkeley::Transaction* transaction, LocalDatabase* database)
-			: LocalDatabaseIterator(transaction, database) {
+		ObjectDatabaseIterator(engine::db::berkeley::Transaction* transaction, LocalDatabase* database);
 
-		}
+		ObjectDatabaseIterator(ObjectDatabase* database, const berkeley::CursorConfig& config = berkeley::CursorConfig::DEFAULT, bool useCurrentThreadTransaction = false);
 
-		ObjectDatabaseIterator(ObjectDatabase* database, const berkeley::CursorConfig& config = berkeley::CursorConfig::DEFAULT, bool useCurrentThreadTransaction = false)
-			: LocalDatabaseIterator(database, config, useCurrentThreadTransaction) {
-		}
-
-		ObjectDatabaseIterator(engine::db::berkeley::BerkeleyDatabase* databaseHandle) :
-			LocalDatabaseIterator(databaseHandle) {
-
-		}
+		ObjectDatabaseIterator(engine::db::berkeley::BerkeleyDatabase* databaseHandle);
 
 		bool getNextKeyAndValue(uint64& key, ObjectInputStream* data, uint32 lockMode = berkeley::LockMode::READ_UNCOMMITED, bool compressed = false);
 
@@ -73,3 +63,5 @@ namespace engine {
 
   } // namespace db
 } // namespace engine
+
+using namespace engine::db;

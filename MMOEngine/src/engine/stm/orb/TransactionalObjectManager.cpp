@@ -114,3 +114,11 @@ LocalObjectManager* TransactionalObjectManager::getLocalObjectManager() {
 
 	return manager;
 }
+
+uint64 TransactionalObjectManager::getNextFreeObjectID() {
+	return objectBroker->getNextFreeObjectID();
+}
+
+DOBObjectManager* TransactionalObjectManager::getObjectManager() {
+	return objectBroker->getObjectManager();
+}

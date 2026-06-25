@@ -59,22 +59,14 @@ namespace sys {
   		bool setAppendable();
 
 		// getters
-		inline bool exists() const {
-			return fileDescriptor != nullptr;
-		}
+		bool exists() const;
 
-		inline const String& getName() const {
-			return name;
-		}
+		const String& getName() const;
 
 		// setters
-  		inline void setBinary() {
-  			mode = BINARY_MODE;
-  		}
+		void setBinary();
 
-		inline void setText() {
-			mode = TEXT_MODE;
-		}
+		void setText();
 
 		static bool doMkdir(const char* path, int mode);
 

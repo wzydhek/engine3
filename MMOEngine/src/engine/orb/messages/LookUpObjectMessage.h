@@ -20,55 +20,19 @@ namespace engine {
 		uint64 objectID;
 
 	public:	
-		LookUpObjectMessage(const String& name) : DOBMessage(LOOKUPOBJECTMESSAGE, 40) {
-			insertAscii(name);
+		LookUpObjectMessage(const String& name);
 
-			found = false;
-			objectID = 0;
-		}
+		LookUpObjectMessage(Packet* message);
 
-		LookUpObjectMessage(Packet* message) : DOBMessage(message) {
-			message->parseAscii(name);
+		void execute();
 
-			found = false;
-			objectID = 0;
-		}
+		void handleReply(Packet* message);
 
-		void execute() {
-			DistributedObject* obj = DistributedObjectBroker::instance()->lookUp(name);
+		bool isFound();
 
-			if (obj != nullptr) {
-				insertBoolean(true);
-				insertAscii(obj->_getClassName());
-				insertLong(obj->_getObjectID());
-			} else {
-				insertBoolean(false);
-			}
+		const String& getClassName();
 
-			client->sendReply(this);
-		}
-
-		void handleReply(Packet* message) {
-			found = message->parseBoolean();
-
-			if (found) {
-				message->parseAscii(className);
-
-				objectID = message->parseLong();
-			}
-		}
-
-		bool isFound() {
-			return found;
-		}
-
-		const String& getClassName() {
-			return className;
-		}
-
-		uint64 getObjectID() {
-			return objectID;
-		}
+		uint64 getObjectID();
 	};
 
   } // namespace ORB

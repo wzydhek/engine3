@@ -25,9 +25,7 @@ namespace engine {
 	 Vector4 matrix[4];
 
  public:
-	 Matrix4() {
-		 identity();
-	 }
+	 Matrix4();
 
 	 Matrix4(const Vector4& a, const Vector4& b, const Vector4& c, const Vector4& d);
 
@@ -37,43 +35,15 @@ namespace engine {
 
 	 void identity();
 
-	 inline Vector4& operator [] (uint32 index) {
-#ifdef VECTORS_OUT_OF_BOUNDS_CHECK
-		 if (index > 3)
-			 throw ArrayIndexOutOfBoundsException(index);
-#endif
-		 return matrix[index];
-	 }
+	 Vector4& operator[](uint32 index);
 
-	 inline const Vector4& operator [] (uint32 index) const {
-#ifdef VECTORS_OUT_OF_BOUNDS_CHECK
-		 if (index > 3)
-			 throw ArrayIndexOutOfBoundsException(index);
-#endif
-		 return matrix[index];
-	 }
+	 const Vector4& operator[](uint32 index) const;
 
-	 inline void setTranslation(float x, float y, float z) {
-		 matrix[3][0] = x;
-		 matrix[3][1] = y;
-		 matrix[3][2] = z;
-		 matrix[3][3] = 1.f;
-	 }
+	 void setTranslation(float x, float y, float z);
 
-	 inline void swapLtoR() {
-		 matrix[0][2] = -matrix[0][2];
-		 matrix[1][2] = -matrix[1][2];
-		 matrix[2][0] = -matrix[2][0];
-		 matrix[2][1] = -matrix[2][1];
-		 matrix[3][2] = -matrix[3][2];
-	 }
+	 void swapLtoR();
 
-	 void transpose()  {
-		 *this = Matrix4(Vector4(matrix[0][0], matrix[1][0], matrix[2][0], matrix[3][0]),
-						Vector4(matrix[0][1], matrix[1][1], matrix[2][1], matrix[3][1]),
-						Vector4(matrix[0][2], matrix[1][2], matrix[2][2], matrix[3][2]),
-						Vector4(matrix[0][3], matrix[1][3], matrix[2][3], matrix[3][3]));
-	 }
+	 void transpose();
 
 	 Matrix4 inverse() const;
 

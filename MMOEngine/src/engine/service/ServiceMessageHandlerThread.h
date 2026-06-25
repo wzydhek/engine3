@@ -37,40 +37,24 @@ namespace engine {
 		void removeConnections();
 
 		// message functions
-		inline void addMessage(Message* msg) {
-			messageQueue.push(msg);
-		}
+		void addMessage(Message* msg);
 
-		inline Message* getMessage() {
-			return messageQueue.pop();
-		}
+		Message* getMessage();
 
-		inline void flushMessages() {
-			messageQueue.flush();
-		}
+		void flushMessages();
 
 		// getters
-		inline MessageQueue* getMessageQueue() {
-			return &messageQueue;
-		}
+		MessageQueue* getMessageQueue();
 
-		inline int getServicePort() const {
-			return port;
-		}
+		int getServicePort() const;
 
-		inline Socket* getSocket() const {
-			return socket;
-		}
+		Socket* getSocket() const;
 
 		// setters
-		void setHandler(ServiceHandler* handler) {
-			serviceHandler = handler;
-		}
+		void setHandler(ServiceHandler* handler);
 
-		void setFilter(ServiceFilter* filter) {
-			serviceFilter = filter;
-		}
-};
+		void setFilter(ServiceFilter* filter);
+	};
 
   } // namespace service
 } // namespace engine

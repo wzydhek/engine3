@@ -107,29 +107,17 @@ namespace engine {
 			return *this;
 		}
 
-		StringBuffer& getBuffer() {
-			return buffer;
-		}
+		StringBuffer& getBuffer();
 
-		const StringBuffer& getBuffer() const {
-			return buffer;
-		}
+		const StringBuffer& getBuffer() const;
 
-		const Logger& getLogger() const {
-			return logger;
-		}
+		const Logger& getLogger() const;
 
-		bool getWillLog() const {
-			return willLog;
-		}
+		bool getWillLog() const;
 
-		int getLogLevel() const {
-			return logLevel;
-		}
+		int getLogLevel() const;
 
-		bool getBoolParam() const {
-			return boolParam;
-		}
+		bool getBoolParam() const;
 	};
 
 	class Logger {
@@ -205,99 +193,61 @@ namespace engine {
 
 		void setFileLogger(const String& file, bool appendData = false, bool rotateOnOpen = false);
 
-		const String getLogFileName() const {
-			if (logFile != nullptr) {
-				return logFile->getFileName();
-			}
-
-			return "";
-		}
+		const String getLogFileName() const;
 
 		void closeFileLogger(bool force = false);
 
 		void info(const char* msg, bool forcedlog) const;
 
-	 	void info(const char* msg) const {
-			info(msg, false);
-		}
+	 	void info(const char* msg) const;
 
 		void info(const String& msg, bool forcedLog = false) const;
 		void info(const StringBuffer& msg, bool forcedLog = false) const;
 
-		LoggerHelper info(bool forcedLog = false) const {
-			return LoggerHelper(*this, LogLevel::INFO, forcedLog);
-		}
+		LoggerHelper info(bool forcedLog = false) const;
 
 		void log(const char *msg, LogLevel type, bool forceSync = false) const;
 
-		void log(const char *msg) const {
-			log(msg, LogLevel::LOG);
-		}
+		void log(const char* msg) const;
 
 		void log(const String& msg) const;
 		void log(const StringBuffer& msg) const;
 
-		LoggerHelper log(bool forceSync = false) const {
-			return LoggerHelper(*this, LogLevel::LOG, forceSync);
-		}
+		LoggerHelper log(bool forceSync = false) const;
 
 		void error(const char* msg) const;
 		void error(const String& msg) const;
 		void error(const StringBuffer& msg) const;
 
-		LoggerHelper error() const {
-			return LoggerHelper(*this, LogLevel::ERROR, false);
-		}
+		LoggerHelper error() const;
 
 		[[ noreturn ]] void fatal(const char* msg) const;
 		[[ noreturn ]] void fatal(const String& msg) const;
 		[[ noreturn ]] void fatal(const StringBuffer& msg) const;
 
-		LoggerHelper fatal(bool assertion) const {
-			return LoggerHelper(*this, LogLevel::FATAL, assertion);
-		}
+		LoggerHelper fatal(bool assertion) const;
 
-		LoggerHelper fatal() const {
-			return LoggerHelper(*this, LogLevel::FATAL, false);
-		}
+		LoggerHelper fatal() const;
 
-		inline void fatal(bool assertion, const char* msg) const {
-			if (!assertion) {
-				fatal(msg);
-			}
-		}
+		void fatal(bool assertion, const char* msg) const;
 
-		inline void fatal(bool assertion, const String& msg) const {
-			if (!assertion) {
-				fatal(msg);
-			}
-		}
+		void fatal(bool assertion, const String& msg) const;
 
-		inline void fatal(bool assertion, const StringBuffer& msg) const {
-			if (!assertion) {
-				fatal(msg);
-			}
-		}
+		void fatal(bool assertion, const StringBuffer& msg) const;
 
 		void debug(const char* msg) const;
 		void debug(const String& msg) const;
 		void debug(const StringBuffer& msg) const;
 
-		LoggerHelper debug() const {
-			return LoggerHelper(*this, LogLevel::DEBUG, false);
-		}
+		LoggerHelper debug() const;
 
 		void warning(const char* msg) const;
 		void warning(const String& msg) const;
 		void warning(const StringBuffer& msg) const;
 
-		LoggerHelper warning() const {
-			return LoggerHelper(*this, LogLevel::WARNING, false);
-		}
+		LoggerHelper warning() const;
 
-		bool hasToLog(LogLevel level) const {
-			return logLevel >= level || (doGlobalLog && globalLogFile && globalLogLevel >= level);
-		}
+		bool hasToLog(LogLevel level) const;
 
 		static void getTime(String& time, bool getFull = true);
 		static void getTime(StringBuffer& time, bool getFull = true);
@@ -318,127 +268,58 @@ namespace engine {
 		static String msToString(uint64 milli);
 
 		// setters
-		inline void setLogging(bool doLog) {
-			if (doLog)
-				logLevel = LogLevel::DEBUG;
-			else
-				logLevel = LogLevel::LOG;
-		}
+		void setLogging(bool doLog);
 
-		inline void setLogLevel(LogLevel level) {
-			logLevel = level;
-		}
+		void setLogLevel(LogLevel level);
 
-		inline void setInfoLogLevel() {
-			logLevel = LogLevel::INFO;
-		}
+		void setInfoLogLevel();
 
-		inline void setDebugLogLevel() {
-			logLevel = LogLevel::DEBUG;
-		}
+		void setDebugLogLevel();
 
-		inline void setGlobalLogging(bool doLog) {
-			doGlobalLog = doLog;
-		}
+		void setGlobalLogging(bool doLog);
 
-		inline void setLogToConsole(bool doLog) {
-			logToConsole = doLog;
-		}
+		void setLogToConsole(bool doLog);
 
-		inline void setSyncFileLogging(bool val) {
-			doSyncLog = val;
-		}
+		void setSyncFileLogging(bool val);
 
-		inline void setLogTimeToFile(bool val) {
-			logTimeToFile = val;
-		}
+		void setLogTimeToFile(bool val);
 
-		inline void setLogLevelToFile(bool val) {
-			logLevelToFile = val;
-		}
+		void setLogLevelToFile(bool val);
 
-		inline void setLoggingName(const char* s) {
-			name = s;
-		}
+		void setLoggingName(const char* s);
 
-		inline void setLoggingName(const String& s) {
-			name = s;
-		}
+		void setLoggingName(const String& s);
 
-		inline void setLogJSON(bool val) {
-			logJSON = val;
-		}
+		void setLogJSON(bool val);
 
-		inline void setLogSynchronized(bool synchronized) {
-			if (logFile == nullptr)
-				return;
+		void setLogSynchronized(bool synchronized);
 
-			logFile->setSynchronized(synchronized);
-		}
+		void setRotateLogSizeMB(uint32 maxSizeMB);
 
-		inline void setRotateLogSizeMB(uint32 maxSizeMB) {
-			rotateLogSizeMB = maxSizeMB;
+		void setRotatePrefix(String prefix);
 
-			if (logFile != nullptr) {
-				logFile->setRotateSizeMB(rotateLogSizeMB);
-			}
-		}
+		void rotateLogFile();
 
-		inline void setRotatePrefix(String prefix) {
-			rotatePrefix = prefix;
+		void setLoggerCallback(LoggerCallback&& funct);
 
-			if (logFile != nullptr) {
-				logFile->setRotatePrefix(rotatePrefix);
-			}
-		}
+		void setLoggerCallback(const LoggerCallback& funct);
 
-		inline void rotateLogFile() {
-			if (logFile == nullptr)
-				return;
-
-			logFile->rotatefile();
-		}
-
-		inline void setLoggerCallback(LoggerCallback&& funct) {
-			callback = new LoggerCallback(std::move(funct));
-		}
-
-		inline void setLoggerCallback(const LoggerCallback& funct) {
-			callback = new LoggerCallback(funct);
-		}
-
-		inline void clearLoggerCallback() {
-			callback = nullptr;
-		}
+		void clearLoggerCallback();
 
 		// getters
-		inline String& getLoggingName() {
-			return name;
-		}
+		String& getLoggingName();
 
-		inline const String& getLoggingName() const {
-			return name;
-		}
+		const String& getLoggingName() const;
 
-		inline FileLogWriter* getFileLogger() const {
-			return logFile;
-		}
+		FileLogWriter* getFileLogger() const;
 
-		inline LogLevel getLogLevel() const {
-			return logLevel;
-		}
+		LogLevel getLogLevel() const;
 
-		inline bool getLogJSON() const {
-			return logJSON;
-		}
+		bool getLogJSON() const;
 
-		inline LoggerCallback* getLoggerCallback() {
-			return callback;
-		}
+		LoggerCallback* getLoggerCallback();
 
-		inline const LoggerCallback* getLoggerCallback() const {
-			return callback;
-		}
+		const LoggerCallback* getLoggerCallback() const;
 
 	};
 

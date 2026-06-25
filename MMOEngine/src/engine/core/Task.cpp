@@ -279,3 +279,146 @@ void Task::reschedule(Time& time) {
 	taskManager->rescheduleTask(this, time);
 }
 
+const char* Task::getTaskName() {
+	if (!taskName.isEmpty()) {
+		return taskName.toCharArray();
+	} else {
+		return typeid(*this).name();
+	}
+}
+
+int Task::compareTo(const PriorityQueueEntry* node) const {
+	const Task* task = static_cast<const Task*>(node);
+
+	if (task == this)
+		return 0;
+
+	int cmp = nextExecutionTime.compareTo(task->nextExecutionTime);
+	if (cmp == 0) {
+		if (std::less<const Task*>()(this, task))
+			return 1;
+		else
+			return -1;
+	} else
+		return cmp;
+}
+
+String Task::toStringData() const {
+	StringBuffer s;
+	s << nextExecutionTime.getMiliTime() << "(ptr = " << this << ")";
+	return s.toString();
+}
+
+void Task::setExecutionTime(const Time& time) {
+	nextExecutionTime = time;
+}
+
+void Task::updateExecutionTime(uint64 mtime) {
+	nextExecutionTime.updateToCurrentTime();
+
+	if (mtime != 0)
+		nextExecutionTime.addMiliTime(mtime);
+}
+
+const Time& Task::getNextExecutionTime() const {
+	return nextExecutionTime;
+}
+
+TaskScheduler* Task::getTaskScheduler() {
+	return taskScheduler;
+}
+
+const TaskScheduler* Task::getTaskScheduler() const {
+	return taskScheduler;
+}
+
+int Task::getPriroty() const {
+	return priority;
+}
+
+bool Task::isPeriodic() const {
+	return period != 0;
+}
+
+bool Task::doRunInScheduler() const {
+	return runInScheduler;
+}
+
+void Task::setRunInScheduler(bool val) {
+	runInScheduler = val;
+}
+
+bool Task::setTaskScheduler(TaskScheduler* scheduler) {
+	return taskScheduler.compareAndSet(nullptr, scheduler);
+}
+
+bool Task::clearTaskScheduler() {
+	TaskScheduler* scheduler = taskScheduler.get();
+
+	return taskScheduler.compareAndSet(scheduler, nullptr);
+}
+
+void Task::setPriority(int priority) {
+	Task::priority = priority;
+}
+
+uint64 Task::getPeriod() const {
+	return period;
+}
+
+void Task::setPeriod(uint64 per) {
+	period = per;
+}
+
+void Task::setCustomTaskQueue(const String& queue) {
+	customTaskQueue = queue;
+}
+
+void Task::setCustomTaskQueue(String&& queue) {
+	customTaskQueue = std::move(queue);
+}
+
+const String& Task::getCustomTaskQueue() const {
+	return customTaskQueue;
+}
+
+void Task::setTaskName(const char* name) {
+	taskName = name;
+}
+
+void Task::setTaskName(const String& name) {
+	taskName = name;
+}
+
+void Task::setTaskName(String&& name) {
+	taskName = std::move(name);
+}
+
+#ifdef COLLECT_TASKSTATISTICS
+void Task::setStatsSample(bool val) {
+	statsSampleRate = val;
+}
+
+int Task::getStatsSampleRate() const {
+	return statsSampleRate;
+}
+#endif
+
+uint64 Task::getLastElapsedTime() const {
+	return lastElapsedTime;
+}
+
+#ifdef TRACE_TASKS
+void Task::setScheduleTrace() {
+	if (scheduleTrace != nullptr)
+		delete scheduleTrace;
+
+	scheduleTrace = new StackTrace();
+}
+
+void Task::printScheduleTrace() {
+	assert(scheduleTrace != nullptr);
+
+	scheduleTrace->print();
+}
+#endif

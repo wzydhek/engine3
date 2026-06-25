@@ -14,66 +14,25 @@ namespace sys {
 
 	class Bool : public BaseTypeVariable<bool> {
 	public:
-		inline Bool() : BaseTypeVariable<bool>(false) {
+		Bool();
 
-		}
+		Bool(bool val);
 
-		inline Bool(bool val) : BaseTypeVariable<bool>(val) {
+		Bool(const Bool& val);
 
-		}
+		Bool& operator=(const Bool& val);
 
-		inline Bool(const Bool& val) : BaseTypeVariable<bool>(val) {
+		bool toString(String& str) const;
 
-		}
+		bool toBinaryStream(ObjectOutputStream* stream);
 
-		inline Bool& operator=(const Bool& val) {
-			if (this == &val) {
-				return *this;
-			}
+		bool parseFromBinaryStream(ObjectInputStream* stream);
 
-			BaseTypeVariable<bool>::operator=(val);
+		bool parseFromString(const String& str, int version = 0);
 
-			return *this;
-		}
+		static bool valueOf(const String& str);
 
-		bool toString(String& str) const {
-			if (get() == true)
-				str = String("true");
-			else
-				str = String("false");
-
-			return true;
-		}
-
-		bool toBinaryStream(ObjectOutputStream* stream) {
-			stream->writeBoolean(get());
-
-			return true;
-		}
-
-		bool parseFromBinaryStream(ObjectInputStream* stream) {
-			*this = stream->readBoolean();
-
-			return true;
-		}
-
-		bool parseFromString(const String& str, int version = 0) {
-			*this = valueOf(str);
-
-			return true;
-		}
-
-		static bool valueOf(const String& str) {
-			if (str == "true") {
-				return true;
-			} else {
-				return false;
-			}
-		}
-
-		static uint32 hashCode(bool value) {
-			return (uint32) value;
-		}
+		static uint32 hashCode(bool value);
 
 	};
 

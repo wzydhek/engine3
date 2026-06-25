@@ -11,19 +11,22 @@
 
 #pragma once
 
+#include "engine/service/proto/BaseClient.h"
+
+namespace engine {
+namespace service {
+namespace proto {
+
 class DisconnectTask : public Task {
 	Reference<BaseClient*> client;
 public:
-	DisconnectTask(BaseClient* cl) {
-		client = cl;
+	DisconnectTask(BaseClient* cl);
 
-#if defined(BASECLIENT_DISABLE_STATSD) and defined(COLLECT_TASKSTATISTICS)
-		setStatsSample(0);
-#endif
-	}
-
-	void run() {
-		client->setClientDisconnected();
-		client->disconnect();
-	}
+	void run();
 };
+
+} // namespace proto
+} // namespace service
+} // namespace engine
+
+using namespace engine::service::proto;

@@ -28,3 +28,7 @@ void GetNextFreeObjectIDMessage::execute() {
 void GetNextFreeObjectIDMessage::handleReply(Packet* response) {
 	objectID = response->parseLong();
 }
+
+uint64 GetNextFreeObjectIDMessage::getObjectID() const {
+	return objectID;
+}

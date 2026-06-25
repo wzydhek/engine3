@@ -62,9 +62,7 @@ namespace engine {
 	public:
 		static void commitPureTransaction(Transaction* transaction);
 
-		static void closeThread() {
-			instance()->reclaimObjects(5000, 0);
-		}
+		static void closeThread();
 
 		Object* create(size_t size);
 		void destroy(Object* object);
@@ -73,29 +71,17 @@ namespace engine {
 
 		void printStatistics();
 
-		TransactionalTaskManager* getTaskManager() {
-			return taskManager;
-		}
+		TransactionalTaskManager* getTaskManager();
 
-		TransactionalObjectManager* getObjectManager() {
-			return objectManager;
-		}
+		TransactionalObjectManager* getObjectManager();
 
-		TransactionalSocketManager* getSocketManager() {
-			return socketManager;
-		}
+		TransactionalSocketManager* getSocketManager();
 
-		inline TransactionalBaseClientManager* getBaseClientManager() {
-			return baseClientManager;
-		}
+		TransactionalBaseClientManager* getBaseClientManager();
 
-		inline void blockTransactions() ACQUIRE(Transaction::blockLock) {
-			Transaction::blockLock.wlock();
-		}
+		void blockTransactions() ACQUIRE(Transaction::blockLock);
 
-		inline void increaseFailedByExceptions() {
-			failedToExceptions.increment();
-		}
+		void increaseFailedByExceptions();
 
 		/*inline void increaseCreatedHandles() {
 			createdHandles.increment();
@@ -105,17 +91,11 @@ namespace engine {
 			deletedHandles.increment();
 		}*/
 
-		inline void increaseFailedByObjectChanged() {
-			failedOnAcquireRW.increment();
-		}
+		void increaseFailedByObjectChanged();
 
-		inline void increaseFailedByCompetingCommited() {
-			failedCompetingCommited.increment();
-		}
+		void increaseFailedByCompetingCommited();
 
-		inline void unblockTransactions() RELEASE(Transaction::blockLock) {
-			Transaction::blockLock.unlock();
-		}
+		void unblockTransactions() RELEASE(Transaction::blockLock);
 
 		void retryTransaction();
 
@@ -139,9 +119,7 @@ namespace engine {
 
 		void reclaimObjects(int objectsToSpare = 0, int maxObjectsToReclaim = 0);
 
-		void increaseDeletedTransactions() {
-			deletedTransactions.increment();
-		}
+		void increaseDeletedTransactions();
 
 		Vector<Object*>* getReclamationList();
 
@@ -151,6 +129,8 @@ namespace engine {
 
   } // namespace stm
 } // namespace engine
+
+using namespace engine::stm;
 
 #include "TransactionalObjectHeader.h"
 #include "engine/stm/mm/TransactionalObjectCloner.h"

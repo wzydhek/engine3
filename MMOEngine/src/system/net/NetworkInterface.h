@@ -36,9 +36,7 @@ namespace sys {
 
 	public:
 		//getters
-		Vector<InetAddress*>* getInterfaces() {
-			return interfaces;
-		}
+		Vector<InetAddress*>* getInterfaces();
 
 	};
 

@@ -47,3 +47,5 @@ namespace engine {
 
   } // namespace ORB
 } // namespace engine
+
+using namespace engine::ORB;

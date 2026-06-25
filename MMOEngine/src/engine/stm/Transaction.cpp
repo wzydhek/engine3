@@ -18,6 +18,21 @@ AtomicInteger HandleCounter::deletedHandles;
 
 UniqueReference<STMAlgorithm*> Transaction::commitAlgorithm(new FraserSTM());
 
+TransactionalObjectMap::TransactionalObjectMap() : HashTable<uint64, Reference<TransactionalObjectHandleBase*>>(1000) {
+}
+
+TransactionalObjectHandleVector::TransactionalObjectHandleVector() {
+	setInsertPlan(NO_DUPLICATE);
+}
+
+int TransactionalObjectHandleVector::compare(TransactionalObjectHandleBase* const& o1, TransactionalObjectHandleBase* const& o2) const {
+	// this needs a specific order based on the header to not create cycle helps
+	return o1->compareTo(o2);
+}
+
+TransactionalObjectHeaderMap::TransactionalObjectHeaderMap() : HashTable<uint64, Reference<TransactionalObjectHeader<Object*>*>>(1000) {
+}
+
 Transaction::Transaction(uint64 id) : Logger(), task(nullptr) {
 	status = INITIAL;
 
@@ -284,4 +299,36 @@ bool Transaction::setState(int newstate) {
 
 bool Transaction::setState(int currentstate, int newstate) {
 	return status.compareAndSet(currentstate, newstate);
+}
+
+bool Transaction::isInitial() const {
+	return status == INITIAL;
+}
+
+bool Transaction::isUndecided() const {
+	return status == UNDECIDED;
+}
+
+bool Transaction::isReadChecking() const {
+	return status == READ_CHECKING;
+}
+
+bool Transaction::isAborted() const {
+	return status == ABORTED;
+}
+
+bool Transaction::isCommited() const {
+	return status == COMMITTED;
+}
+
+uint64 Transaction::getIdentifier() {
+	return tid;
+}
+
+Task* Transaction::getTask() {
+	return task;
+}
+
+Vector<Object*>* Transaction::getDeletedObjects() {
+	return &reclaimedObjects;
 }

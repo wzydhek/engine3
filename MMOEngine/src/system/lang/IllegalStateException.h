@@ -11,12 +11,9 @@ namespace sys {
 
 	class IllegalStateException : public Exception {
 	public:
-		IllegalStateException() : Exception("IllegalStateException") {
-		}
+		IllegalStateException();
 
-		IllegalStateException(String s) : Exception("IllegalStateException") {
-			message = message + " - " + s;
-		}
+		IllegalStateException(String s);
 	};
 
   } // namespace lang

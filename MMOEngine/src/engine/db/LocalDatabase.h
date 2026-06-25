@@ -100,33 +100,21 @@ namespace engine {
 	 	return false;
 	 }
 
-	 DatabaseType getDatabaseType() const {
-	 	return dbType;
-	 }
+	 DatabaseType getDatabaseType() const;
 
-	 void setParentDatabase(LocalDatabase* database) {
-	 	parentDatabase = database;
-	 }
+	 void setParentDatabase(LocalDatabase* database);
 
 	 void reloadParentAssociation();
 
 	 engine::db::berkeley::BerkeleyDatabase* getDatabaseHandle();
 
-	 inline void getDatabaseName(String& name) const {
-	 	name = getDatabaseName();
-	 }
+	 void getDatabaseName(String& name) const;
 
-	 inline String getDatabaseName() const {
-		 return databaseFileName.replaceFirst(".db", "");
-	 }
+	 String getDatabaseName() const;
 
-	 inline const String& getDatabaseFileName() const {
-		 return databaseFileName;
-	 }
+	 const String& getDatabaseFileName() const;
 
-	 inline bool hasCompressionEnabled() const {
-		 return compression;
-	 }
+	 bool hasCompressionEnabled() const;
 
  };
 
@@ -161,19 +149,10 @@ namespace engine {
 	 //data is freed
 	 int putCurrent(ObjectOutputStream* data);
 
-	 inline void closeCursor() {
-		 if (cursor != nullptr) {
-			 int ret = cursor->close();
-
-			 delete cursor;
-
-			 if (ret != 0)
-				 throw DatabaseException("could not close cursor ret: " + String::valueOf(ret));
-		 }
-
-		 cursor = nullptr;
-	 }
+	 inline void closeCursor();
  };
 
  }
 }
+
+using namespace engine::db;

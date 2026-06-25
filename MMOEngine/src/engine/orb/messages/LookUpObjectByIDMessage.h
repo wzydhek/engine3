@@ -21,57 +21,19 @@ namespace engine {
 		bool found;
 
 	public:
-		LookUpObjectByIDMessage(uint64 objectid) : DOBMessage(LOOKUPOBJECTBYIDMESSAGE, 20), objectid(objectid) {
-			insertLong(objectid);
+		LookUpObjectByIDMessage(uint64 objectid);
 
-			found = false;
-		}
+		LookUpObjectByIDMessage(Packet* message);
 
-		LookUpObjectByIDMessage(Packet* message) : DOBMessage(message) {
-			objectid = message->parseLong();
+		void execute();
 
-			found = false;
-		}
+		void handleReply(Packet* message);
 
-		void execute() {
-			DistributedObjectBroker* broker = DistributedObjectBroker::instance();
-			DOBObjectManager* objectManager = broker->getObjectManager();
+		const String& getClassName() const;
 
-			DistributedObject* obj = objectManager->getObject(objectid);
+		const String& getName() const;
 
-			if (obj != nullptr) {
-				insertBoolean(true);
-				insertAscii(obj->_getClassName());
-				insertAscii(obj->_getName());
-
-				broker->debug() << "looked up 0x" << objectid << " with name \'"
-						<< obj->_getName() << "\' (" << obj->_getClassName() << ")";
-			} else
-				insertBoolean(false);
-
-			client->sendReply(this);
-		}
-
-		void handleReply(Packet* message) {
-			found = message->parseBoolean();
-
-			if (found) {
-				message->parseAscii(className);
-				message->parseAscii(name);
-			}
-		}
-
-		const String& getClassName() const {
-			return className;
-		}
-
-		const String& getName() const {
-			return name;
-		}
-
-		bool isFound() const {
-			return found;
-		}
+		bool isFound() const;
 	};
 
   } // namespace ORB

@@ -15,147 +15,61 @@ namespace sys {
 
 	class Character : public BaseTypeVariable<char> {
 	public:
-		inline Character() : BaseTypeVariable<char>(0) {
+		Character();
 
-		}
+		Character(char val);
 
-		inline Character(char val) : BaseTypeVariable<char>(val) {
+		Character(const Character& val);
 
-		}
+		Character& operator=(const Character& val);
 
-		inline Character(const Character& val) : BaseTypeVariable<char>(val) {
+		bool toString(String& str) const;
 
-		}
+		bool parseFromString(const String& str, int version = 0);
 
-		inline Character& operator=(const Character& val) {
-			if (this == &val) {
-				return *this;
-			}
+		bool toBinaryStream(ObjectOutputStream* stream);
 
-			BaseTypeVariable<char>::operator=(val);
+		bool parseFromBinaryStream(ObjectInputStream* stream);
 
-			return *this;
-		}
+		static char valueOf(const String& str);
 
-		bool toString(String& str) const {
-			str = String::valueOf(*this);
+		static bool isDigit(char ch);
 
-			return true;
-		}
+		static bool isLetter(char ch);
 
-		bool parseFromString(const String& str, int version = 0) {
-			*this = valueOf(str);
+		static bool isLetterOrDigit(char ch);
 
-			return true;
-		}
+		static bool isLowerCase(char ch);
 
-		bool toBinaryStream(ObjectOutputStream* stream) {
-			stream->writeSignedByte(get());
+		static bool isUpperCase(char ch);
 
-			return true;
-		}
+		static char toLowerCase(char ch);
 
-		bool parseFromBinaryStream(ObjectInputStream* stream) {
-			*this = stream->readSignedByte();
+		static char toUpperCase(char ch);
 
-			return true;
-		}
-
-		static inline char valueOf(const String& str) {
-			return str.charAt(0);
-		}
-
-		static inline bool isDigit(char ch) {
-			return isdigit(ch);
-		}
-
-		static inline bool isLetter(char ch) {
-			return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
-		}
-
-		static inline bool isLetterOrDigit(char ch) {
-			return isalpha(ch);
-		}
-
-		static inline bool isLowerCase(char ch) {
-			return islower(ch);
-		}
-
-		static inline bool isUpperCase(char ch) {
-			return isupper(ch);
-		}
-
-		static inline char toLowerCase(char ch) {
-			if (isUpperCase(ch))
-				return 'a' + (ch - 'A');
-			else
-				return ch;
-		}
-
-		static inline char toUpperCase(char ch) {
-			if (isLowerCase(ch))
-				return 'A' + (ch - 'a');
-			else
-				return ch;
-		}
-
-		static uint32 hashCode(char value) {
-			return (uint32) value;
-		}
+		static uint32 hashCode(char value);
 
 	};
 
 	class UnsignedCharacter : public BaseTypeVariable<unsigned char> {
 	public:
-		inline UnsignedCharacter() : BaseTypeVariable<unsigned char>(0) {
+		UnsignedCharacter();
 
-		}
+		UnsignedCharacter(unsigned char val);
 
-		inline UnsignedCharacter(unsigned char val) : BaseTypeVariable<unsigned char>(val) {
+		UnsignedCharacter(const UnsignedCharacter& val);
 
-		}
+		UnsignedCharacter& operator=(const UnsignedCharacter& val);
 
-		inline UnsignedCharacter(const UnsignedCharacter& val) : BaseTypeVariable<unsigned char>(val) {
+		bool toString(String& str) const;
 
-		}
+		bool parseFromString(const String& str, int version = 0);
 
-		inline UnsignedCharacter& operator=(const UnsignedCharacter& val) {
-			if (this == &val) {
-				return *this;
-			}
+		bool toBinaryStream(ObjectOutputStream* stream);
 
-			BaseTypeVariable<unsigned char>::operator=(val);
+		bool parseFromBinaryStream(ObjectInputStream* stream);
 
-			return *this;
-		}
-
-		bool toString(String& str) const {
-			str = String::valueOf(*this);
-
-			return true;
-		}
-
-		bool parseFromString(const String& str, int version = 0) {
-			*this = Character::valueOf(str);
-
-			return true;
-		}
-
-		bool toBinaryStream(ObjectOutputStream* stream) {
-			stream->writeByte(get());
-
-			return true;
-		}
-
-		bool parseFromBinaryStream(ObjectInputStream* stream) {
-			*this = stream->readByte();
-
-			return true;
-		}
-
-		static uint32 hashCode(unsigned char value) {
-			return (uint32) value;
-		}
+		static uint32 hashCode(unsigned char value);
 
 	};
 

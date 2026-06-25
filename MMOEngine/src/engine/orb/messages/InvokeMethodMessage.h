@@ -29,77 +29,39 @@ namespace engine {
 
 		void execute();
 
-		void handleReply(Packet* resp) {
-			packet = resp->clone();
-		}
+		void handleReply(Packet* resp);
 
-		Packet* getResponseMessage() {
-			return packet;
-		}
+		Packet* getResponseMessage();
 
-		bool getBooleanParameter() {
-			return packet->parseBoolean();
-		}
+		bool getBooleanParameter();
 
-		byte getByteParameter() {
-			return packet->parseByte();
-		}
+		byte getByteParameter();
 
-		char getSignedCharParameter() {
-			return packet->parseSignedByte();
-		}
+		char getSignedCharParameter();
 
-		unsigned char getUnsignedCharParameter() {
-			return packet->parseByte();
-		}
+		unsigned char getUnsignedCharParameter();
 
-		int getSignedIntParameter() {
-			return packet->parseSignedInt();
-		}
+		int getSignedIntParameter();
 
-		unsigned int getUnsignedIntParameter() {
-			return packet->parseInt();
-		}
+		unsigned int getUnsignedIntParameter();
 
-		long long getSignedLongParameter() {
-			return packet->parseSignedLong();
-		}
+		long long getSignedLongParameter();
 
-		unsigned long long getUnsignedLongParameter() {
-			return packet->parseLong();
-		}
+		unsigned long long getUnsignedLongParameter();
 
-		short getSignedShortParameter() {
-			return packet->parseSignedShort();
-		}
+		short getSignedShortParameter();
 
-		unsigned short getUnsignedShortParameter() {
-			return packet->parseShort();
-		}
+		unsigned short getUnsignedShortParameter();
 
-		float getFloatParameter() {
-			return packet->parseFloat();
-		}
+		float getFloatParameter();
 
-		double getDoubleParameter() {
-			return packet->parseDouble();
-		}
+		double getDoubleParameter();
 
-		String& getAsciiParameter(String& ascii) {
-			packet->parseAscii(ascii);
+		String& getAsciiParameter(String& ascii);
 
-			return ascii;
-		}
+		UnicodeString& getUnicodeParameter(UnicodeString& str);
 
-		UnicodeString& getUnicodeParameter(UnicodeString& str) {
-			packet->parseUnicode(str);
-
-			return str;
-		}
-
-		Packet* getIncomingPacket() {
-			return packet;
-		}
+		Packet* getIncomingPacket();
 
 	};
 

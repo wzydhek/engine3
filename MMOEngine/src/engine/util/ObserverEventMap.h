@@ -15,25 +15,24 @@ namespace engine {
  namespace util {
 	 class Observable;
 	 class Observer;
- }
-}
+} // namespace util
+} // namespace engine
 
 using namespace engine::util;
 
 #include "system/lang.h"
 #include "engine/core/ManagedReference.h"
 
-class ObserverEventMap : public HashTable<uint32, SortedVector<ManagedReference<Observer*> > > {
+namespace engine {
+namespace util {
+
+	class ObserverEventMap : public HashTable<uint32, SortedVector<ManagedReference<Observer*>>> {
 	mutable ReadWriteLock observerMutex;
 
 public:
-	ObserverEventMap() {
-		//setNoDuplicateInsertPlan();
-	}
+	ObserverEventMap();
 
-	ObserverEventMap(const ObserverEventMap& map) : HashTable<uint32, SortedVector<ManagedReference<Observer*> > >(map), observerMutex() {
-		//setNoDuplicateInsertPlan();
-	}
+	ObserverEventMap(const ObserverEventMap& map);
 
 	void notifyObservers(uint32 eventType, Observable* observable, ManagedObject* arg1 = nullptr, int64 arg2 = 0);
 
@@ -46,3 +45,8 @@ public:
 	int getObserverCount(uint32 eventType) const;
 	int getFullObserverCount() const;
 };
+
+}
+}
+
+using namespace engine::util;

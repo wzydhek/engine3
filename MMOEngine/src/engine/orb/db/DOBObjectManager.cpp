@@ -1111,4 +1111,20 @@ Reference<DistributedObjectStub*> DOBObjectManager::loadPersistentObject(uint64 
 	return obj;
 }
 
+void DOBObjectManager::setUpdateToDatabaseTime(int value) {
+	UPDATETODATABASETIME = value;
+}
+
+void DOBObjectManager::setDumpLastModifiedTraces(bool val) {
+	dumpLastModifiedTraces = val;
+}
+
+bool DOBObjectManager::getDumpLastModifiedTraces() {
+	return dumpLastModifiedTraces;
+}
+
+DistributedObjectDirectory* DOBObjectManager::getLocalObjectDirectory() {
+	return &localObjectDirectory;
+}
+
 #endif /* DOBOBJECTMANAGER_CPP_ */

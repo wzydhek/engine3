@@ -17,29 +17,11 @@ namespace engine {
 		Mutex lock;
 
 	public:
-		BaseClientNetStatusCheckupEvent(BaseClient* cl) : Task(25000) {
-			client = cl;
+		BaseClientNetStatusCheckupEvent(BaseClient* cl);
 
- #if defined(BASECLIENT_DISABLE_STATSD) and defined(COLLECT_TASKSTATISTICS)
-			setStatsSample(0);
-#endif
-		}
+		void run();
 
-		void run() {
-			Locker locker(&lock);
-
-			auto strongRef = client;
-
-			if (strongRef != nullptr) {
-				strongRef->checkNetStatus();
-			}
-		}
-
-		void clearClient() {
-			Locker locker(&lock);
-
-			client = nullptr;
-		}
+		void clearClient();
 	};
 
     } // namespace proto

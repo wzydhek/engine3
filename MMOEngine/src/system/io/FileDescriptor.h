@@ -19,25 +19,18 @@ namespace sys {
 		IOHandler* handler;
 
 	public:
-		FileDescriptor() : fileDescriptor(-1), handler(nullptr) {
-		}
+		FileDescriptor();
 
 		virtual ~FileDescriptor() {
 		}
 
 		void setBlocking(bool b);
 
-		int getFileDescriptor() const {
-			return fileDescriptor;
-		}
+		int getFileDescriptor() const;
 
-		IOHandler* getHandler() const {
-			return handler;
-		}
+		IOHandler* getHandler() const;
 
-		void setHandler(IOHandler* hand) {
-			handler = hand;
-		}
+		void setHandler(IOHandler* hand);
 	};
 
   } // namespace io

@@ -31,9 +31,7 @@ namespace engine {
 
 		void handleReply(Packet* response);
 
-		uint64 getObjectID() const {
-			return objectID;
-		}
+		uint64 getObjectID() const;
 	};
 
   } // namespace ORB

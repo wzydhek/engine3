@@ -36,9 +36,7 @@ namespace engine {
 
 		virtual DistributedObjectPOD* instantiatePOD() = 0;
 
-		inline const String& getClassName() {
-			return className;
-		}
+		const String& getClassName();
 	};
 
   } // namespace ORB

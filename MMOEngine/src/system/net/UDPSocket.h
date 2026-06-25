@@ -12,12 +12,7 @@ namespace sys {
 
 	class UDPSocket : public Socket {
 	public:
-		UDPSocket() : Socket() {
-			fileDescriptor = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-			
-			if (fileDescriptor < 0)
-				throw SocketException("unable to create socket");
-		}
+		UDPSocket();
 		
 	};
 

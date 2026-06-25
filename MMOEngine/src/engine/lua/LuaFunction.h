@@ -55,33 +55,19 @@ namespace lua {
 
 		virtual lua_State* callFunction();
 
-		inline lua_State* getLuaState() const {
-			return L;
-		}
+		lua_State* getLuaState() const;
 
-		inline int getNumberOfArgs() const {
-			return numberOfArgs;
-		}
+		int getNumberOfArgs() const;
 
-		inline int getNumberOfReturnArgs() const {
-			return numberOfArgsToReturn;
-		}
+		int getNumberOfReturnArgs() const;
 
-		inline String& getFunctionName() {
-			return functionName;
-		}
+		String& getFunctionName();
 
-		inline const String& getFunctionName() const {
-			return functionName;
-		}
+		const String& getFunctionName() const;
 
-		inline String& getObject() {
-			return object;
-		}
+		String& getObject();
 
-		inline const String& getObject() const {
-			return object;
-		}
+		const String& getObject() const;
 
 	};
 }

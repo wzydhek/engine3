@@ -28,21 +28,13 @@ namespace sys {
 		void printMessage() const;
 
 		// setters and getters
-		inline void setMessage(const String& msg) {
-			message = msg;
-		}
+		void setMessage(const String& msg);
 
-	 	inline const String& getMessage() const {
-			return message;
-		}
+	 	const String& getMessage() const;
 
-		inline const StackTrace& getStackTrace() const {
-			return trace;
-		}
+		const StackTrace& getStackTrace() const;
 
-		inline const char* what() const {
-			return message.toCharArray();
-		}
+		const char* what() const;
 
 	};
 

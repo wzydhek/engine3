@@ -29,9 +29,7 @@ namespace engine {
 		void flush();
 
 	protected:
-		int getBufferSize() const {
-			return elementCapacity;
-		}
+		int getBufferSize() const;
 
 	};
 

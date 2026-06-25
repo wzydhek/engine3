@@ -556,3 +556,11 @@ int BasicOcTree::_inRange(BasicOcTreeNode* node, float x, float y, float z, floa
 
 	return count;
 }
+
+void BasicOcTree::setLogging(bool doLog) {
+	logTree = doLog;
+}
+
+bool BasicOcTree::doLog() {
+	return logTree;
+}

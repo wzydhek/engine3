@@ -28,3 +28,5 @@ namespace engine {
 
   } // namespace stm
 } // namespace engine
+
+using namespace engine::stm;

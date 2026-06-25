@@ -24,13 +24,9 @@ namespace sys {
 		static const constexpr double RAD2DEG = 180.0f / M_PI;
 		static const constexpr double E = 2.71828182845904523536;
 
-		static inline double sqrt(double number) {
-			return ::sqrt(number);
-		}
+		static double sqrt(double number);
 
-		static inline double cbrt(double number) {
-			return ::cbrt(number);
-		}
+		static double cbrt(double number);
 
 		//static float rsqrt(float number);
 
@@ -66,34 +62,23 @@ namespace sys {
 			return val1 > val2 ? val1 : val2;
 		}
 
-		static float getPrecision(float num, int digits) {
-			float power = pow((float)10, digits);
-			return float(floor(num * power + .05f) / power);
-		}
+		static float getPrecision(float num, int digits);
 
-		static inline double acos(double arg) {
-			return ::acos(arg);
-		}
+		static double acos(double arg);
 
-		static inline double sin(double arg) {
-			return ::sin(arg);
-		}
+		static double sin(double arg);
 
-		static inline double cos(double arg) {
-			return ::cos(arg);
-		}
+		static double cos(double arg);
 
-		static constexpr inline double deg2rad(double degrees) {
+		static inline constexpr double deg2rad(double degrees) {
 			return degrees * DEG2RAD;
 		}
 
-		static constexpr inline double rad2deg(double radians) {
+		static inline constexpr double rad2deg(double radians) {
 			return radians * RAD2DEG;
 		}
 
-		static inline double ln(float value) {
-			return (log10(value) / log10(E));
-		}
+		static double ln(float value);
 	};
 
   } // namespace lang

@@ -14,8 +14,7 @@ namespace engine {
 	protected:
 
 	public:
-		Data(Chunk* parent, uint32 id, uint32 size,  char* buffer) : Chunk(parent, id, size, buffer) {
-		}
+		Data(Chunk* parent, uint32 id, uint32 size, char* buffer);
 
 	};
 

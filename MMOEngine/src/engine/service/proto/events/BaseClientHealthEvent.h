@@ -21,30 +21,16 @@ namespace engine {
 		WeakReference<BaseClient*> client;
 
 	public:
-		BaseClientHealthEvent(BaseClient* client) {
-			BaseClientHealthEvent::client = client;
+		BaseClientHealthEvent(BaseClient* client);
 
-#if defined(BASECLIENT_DISABLE_STATSD) and defined(COLLECT_TASKSTATISTICS)
-			setStatsSample(0);
-#endif
-		}
+		void shutdown();
 
-		void shutdown() {
-			cancel();
-			client = nullptr;
-		}
-
-		void run() {
-			auto strong = client.get();
-
-			if (strong == nullptr)
-				return;
-
-			strong->runHealthCheck();
-		}
+		void run();
 
 	};
 
     } // namespace proto
   } // namespace service
 } // namespace engine
+
+using namespace engine::service::proto;

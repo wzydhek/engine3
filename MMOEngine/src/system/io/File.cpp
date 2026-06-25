@@ -323,3 +323,19 @@ bool File::setAppendable() {
 
 	return open(File::APPENDABLE_ACCESS);
 }
+
+bool File::exists() const {
+	return fileDescriptor != nullptr;
+}
+
+const String& File::getName() const {
+	return name;
+}
+
+void File::setBinary() {
+	mode = BINARY_MODE;
+}
+
+void File::setText() {
+	mode = TEXT_MODE;
+}

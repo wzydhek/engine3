@@ -22,27 +22,11 @@ namespace sys {
 
 	class SocketException : public sys::lang::Exception {
 	public:
-		SocketException() : Exception() {
-			StringBuffer str;
-			str << "Socket Exception " << " (errno " << getErrorCode() << ")";
+		SocketException();
 
-			message = str.toString();
-		}
+		SocketException(const String& msg);
 
-		SocketException(const String& msg) : Exception(msg) {
-			StringBuffer str;
-			str << msg << " (errno " << getErrorCode() << ")";
-
-			message = str.toString();
-		}
-
-		int getErrorCode() {
-			#ifndef PLATFORM_WIN
-				return errno;
-			#else
-				return WSAGetLastError();
-			#endif
-		}
+		int getErrorCode();
 
 	};
 

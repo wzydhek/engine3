@@ -13,9 +13,7 @@ namespace engine {
 
 	class FragmentedPacketParseException : public Exception {
 	public:
-		FragmentedPacketParseException(const String& msg) : Exception(msg) {
-
-		}
+		FragmentedPacketParseException(const String& msg);
 	};
 
 	class BaseFragmentedPacket : public BasePacket {
@@ -25,12 +23,7 @@ namespace engine {
 
 		StringBuffer error;
 
-		StringBuffer& addError() {
-			if (error.length()) {
-				error << endl;
-			}
-			return error;
-		}
+		StringBuffer& addError();
 
 	public:
 		BaseFragmentedPacket();
@@ -46,13 +39,9 @@ namespace engine {
 
 		bool hasFragments() const;
 
-		bool hasError() const {
-			return !error.length();
-		}
+		bool hasError() const;
 
-		String getError() const {
-			return error.toString();
-		}
+		String getError() const;
 	};
 
     } // namespace proto

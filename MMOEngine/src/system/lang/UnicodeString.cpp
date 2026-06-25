@@ -359,3 +359,47 @@ UnicodeString UnicodeString::replaceFirst(const UnicodeString& regex, const Unic
 	} else
 		return *this;
 }
+
+inline bool UnicodeString::isEmpty() const {
+	return count == 0;
+}
+
+bool UnicodeString::operator==(const UnicodeString& str) const {
+	return compareTo(str) == 0;
+}
+
+bool UnicodeString::operator<(const UnicodeString& str) const {
+	return compareTo(str) < 0;
+}
+
+bool UnicodeString::operator>(const UnicodeString& str) const {
+	return compareTo(str) > 0;
+}
+
+bool UnicodeString::operator!=(const UnicodeString& str) const {
+	return compareTo(str) != 0;
+}
+
+UnicodeString::UnicodeCharType* UnicodeString::begin() {
+	return uString;
+}
+
+const UnicodeString::UnicodeCharType* UnicodeString::begin() const {
+	return uString;
+}
+
+UnicodeString::UnicodeCharType* UnicodeString::end() {
+	return uString + count;
+}
+
+const UnicodeString::UnicodeCharType* UnicodeString::end() const {
+	return uString + count;
+}
+
+uint32 UnicodeString::length() const {
+	return count;
+}
+
+String UnicodeString::toString() const {
+	return convertToString<UnicodeCharSize::value>();
+}

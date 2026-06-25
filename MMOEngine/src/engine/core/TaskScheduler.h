@@ -54,49 +54,27 @@ namespace engine {
 
 		HashTable<String, uint64> getTasksCount();
 
-		void flushTasks() {
-			tasks.flush();
-		}
+		void flushTasks();
 
-		void clearTasks() {
-			tasks.clear();
-		}
+		void clearTasks();
 
-		void fixQueue() {
-			tasks.repair();
-		}
+		void fixQueue();
 
-		inline int getQueueSize() const {
-			return tasks.size();
-		}
+		int getQueueSize() const;
 
-		inline uint64 getPushedTasks() const {
-			return tasks.getPushedEntries();
-		}
+		uint64 getPushedTasks() const;
 
-		inline uint64 getPoppedTasks() const {
-			return tasks.getPoppedEntries();
-		}
+		uint64 getPoppedTasks() const;
 
-		inline uint64 getRemovedTasks() const {
-			return tasks.getRemovedEntries();
-		}
+		uint64 getRemovedTasks() const;
 
-		inline void printTasks() {
-			tasks.printQueue();
-		}
+		void printTasks();
 
-		inline TaskManager* getTaskManager() {
-			return taskManager;
-		}
+		TaskManager* getTaskManager();
 
-		inline void setTaskManager(TaskManager* manager) {
-			taskManager = manager;
-		}
+		void setTaskManager(TaskManager* manager);
 
-		inline Mutex* getBlockMutex() {
-			return &blockMutex;
-		}
+		Mutex* getBlockMutex();
 	};
 
   } // namespace core

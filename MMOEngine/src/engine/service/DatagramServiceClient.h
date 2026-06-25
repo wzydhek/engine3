@@ -22,9 +22,7 @@ namespace engine {
 
 		virtual ~DatagramServiceClient();
 
-		void stop() {
-			doRun = false;
-		}
+		void stop();
 
 		void recieveMessages();
 

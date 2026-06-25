@@ -31,12 +31,12 @@ namespace engine {
  }
 }
 
-#include "events/BasePacketChekupEvent.h"
 
 namespace engine {
   namespace service {
     namespace proto {
 
+	class BasePacketChekupEvent;
 	class BaseClientHealthEvent;
 	class BaseClientNetStatusCheckupEvent;
 	class BaseClientNetStatusRequestEvent;
@@ -147,9 +147,7 @@ namespace engine {
 
 		void disconnect(const String& msg, bool doLock = true);
 
-		inline void disconnect(const char* msg, bool doLock = true) {
-			disconnect(String(msg), doLock);
-		}
+		void disconnect(const char* msg, bool doLock = true);
 
 		void disconnect(bool doLock = true);
 
@@ -172,59 +170,31 @@ namespace engine {
 		void flushSendBuffer(int seq);
 
 	public:
-		inline bool isClientDisconnected() const {
-			return clientDisconnected;
-		}
+		bool isClientDisconnected() const;
 
 		// setters
-		inline void setClientDisconnected() {
-			clientDisconnected = true;
-		}
+		void setClientDisconnected();
 
-		inline void setNullBufferedPacket() {
-			bufferedPacket = nullptr;
-		}
+		void setNullBufferedPacket();
 
 		// getters
-		inline const String& getFullIPAddress() const {
-			return ip_full;
-		}
+		const String& getFullIPAddress() const;
 
-		inline String getIPAddress() const {
-			return ip_address.isEmpty() ? addr.getIPAddress() : ip_address;
-		}
+		String getIPAddress() const;
 
-		inline void setIPAddress(const String& newIP) {
-			ip_address = newIP;
-		}
+		void setIPAddress(const String& newIP);
 
-		inline int getSentPacketCount() const {
-			return serverSequence;
-		}
+		int getSentPacketCount() const;
 
-		inline int getResentPacketCount() const {
-			return resentPackets;
-		}
+		int getResentPacketCount() const;
 
-		inline BaseMultiPacket* getRawBufferedPacket() {
-			return bufferedPacket;
-		}
+		BaseMultiPacket* getRawBufferedPacket();
 
-		inline const BaseMultiPacket* getRawBufferedPacket() const {
-			return bufferedPacket;
-		}
+		const BaseMultiPacket* getRawBufferedPacket() const;
 
 		friend class engine::stm::TransactionalBaseClientManager;
 
-		static int tickDiff(uint16 tick1, uint16 tick2) {
-			uint16 delta = tick1 - tick2;
-
-			if (delta > 0x7FFF) {
-				delta = 0xFFFF - delta;
-			}
-
-			return (int)delta;
-		}
+		static int tickDiff(uint16 tick1, uint16 tick2);
 
 	private:
 		void initializeCommon(const String& addr);

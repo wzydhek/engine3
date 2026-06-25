@@ -20,3 +20,5 @@ namespace engine {
 
   } // namespace dbo
 } // namespace engine
+
+using namespace engine::dbo;

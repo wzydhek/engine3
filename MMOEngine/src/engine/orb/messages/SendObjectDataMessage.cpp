@@ -40,3 +40,7 @@ void SendObjectDataMessage::execute() {
 void SendObjectDataMessage::handleReply(Packet* message) {
 	//printf("received object data for oid:%d\n", (int) objectID);
 }
+
+uint64 SendObjectDataMessage::getObjectID() const {
+	return objectID;
+}

@@ -33,21 +33,13 @@ namespace engine {
 		virtual void stop(bool doJoin = true);
 
 		// setters and getters
-		inline void setRunning(bool val) {
-			doRun = val;
-		}
+		void setRunning(bool val);
 
-		inline bool isRunning() const {
-			return doRun;
-		}
+		bool isRunning() const;
 
-		inline void setReady(bool val) {
-			serviceReady = val;
-		}
+		void setReady(bool val);
 
-		inline bool isReady() const {
-			return serviceReady;
-		}
+		bool isReady() const;
 	};
 
   } // namespace service

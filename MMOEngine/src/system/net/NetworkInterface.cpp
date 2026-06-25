@@ -120,3 +120,7 @@ InetAddress* NetworkInterface::getPrimaryAddress() {
 	else
 		return nullptr;
 }
+
+Vector<InetAddress*>* NetworkInterface::getInterfaces() {
+	return interfaces;
+}

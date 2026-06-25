@@ -28,26 +28,15 @@ namespace sys {
 
   		Allocator* realAllocator;
   	  public:
-  		AllocationReplacement() {
-  			instance = nullptr;
-  			realAllocator = nullptr;
-  		}
+		AllocationReplacement();
 
   		void* onAllocate(size_t size, const void* allocator);
   		void onFree(void* ptr, const void*);
   		void* onReallocate(void* ptr, size_t size, const void* alloc);
 
-  		static AllocationReplacement* getInstance() {
-  			if (instance == nullptr) {
-  				instance = new AllocationReplacement();
-  			}
+  		static AllocationReplacement* getInstance();
 
-  			return instance;
-  		}
-
-  		void setRealAllocator(Allocator* allocator) {
-  			realAllocator = allocator;
-  		}
+  		void setRealAllocator(Allocator* allocator);
   	  };
 
   }

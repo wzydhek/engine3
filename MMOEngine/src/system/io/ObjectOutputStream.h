@@ -12,17 +12,13 @@ namespace sys {
 
 	class ObjectOutputStream : public virtual Stream {
 	public:
-		ObjectOutputStream() : Stream() {
-		}
+		ObjectOutputStream();
 
-		ObjectOutputStream(int initsize) : Stream(initsize) {
-		}
+		ObjectOutputStream(int initsize);
 
-		ObjectOutputStream(int initsize, int capincr) : Stream(initsize, capincr) {
-		}
+		ObjectOutputStream(int initsize, int capincr);
 
-		ObjectOutputStream(char *buf, int len) : Stream(buf, len) {
-		}
+		ObjectOutputStream(char* buf, int len);
 
 		virtual ~ObjectOutputStream() {
 		}
@@ -48,66 +44,35 @@ namespace sys {
 		}
 
 		// writing methods
-		inline void writeBoolean(bool val) {
-			writePrimitive<uint8>(val);
-		}
+		void writeBoolean(bool val);
 
-		inline void writeByte(uint8 val) {
-			writePrimitive(val);
-		}
+		void writeByte(uint8 val);
 
-		inline void writeByte(int offs, uint8 val) {
-			writePrimitiveTo(offs, val);
-		}
+		void writeByte(int offs, uint8 val);
 
-		inline void writeSignedByte(int8 val) {
-			writePrimitive(val);
-		}
+		void writeSignedByte(int8 val);
 
-		inline void writeShort(uint16 val) {
-			writePrimitive(val);
-		}
+		void writeShort(uint16 val);
 
-		inline void writeSignedShort(int16 val) {
-			writePrimitive(val);
-		}
+		void writeSignedShort(int16 val);
 
-		inline void writeShort(int offs, uint16 val) {
-			writePrimitiveTo(offs, val);
-		}
+		void writeShort(int offs, uint16 val);
 
-		inline void writeInt(uint32 val) {
-			writePrimitive(val);
-		}
+		void writeInt(uint32 val);
 
-		inline void writeInt(int offs, uint32 val) {
-			writePrimitiveTo(offs, val);
-		}
+		void writeInt(int offs, uint32 val);
 
-		inline void writeSignedInt(int32 val) {
-			writePrimitive(val);
-		}
+		void writeSignedInt(int32 val);
 
-		inline void writeLong(uint64 val) {
-			writePrimitive(val);
-		}
+		void writeLong(uint64 val);
 
-		inline void writeLong(int offs, uint64 val) {
-			writePrimitiveTo(offs, val);
-		}
+		void writeLong(int offs, uint64 val);
 
-		inline void writeSignedLong(int64 val) {
-			writePrimitive(val);
-		}
+		void writeSignedLong(int64 val);
 
-		inline void writeFloat(float val) {
-			writePrimitive(val);
-		}
+		void writeFloat(float val);
 
-		inline void writeDouble(double val) {
-			writePrimitive(val);
-		}
-
+		void writeDouble(double val);
 	};
 
   } // namespace io

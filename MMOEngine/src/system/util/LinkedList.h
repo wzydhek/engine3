@@ -9,7 +9,7 @@
 #include <atomic>
 
 namespace sys {
-  namespace util {
+namespace util {
 
 	template<class O> class LinkedList;
 	template<class O> class LinkedListIterator;
@@ -176,8 +176,7 @@ namespace sys {
 
 		return nullptr;
 	}
-
-  } // namespace util
+} // namespace util
 } // namespace sys
 
 using namespace sys::util;

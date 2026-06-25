@@ -21,59 +21,29 @@ namespace engine {
 	   Task* task;
 
    public:
-	   TaskReference() {
-		   task = nullptr;
-	   }
+	   TaskReference();
 
-	   TaskReference(const Task* t) {
-		   task = const_cast<Task*>(t);
-	   }
+	   TaskReference(const Task* t);
 
-	   TaskReference(const TaskReference& t) {
-		   task = t.task;
-	   }
+	   TaskReference(const TaskReference& t);
 
-	   bool toBinaryStream(ObjectOutputStream* stream) {
-		   return false;
-	   }
+	   bool toBinaryStream(ObjectOutputStream* stream);
 
 	   /*static bool parseFromString(T* address, const sys::lang::String& value, int version = 0) {
 	   		return address->parseFromString(value, version);
 	   	}*/
 
-	   bool parseFromBinaryStream(ObjectInputStream* stream) {
-		   return false;
-	   }
+	   bool parseFromBinaryStream(ObjectInputStream* stream);
 
-	   TaskReference& operator=(const TaskReference& t)  {
-		   if (this == &t)
-			   return *this;
+	   TaskReference& operator=(const TaskReference& t);
 
-		   task = t.task;
+	   int compareTo(const TaskReference& ref) const;
 
-		   return *this;
-	   }
+	   operator Task*();
 
-	   int compareTo(const TaskReference& ref) const {
-		   if (task == ref.task)
-			   return 0;
-		   else if (task < ref.task)
-			   return 1;
-		   else
-			   return -1;
-	   }
+	   Task* operator->();
 
-	   operator Task*() {
-		   return task;
-	   }
-
-	   Task* operator->() {
-		   return task;
-	   }
-
-	   inline Task* getTask() {
-		   return task;
-	   }
+	   Task* getTask();
 
 
    };
@@ -90,40 +60,17 @@ namespace engine {
     	const static int RESCHEDULE = 4;
 
     public:
-    	TaskAction(const TaskAction& a) : Object() {
-    		type = a.type;
-    		task = a.task;
-    		nextExecutionTime = a.nextExecutionTime;
-    	}
+		TaskAction(const TaskAction& a);
 
-    	TaskAction(int type, Reference<Task*> task, const AtomicTime& nextExecutionTime) {
-    		TaskAction::type = type;
-    		TaskAction::task = task;
-    		TaskAction::nextExecutionTime = nextExecutionTime;
-    	}
+    	TaskAction(int type, Reference<Task*> task, const AtomicTime& nextExecutionTime);
 
-    	TaskAction& operator=(const TaskAction& a) {
-    		if (this == &a)
-    			return *this;
+    	TaskAction& operator=(const TaskAction& a);
 
-    		type = a.type;
-    		task = a.task;
-    		nextExecutionTime = a.nextExecutionTime;
+    	int getType() const;
 
-    		return *this;
-    	}
+    	Task* getTask() const;
 
-    	inline int getType() const {
-    		return type;
-    	}
-
-    	inline Task* getTask() const {
-    		return task;
-    	}
-
-    	inline AtomicTime& getNextExecutionTime() {
-    		return nextExecutionTime;
-    	}
+    	AtomicTime& getNextExecutionTime();
 
     };
 
@@ -150,21 +97,13 @@ namespace engine {
   		void executeTask(Task* task);
 
 #ifdef CXX11_COMPILER
-		void executeTask(Function<void()>&& function, const char* name) {
-			TaskManager::executeTask(std::move(function), name);
-		}
+		void executeTask(Function<void()>&& function, const char* name);
 
-		void executeTask(const Function<void()>& function, const char* name) {
-			TaskManager::executeTask(function, name);
-		}
+		void executeTask(const Function<void()>& function, const char* name);
 
-		void scheduleTask(Function<void()>&& function, const char* name, uint64 delay) {
-			TaskManager::scheduleTask(std::move(function), name, delay);
-		}
+		void scheduleTask(Function<void()>&& function, const char* name, uint64 delay);
 
-		void scheduleTask(const Function<void()>& function, const char* name, uint64 delay) {
-			TaskManager::scheduleTask(function, name, delay);
-		}
+		void scheduleTask(const Function<void()>& function, const char* name, uint64 delay);
 #endif
 
   		void scheduleTask(Task* task, uint64 delay);
@@ -195,9 +134,7 @@ namespace engine {
 
   		bool getNextExecutionTime(const Task* task, AtomicTime& nextExecutionTime);
 
-  		bool isMerging() {
-  			return merging;
-  		}
+  		bool isMerging();
   	  };
 
   } // namespace stm

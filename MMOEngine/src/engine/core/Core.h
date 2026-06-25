@@ -97,15 +97,9 @@ namespace engine {
 
 	class SegmentationFault : public Exception {
 	public:
-		SegmentationFault(int cause) : Exception() {
-			System::out << "Segmentation Fault caused by " << cause << " at\n";
-			printStackTrace();
-			exit(cause);
-		}
+		SegmentationFault(int cause);
 
-		static int GetSignalNumber() {
-			return SIGSEGV;
-		}
+		static int GetSignalNumber();
 	};
 
 	template<class T> Reference<T*> Core::lookupObject(const String& name) {

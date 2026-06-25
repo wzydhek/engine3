@@ -52,53 +52,27 @@ namespace engine {
 		/**
 		 * Configures the entry with an application-owned buffer.
 		 */
-		void setUserBuffer(int length, bool usermem) {
-			databaseEntry.ulen = length;
-
-			if (usermem) {
-				databaseEntry.flags |= DB_DBT_USERMEM;
-				databaseEntry.flags &= ~DB_DBT_MALLOC;
-				databaseEntry.flags &= ~DB_DBT_REALLOC;
-			} else {
-				databaseEntry.flags &= ~DB_DBT_USERMEM;
-				databaseEntry.flags &= ~DB_DBT_REALLOC;
-				databaseEntry.flags |= DB_DBT_MALLOC;
-			}
-		}
+		void setUserBuffer(int length, bool usermem);
 
 		/*
 		 * Configures the entry to try to reuse the buffer before allocating a new one.
 		 */
-		void setReuseBuffer(bool reuse) {
-			if (reuse) {
-				databaseEntry.flags &= ~DB_DBT_MALLOC;
-				databaseEntry.flags &= ~DB_DBT_USERMEM;
-				databaseEntry.flags |= DB_DBT_REALLOC;
-			} else {
-				databaseEntry.flags &= ~DB_DBT_REALLOC;
-				databaseEntry.flags &= ~DB_DBT_USERMEM;
-				databaseEntry.flags |= DB_DBT_MALLOC;
-			}
-		}
+		void setReuseBuffer(bool reuse);
 
 		/**
 		 * Sets the user buffer and size
 		 */
 		void setData(void* addr, int size);
 
-		inline void* getData() {
-			return databaseEntry.data;
-		}
+		void* getData();
 
-		inline int getSize() {
-			return databaseEntry.size;
-		}
+		int getSize();
 
-		inline DBT* getDBT() {
-			return &databaseEntry;
-		}
+		DBT* getDBT();
 	};
 
     } // namespace berkeley
   } // namespace db
 } // namespace engine
+
+using namespace engine::db::berkeley;
