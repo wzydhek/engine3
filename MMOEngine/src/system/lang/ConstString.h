@@ -23,46 +23,106 @@ namespace sys {
 
 			 static const std::size_t constexpr npos = -1;
 
-			 constexpr explicit ConstString(const char* a);
+			 constexpr explicit ConstString(const char* a) : p_(a), sz_(strlen(a)) {
+			 }
 
 
-			 constexpr explicit ConstString(const char* a, std::size_t len);
+			 constexpr explicit ConstString(const char* a, std::size_t len) : p_(a), sz_(len) {
+			 }
 
 			 template<std::size_t N>
 			 constexpr ConstString(const char(&a)[N]) :
 					 p_(a), sz_(N - 1) {
 		  	 }
 
-			 constexpr std::size_t indexOf(const char ch) const;
+			 constexpr std::size_t indexOf(const char ch) const {
+				 for (std::size_t i = 0; i < sz_; ++i) {
+					 if (p_[i] == ch)
+						 return i;
+				 }
 
-			 constexpr bool contains(const char* str) const;
+				 return npos;
+			 }
 
-			 static constexpr int strlen(const char* a);
+			 constexpr bool contains(const char* str) const {
+				 return indexOf(str) != npos;
+			 }
 
-			 static constexpr int compare(const char* x, const char* y);
+			 static constexpr int strlen(const char* a) {
+				 int s = 0;
+
+				 while (a[s]) {
+					 ++s;
+				 }
+
+				 return s;
+			 }
+
+			 static constexpr int compare(const char* x, const char* y) {
+				 while (*x && *y) {
+					 if (*x != *y)
+						 return 0;
+
+					 x++;
+					 y++;
+				 }
+
+				 return (*y == '\0');
+			 }
 
 			 //naive impl
-			 static constexpr const char* strstr(const char* X, const char* Y);
+			 static constexpr const char* strstr(const char* X, const char* Y) {
+				 while (*X != '\0') {
+					 if ((*X == *Y) && compare(X, Y))
+						 return X;
+					 X++;
+				 }
 
-			 constexpr std::size_t indexOf(const char* str, std::size_t fromIndex = 0) const;
+				 return nullptr;
+			 }
 
-			 constexpr char operator[](std::size_t n) const;
+			 constexpr std::size_t indexOf(const char* str, std::size_t fromIndex = 0) const {
+				 if (fromIndex >= size())
+					 return npos;
+
+				 auto position = strstr(begin() + fromIndex, str);
+
+				 if (position != nullptr)
+					 return position - begin();
+				 else
+					 return npos;
+			 }
+
+
+			 constexpr char operator[](std::size_t n) const {
+				 return n < sz_ ? p_[n] : throw std::out_of_range("");
+			 }
+
 
 			 constexpr std::size_t size() const {
 				 return sz_;
 			 }
 
-			 constexpr std::size_t length() const;
+			 constexpr std::size_t length() const {
+				 return sz_;
+			 }
+
 
 			 constexpr const char* begin() const {
 				 return p_;
 			 }
 
-			 constexpr const char* end() const;
+			 constexpr const char* end() const {
+				 return p_ + sz_;
+			 }
 
-			 static constexpr uint32 hashCode(const char* string, uint32 startCRC = 0xFFFFFFFF);
+			 static constexpr uint32 hashCode(const char* string, uint32 startCRC = 0xFFFFFFFF) {
+				 return *string ? hashCode(string + 1, crctable[((startCRC >> 24) ^ (byte)(*string)) & 0xFF] ^ (startCRC << 8)) : ~startCRC;
+			 }
 
-			 constexpr uint32 hashCode() const;
+			 constexpr uint32 hashCode() const {
+				 return hashCode(p_);
+			 }
 
 			 String toString() const;
 
