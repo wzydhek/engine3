@@ -360,7 +360,7 @@ UnicodeString UnicodeString::replaceFirst(const UnicodeString& regex, const Unic
 		return *this;
 }
 
-inline bool UnicodeString::isEmpty() const {
+bool UnicodeString::isEmpty() const {
 	return count == 0;
 }
 
